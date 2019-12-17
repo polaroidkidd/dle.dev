@@ -1,0 +1,35 @@
+//@font-face {
+//  font-family: 'Poppins';
+//  font-style: normal;
+//  src: url('../assets/fonts/poppins/poppins-thin.ttf'); /* IE9 Compat Modes */
+//  src: local('Poppins'), local('Poppins')
+//  //url('../fonts/open-sans-v13-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//  //url('../fonts/open-sans-v13-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+//  //url('../fonts/open-sans-v13-latin-regular.woff') format('woff'), /* Modern Browsers */
+//  //url('../fonts/open-sans-v13-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+//  //url('../fonts/open-sans-v13-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+//}
+
+
+.heading-primary {
+  font-size: 5rem;
+  font-family: Poppins, sans-serif;
+  font-weight: 100;
+  color: $color-primary-border;
+}
+
+.heading-secondary {
+  font-size: 3rem;
+  font-weight: 200;
+  letter-spacing: 2rem;
+  margin-right: -2rem;
+  color: $color-secondary-heading;
+}
+
+.heading-tertiary {
+  font-size: 3rem;
+  font-weight: 200;
+  letter-spacing: 2rem;
+  margin-right: -2rem;
+  color: $color-tertiary-heading;
+}

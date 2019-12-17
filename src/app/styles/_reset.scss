@@ -1,0 +1,19 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+img, embed, object, video {
+  max-width: 100%;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px (for default font size of 16px)
+}
+
+body {
+  box-sizing: border-box;
+}
