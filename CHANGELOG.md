@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/polaroidkidd/dle.dev/compare/v0.1.2...v0.1.3) (2020-02-07)
+
+
+### Features
+
+* migrated to styled-components ([3fb80cc](https://github.com/polaroidkidd/dle.dev/commit/3fb80cc14a31c71dab00ce07214dca74b3f529c5))
+
 ### [0.1.2](https://github.com/polaroidkidd/dle.dev/compare/v0.1.1...v0.1.2) (2020-02-07)
 
 
