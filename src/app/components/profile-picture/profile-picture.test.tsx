@@ -24,7 +24,7 @@ afterEach(() => {
 
 it('should render a greeting', () => {
   act(() => {
-    render(<ProfilePicture image={image.toString()}/>, container);
+    render(<ProfilePicture imageSrc={image.toString()}/>, container);
   });
 
   expect(pretty(container.innerHTML)).toMatchInlineSnapshot(

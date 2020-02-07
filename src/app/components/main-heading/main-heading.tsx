@@ -1,13 +1,14 @@
 import React from 'react';
 
 
-interface IOwnProps {
+type Props = {
   text: string
 }
 
-const MainHeading: React.FC<IOwnProps> = (props: IOwnProps) => {
+
+const MainHeading: React.FC<Props> = ({text}) => {
   return (
-      <div className="heading-primary">{props.text}</div>
+    <div className="heading-primary">{text}</div>
   );
 };
 

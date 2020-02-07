@@ -8,7 +8,7 @@ import './root-container.scss';
 const RootContainer: React.FC = () => {
   return (
       <div className="root-container">
-        <ProfilePicture image={image.toString()}/>
+        <ProfilePicture imageSrc={image.toString()}/>
         <MainHeading text="dle"/>
       </div>
   );
