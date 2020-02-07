@@ -1,6 +1,6 @@
 import React from 'react';
 import image from '../../assets/headshot/daniel_einars-400x500.jpg';
-import { PrimaryHeading } from '../../components/main-heading';
+import { PrimaryHeading } from '../../components/primary-heading';
 import { ProfilePicture } from '../../components/profile-picture';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '../../styles/globalStyle';
