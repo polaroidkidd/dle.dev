@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render tertiary heading with text 1`] = `
+.c3 {
+  font-size: 5rem;
+  font-family: Poppins,sans-serif;
+  font-weight: 100;
+  color: #0BD29E;
+}
+
+.c2 {
+  -webkit-clip-path: circle(12rem at 50% 50%);
+  clip-path: circle(12rem at 50% 50%);
+  width: 25rem;
+  margin-top: 2rem;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-clip-path: circle(12.2rem at 50% 50%);
+  clip-path: circle(12.2rem at 50% 50%);
+  width: 26rem;
+  background-color: $color-primary-border;
+  padding-bottom: 2rem;
+}
+
+.c0 {
+  margin: 2rem 1rem;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <img
+      alt="Profile Picture"
+      className="c2"
+      src="daniel_einars-400x500.jpg"
+    />
+  </div>
+  <div
+    className="c3"
+  >
+    dle
+  </div>
+</div>
+`;
