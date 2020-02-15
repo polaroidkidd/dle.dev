@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/polaroidkidd/dle.dev/compare/v0.1.5...v0.1.6) (2020-02-15)
+
+
+### Bug Fixes
+
+* updated dockerfile ([9796535](https://github.com/polaroidkidd/dle.dev/commit/979653501b4205ddb0d9e5f19c14f62f32ca18b6))
+
 ### [0.1.5](https://github.com/polaroidkidd/dle.dev/compare/v0.1.4...v0.1.5) (2020-02-15)
 
 
