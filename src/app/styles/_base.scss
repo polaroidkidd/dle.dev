@@ -1,0 +1,13 @@
+@import "variables";
+
+html {
+  font-size: 62.5%; // 1rem = 10px (for default font size of 16px)
+}
+
+body {
+  background-color: $color-background-primary;
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 140rem;
+  padding: 0 1rem;
+}

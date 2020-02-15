@@ -1,11 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import WebFont from 'webfontloader';
-import { RootContainer } from './app/containers';
+import React from "react";
+import ReactDOM from "react-dom";
+import WebFont from "webfontloader";
+import { RootContainer } from "./app/containers";
+import CSS from "csstype";
 
 WebFont.load({
   google: {
-    families: ['Poppins:100,300', 'sans-serif'],
+    families: ["Poppins:100,200,300", "sans-serif"],
   },
 });
-ReactDOM.render(<RootContainer/>, document.getElementById('root'));
+
+const style: CSS.Properties = {
+  display: "flex",
+  flexGrow: 1,
+  justifyContent: "center"
+};
+
+ReactDOM.render(<RootContainer style={style}/>, document.getElementById("root"));

@@ -1,40 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render ProfilePicture with text 1`] = `
-.c1 {
-  -webkit-clip-path: circle(12rem at 50% 50%);
-  clip-path: circle(12rem at 50% 50%);
-  width: 25rem;
-  margin-top: 2rem;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-clip-path: circle(12.2rem at 50% 50%);
-  clip-path: circle(12.2rem at 50% 50%);
-  width: 26rem;
-  background-color: $color-primary-border;
-  padding-bottom: 2rem;
-}
-
+exports[`Render large ProfilePicture with source image url string 1`] = `
 <div
-  className="c0"
+  className="profile-picture-container"
 >
   <img
     alt="Profile Picture"
-    className="c1"
-    src="empty"
+    className="profile-picture"
+    src="daniel_einars-400x500.jpg"
+  />
+</div>
+`;
+
+exports[`Render small ProfilePicture with source image url string 1`] = `
+<div
+  className="profile-picture-container"
+>
+  <img
+    alt="Profile Picture"
+    className="profile-picture"
+    src="daniel_einars-400x500.jpg"
   />
 </div>
 `;

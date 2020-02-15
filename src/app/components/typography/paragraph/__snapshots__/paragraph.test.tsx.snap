@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Paragraph with empty string 1`] = `
+<p
+  className="paragraph"
+>
+  
+</p>
+`;
+
+exports[`Render Paragraph with text 1`] = `
+<p
+  className="paragraph"
+>
+  test heading
+</p>
+`;

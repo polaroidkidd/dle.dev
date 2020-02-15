@@ -1,3 +1,3 @@
-import ProfilePicture from './profile-picture';
+import ProfilePicture from "./profile-picture";
 
 export { ProfilePicture };

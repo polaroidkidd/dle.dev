@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render HeadingTertiary with empty string 1`] = `
+<h3
+  className="heading-tertiary"
+>
+  
+</h3>
+`;
+
+exports[`Render HeadingTertiary with text 1`] = `
+<h3
+  className="heading-tertiary"
+>
+  test heading
+</h3>
+`;

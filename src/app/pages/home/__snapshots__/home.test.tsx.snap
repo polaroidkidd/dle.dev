@@ -1,0 +1,176 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Expect to render complete Home with themes 1`] = `
+<section
+  className=".home"
+>
+  <div
+    className="profile-picture-container"
+  >
+    <img
+      alt="Profile Picture"
+      className="profile-picture"
+      src="daniel_einars-400x500.jpg"
+    />
+  </div>
+  <h1
+    className="heading-primary"
+  >
+    dle
+  </h1>
+  <div
+    className="navigation"
+  >
+    <div
+      className="navigation--group"
+    >
+      <div
+        className="nav-item-container"
+        onClick={[Function]}
+      >
+        <div
+          className="nav-item-container--icon"
+        >
+          <svg
+            aria-hidden="true"
+            className="sc-AxjAm dVOzqR"
+            fill="currentColor"
+            focusable="false"
+            height="48"
+            viewBox="0 0 512 512"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M172.2 226.8c-14.6-2.9-28.2 8.9-28.2 23.8V301c0 10.2 7.1 18.4 16.7 22 18.2 6.8 31.3 24.4 31.3 45 0 26.5-21.5 48-48 48s-48-21.5-48-48V120c0-13.3-10.7-24-24-24H24c-13.3 0-24 10.7-24 24v248c0 89.5 82.1 160.2 175 140.7 54.4-11.4 98.3-55.4 109.7-109.7 17.4-82.9-37-157.2-112.5-172.2zM209 0c-9.2-.5-17 6.8-17 16v31.6c0 8.5 6.6 15.5 15 15.9 129.4 7 233.4 112 240.9 241.5.5 8.4 7.5 15 15.9 15h32.1c9.2 0 16.5-7.8 16-17C503.4 139.8 372.2 8.6 209 0zm.3 96c-9.3-.7-17.3 6.7-17.3 16.1v32.1c0 8.4 6.5 15.3 14.8 15.9 76.8 6.3 138 68.2 144.9 145.2.8 8.3 7.6 14.7 15.9 14.7h32.2c9.3 0 16.8-8 16.1-17.3-8.4-110.1-96.5-198.2-206.6-206.7z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <h3
+          className="heading-tertiary"
+        >
+          blog
+        </h3>
+      </div>
+      <div
+        className="nav-item-container"
+        onClick={[Function]}
+      >
+        <div
+          className="nav-item-container--icon"
+        >
+          <svg
+            aria-hidden="true"
+            className="sc-AxjAm gXIMwt"
+            fill="currentColor"
+            focusable="false"
+            height="48"
+            viewBox="0 0 24 24"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M14 6V4h-4v2h4zM4 8v11h16V8H4zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2h4z"
+              fillRule="evenodd"
+            />
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+          </svg>
+           
+        </div>
+        <h3
+          className="heading-tertiary"
+        >
+          portfolio
+        </h3>
+      </div>
+    </div>
+    <div
+      className="navigation--group"
+    >
+      <div
+        className="nav-item-container"
+        onClick={[Function]}
+      >
+        <div
+          className="nav-item-container--icon"
+        >
+          <svg
+            aria-hidden="true"
+            className="sc-AxjAm gXIMwt"
+            fill="currentColor"
+            focusable="false"
+            height="48"
+            viewBox="0 0 24 24"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M16 20V4H4v15a1 1 0 001 1h11zm3 2H5a3 3 0 01-3-3V3a1 1 0 011-1h14a1 1 0 011 1v7h4v9a3 3 0 01-3 3zm-1-10v7a1 1 0 002 0v-7h-2zM6 6h6v6H6V6zm2 2v2h2V8H8zm-2 5h8v2H6v-2zm0 3h8v2H6v-2z"
+            />
+          </svg>
+        </div>
+        <h3
+          className="heading-tertiary"
+        >
+          vitae
+        </h3>
+      </div>
+      <div
+        className="nav-item-container"
+        onClick={[Function]}
+      >
+        <div
+          className="nav-item-container--icon"
+        >
+          <svg
+            aria-hidden="true"
+            className="sc-AxjAm gXIMwt"
+            fill="currentColor"
+            focusable="false"
+            height="48"
+            viewBox="0 0 24 24"
+            width="48"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 0h24v24H0z"
+              fill="none"
+            />
+            <path
+              d="M3 2h16.005C20.107 2 21 2.898 21 3.99v16.02c0 1.099-.893 1.99-1.995 1.99H3V2zm4 2H5v16h2V4zm2 16h10V4H9v16zm2-4a3 3 0 016 0h-6zm3-4a2 2 0 110-4 2 2 0 010 4zm8-6h2v4h-2V6zm0 6h2v4h-2v-4z"
+            />
+          </svg>
+           
+        </div>
+        <h3
+          className="heading-tertiary"
+        >
+          contact
+        </h3>
+      </div>
+    </div>
+  </div>
+  <section>
+    <h2
+      className="heading-secondary"
+    >
+      Welcome to my corner of the internet.
+    </h2>
+    
+  </section>
+  <h2
+    className="heading-secondary"
+  >
+    This is currently a work in progress. Not much here to see yet.
+  </h2>
+</section>
+`;

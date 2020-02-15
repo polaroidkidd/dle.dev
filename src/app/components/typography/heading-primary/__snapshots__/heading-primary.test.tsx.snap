@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render HeadingPrimary with empty string 1`] = `
+<h1
+  className="heading-primary"
+>
+  
+</h1>
+`;
+
+exports[`Render HeadingPrimary with text 1`] = `
+<h1
+  className="heading-primary"
+>
+  test heading
+</h1>
+`;

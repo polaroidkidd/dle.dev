@@ -1,11 +1,14 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import 'jest-styled-components';
+import React from "react";
+import renderer from "react-test-renderer";
+import { ProfilePicture } from "./index";
+import img from "../../assets/headshot/daniel_einars-400x500.jpg";
 
-import { ProfilePicture } from './index';
+test("Render large ProfilePicture with source image url string", () => {
+  const tree = renderer.create(<ProfilePicture isLarge={true} imageSrc={img}/>).toJSON();
+  expect(tree).toMatchSnapshot();
+});
 
-
-test('render ProfilePicture with text', () => {
-  const tree = renderer.create(<ProfilePicture imageSrc="empty"/>).toJSON();
+test("Render small ProfilePicture with source image url string", () => {
+  const tree = renderer.create(<ProfilePicture isLarge={false} imageSrc={img}/>).toJSON();
   expect(tree).toMatchSnapshot();
 });
