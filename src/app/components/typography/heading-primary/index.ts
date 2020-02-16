@@ -1,3 +1,2 @@
-import HeadingPrimary from "./heading-primary";
+export { HeadingPrimary } from "./heading-primary";
 
-export { HeadingPrimary };

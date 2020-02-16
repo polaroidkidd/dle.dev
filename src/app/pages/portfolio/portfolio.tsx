@@ -1,8 +1,8 @@
 import React from "react";
 
-const ShowCase: React.FC = () => {
+const Portfolio: React.FC = () => {
   return (
     <div>SHOWCASE CONTAINER</div>
   );
 };
-export { ShowCase };
+export { Portfolio };

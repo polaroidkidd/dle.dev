@@ -1,4 +1,4 @@
-import Navigation from "./navigation";
-import NavigationItem from "./navigation-item/navigation-item";
+import { NavigationItem } from "./navigation-item/navigation-item";
 
-export { Navigation, NavigationItem };
+export { Navigation, ROUTES } from "./navigation";
+export { NavigationItem };

@@ -1,5 +1,6 @@
 import React from "react";
 import "./heading-primary.scss";
+import classNames from "classnames";
 
 type Props = {
   text: string
@@ -7,7 +8,7 @@ type Props = {
 
 const HeadingPrimary: React.FC<Props> = ({text}) => {
   return (
-    <h1 className="heading-primary">{text}</h1>
+    <h1 className={classNames("heading-primary")}>{text}</h1>
   );
 };
-export default HeadingPrimary;
+export { HeadingPrimary};

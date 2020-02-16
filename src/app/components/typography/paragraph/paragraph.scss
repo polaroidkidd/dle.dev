@@ -4,12 +4,11 @@
 .paragraph {
   color: $color-text-primary;
   font-family: Poppins, sans-serif;
-  font-size: 2rem;
-  line-height: 3rem;
+  font-size: 3rem;
   font-weight: 200;
-  letter-spacing: 0.75rem;
+  line-height: 3rem;
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 200;
   }
 }

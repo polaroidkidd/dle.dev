@@ -5,6 +5,7 @@ import { Newspaper } from "styled-icons/remix-line/Newspaper";
 import { WorkOutline } from "styled-icons/material/WorkOutline";
 import { Blog } from "styled-icons/fa-solid/Blog";
 import { ContactsBook } from "styled-icons/remix-line/ContactsBook";
+import { useHistory } from "react-router-dom";
 
 type VITAE = "VITAE";
 type PORTFOLIO = "PORTFOLIO";
@@ -17,8 +18,19 @@ type active = {
   contact: boolean
 }
 
+export enum ROUTES {
+  VITAE = "/vitae",
+  HOME = "/",
+  BLOG = "/blog",
+  PORTFOLIO = "/portfolio",
+  CONTACT = "/contact"
+}
+
+
+
 const Navigation: React.FC = () => {
   const [active, setActive] = React.useState<active>({blog: false, contact: false, portfolio: false, vitae: false});
+  const history = useHistory();
   const handleActiveNavigation = (e: React.MouseEvent<HTMLDivElement>, category: BLOG | VITAE | PORTFOLIO | CONTACT) => {
     e.preventDefault();
     switch (category) {
@@ -29,6 +41,7 @@ const Navigation: React.FC = () => {
           blog: false,
           contact: false,
         });
+        history.push(ROUTES.VITAE);
         break;
       }
       case "PORTFOLIO": {
@@ -38,6 +51,7 @@ const Navigation: React.FC = () => {
           blog: false,
           contact: false,
         });
+        history.push(ROUTES.PORTFOLIO);
         break;
       }
       case "BLOG": {
@@ -47,6 +61,7 @@ const Navigation: React.FC = () => {
           blog: true,
           contact: false,
         });
+        history.push(ROUTES.BLOG);
         break;
       }
       case "CONTACT": {
@@ -56,6 +71,7 @@ const Navigation: React.FC = () => {
           blog: false,
           contact: true,
         });
+        history.push(ROUTES.CONTACT);
         break;
       }
       default: {
@@ -94,4 +110,4 @@ const Navigation: React.FC = () => {
     </div>
   );
 };
-export default Navigation;
+export {Navigation};

@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { ShowCase } from "./index";
+import { Contact } from "./contact";
 
 
-test("Render ShowCase Component", () => {
+test("Render Contact Component", () => {
   const tree = renderer.create(
-    <ShowCase/>
+    <Contact/>
   ).toJSON();
   expect(tree).toMatchSnapshot();
 });

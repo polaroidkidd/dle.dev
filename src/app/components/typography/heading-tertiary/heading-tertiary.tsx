@@ -1,5 +1,6 @@
 import React from "react";
 import "./heading-tertiary.scss";
+import classNames from "classnames";
 
 type Props = {
   text: string
@@ -7,7 +8,7 @@ type Props = {
 
 const HeadingTertiary: React.FC<Props> = ({text}) => {
   return (
-    <h3 className="heading-tertiary">{text}</h3>
+    <h3 className={classNames("heading-tertiary")}>{text}</h3>
   );
 };
 export { HeadingTertiary };

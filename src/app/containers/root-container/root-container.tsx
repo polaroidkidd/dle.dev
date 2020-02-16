@@ -1,7 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Home } from "../../pages";
+import { Route, Router, Switch } from "react-router-dom";
+import { Blog, Contact, Home, Portfolio, Vitae } from "../../pages";
 import CSS from "csstype";
+import { Navigation, ROUTES } from "../../components";
+import { createBrowserHistory } from "history";
+import { ProfilePicture } from "../../components";
+import image from "../../assets/headshot/daniel_einars-400x500.jpg";
+import { HeadingPrimary } from "../../components";
+
+
+const history = createBrowserHistory();
 
 type Props = {
   style: CSS.Properties
@@ -10,10 +18,27 @@ type Props = {
 const RootContainer: React.FC<Props> = ({style}) => {
   return (
     <div style={style}>
-
-      <Router>
+      <Router history={history}>
+        <ProfilePicture
+          imageSrc={image}
+          isLarge={true}/>
+        <HeadingPrimary
+          text="dle"/>
+        <Navigation/>
         <Switch>
-          <Route path="/">
+          <Route path={ROUTES.PORTFOLIO}>
+            <Portfolio/>
+          </Route>
+          <Route path={ROUTES.BLOG}>
+            <Blog/>
+          </Route>
+          <Route path={ROUTES.VITAE}>
+            <Vitae/>
+          </Route>
+          <Route path={ROUTES.CONTACT}>
+            <Contact/>
+          </Route>
+          <Route path={ROUTES.HOME}>
             <Home/>
           </Route>
         </Switch>

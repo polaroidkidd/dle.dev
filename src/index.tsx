@@ -12,6 +12,7 @@ WebFont.load({
 
 const style: CSS.Properties = {
   display: "flex",
+  flexDirection: "column",
   flexGrow: 1,
   justifyContent: "center"
 };

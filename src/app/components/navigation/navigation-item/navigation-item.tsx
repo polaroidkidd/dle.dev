@@ -21,4 +21,4 @@ const NavigationItem: React.FC<Props> = ({description, active, handleActiveNavig
     </div>
   );
 };
-export default NavigationItem;
+export { NavigationItem};

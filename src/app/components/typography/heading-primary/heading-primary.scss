@@ -4,11 +4,10 @@
   color: $color-text-primary;
   font-family: Poppins, sans-serif;
   font-size: 5rem;
-  font-weight: 200;
+  font-weight: 300;
   text-align: center;
   width: 100%;
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-    font-weight: 200;
+    font-size: 4rem;
   }
 }

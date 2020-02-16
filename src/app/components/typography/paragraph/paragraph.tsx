@@ -1,13 +1,17 @@
 import React from "react";
 import "./paragraph.scss";
+import classNames from "classnames";
 
 type Props = {
-  text: string
+  text: string,
+  additionalStyles?: string
 }
 
-const Paragraph: React.FC<Props> = ({text}) => {
+const Paragraph: React.FC<Props> = ({text, additionalStyles}) => {
   return (
-    <p className="paragraph">{text}</p>
+    <p className={classNames("paragraph", additionalStyles ? additionalStyles : "")}>{text}</p>
   );
 };
+
+
 export { Paragraph };

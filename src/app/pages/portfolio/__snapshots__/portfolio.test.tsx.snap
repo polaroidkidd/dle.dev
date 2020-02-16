@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render ShowCase Component 1`] = `
+exports[`Render Portfolio Component 1`] = `
 <div>
   SHOWCASE CONTAINER
 </div>
