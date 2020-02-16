@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/polaroidkidd/dle.dev/compare/v0.1.7...v0.1.8) (2020-02-16)
+
+
+### Features
+
+* basic navigation ([c539845](https://github.com/polaroidkidd/dle.dev/commit/c5398451eafc8f6dbd42ceca5887e33e431f53e9))
+
 ### [0.1.7](https://github.com/polaroidkidd/dle.dev/compare/v0.1.6...v0.1.7) (2020-02-16)
 
 
