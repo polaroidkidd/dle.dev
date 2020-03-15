@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/polaroidkidd/dle.dev/compare/v0.1.8...v0.1.9) (2020-03-15)
+
+
+### Features
+
+* migrated to npm ([807aa83](https://github.com/polaroidkidd/dle.dev/commit/807aa83d2fd54bd28584157eaa4773e99ee79e23))
+* site now loads blogs from repository ([d5197d5](https://github.com/polaroidkidd/dle.dev/commit/d5197d57d9e97c2511d859eff04029a28c84a92e))
+
 ### [0.1.8](https://github.com/polaroidkidd/dle.dev/compare/v0.1.7...v0.1.8) (2020-02-16)
 
 
