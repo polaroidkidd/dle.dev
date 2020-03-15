@@ -37,4 +37,4 @@ docker push "${TAG_VERSION}"
 
 rm -rf ./build
 
-ssh -i ~/.ssh/dle@ebikon -p 7898 dle@144.2.104.52 "/home/dle/services/vps/update-frontend.sh"
+ssh -i ~/.ssh/dle@ebikon -p 7898 dle@144.2.104.33 "/home/dle/services/vps/update-frontend.sh"
