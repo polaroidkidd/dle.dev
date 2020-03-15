@@ -9,7 +9,6 @@ type Props = {
 const ProfilePicture: React.FC<Props> = ({imageSrc, isLarge}) => {
   React.useEffect(() => {
     setTimeout(() => {
-      console.log("animating profile picture change");
     }, 650);
   }, [isLarge]);
 

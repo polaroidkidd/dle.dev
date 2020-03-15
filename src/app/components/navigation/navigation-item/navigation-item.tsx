@@ -1,5 +1,4 @@
 import React from "react";
-import { HeadingTertiary } from "../../index";
 import "./navigation-item.scss";
 import classNames from "classnames";
 
@@ -17,8 +16,8 @@ const NavigationItem: React.FC<Props> = ({description, active, handleActiveNavig
       <div className="nav-item-container--icon">
         {children}
       </div>
-      <HeadingTertiary text={description}/>
+      <h3 className="heading-tertiary">{description}</h3>
     </div>
   );
 };
-export { NavigationItem};
+export { NavigationItem };

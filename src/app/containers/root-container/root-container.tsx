@@ -2,12 +2,9 @@ import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import { Blog, Contact, Home, Portfolio, Vitae } from "../../pages";
 import CSS from "csstype";
-import { Navigation, ROUTES } from "../../components";
+import { Navigation, ProfilePicture, ROUTES } from "../../components";
 import { createBrowserHistory } from "history";
-import { ProfilePicture } from "../../components";
-import image from "../../assets/headshot/daniel_einars-400x500.jpg";
-import { HeadingPrimary } from "../../components";
-
+import image from "../../assets/images/headshot/daniel_einars-400x500.jpg";
 
 const history = createBrowserHistory();
 
@@ -22,8 +19,7 @@ const RootContainer: React.FC<Props> = ({style}) => {
         <ProfilePicture
           imageSrc={image}
           isLarge={true}/>
-        <HeadingPrimary
-          text="dle"/>
+        <h1 className="heading-primary center-text__horizontal">dle</h1>
         <Navigation/>
         <Switch>
           <Route path={ROUTES.PORTFOLIO}>

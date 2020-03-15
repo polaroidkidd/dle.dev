@@ -26,8 +26,6 @@ export enum ROUTES {
   CONTACT = "/contact"
 }
 
-
-
 const Navigation: React.FC = () => {
   const [active, setActive] = React.useState<active>({blog: false, contact: false, portfolio: false, vitae: false});
   const history = useHistory();
@@ -110,4 +108,4 @@ const Navigation: React.FC = () => {
     </div>
   );
 };
-export {Navigation};
+export { Navigation };

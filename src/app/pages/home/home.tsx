@@ -1,6 +1,5 @@
 import React from "react";
-import image from "../../assets/headshot/daniel_einars-400x500.jpg";
-import { HeadingPrimary, Navigation, ProfilePicture, WelcomeMessage } from "../../components";
+import { WelcomeMessage } from "../../components";
 import "./home.scss";
 
 const Home: React.FC = () => {

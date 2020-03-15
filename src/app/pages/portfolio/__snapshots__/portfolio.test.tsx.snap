@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render Portfolio Component 1`] = `
-<div>
-  SHOWCASE CONTAINER
-</div>
+<h2
+  className="heading-tertiary center-text__horizontal center-text__padding"
+>
+  Coming Soon
+</h2>
 `;

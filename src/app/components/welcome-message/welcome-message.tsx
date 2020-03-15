@@ -1,6 +1,4 @@
 import React from "react";
-import { HeadingSecondary } from "../typography/heading-secondary";
-import { Paragraph } from "../typography/paragraph";
 import "./welcome-message.scss";
 
 type Props = {
@@ -12,10 +10,9 @@ const WelcomeMessage: React.FC<Props> = ({heading, message}) => {
   return (
     <>
       <section>
-        <HeadingSecondary text={heading}/>
-
+        <h2 className="heading-secondary welcome-message">{heading}</h2>
         {
-          message ? <Paragraph text={message} additionalStyles="additional-paragraph-styles"/> : ""
+          message ? <p className="paragraph additional-paragraph-styles">{message} </p> : ""
         }
       </section>
     </>

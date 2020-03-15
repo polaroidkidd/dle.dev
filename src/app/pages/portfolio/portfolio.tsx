@@ -2,7 +2,7 @@ import React from "react";
 
 const Portfolio: React.FC = () => {
   return (
-    <div>SHOWCASE CONTAINER</div>
+    <h2 className="heading-tertiary center-text__horizontal center-text__padding">Coming Soon</h2>
   );
 };
 export { Portfolio };

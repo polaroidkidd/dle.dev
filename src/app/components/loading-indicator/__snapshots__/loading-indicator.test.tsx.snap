@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Navigation 1`] = `
+<div
+  className=".loading-indicator"
+>
+  <div
+    aria-busy="true"
+    className=""
+    style={Object {}}
+  >
+    <svg
+      aria-label="audio-loading"
+      fill="green"
+      height={90}
+      id="goo-loader"
+      width={100}
+    >
+      <filter
+        id="fancy-goo"
+      >
+        <feGaussianBlur
+          in="SourceGraphic"
+          result="blur"
+          stdDeviation="6"
+        />
+        <feColorMatrix
+          in="blur"
+          mode="matrix"
+          result="goo"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+        />
+        <feComposite
+          in="SourceGraphic"
+          in2="goo"
+          operator="atop"
+        />
+      </filter>
+      <g
+        filter="url(#fancy-goo)"
+      >
+        <animateTransform
+          attributeName="transform"
+          attributeType="XML"
+          dur="1.2s"
+          from="0 50 50"
+          id="mainAnim"
+          repeatCount="indefinite"
+          to="359 50 50"
+          type="rotate"
+        />
+        <circle
+          cx="50%"
+          cy="40"
+          r="11"
+        >
+          <animate
+            attributeName="cy"
+            attributeType="XML"
+            begin="0;cAnim1.end+0.2s"
+            calcMode="spline"
+            dur="0.6s"
+            id="cAnim1"
+            keySplines="0.175, 0.885, 0.320, 1.5; 0.175, 0.885, 0.320, 1.5"
+            keyTimes="0;0.3;1"
+            values="40;20;40"
+          />
+        </circle>
+        <circle
+          cx="50%"
+          cy="60"
+          r="11"
+        >
+          <animate
+            attributeName="cy"
+            attributeType="XML"
+            begin="0.4s;cAnim2.end+0.2s"
+            calcMode="spline"
+            dur="0.6s"
+            id="cAnim2"
+            keySplines="0.175, 0.885, 0.320, 1.5;0.175, 0.885, 0.320, 1.5"
+            keyTimes="0;0.3;1"
+            values="60;80;60"
+          />
+        </circle>
+      </g>
+    </svg>
+  </div>
+</div>
+`;

@@ -12,7 +12,7 @@ exports[`Render Root Container 1`] = `
     />
   </div>
   <h1
-    className="heading-primary"
+    className="heading-primary center-text__horizontal"
   >
     dle
   </h1>
@@ -162,7 +162,7 @@ exports[`Render Root Container 1`] = `
   >
     <section>
       <h2
-        className="heading-secondary"
+        className="heading-secondary welcome-message"
       >
         Welcome to my corner of the internet.
       </h2>
@@ -170,6 +170,7 @@ exports[`Render Root Container 1`] = `
         className="paragraph additional-paragraph-styles"
       >
         This is currently a work in progress. Not much here to see yet.
+         
       </p>
     </section>
   </section>

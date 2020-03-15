@@ -1,0 +1,68 @@
+@import "variables";
+
+@mixin heading-primary {
+  color: $color-text-primary;
+  font-family: Poppins, sans-serif;
+  font-size: 5rem;
+  font-weight: 300;
+  width: 100%;
+  @media (max-width: 768px) {
+    font-size: 4rem;
+  }
+}
+
+@mixin heading-secondary {
+  color: $color-text-primary;
+  font-family: Poppins, sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 0.2rem;
+  margin-right: -2rem;
+  margin-top: 3rem;
+  width: 100%;
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
+}
+
+@mixin heading-tertiary {
+  color: $color-text-primary;
+  font-family: Poppins, sans-serif;
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 0.75rem;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+}
+
+.heading-primary {
+  @include heading-primary;
+}
+
+.heading-secondary {
+  @include heading-secondary
+}
+
+
+.heading-tertiary {
+  @include heading-tertiary
+}
+
+@mixin paragraph {
+  color: $color-text-primary;
+  font-family: Poppins, sans-serif;
+  font-size: 1.75rem;
+  @media (max-width: 768px) {
+    font-size: 2rem;
+    font-weight: 200;
+  }
+}
+
+.paragraph {
+  @include paragraph
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  line-height: 3rem;
+}

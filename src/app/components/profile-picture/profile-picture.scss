@@ -1,10 +1,10 @@
 @import "../../styles/main";
 
 .profile-picture-container {
+  align-items: center;
   background-color: $color-primary-border;
   clip-path: circle(12.5rem at 50% 50%);
   display: flex;
-  align-items: center;
   justify-content: center;
   padding-bottom: 2rem;
   width: 100%;

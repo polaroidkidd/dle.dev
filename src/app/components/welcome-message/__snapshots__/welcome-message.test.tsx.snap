@@ -3,7 +3,7 @@
 exports[`Render WelcomeMessage with empty string 1`] = `
 <section>
   <h2
-    className="heading-secondary"
+    className="heading-secondary welcome-message"
   >
     
   </h2>
@@ -14,7 +14,7 @@ exports[`Render WelcomeMessage with empty string 1`] = `
 exports[`Render WelcomeMessage with text 1`] = `
 <section>
   <h2
-    className="heading-secondary"
+    className="heading-secondary welcome-message"
   >
     test heading
   </h2>
