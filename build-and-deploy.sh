@@ -29,7 +29,7 @@ echo "$TAG_VERSION"
 rm -rf ./build
 yarn run build
 
-docker build . --no-cache -t "${TAG_LATEST}"
+docker build . -t "${TAG_LATEST}"
 docker tag "${TAG_LATEST}" "${TAG_VERSION}"
 
 docker push "${TAG_LATEST}"

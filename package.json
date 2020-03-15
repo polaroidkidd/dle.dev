@@ -23,8 +23,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "release": "standard-version"
+    "release": "standard-version",
+    "deploy": "./build-and-deploy.sh"
   },
+  "homepage": "https://dle.dev",
   "husky": {
     "hooks": {
       "commit-msg": "./vcs-check.sh"
