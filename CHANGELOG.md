@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/polaroidkidd/dle.dev/compare/v0.1.11...v0.1.12) (2020-03-18)
+
+
+### Bug Fixes
+
+* added yarn lock file ([64bb8d5](https://github.com/polaroidkidd/dle.dev/commit/64bb8d5fd7a7dc66beabd1ba154eadcc82193020))
+
 ### [0.1.11](https://github.com/polaroidkidd/dle.dev/compare/v0.1.10...v0.1.11) (2020-03-15)
 
 
