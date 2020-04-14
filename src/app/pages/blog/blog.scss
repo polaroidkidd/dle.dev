@@ -1,7 +1,7 @@
 @import "./src/app/styles/main";
 
 .markdown-body {
-  background-color: lighten($color-background-primary, 2%);
+  background-color: lighten($color-primary-background, 2%);
   border-radius: 0.5rem;
   margin: 2.5rem;
   padding: 2.5rem;
@@ -23,7 +23,7 @@
   }
 
   & > h4 {
-    color: $color-text-primary;
+    color: $color-primary-text;
     font-family: Poppins, sans-serif;
     font-size: 1.7rem;
     font-weight: 300;
@@ -31,7 +31,7 @@
   }
 
   & > h5 {
-    color: $color-text-primary;
+    color: $color-primary-text;
     font-family: Poppins, sans-serif;
     font-size: 1.7rem;
     font-weight: 300;
@@ -40,7 +40,7 @@
   }
 
   & > h6 {
-    color: $color-text-primary;
+    color: $color-primary-text;
     font-family: Poppins, sans-serif;
     font-size: 1.7rem;
     font-weight: 300;
@@ -48,7 +48,7 @@
   }
 
   & > p {
-    color: $color-text-primary;
+    color: $color-primary-text;
     font-family: Poppins, sans-serif;
     font-size: 1.7rem;
     font-weight: 300;
@@ -90,7 +90,7 @@
     }
 
     & li {
-      color: $color-text-primary;
+      color: $color-primary-text;
       font-family: Poppins, sans-serif;
       font-size: 1.75rem;
       font-weight: 300;

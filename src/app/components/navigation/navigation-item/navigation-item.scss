@@ -2,8 +2,8 @@
 
 .nav-item-container {
   align-items: center;
-  background-color: $color-background-primary;
-  border: solid 0.2rem lighten($color-background-primary, 10%);
+  background-color: $color-primary-background;
+  border: solid 0.2rem lighten($color-primary-border, 10%);
   border-radius: 0.25rem;
   display: flex;
   flex: 1 1 0;
@@ -35,7 +35,7 @@
 
   &:hover {
     backface-visibility: hidden;
-    background-color: lighten($color-background-primary, 1%);
+    background-color: lighten($color-primary-background, 1%);
     border-color: $color-primary-border-hover;
     color: $color-primary-border-hover;
     cursor: pointer;
@@ -55,7 +55,7 @@
   }
 
   &__active {
-    background-color: lighten($color-background-primary, 1%);
+    background-color: lighten($color-primary-background, 1%);
     border-color: $color-primary-border-hover;
     color: $color-primary-border-hover;
   }

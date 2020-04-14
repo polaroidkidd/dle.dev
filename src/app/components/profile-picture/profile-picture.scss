@@ -3,7 +3,7 @@
 .profile-picture-container {
   align-items: center;
   background-color: $color-primary-border;
-  clip-path: circle(12.5rem at 50% 50%);
+  clip-path: circle(12.2rem at 50% 50%);
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
@@ -16,7 +16,7 @@
 
 .profile-picture {
 
-  clip-path: circle(12rem at 50% 50%);
+  clip-path: circle(12.1rem at 50% 50%);
   margin-top: 2rem;
   width: 25rem;
   @media (max-width: 768px) {

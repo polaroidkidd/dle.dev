@@ -1,6 +1,6 @@
 import React from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { base16AteliersulphurpoolLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 interface ICodeBlockProps {
   value: string;
@@ -11,7 +11,7 @@ const CodeBlock: React.FC<ICodeBlockProps> = ({value, language}) => {
   return (
     <SyntaxHighlighter
       language={language}
-      style={tomorrow}
+      style={base16AteliersulphurpoolLight}
       customStyle={{fontSize: "1.5rem"}}
     >
       {value}
