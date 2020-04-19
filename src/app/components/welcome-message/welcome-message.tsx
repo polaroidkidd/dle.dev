@@ -1,9 +1,10 @@
 import React from "react";
 import "./welcome-message.scss";
-import { LatestNews } from "../latest-news";
-
+import { NavLink, useHistory } from "react-router-dom"
+import { ROUTES } from "../navigation";
 
 const WelcomeMessage: React.FC = () => {
+  const history = useHistory();
   return (
     <>
       <section>
@@ -13,9 +14,9 @@ const WelcomeMessage: React.FC = () => {
           I build websites & servers.
         </h3>
 
-        <h4 className="heading-quaternary u-center-text__horizontal">Check out my <a href="https://dle.dev/blog">first blog entry</a> on using React with Typescript!</h4>
+        <h4 className="heading-quaternary u-center-text__horizontal">Check out my <NavLink to={ROUTES.BLOG}>first blog
+          entry</NavLink> on using React with Typescript!</h4>
       </section>
-      <LatestNews/>
     </>
   );
 };

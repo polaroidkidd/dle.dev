@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Router, Switch } from "react-router-dom";
 import { Blog, Contact, Home, Portfolio, Vitae } from "../../pages";
 import CSS from "csstype";
-import { Navigation, ProfilePicture, ROUTES } from "../../components";
+import { Navigation, ROUTES } from "../../components";
 import { createBrowserHistory } from "history";
 
 

@@ -23,10 +23,10 @@ const Blog: React.FC = () => {
   React.useEffect(() => {
     urls.forEach((url) => {
       trackPromise(Axios.get(url)
-      .then((response) => {
-        setArticles(((prevState) => [...prevState, response.data]));
-        setLoading(false);
-      })).catch(e => console.error(e));
+        .then((response) => {
+          setArticles(((prevState) => [...prevState, response.data]));
+          setLoading(false);
+        })).catch(e => console.error(e));
     });
   }, [urls]);
 

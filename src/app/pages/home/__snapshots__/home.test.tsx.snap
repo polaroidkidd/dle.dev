@@ -20,15 +20,14 @@ exports[`Expect to render complete Home 1`] = `
     >
       Check out my 
       <a
-        href="https://dle.dev/blog"
+        aria-current={null}
+        href="/blog"
+        onClick={[Function]}
       >
         first blog entry
       </a>
        on using React with Typescript!
     </h4>
   </section>
-  <section
-    className="latest-news"
-  />
 </section>
 `;

@@ -17,10 +17,12 @@ a {
   font-weight: 300;
   color: $color-primary-border-hover;
   transition: color 0.2s ease-in;
-  &:visited{
+
+  &:visited {
     color: purple;
   }
-  &:hover{
+
+  &:hover {
     color: olive;
   }
 }
