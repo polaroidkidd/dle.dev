@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/polaroidkidd/dle.dev/compare/v0.1.15...v0.1.16) (2020-04-19)
+
+
+### Bug Fixes
+
+* navigation no longer highlighint wrong element ([5ec5aab](https://github.com/polaroidkidd/dle.dev/commit/5ec5aab6ea09263d694b722409df78eb85006a7e))
+
 ### [0.1.15](https://github.com/polaroidkidd/dle.dev/compare/v0.1.14...v0.1.15) (2020-04-19)
 
 
