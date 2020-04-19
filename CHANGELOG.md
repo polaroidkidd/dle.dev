@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/polaroidkidd/dle.dev/compare/v0.1.16...v0.1.17) (2020-04-19)
+
+
+### Features
+
+* latest blog now being shown on home page ([95a4c78](https://github.com/polaroidkidd/dle.dev/commit/95a4c78b9e39ec016035081934cfdeed9b3b7709))
+
 ### [0.1.16](https://github.com/polaroidkidd/dle.dev/compare/v0.1.15...v0.1.16) (2020-04-19)
 
 
