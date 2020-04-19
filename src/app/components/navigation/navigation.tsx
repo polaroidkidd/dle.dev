@@ -45,7 +45,7 @@ const Navigation: React.FC = () => {
       case "HOME": {
         setActive({
           home: true,
-          vitae: true,
+          vitae: false,
           portfolio: false,
           blog: false,
           contact: false,

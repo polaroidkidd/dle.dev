@@ -3,7 +3,7 @@
 .nav-item-container {
   align-items: center;
   background-color: $color-primary-background;
-  border: solid 0.2rem lighten($color-primary-border, 10%);
+  border: solid 0.2rem $color-primary-border;
   border-radius: 0.25rem;
   display: flex;
   flex: 1 1 0;
