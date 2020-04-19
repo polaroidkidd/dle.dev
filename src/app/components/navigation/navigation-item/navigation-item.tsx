@@ -4,14 +4,14 @@ import classNames from "classnames";
 
 type Props = {
   description: "vitae" | "portfolio" | "blog" | "contact",
-  active: boolean,
+  isActive: boolean,
   handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 
-const NavigationItem: React.FC<Props> = ({description, active, handleActiveNavigation, children}) => {
+const NavigationItem: React.FC<Props> = ({description, isActive, handleActiveNavigation, children}) => {
   return (
     <div
-      className={classNames("nav-item-container", active ? "nav-item-container__active" : "")}
+      className={classNames("nav-item-container", isActive ? "nav-item-container__active" : "")}
       onClick={handleActiveNavigation}>
       <div className="nav-item-container--icon">
         {children}

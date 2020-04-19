@@ -1,12 +1,9 @@
 @import "../../styles/main";
 
 .welcome-message {
-  color: $color-primary-text;
-  font-family: Poppins, sans-serif;
-  font-size: 5rem;
-  font-weight: 200;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  width: 100%;
   @media (max-width: 768px) {
     font-size: 2.5rem;
     font-weight: 200;

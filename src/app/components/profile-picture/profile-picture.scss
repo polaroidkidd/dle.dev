@@ -1,27 +1,46 @@
 @import "../../styles/main";
 
 .profile-picture-container {
-  align-items: center;
-  background-color: $color-primary-border;
-  clip-path: circle(12.2rem at 50% 50%);
   display: flex;
+  align-items: center;
   justify-content: center;
-  padding-bottom: 2rem;
-  width: 100%;
-  @media (max-width: 768px) {
-    clip-path: circle(5.1rem at 50% 50%);
-    padding-bottom: 1rem;
+    margin: 2rem 0 0 0;
+  &__active{
+    margin: 2rem;
+  }
+
+  &--image {
+    margin-top: -1rem;
+    &:hover{
+      cursor: pointer;
+    }
+    &__active {
+      margin-top: -2rem;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: -1rem;
+    }
+  }
+
+  &--border {
+    height: 12rem;
+    width: 12rem;
+    border: solid 0.2rem $color-primary-text;
+    border-radius: 50%;
+    overflow: hidden;
+
+    &__active {
+      height: 25rem;
+      width: 25rem;
+    }
+
+    @media (max-width: 768px) {
+      height: 12rem;
+      width: 12rem;
+    }
   }
 }
 
-.profile-picture {
 
-  clip-path: circle(12.1rem at 50% 50%);
-  margin-top: 2rem;
-  width: 25rem;
-  @media (max-width: 768px) {
-    clip-path: circle(5rem at 50% 50%);
-    margin-top: 1rem;
-    width: 11rem;
-  }
-}
+

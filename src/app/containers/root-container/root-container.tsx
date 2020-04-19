@@ -4,7 +4,7 @@ import { Blog, Contact, Home, Portfolio, Vitae } from "../../pages";
 import CSS from "csstype";
 import { Navigation, ProfilePicture, ROUTES } from "../../components";
 import { createBrowserHistory } from "history";
-import image from "../../assets/images/headshot/daniel_einars-400x500.jpg";
+
 
 const history = createBrowserHistory();
 
@@ -16,10 +16,6 @@ const RootContainer: React.FC<Props> = ({style}) => {
   return (
     <div style={style}>
       <Router history={history}>
-        <ProfilePicture
-          imageSrc={image}
-          isLarge={true}/>
-        <h1 className="heading-primary center-text__horizontal">dle</h1>
         <Navigation/>
         <Switch>
           <Route path={ROUTES.PORTFOLIO}>

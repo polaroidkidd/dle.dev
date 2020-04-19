@@ -1,22 +1,12 @@
 import React from "react";
-import "./loading-indicator.scss";
-import { usePromiseTracker } from "react-promise-tracker";
+import style from "./loading-indicator.module.scss";
 import Loader from "react-loader-spinner";
 
 const LoadingIndicator = () => {
-  const {promiseInProgress} = usePromiseTracker();
-  // return promiseInProgress
-  //   ? <></>
-  //   : (
-  //     <div className=".loading-indicator">
-  //       <Loader type="MutatingDots" width={100} height={100}/>
-  //     </div>
-  //   );
   return (
-    <div className=".loading-indicator">
-      <Loader type="MutatingDots" width={100} height={100}/>
+    <div className={style.loadingIndicator}>
+      <Loader type="Oval" color={"#ADADAD"} width={100} height={100}/>
     </div>
-
   );
 };
 
