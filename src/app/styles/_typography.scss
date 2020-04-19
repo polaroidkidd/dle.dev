@@ -40,6 +40,18 @@
   }
 }
 
+@mixin heading-quaternary {
+  color: $color-primary-text;
+  font-family: Poppins, sans-serif;
+  font-size: 2rem;
+  font-weight: 200;
+  letter-spacing: 0.25rem;
+  line-height: 4rem;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+}
+
 .heading-primary {
   @include heading-primary;
 }
@@ -51,6 +63,10 @@
 
 .heading-tertiary {
   @include heading-tertiary
+}
+
+.heading-quaternary {
+  @include heading-quaternary
 }
 
 @mixin paragraph {

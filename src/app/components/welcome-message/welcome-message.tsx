@@ -1,20 +1,21 @@
 import React from "react";
 import "./welcome-message.scss";
+import { LatestNews } from "../latest-news";
 
-type Props = {
-  heading: string
-  message?: string
-}
 
-const WelcomeMessage: React.FC<Props> = ({heading, message}) => {
+const WelcomeMessage: React.FC = () => {
   return (
     <>
       <section>
-        <h2 className="heading-secondary welcome-message">{heading}</h2>
-        {
-          message ? <p className="paragraph additional-paragraph-styles">{message} </p> : ""
-        }
+        <h2 className="heading-secondary welcome-message">
+          Hi! I'm Daniel Einars.</h2>
+        <h3 className="heading-tertiary u-center-text__horizontal u-center-text__padding">
+          I build websites & servers.
+        </h3>
+
+        <h4 className="heading-quaternary u-center-text__horizontal">Check out my <a href="https://dle.dev/blog">first blog entry</a> on using React with Typescript!</h4>
       </section>
+      <LatestNews/>
     </>
   );
 };

@@ -8,14 +8,27 @@ exports[`Expect to render complete Home 1`] = `
     <h2
       className="heading-secondary welcome-message"
     >
-      Welcome to my corner of the internet.
+      Hi! I'm Daniel Einars.
     </h2>
-    <p
-      className="paragraph additional-paragraph-styles"
+    <h3
+      className="heading-tertiary u-center-text__horizontal u-center-text__padding"
     >
-      This is currently a work in progress. Not much here to see yet.
-       
-    </p>
+      I build websites & servers.
+    </h3>
+    <h4
+      className="heading-quaternary u-center-text__horizontal"
+    >
+      Check out my 
+      <a
+        href="https://dle.dev/blog"
+      >
+        first blog entry
+      </a>
+       on using React with Typescript!
+    </h4>
   </section>
+  <section
+    className="latest-news"
+  />
 </section>
 `;

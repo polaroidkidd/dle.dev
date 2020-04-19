@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 type Props = {
   imageSrc: string
-
   handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void,
 }
 

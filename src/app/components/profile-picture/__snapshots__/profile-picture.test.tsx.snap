@@ -2,24 +2,17 @@
 
 exports[`Render large ProfilePicture with source image url string 1`] = `
 <div
-  className="profile-picture-container"
+  className="profile-picture-container profile-picture-container__active"
 >
-  <img
-    alt="Profile Picture"
-    className="profile-picture"
-    src="daniel_einars-400x500.jpg"
-  />
-</div>
-`;
-
-exports[`Render small ProfilePicture with source image url string 1`] = `
-<div
-  className="profile-picture-container"
->
-  <img
-    alt="Profile Picture"
-    className="profile-picture"
-    src="daniel_einars-400x500.jpg"
-  />
+  <div
+    className="profile-picture-container--border  profile-picture-container--border__active"
+  >
+    <img
+      alt="Profile Picture"
+      className="profile-picture-container--image profile-picture-container--image__active"
+      onClick={[Function]}
+      src="daniel_einars-400x500.jpg"
+    />
+  </div>
 </div>
 `;

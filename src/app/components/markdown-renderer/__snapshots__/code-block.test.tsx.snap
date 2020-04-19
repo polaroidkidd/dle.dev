@@ -8,12 +8,13 @@ exports[`Render Navigation 1`] = `
       "MozTabSize": "4",
       "OTabSize": "4",
       "WebkitHyphens": "none",
-      "background": "#2d2d2d",
-      "color": "#ccc",
-      "fontFamily": "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+      "background": "#f5f7ff",
+      "color": "#5e6687",
+      "direction": "ltr",
+      "fontFamily": "Consolas, Menlo, Monaco, \\"Andale Mono WT\\", \\"Andale Mono\\", \\"Lucida Console\\", \\"Lucida Sans Typewriter\\", \\"DejaVu Sans Mono\\", \\"Bitstream Vera Sans Mono\\", \\"Liberation Mono\\", \\"Nimbus Mono L\\", \\"Courier New\\", Courier, monospace",
       "fontSize": "1.5rem",
       "hyphens": "none",
-      "lineHeight": "1.5",
+      "lineHeight": "1.375",
       "margin": ".5em 0",
       "msHyphens": "none",
       "overflow": "auto",
@@ -23,7 +24,6 @@ exports[`Render Navigation 1`] = `
       "whiteSpace": "pre",
       "wordBreak": "normal",
       "wordSpacing": "normal",
-      "wordWrap": "normal",
     }
   }
 >
@@ -34,18 +34,19 @@ exports[`Render Navigation 1`] = `
         "MozTabSize": "4",
         "OTabSize": "4",
         "WebkitHyphens": "none",
-        "background": "none",
-        "color": "#ccc",
-        "fontFamily": "Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
+        "background": "#f5f7ff",
+        "color": "#5e6687",
+        "direction": "ltr",
+        "fontFamily": "Consolas, Menlo, Monaco, \\"Andale Mono WT\\", \\"Andale Mono\\", \\"Lucida Console\\", \\"Lucida Sans Typewriter\\", \\"DejaVu Sans Mono\\", \\"Bitstream Vera Sans Mono\\", \\"Liberation Mono\\", \\"Nimbus Mono L\\", \\"Courier New\\", Courier, monospace",
+        "fontSize": "14px",
         "hyphens": "none",
-        "lineHeight": "1.5",
+        "lineHeight": "1.375",
         "msHyphens": "none",
         "tabSize": "4",
         "textAlign": "left",
         "whiteSpace": "pre",
         "wordBreak": "normal",
         "wordSpacing": "normal",
-        "wordWrap": "normal",
       }
     }
   >
@@ -53,7 +54,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#cc99cd",
+          "color": "#ac9739",
         }
       }
     >
@@ -70,7 +71,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#ccc",
+          "color": "#5e6687",
         }
       }
     >
@@ -81,7 +82,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#ccc",
+          "color": "#5e6687",
         }
       }
     >
@@ -99,7 +100,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#ccc",
+          "color": "#5e6687",
         }
       }
     >
@@ -110,7 +111,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#cc99cd",
+          "color": "#ac9739",
         }
       }
     >
@@ -121,7 +122,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#7ec699",
+          "color": "#22a2c9",
         }
       }
     >
@@ -131,7 +132,7 @@ exports[`Render Navigation 1`] = `
       className="token"
       style={
         Object {
-          "color": "#ccc",
+          "color": "#5e6687",
         }
       }
     >
