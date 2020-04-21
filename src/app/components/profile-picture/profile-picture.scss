@@ -5,13 +5,15 @@
   align-items: center;
   justify-content: center;
   margin: 2rem 0 0 0;
+  transition: margin 0.2s ease-in-out;
 
   &__active {
     margin: 2rem;
   }
 
   &--image {
-    margin-top: -1rem;
+    margin: -1rem 0 0 0;
+    transition: margin 0.2s ease-in-out;
 
     &:hover {
       cursor: pointer;
@@ -32,7 +34,7 @@
     border: solid 0.2rem $color-primary-border;
     border-radius: 50%;
     overflow: hidden;
-    transition: border 0.2s linear;
+    transition: border 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
 
     &:hover {
       border: solid 0.2rem $color-primary-border-hover;

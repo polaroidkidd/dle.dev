@@ -15,24 +15,48 @@ function npmName() {
 EOJS
 }
 
-HOST="eu.gcr.io/dle-dev"
-NAME=$(npmName)
-VERSION=$(npmVersion)
+if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
 
-TAG=${HOST}/${NAME}
-TAG_LATEST=${TAG}:latest
-TAG_VERSION=${TAG}:${VERSION}
+  echo "***************************************************"
+  echo "************* BUILD AND DEPLOY PROD ***************"
+  echo "***************************************************"
 
-echo "$TAG_LATEST"
-echo "$TAG_VERSION"
+  HOST="eu.gcr.io/dle-dev"
+  NAME=$(npmName)
+  VERSION=$(npmVersion)
 
-rm -rf ./build
-yarn run build
+  TAG=${HOST}/${NAME}
+  TAG_LATEST=${TAG}:latest
+  TAG_VERSION=${TAG}:${VERSION}
 
-docker build . -t "${TAG_LATEST}"
-docker tag "${TAG_LATEST}" "${TAG_VERSION}"
+  echo "$TAG_LATEST"
+  echo "$TAG_VERSION"
 
-docker push "${TAG_LATEST}"
-docker push "${TAG_VERSION}"
+  rm -rf ./build
+  yarn run build:prod
 
-rm -rf ./build
+  docker build --no-cache . -t "${TAG_LATEST}"
+  docker tag "${TAG_LATEST}" "${TAG_VERSION}"
+
+  docker push "${TAG_LATEST}"
+  docker push "${TAG_VERSION}"
+
+  rm -rf ./build
+else
+  echo "***************************************************"
+  echo "************ BUILD AND DEPLOY STAGING *************"
+  echo "***************************************************"
+
+  HOST="eu.gcr.io/dle-dev"
+  NAME=$(npmName)
+  VERSION=$(npmVersion)
+
+  TAG=${HOST}/${NAME}
+  TAG_LATEST=${TAG}:staging
+
+  rm -rf ./build
+  yarn run build:dev
+
+  docker build --no-cache . -t "${TAG_LATEST}"
+  docker push "${TAG_LATEST}"
+fi

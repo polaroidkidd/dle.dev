@@ -1,10 +1,9 @@
 import React from "react";
 import "./welcome-message.scss";
-import { NavLink, useHistory } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { ROUTES } from "../navigation";
 
 const WelcomeMessage: React.FC = () => {
-  const history = useHistory();
   return (
     <>
       <section>

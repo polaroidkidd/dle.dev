@@ -1,3 +1,1 @@
-import { useAnimatedVisibility } from "./animated-visibillity";
-
-export { useAnimatedVisibility };
+export { useAnimatedVisibility } from "./animated-visibillity";

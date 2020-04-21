@@ -5,7 +5,7 @@ import { NavigationItem } from "./navigation-item";
 test("Render Navigation", () => {
   const tree = renderer.create(
     <NavigationItem
-      active={false}
+      isActive={false}
       description={"vitae"}
       handleActiveNavigation={() => {
         console.log("Handling Test Navigation");

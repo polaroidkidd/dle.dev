@@ -14,7 +14,7 @@ const ProfilePicture: React.FC<Props> = ({imageSrc, handleActiveNavigation}) => 
 
   React.useEffect(() => {
     setLocation(history.location.pathname)
-  })
+  }, [history.location.pathname])
 
   React.useEffect(() => {
     if (location === "/") {
@@ -25,7 +25,6 @@ const ProfilePicture: React.FC<Props> = ({imageSrc, handleActiveNavigation}) => 
 
   }, [location])
 
-  console.log("location: ", location)
   return (
     <div className={`profile-picture-container ${isActive && "profile-picture-container__active"}`}>
       <div className={`profile-picture-container--border  ${isActive && "profile-picture-container--border__active"}`}>
@@ -33,7 +32,7 @@ const ProfilePicture: React.FC<Props> = ({imageSrc, handleActiveNavigation}) => 
           className={`profile-picture-container--image ${isActive && "profile-picture-container--image__active"}`}
           // className="profile-picture-container--image"
           src={imageSrc}
-          alt="Profile Picture"
+          alt="Avatar"
           onClick={handleActiveNavigation}
         />
       </div>

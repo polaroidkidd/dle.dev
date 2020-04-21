@@ -3,9 +3,9 @@ import { blogEntriesURL } from "../../utils";
 import Axios from "axios";
 import ReactMarkdown from "react-markdown";
 import { trackPromise } from "react-promise-tracker";
-import { LoadingIndicator } from "../../components/loading-indicator";
+import { CodeBlock, LoadingIndicator } from "../../components";
 import "./blog.scss";
-import { CodeBlock } from "../../components/markdown-renderer";
+
 
 const Blog: React.FC = () => {
   const [urls, serUrls] = React.useState<string[]>([]);
@@ -13,11 +13,14 @@ const Blog: React.FC = () => {
   const [loading, setLoading] = React.useState<Boolean>(true);
 
   React.useEffect(() => {
-    trackPromise(
-      Axios.get(blogEntriesURL).then((response) => {
-        serUrls(response.data);
-      })
-    ).catch(e => console.error(e));
+    setTimeout(() => {
+        trackPromise(
+          Axios.get(blogEntriesURL).then((response) => {
+            serUrls(response.data);
+          })
+        ).catch(e => console.error(e))
+      }, 550
+    )
   }, []);
 
   React.useEffect(() => {
@@ -32,19 +35,11 @@ const Blog: React.FC = () => {
 
   return (
     <>
-      <div
-        style={{
-          width: "100%",
-          height: "100",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        }}
-      >
+      <div className="blog-container">
         {loading && <LoadingIndicator/>}
         {
-          articles.map((article) => (
-            <div className="markdown-body">
+          articles.map((article, index) => (
+            <div className="markdown-body" key={index}>
               <ReactMarkdown
                 source={article}
                 renderers={{
