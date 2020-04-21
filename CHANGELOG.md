@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.19](https://github.com/polaroidkidd/dle.dev/compare/v0.1.18...v0.1.19) (2020-04-21)
+
+
+### Bug Fixes
+
+* first pull put in setTimeout for 0.2s ([14fe1f5](https://github.com/polaroidkidd/dle.dev/commit/14fe1f55c74aed7480a2023d79089bbb547a7be0))
+
 ### [0.1.18](https://github.com/polaroidkidd/dle.dev/compare/v0.1.17...v0.1.18) (2020-04-19)
 
 
