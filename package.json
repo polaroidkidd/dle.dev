@@ -2,28 +2,12 @@
   "name": "frontend",
   "version": "0.1.21",
   "private": true,
-  "dependencies": {
-    "classnames": "^2.2.6",
-    "github-markdown-css": "^4.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-loader-spinner": "^3.1.5",
-    "react-markdown": "^4.3.1",
-    "react-promise-tracker": "^2.1.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.3",
-    "react-syntax-highlighter": "^12.2.1",
-    "styled-components": "^5.0.1",
-    "styled-icons": "^9.3.0",
-    "typescript": "~3.7.2",
-    "webfontloader": "^1.6.28"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build:prod": "dotenv -e .env react-scripts build",
-    "build:dev": "dotenv -e .env.development react-scripts build --profile",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "dev",
+    "build": "webpack ./webpack/webpack.config.js",
+    "build:dev": "npm run build -- -mode development",
+    "build:prod": "npm run build -- --mode production",
+    "build:analyze": "npm run build -- --env.mode analyze",
     "release": "standard-version",
     "bnd": "./build-and-deploy.sh",
     "lint": "eslint"
@@ -34,49 +18,47 @@
       "commit-msg": "./vcs-check.sh"
     }
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(react-syntax-highlighter)/)"
-    ]
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "github-markdown-css": "^4.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-loader-spinner": "^3.1.14",
+    "react-markdown": "^4.3.1",
+    "react-promise-tracker": "^2.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "react-syntax-highlighter": "^12.2.1",
+    "styled-components": "^5.1.0",
+    "styled-icons": "^10.2.1",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@testing-library/jest-dom": "^5.7.0",
+    "@testing-library/react": "^10.0.4",
+    "@testing-library/user-event": "^10.1.2",
     "@types/axios": "^0.14.0",
-    "@types/classnames": "^2.2.9",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.13.5",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
     "@types/react-loader-spinner": "^3.1.0",
-    "@types/react-router-dom": "^5.1.3",
+    "@types/react-router-dom": "^5.1.5",
     "@types/react-syntax-highlighter": "^11.0.4",
     "@types/react-test-renderer": "^16.9.2",
     "@types/webfontloader": "^1.6.29",
     "dotenv-cli": "^3.1.0",
-    "husky": "^3.1.0",
+    "husky": "^4.2.5",
     "live-server": "^1.2.1",
-    "node-sass": "^4.13.1",
-    "react-test-renderer": "^16.12.0",
-    "standard-version": "^7.0.1",
+    "node-sass": "^4.14.1",
+    "react-test-renderer": "^16.13.1",
+    "standard-version": "^8.0.0",
+    "ts-loader": "^7.0.4",
+    "webpack-cli": "^3.3.11",
+    "typescript": "^3.8.3",
     "webpack-plugin-critical": "^1.0.0"
   }
 }
