@@ -24,10 +24,10 @@ interface IApp {
 const App: React.FC<IApp> = () => {
   console.log("Starting App ");
   return (
-    <React.Fragment>
+    <div>
       <Greeting message={"Hello World"}/>
-    </React.Fragment>
+    </div>
   );
 };
 
-export  { App }
+export { App };
