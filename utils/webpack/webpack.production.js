@@ -19,8 +19,8 @@ module.exports = (env) => {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: "chunk.[chunkhash].css",
-        chunkFilename: 'chunk.[chunkhash].css',
+        filename: 'chunk.[chunkhash].css',
+        chunkFilename: 'chunk.[chunkhash].css'
       }),
     ],
   };
