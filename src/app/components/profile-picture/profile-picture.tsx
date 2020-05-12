@@ -1,35 +1,49 @@
-import React from "react";
-import "./profile-picture.scss";
-import { useHistory } from "react-router-dom";
+import React from 'react';
+import './profile-picture.scss';
+import {useHistory} from 'react-router-dom';
 
 type Props = {
-  imageSrc: string
-  handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void,
-}
+  imageSrc: string;
+  handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void;
+};
 
-const ProfilePicture: React.FC<Props> = ({imageSrc, handleActiveNavigation}) => {
+const ProfilePicture: React.FC<Props> = ({
+  imageSrc,
+  handleActiveNavigation,
+}) => {
   const history = useHistory();
-  const [location, setLocation] = React.useState<string>(history.location.pathname)
-  const [isActive, setIsActive] = React.useState<boolean>(location === "/")
+  const [location, setLocation] = React.useState<string>(
+    history.location.pathname
+  );
+  const [isActive, setIsActive] = React.useState<boolean>(location === '/');
 
   React.useEffect(() => {
-    setLocation(history.location.pathname)
-  }, [history.location.pathname])
+    setLocation(history.location.pathname);
+  }, [history.location.pathname]);
 
   React.useEffect(() => {
-    if (location === "/") {
-      setIsActive(true)
+    if (location === '/') {
+      setIsActive(true);
     } else {
-      setIsActive(false)
+      setIsActive(false);
     }
-
-  }, [location])
+  }, [location]);
 
   return (
-    <div className={`profile-picture-container ${isActive && "profile-picture-container__active"}`}>
-      <div className={`profile-picture-container--border  ${isActive && "profile-picture-container--border__active"}`}>
+    <div
+      className={`profile-picture-container ${
+        isActive && 'profile-picture-container__active'
+      }`}
+    >
+      <div
+        className={`profile-picture-container--border  ${
+          isActive && 'profile-picture-container--border__active'
+        }`}
+      >
         <img
-          className={`profile-picture-container--image ${isActive && "profile-picture-container--image__active"}`}
+          className={`profile-picture-container--image ${
+            isActive && 'profile-picture-container--image__active'
+          }`}
           // className="profile-picture-container--image"
           src={imageSrc}
           alt="Avatar"
@@ -40,6 +54,3 @@ const ProfilePicture: React.FC<Props> = ({imageSrc, handleActiveNavigation}) => 
   );
 };
 export default ProfilePicture;
-
-
-

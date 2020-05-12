@@ -1,19 +1,19 @@
-import React from "react";
-import { NavigationItem } from "./index";
-import "./navigation.scss";
-import { Newspaper } from "@styled-icons/remix-line/Newspaper";
-import { WorkOutline } from "@styled-icons/material/WorkOutline";
-import { Blog } from "@styled-icons/fa-solid/Blog";
-import { ContactsBook } from "@styled-icons/remix-fill/ContactsBook";
-import { useHistory } from "react-router-dom";
-import { ProfilePicture } from "../profile-picture";
-import image from "../../assets/images/headshot/daniel_einars-400x500.jpg";
+import React from 'react';
+import {NavigationItem} from './index';
+import './navigation.scss';
+import {Newspaper} from '@styled-icons/remix-line/Newspaper';
+import {WorkOutline} from '@styled-icons/material/WorkOutline';
+import {Blog} from '@styled-icons/fa-solid/Blog';
+import {ContactsBook} from '@styled-icons/remix-fill/ContactsBook';
+import {useHistory} from 'react-router-dom';
+import {ProfilePicture} from '../profile-picture';
+import image from '../../assets/images/headshot/daniel_einars-400x500.jpg';
 
-type VITAE = "VITAE";
-type PORTFOLIO = "PORTFOLIO";
-type BLOG = "BLOG";
-type CONTACT = "CONTACT";
-type HOME = "HOME";
+type VITAE = 'VITAE';
+type PORTFOLIO = 'PORTFOLIO';
+type BLOG = 'BLOG';
+type CONTACT = 'CONTACT';
+type HOME = 'HOME';
 type active = {
   home: boolean;
   vitae: boolean;
@@ -23,11 +23,11 @@ type active = {
 };
 
 export enum ROUTES {
-  VITAE = "/vitae",
-  HOME = "/",
-  BLOG = "/blog",
-  PORTFOLIO = "/portfolio",
-  CONTACT = "/contact",
+  VITAE = '/vitae',
+  HOME = '/',
+  BLOG = '/blog',
+  PORTFOLIO = '/portfolio',
+  CONTACT = '/contact',
 }
 
 const Navigation: React.FC = () => {
@@ -45,7 +45,7 @@ const Navigation: React.FC = () => {
   ) => {
     e.preventDefault();
     switch (category) {
-      case "HOME": {
+      case 'HOME': {
         setActive({
           home: true,
           vitae: false,
@@ -56,7 +56,7 @@ const Navigation: React.FC = () => {
         history.push(ROUTES.HOME);
         break;
       }
-      case "VITAE": {
+      case 'VITAE': {
         setActive({
           home: false,
           vitae: true,
@@ -67,7 +67,7 @@ const Navigation: React.FC = () => {
         history.push(ROUTES.VITAE);
         break;
       }
-      case "PORTFOLIO": {
+      case 'PORTFOLIO': {
         setActive({
           home: false,
           vitae: false,
@@ -78,7 +78,7 @@ const Navigation: React.FC = () => {
         history.push(ROUTES.PORTFOLIO);
         break;
       }
-      case "BLOG": {
+      case 'BLOG': {
         setActive({
           home: false,
           vitae: false,
@@ -89,7 +89,7 @@ const Navigation: React.FC = () => {
         history.push(ROUTES.BLOG);
         break;
       }
-      case "CONTACT": {
+      case 'CONTACT': {
         setActive({
           home: false,
           vitae: false,
@@ -110,7 +110,7 @@ const Navigation: React.FC = () => {
       <ProfilePicture
         imageSrc={image}
         handleActiveNavigation={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleActiveNavigation(e, "HOME")
+          handleActiveNavigation(e, 'HOME')
         }
       />
       <div className="navigation">
@@ -119,7 +119,7 @@ const Navigation: React.FC = () => {
             description="blog"
             isActive={isActive.blog}
             handleActiveNavigation={(e: React.MouseEvent<HTMLDivElement>) =>
-              handleActiveNavigation(e, "BLOG")
+              handleActiveNavigation(e, 'BLOG')
             }
           >
             <Blog size="48" />
@@ -128,10 +128,10 @@ const Navigation: React.FC = () => {
             description="portfolio"
             isActive={isActive.portfolio}
             handleActiveNavigation={(e: React.MouseEvent<HTMLDivElement>) =>
-              handleActiveNavigation(e, "PORTFOLIO")
+              handleActiveNavigation(e, 'PORTFOLIO')
             }
           >
-            <WorkOutline size="48" />{" "}
+            <WorkOutline size="48" />{' '}
           </NavigationItem>
         </div>
         <div className="navigation--group">
@@ -139,7 +139,7 @@ const Navigation: React.FC = () => {
             description="vitae"
             isActive={isActive.vitae}
             handleActiveNavigation={(e: React.MouseEvent<HTMLDivElement>) =>
-              handleActiveNavigation(e, "VITAE")
+              handleActiveNavigation(e, 'VITAE')
             }
           >
             <Newspaper size="48" />
@@ -148,14 +148,14 @@ const Navigation: React.FC = () => {
             description="contact"
             isActive={isActive.contact}
             handleActiveNavigation={(e: React.MouseEvent<HTMLDivElement>) =>
-              handleActiveNavigation(e, "CONTACT")
+              handleActiveNavigation(e, 'CONTACT')
             }
           >
-            <ContactsBook size="48" />{" "}
+            <ContactsBook size="48" />{' '}
           </NavigationItem>
         </div>
       </div>
     </>
   );
 };
-export { Navigation };
+export {Navigation};

@@ -1,22 +1,21 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
-const webpackMerge = require("webpack-merge");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
 const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
-const ReactHotLoader = require("react-hot-loader/babel");
 
-module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
+module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
   return webpackMerge(
     {
       mode: mode,
-      entry: ["react-hot-loader/babel"],
+      entry: ['react-hot-loader/babel'],
       output: {
-        path: __dirname + "/dist",
+        path: __dirname + '/dist',
       },
       resolve: {
         alias: {
-          "react-dom": "@hot-loader/react-dom",
+          'react-dom': '@hot-loader/react-dom',
         },
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: ['.ts', '.tsx', '.js'],
       },
       module: {
         rules: [
@@ -24,22 +23,24 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
             test: /\.([jt])sx?$/,
             exclude: /node_modules/,
             use: {
-              loader: "babel-loader",
+              loader: 'babel-loader',
               options: {
                 cacheDirectory: true,
                 babelrc: false,
                 presets: [
                   [
-                    "@babel/preset-env",
-                    { targets: { browsers: "last 2 versions" } }, // or whatever your project requires
+                    '@babel/preset-env',
+                    {targets: {browsers: 'last 2 versions'}}, // or whatever your project requires
                   ],
-                  "@babel/preset-typescript",
-                  "@babel/preset-react",
+                  '@babel/preset-typescript',
+                  '@babel/preset-react',
                 ],
                 plugins: [
                   // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
-                  ["@babel/plugin-proposal-decorators", { legacy: true }],
-                  ["@babel/plugin-proposal-class-properties", { loose: true }],
+                  ['@babel/plugin-proposal-decorators', {legacy: true}],
+                  ['@babel/plugin-proposal-class-properties', {loose: true}],
+                  'react-hot-loader/babel',
+                  '@babel/plugin-syntax-dynamic-import',
                 ],
               },
             },
@@ -49,7 +50,7 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
             exclude: /node_modules/,
             use: [
               {
-                loader: "url-loader",
+                loader: 'url-loader',
                 options: {
                   limit: 500,
                 },
@@ -60,8 +61,8 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
       },
       plugins: [
         new HtmlWebpackPlugin({
-          template: "./public/index.html",
-          scriptLoading: "blocking",
+          template: './public/index.html',
+          scriptLoading: 'blocking',
         }),
         new webpack.ProgressPlugin(),
       ],

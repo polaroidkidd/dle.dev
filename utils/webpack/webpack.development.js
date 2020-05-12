@@ -1,29 +1,29 @@
 module.exports = (env) => {
   return {
-    devtool: "inline-source-map",
+    devtool: 'inline-source-map',
     devServer: {
       historyApiFallback: true,
       progress: true,
-      stats: "errors-only",
+      stats: 'errors-only',
     },
-    entry: ["react-devtools", "./src/index.tsx"],
+    entry: ['react-devtools', './src/index.tsx'],
     output: {
-      filename: "dev.bundle.js",
+      filename: 'dev.bundle.js',
     },
     module: {
       rules: [
         {
           test: /\.s[ac]ss$/i,
           use: [
-            "style-loader",
+            'style-loader',
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: {
                 sourceMap: true,
               },
             },
             {
-              loader: "sass-loader",
+              loader: 'sass-loader',
               options: {
                 sourceMap: true,
               },

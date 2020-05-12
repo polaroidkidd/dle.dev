@@ -1,4 +1,4 @@
-@import "../../../styles/main";
+@import '../../../styles/main';
 
 .nav-item-container {
   align-items: center;
@@ -11,11 +11,13 @@
   justify-content: center;
   margin: 1rem;
   padding: 1rem;
-  transition: transform 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
   will-change: transform, border-color, color;
 
   > svg ~ h3 {
-    transition: transform 0.15s ease-in-out, color 0.15s ease-in-out, font-weight 0.15s ease-in-out;
+    transition: transform 0.15s ease-in-out, color 0.15s ease-in-out,
+      font-weight 0.15s ease-in-out;
     will-change: transform;
   }
 

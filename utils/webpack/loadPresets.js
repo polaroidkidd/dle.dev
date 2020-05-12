@@ -1,4 +1,4 @@
-module.exports = ({ mode, presets }) => {
-  console.log("loadPresets");
+module.exports = ({mode, presets}) => {
+  console.log('loadPresets');
   return {};
 };

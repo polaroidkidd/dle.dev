@@ -1,6 +1,6 @@
-declare module "*.scss" {
-  const content: { [className: string]: string };
+declare module '*.scss' {
+  const content: {[className: string]: string};
   export = content;
 }
-declare module "*.jpg";
-declare module "*.jpeg";
+declare module '*.jpg';
+declare module '*.jpeg';

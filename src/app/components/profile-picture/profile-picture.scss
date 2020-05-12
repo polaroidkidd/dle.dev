@@ -1,4 +1,4 @@
-@import "../../styles/main";
+@import '../../styles/main';
 
 .profile-picture-container {
   display: flex;
@@ -34,7 +34,8 @@
     border: solid 0.2rem $color-primary-border;
     border-radius: 50%;
     overflow: hidden;
-    transition: border 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
+    transition: border 0.2s ease-in-out, width 0.2s ease-in-out,
+      height 0.2s ease-in-out;
 
     &:hover {
       border: solid 0.2rem $color-primary-border-hover;
@@ -52,6 +53,3 @@
     }
   }
 }
-
-
-
