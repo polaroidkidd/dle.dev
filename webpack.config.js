@@ -7,7 +7,11 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
   return webpackMerge(
     {
       mode: mode,
-      entry: ['react-hot-loader/babel'],
+      entry: [
+        'react-hot-loader/babel',
+        'core-js/modules/es.promise',
+        'core-js/modules/es.array.iterator',
+      ],
       output: {
         path: __dirname + '/dist',
       },
@@ -36,11 +40,10 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
                   '@babel/preset-react',
                 ],
                 plugins: [
-                  // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
+                  '@babel/plugin-syntax-dynamic-import', // dynamic hot loading preset
                   ['@babel/plugin-proposal-decorators', {legacy: true}],
                   ['@babel/plugin-proposal-class-properties', {loose: true}],
                   'react-hot-loader/babel',
-                  '@babel/plugin-syntax-dynamic-import',
                 ],
               },
             },
