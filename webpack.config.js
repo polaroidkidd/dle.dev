@@ -79,11 +79,9 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
       },
       plugins: [
         new HtmlWebpackPlugin({
-          template: './public/index.ejs',
+          template: './public/index.html',
           scriptLoading: 'defer',
           title: 'dle.dev',
-          showErrors: true,
-          inject: false,
           templateParameters: {
             PUBLIC_URL: 'https://dle.dev',
           },

@@ -20,7 +20,7 @@ module.exports = (env) => {
         test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
         compressionOptions: {level: 9},
         threshold: 254,
-        deleteOriginalAssets: true,
+        deleteOriginalAssets: env.presets !== 'analyze',
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
