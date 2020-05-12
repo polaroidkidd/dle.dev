@@ -1,7 +1,12 @@
 module.exports = (env) => {
-  console.log("webpack.development.ts env: ", env);
   return {
-    devtool: "source-map",
+    devtool: "inline-source-map",
+    devServer: {
+      historyApiFallback: true,
+      progress: true,
+      stats: "errors-only",
+    },
+    entry: ["react-devtools", "./src/index.tsx"],
     output: {
       filename: "dev.bundle.js",
     },
