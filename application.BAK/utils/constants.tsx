@@ -1,1 +1,0 @@
-export const blogEntriesURL = "https://raw.githubusercontent.com/polaroidkidd/blog/feat/react-typescript-router-dom-animations/blogEntries.json";
