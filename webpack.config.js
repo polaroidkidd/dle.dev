@@ -10,17 +10,17 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
       entry: "./src/index.tsx",
       output: {
         path: __dirname + "/dist",
-        filename: "bundle.js"
+        filename: "bundle.js",
       },
       resolve: {
-        extensions: [".ts", ".tsx", ".js"]
+        extensions: [".ts", ".tsx", ".js"],
       },
       module: {
         rules: [
           {
             test: /\.tsx?$/,
             exclude: /node_modules/,
-            loader: "ts-loader"
+            loader: "ts-loader",
           },
           {
             test: /\.s[ac]ss$/i,
@@ -30,18 +30,18 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
               // Translates CSS into CommonJS
               "css-loader",
               // Compiles Sass to CSS
-              "sass-loader"
-            ]
-          }
+              "sass-loader",
+            ],
+          },
         ],
       },
       plugins: [
         new HtmlWebpackPlugin({
           template: "./public/index.html",
-          scriptLoading: "blocking"
+          scriptLoading: "blocking",
         }),
-        new webpack.ProgressPlugin()
-      ]
+        new webpack.ProgressPlugin(),
+      ],
     },
     modeConfig(mode)
   );
