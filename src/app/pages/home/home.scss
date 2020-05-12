@@ -1,0 +1,8 @@
+@import "../../styles/main";
+
+.home {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  margin: 2rem 1rem;
+}

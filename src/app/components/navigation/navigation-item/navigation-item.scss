@@ -1,0 +1,62 @@
+@import "../../../styles/main";
+
+.nav-item-container {
+  align-items: center;
+  background-color: $color-primary-background;
+  border: solid 0.2rem $color-primary-border;
+  border-radius: 0.25rem;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1rem;
+  padding: 1rem;
+  transition: transform 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  will-change: transform, border-color, color;
+
+  > svg ~ h3 {
+    transition: transform 0.15s ease-in-out, color 0.15s ease-in-out, font-weight 0.15s ease-in-out;
+    will-change: transform;
+  }
+
+  &:hover > svg ~ h3 {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-weight: 300;
+    transform: scale(0.9, 0.95) translateZ(0);
+  }
+
+  &:active > svg ~ h3 {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    font-weight: 300;
+    transform: scale(0.9, 0.95) translateZ(0);
+  }
+
+  &:hover {
+    backface-visibility: hidden;
+    background-color: lighten($color-primary-background, 1%);
+    border-color: $color-primary-border-hover;
+    color: $color-primary-border-hover;
+    cursor: pointer;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform: translateY(-0.7rem) scale(1.1, 1.15) translateZ(0);
+    z-index: 10;
+  }
+
+  &:active {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform: translateY(-0.2rem) scale(1.1, 1.15) translateZ(0);
+  }
+
+  &--icon {
+    margin-bottom: 0.5rem;
+  }
+
+  &__active {
+    background-color: lighten($color-primary-background, 1%);
+    border-color: $color-primary-border-hover;
+    color: $color-primary-border-hover;
+  }
+}
