@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const compression = require('compression-webpack-plugin');
 
 module.exports = (env) => {
-  console.log('webpack.production.ts env: ', env);
   return {
     entry: ['./src/index.tsx'],
     output: {
@@ -16,6 +16,12 @@ module.exports = (env) => {
       ],
     },
     plugins: [
+      new compression({
+        test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
+        compressionOptions: {level: 9},
+        threshold: 254,
+        deleteOriginalAssets: true,
+      }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional

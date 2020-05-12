@@ -6,7 +6,7 @@
     "dev": "webpack-dev-server --env.mode development --hot",
     "build": "rm -rf ./dist/* && webpack",
     "build:dev": "yarn run build --env.mode development",
-    "build:prod": "yarn run build --env.mode production --env.presets compress",
+    "build:prod": "yarn run build --env.mode production",
     "build:analyze": "yarn run build:prod --env.presets analyze",
     "release": "standard-version",
     "bnd": "./build-and-deploy.sh",
