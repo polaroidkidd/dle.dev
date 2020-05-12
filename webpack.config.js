@@ -10,32 +10,50 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
       entry: "./src/index.tsx",
       output: {
         path: __dirname + "/dist",
-        filename: "bundle.js",
       },
       resolve: {
-        extensions: [".ts", ".tsx", ".js"],
+        extensions: [".ts", ".tsx", ".js"]
       },
       module: {
         rules: [
           {
-            test: /\.tsx?$/,
+            test: /\.([jt])sx?$/,
             exclude: /node_modules/,
-            loader: "ts-loader",
+            use: {
+              loader: "babel-loader",
+              options: {
+                cacheDirectory: true,
+                babelrc: false,
+                presets: [
+                  [
+                    "@babel/preset-env",
+                    { targets: { browsers: "last 2 versions" } } // or whatever your project requires
+                  ],
+                  "@babel/preset-typescript",
+                  "@babel/preset-react"
+                ],
+                plugins: [
+                  // plugin-proposal-decorators is only needed if you're using experimental decorators in TypeScript
+                  ["@babel/plugin-proposal-decorators", { legacy: true }],
+                  ["@babel/plugin-proposal-class-properties", { loose: true }]
+                ]
+              }
+            }
           },
           {
-            test: [/\.jpe?g$/, /\.png$/],
+            test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
             exclude: /node_modules/,
-            use: "url-loader",
-          },
-        ],
+            use: ["file-loader?name=[name].[ext]"] // ?name=[name].[ext] is only necessary to preserve the original file name
+          }
+        ]
       },
       plugins: [
         new HtmlWebpackPlugin({
           template: "./public/index.html",
-          scriptLoading: "blocking",
+          scriptLoading: "blocking"
         }),
-        new webpack.ProgressPlugin(),
-      ],
+        new webpack.ProgressPlugin()
+      ]
     },
     modeConfig(mode)
   );
