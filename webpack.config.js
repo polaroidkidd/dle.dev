@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
 const presetConfig = require('./utils/webpack/loadPresets');
+const copyPlugin = require('copy-webpack-plugin');
 
 module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
   return webpackMerge(
@@ -78,8 +79,14 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
       },
       plugins: [
         new HtmlWebpackPlugin({
-          template: './public/index.html',
-          scriptLoading: 'blocking',
+          template: './public/index.ejs',
+          scriptLoading: 'defer',
+          title: 'dle.dev',
+          showErrors: true,
+          inject: false,
+          templateParameters: {
+            PUBLIC_URL: 'https://dle.dev',
+          },
         }),
         new webpack.ProgressPlugin(),
       ],
