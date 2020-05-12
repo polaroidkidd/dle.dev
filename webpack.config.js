@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
-
+const babelPluginModuleResolver = require('babel-plugin-module-resolver');
 module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
   return webpackMerge(
     {
@@ -44,6 +44,17 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
                   ['@babel/plugin-proposal-decorators', {legacy: true}],
                   ['@babel/plugin-proposal-class-properties', {loose: true}],
                   'react-hot-loader/babel',
+                  [
+                    'module-resolver',
+                    {
+                      root: ['.'],
+                      extensions: ['.ts', '.tsx', '.jsx', '.js'],
+                      alias: {
+                        '@components': './src/app/components',
+                        '@pages': './src/app/pages',
+                      },
+                    },
+                  ],
                 ],
               },
             },
