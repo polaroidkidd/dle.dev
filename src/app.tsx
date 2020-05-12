@@ -1,3 +1,4 @@
+import { hot } from "react-hot-loader/root";
 import React from "react";
 import WebFont from "webfontloader";
 import { RootContainer } from "./app/containers/root-container";
@@ -16,4 +17,4 @@ const App: React.FC<IApp> = ({ styling }) => {
   return <RootContainer style={styling} />;
 };
 
-export { App };
+export default hot(App);

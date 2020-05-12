@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = (env) => {
   console.log("webpack.production.ts env: ", env);
   return {
+    entry: ["./src/index.tsx"],
     output: {
       filename: "chunk.[chunkhash].js",
     },
