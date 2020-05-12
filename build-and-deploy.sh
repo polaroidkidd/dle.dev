@@ -32,7 +32,7 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
   echo "$TAG_LATEST"
   echo "$TAG_VERSION"
 
-  rm -rf ./build
+  rm -rf ./dist
   yarn run build:prod
 
   docker build --no-cache . -t "${TAG_LATEST}"
@@ -41,7 +41,6 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
   docker push "${TAG_LATEST}"
   docker push "${TAG_VERSION}"
 
-  rm -rf ./build
 else
   echo "***************************************************"
   echo "************ BUILD AND DEPLOY STAGING *************"
@@ -54,7 +53,7 @@ else
   TAG=${HOST}/${NAME}
   TAG_LATEST=${TAG}:staging
 
-  rm -rf ./build
+  rm -rf ./dist
   yarn run build:dev
 
   docker build --no-cache . -t "${TAG_LATEST}"
