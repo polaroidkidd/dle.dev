@@ -33,7 +33,7 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
               "sass-loader"
             ]
           }
-        ]
+        ],
       },
       plugins: [
         new HtmlWebpackPlugin({
