@@ -1,0 +1,16 @@
+@import "../../styles/main";
+
+.welcome-message {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+    font-weight: 200;
+  }
+}
+
+.additional-paragraph-styles {
+  margin-top: 1rem;
+  text-align: center;
+}

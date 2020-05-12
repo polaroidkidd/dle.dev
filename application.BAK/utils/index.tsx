@@ -1,0 +1,1 @@
+export { blogEntriesURL } from "./constants";

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render large ProfilePicture with source image url string 1`] = `
+<div
+  className="profile-picture-container profile-picture-container__active"
+>
+  <div
+    className="profile-picture-container--border  profile-picture-container--border__active"
+  >
+    <img
+      alt="Profile Picture"
+      className="profile-picture-container--image profile-picture-container--image__active"
+      onClick={[Function]}
+      src="daniel_einars-400x500.jpg"
+    />
+  </div>
+</div>
+`;

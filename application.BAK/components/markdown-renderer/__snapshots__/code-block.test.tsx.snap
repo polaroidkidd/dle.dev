@@ -1,0 +1,143 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Navigation 1`] = `
+<pre
+  style={
+    Object {
+      "MozHyphens": "none",
+      "MozTabSize": "4",
+      "OTabSize": "4",
+      "WebkitHyphens": "none",
+      "background": "#f5f7ff",
+      "color": "#5e6687",
+      "direction": "ltr",
+      "fontFamily": "Consolas, Menlo, Monaco, \\"Andale Mono WT\\", \\"Andale Mono\\", \\"Lucida Console\\", \\"Lucida Sans Typewriter\\", \\"DejaVu Sans Mono\\", \\"Bitstream Vera Sans Mono\\", \\"Liberation Mono\\", \\"Nimbus Mono L\\", \\"Courier New\\", Courier, monospace",
+      "fontSize": "1.5rem",
+      "hyphens": "none",
+      "lineHeight": "1.375",
+      "margin": ".5em 0",
+      "msHyphens": "none",
+      "overflow": "auto",
+      "padding": "1em",
+      "tabSize": "4",
+      "textAlign": "left",
+      "whiteSpace": "pre",
+      "wordBreak": "normal",
+      "wordSpacing": "normal",
+    }
+  }
+>
+  <code
+    style={
+      Object {
+        "MozHyphens": "none",
+        "MozTabSize": "4",
+        "OTabSize": "4",
+        "WebkitHyphens": "none",
+        "background": "#f5f7ff",
+        "color": "#5e6687",
+        "direction": "ltr",
+        "fontFamily": "Consolas, Menlo, Monaco, \\"Andale Mono WT\\", \\"Andale Mono\\", \\"Lucida Console\\", \\"Lucida Sans Typewriter\\", \\"DejaVu Sans Mono\\", \\"Bitstream Vera Sans Mono\\", \\"Liberation Mono\\", \\"Nimbus Mono L\\", \\"Courier New\\", Courier, monospace",
+        "fontSize": "14px",
+        "hyphens": "none",
+        "lineHeight": "1.375",
+        "msHyphens": "none",
+        "tabSize": "4",
+        "textAlign": "left",
+        "whiteSpace": "pre",
+        "wordBreak": "normal",
+        "wordSpacing": "normal",
+      }
+    }
+  >
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#ac9739",
+        }
+      }
+    >
+      import
+    </span>
+     
+    <span
+      className="token maybe-class-name"
+      style={Object {}}
+    >
+      React
+    </span>
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#5e6687",
+        }
+      }
+    >
+      ,
+    </span>
+     
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#5e6687",
+        }
+      }
+    >
+      {
+    </span>
+     
+    <span
+      className="token maybe-class-name"
+      style={Object {}}
+    >
+      Component
+    </span>
+     
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#5e6687",
+        }
+      }
+    >
+      }
+    </span>
+     
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#ac9739",
+        }
+      }
+    >
+      from
+    </span>
+     
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#22a2c9",
+        }
+      }
+    >
+      'react'
+    </span>
+    <span
+      className="token"
+      style={
+        Object {
+          "color": "#5e6687",
+        }
+      }
+    >
+      ;
+    </span>
+  </code>
+</pre>
+`;

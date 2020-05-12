@@ -1,0 +1,57 @@
+@import "../../styles/main";
+
+.profile-picture-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0 0 0;
+  transition: margin 0.2s ease-in-out;
+
+  &__active {
+    margin: 2rem;
+  }
+
+  &--image {
+    margin: -1rem 0 0 0;
+    transition: margin 0.2s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__active {
+      margin-top: -2rem;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: -1rem;
+    }
+  }
+
+  &--border {
+    height: 12rem;
+    width: 12rem;
+    border: solid 0.2rem $color-primary-border;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: border 0.2s ease-in-out, width 0.2s ease-in-out, height 0.2s ease-in-out;
+
+    &:hover {
+      border: solid 0.2rem $color-primary-border-hover;
+    }
+
+    &__active {
+      border: solid 0.2rem lighten($color-primary-border-hover, 30%);
+      height: 25rem;
+      width: 25rem;
+    }
+
+    @media (max-width: 768px) {
+      height: 12rem;
+      width: 12rem;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render Navigation 1`] = `
+<div
+  className="nav-item-container"
+  onClick={[Function]}
+>
+  <div
+    className="nav-item-container--icon"
+  />
+  <h3
+    className="heading-tertiary"
+  >
+    vitae
+  </h3>
+</div>
+`;

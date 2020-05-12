@@ -1,8 +1,8 @@
 import React from "react";
+import { Greeting } from "./greeting";
+import "./style.scss";
 import WebFont from "webfontloader";
 
-import CSS from "csstype";
-import { Greeting } from "./greeting";
 
 WebFont.load({
   google: {
@@ -10,21 +10,15 @@ WebFont.load({
   }
 });
 
-const style: CSS.Properties = {
-  display: "flex",
-  flexDirection: "column",
-  flexGrow: 1,
-  justifyContent: "center"
-};
 
-interface IApp {
-  style: React.CSSProperties
+type IApp =  {
+  styling: React.CSSProperties
 }
 
-const App: React.FC<IApp> = () => {
+const App: React.FC<IApp> = ({ styling }) => {
   console.log("Starting App ");
   return (
-    <div>
+    <div style={styling}>
       <Greeting message={"Hello World"}/>
     </div>
   );
