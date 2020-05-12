@@ -15,8 +15,24 @@
   "homepage": "https://dle.dev",
   "husky": {
     "hooks": {
-      "commit-msg": "./vcs-check.sh"
+      "commit-msg": "./vcs-check.sh",
+      "pre-commit": "yarn run prettier -- --config ./package.json --write ./src ./package.json ./webpack.config.js ./utils"
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": true,
+    "printWidth": 80,
+    "tabWidth": 2,
+    "bracketSpacing": false,
+    "overrides": [
+      {
+        "files": ".prettierrc",
+        "options": {
+          "parser": "json"
+        }
+      }
+    ]
   },
   "dependencies": {
     "@hot-loader/react-dom": "^16.13.0",
