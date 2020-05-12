@@ -1,7 +1,7 @@
-const analyze = () => {
-  console.log('webpack.analyze.js');
+const analyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-  return {};
-};
+const analyze = () => ({
+  plugins: [new analyzer()],
+});
 
 module.exports = analyze;
