@@ -1,6 +1,9 @@
 module.exports = (env) => {
   console.log("webpack.development.ts env: ", env);
   return {
-    devtool: "inline-source-map",
+    devtool: "source-map",
+    output: {
+      filename: "dev.bundle.js",
+    },
   };
 };
