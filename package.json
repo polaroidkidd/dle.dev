@@ -7,7 +7,7 @@
     "build": "rm -rf ./dist/* && webpack",
     "build:dev": "yarn run build --env.mode development",
     "build:prod": "yarn run build --env.mode production",
-    "build:analyze": "yarn run build --env.mode analyze",
+    "build:analyze": "yarn run build:prod --env.presets analyze",
     "release": "standard-version",
     "bnd": "./build-and-deploy.sh",
     "lint": "eslint"

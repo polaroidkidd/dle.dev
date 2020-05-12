@@ -2,7 +2,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
-const babelPluginModuleResolver = require('babel-plugin-module-resolver');
+const presetConfig = require('./utils/webpack/loadPresets');
+
 module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
   return webpackMerge(
     {
@@ -52,6 +53,8 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
                       alias: {
                         '@components': './src/app/components',
                         '@pages': './src/app/pages',
+                        '@styles': './src/app/styles',
+                        '@assets': './src/app/assets',
                       },
                     },
                   ],
@@ -81,6 +84,7 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
         new webpack.ProgressPlugin(),
       ],
     },
-    modeConfig(mode)
+    modeConfig(mode),
+    presetConfig({mode, presets})
   );
 };
