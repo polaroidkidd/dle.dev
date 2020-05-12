@@ -2,15 +2,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
 const webpackMerge = require("webpack-merge");
 
-module.exports = (env) => {
-  console.log("env: ", env);
+module.exports = ({ mode }) => {
+  
   return webpackMerge({
-    
+    mode,
     devtool: "inline-source-map",
     entry: "./src/index.tsx",
     output: {
       path: __dirname + "/dist",
-      filename: "dist/app.js"
+      filename: "bundle.js"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js"]
@@ -33,7 +33,11 @@ module.exports = (env) => {
             "sass-loader"
           ]
         }]
-    }
+    },
+    "plugins": [new HtmlWebpackPlugin({
+      template: './public/index.html',
+      scriptLoading: "blocking"
+    }), new webpack.ProgressPlugin()]
     
   });
 };

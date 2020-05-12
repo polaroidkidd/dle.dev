@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import { App } from "./app";
 
 const style: React.CSSProperties = {
+  margin: "auto auto",
   display: "flex",
   alignItems: "center"
 };
