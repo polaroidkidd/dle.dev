@@ -1,7 +1,7 @@
 import React from "react";
 import { Greeting } from "./greeting";
-import "./style.scss";
 import WebFont from "webfontloader";
+import imgUrl from "./logo.jpeg";
 
 WebFont.load({
   google: {
@@ -18,6 +18,7 @@ const App: React.FC<IApp> = ({ styling }) => {
   return (
     <div style={styling}>
       <Greeting message={"Hello World"} />
+      <img src={imgUrl} />
     </div>
   );
 };

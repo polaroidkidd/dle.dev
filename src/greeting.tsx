@@ -1,15 +1,12 @@
 import React from "react";
+import "./greeting.scss";
 
 interface IGreeting {
-  message: string
+  message: string;
 }
 
 const Greeting: React.FC<IGreeting> = ({ message }) => {
-  return (
-    <h1>
-      {message}
-    </h1>
-  );
+  return <h1 className={"greetingStyles"}>{message}</h1>;
 };
 
 export { Greeting };

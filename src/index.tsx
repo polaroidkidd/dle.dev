@@ -1,11 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
 import { App } from "./app";
+import styles from "./index.scss";
 
-const style: React.CSSProperties = {
-  margin: "auto auto",
-  display: "flex",
-  alignItems: "center"
-};
-
-render(<App styling={style}/>, document.getElementById("root"));
+render(<App styling={styles} />, document.getElementById("root"));

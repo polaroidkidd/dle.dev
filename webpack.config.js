@@ -22,6 +22,11 @@ module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
             exclude: /node_modules/,
             loader: "ts-loader",
           },
+          {
+            test: [/\.jpe?g$/, /\.png$/],
+            exclude: /node_modules/,
+            use: "url-loader",
+          },
         ],
       },
       plugins: [
