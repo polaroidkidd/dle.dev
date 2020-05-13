@@ -1,7 +1,7 @@
 import {hot} from 'react-hot-loader/root';
 import React from 'react';
 import WebFont from 'webfontloader';
-import {RootContainer} from './app/containers/root-container';
+import {RootContainer} from '@containers';
 
 WebFont.load({
   google: {

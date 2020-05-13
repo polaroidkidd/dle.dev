@@ -54,7 +54,7 @@ else
   TAG_LATEST=${TAG}:staging
 
   rm -rf ./dist
-  yarn run build:dev
+  yarn run build:staging
 
   docker build --no-cache . -t "${TAG_LATEST}"
   docker push "${TAG_LATEST}"

@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "webpack-dev-server --env.mode development --hot",
     "build": "rm -rf ./dist/* && webpack",
-    "build:dev": "yarn run build --env.mode development",
     "build:prod": "yarn run build --env.mode production",
+    "build:staging": "yarn run build:prod --env.depEnv staging",
     "build:analyze": "yarn run build:prod --env.presets analyze",
     "release": "standard-version",
     "bnd": "./build-and-deploy.sh",
@@ -84,7 +84,6 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
-    "react-devtools": "^4.6.0",
     "sass-loader": "^8.0.2",
     "standard-version": "^8.0.0",
     "style-loader": "^1.2.1",

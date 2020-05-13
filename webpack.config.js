@@ -5,7 +5,13 @@ const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
 const presetConfig = require('./utils/webpack/loadPresets');
 const copyPlugin = require('copy-webpack-plugin');
 
-module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
+module.exports = (
+  {mode, presets, depEnv} = {
+    mode: 'production',
+    presets: [],
+    depEnv: 'production',
+  }
+) => {
   return webpackMerge(
     {
       mode: mode,
@@ -56,6 +62,7 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
                         '@pages': './src/app/pages',
                         '@styles': './src/app/styles',
                         '@assets': './src/app/assets',
+                        '@containers': './src/app/containers',
                       },
                     },
                   ],
@@ -82,8 +89,15 @@ module.exports = ({mode, presets} = {mode: 'production', presets: []}) => {
           template: './public/index.html',
           scriptLoading: 'defer',
           title: 'dle.dev',
+          inject: 'head',
+          minify: true,
+          hash: true,
+          cache: true,
           templateParameters: {
-            PUBLIC_URL: 'https://dle.dev',
+            PUBLIC_URL:
+              depEnv === 'production'
+                ? 'https://dle.dev'
+                : 'https://staging.dle.dev',
           },
         }),
         new webpack.ProgressPlugin(),

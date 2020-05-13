@@ -6,7 +6,7 @@ module.exports = (env) => {
       progress: true,
       stats: 'errors-only',
     },
-    entry: ['react-devtools', './src/index.tsx'],
+    entry: ['./src/index.tsx'],
     output: {
       filename: 'dev.bundle.js',
     },
