@@ -16,7 +16,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "./vcs-check.sh",
-      "pre-commit": "yarn run prettier -- --config ./package.json --write ./src ./package.json ./webpack.config.js ./utils"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "prettier": {
@@ -85,6 +85,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1",
     "sass-loader": "^8.0.2",
     "standard-version": "^8.0.0",
     "style-loader": "^1.2.1",
