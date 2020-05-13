@@ -21,7 +21,7 @@ module.exports = (env) => {
         asset: '[file].br',
         test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
         threshold: 244,
-        deleteOriginalAssets: true,
+        deleteOriginalAssets: env.presets === 'analyze',
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
