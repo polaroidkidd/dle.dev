@@ -2,10 +2,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = ({ presets }) => {
+  console.log('presets: ', presets);
+
   return {
     entry: ['./src/index.tsx'],
     output: {
-      filename: 'chunk.[chunkhash].js',
+      filename:
+        presets === 'analyze' ? '[filename].js' : 'chunk.[chunkhash].js',
     },
     module: {
       rules: [

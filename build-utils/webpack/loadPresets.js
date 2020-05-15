@@ -7,7 +7,7 @@ const applyPresets = (env) => {
   if (presets === undefined) return {};
   const mergedPresets = [].concat(...[presets]);
   const mergedConfigs = mergedPresets.map((presetName) => {
-    return require(path.join(__dirname, `./presets/webpack.${presetName}.ts`))(
+    return require(path.join(__dirname, `./presets/webpack.${presetName}`))(
       env
     );
   });
