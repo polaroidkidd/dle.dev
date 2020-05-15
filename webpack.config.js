@@ -1,7 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const modeConfig = (mode) => require(`./build-utils/webpack/webpack.${mode}`)(mode);
+const modeConfig = (mode, presets) =>
+  require(`./build-utils/webpack/webpack.${mode}`)({ mode, presets });
 const presetConfig = require('./build-utils/webpack/loadPresets');
 const copyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
