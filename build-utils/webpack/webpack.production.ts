@@ -1,8 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const compression = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 
-module.exports = (env) => {
+module.exports = ({ presets }) => {
   return {
     entry: ['./src/index.tsx'],
     output: {
@@ -16,12 +15,17 @@ module.exports = (env) => {
         },
       ],
     },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
     plugins: [
       new BrotliPlugin({
         asset: '[file].br',
         test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
         threshold: 244,
-        deleteOriginalAssets: env.presets === 'analyze',
+        deleteOriginalAssets: presets && presets !== 'analyze',
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output

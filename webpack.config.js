@@ -1,17 +1,23 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const modeConfig = (env) => require(`./utils/webpack/webpack.${env}`)(env);
-const presetConfig = require('./utils/webpack/loadPresets');
+const modeConfig = (env) =>
+  require(`./build-utils/webpack/webpack.${env}.ts`)(env);
+const presetConfig = require('./build-utils/webpack/loadPresets.ts');
 const copyPlugin = require('copy-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = (
-  {mode, presets, depEnv} = {
+  { mode, presets, depEnv } = {
     mode: 'production',
     presets: [],
     depEnv: 'production',
   }
 ) => {
+  console.log('mode: ', mode);
+  console.log('presets: ', presets);
+  console.log('depEnv: ', depEnv);
+
   return webpackMerge(
     {
       mode: mode,
@@ -42,15 +48,15 @@ module.exports = (
                 presets: [
                   [
                     '@babel/preset-env',
-                    {targets: {browsers: 'last 2 versions'}}, // or whatever your project requires
+                    { targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
                   ],
                   '@babel/preset-typescript',
                   '@babel/preset-react',
                 ],
                 plugins: [
                   '@babel/plugin-syntax-dynamic-import', // dynamic hot loading preset
-                  ['@babel/plugin-proposal-decorators', {legacy: true}],
-                  ['@babel/plugin-proposal-class-properties', {loose: true}],
+                  ['@babel/plugin-proposal-decorators', { legacy: true }],
+                  ['@babel/plugin-proposal-class-properties', { loose: true }],
                   'react-hot-loader/babel',
                   [
                     'module-resolver',
@@ -85,6 +91,10 @@ module.exports = (
         ],
       },
       plugins: [
+        new CleanWebpackPlugin({
+          dry: false,
+          verbose: true,
+        }),
         new HtmlWebpackPlugin({
           template: './public/index.html',
           scriptLoading: 'defer',
@@ -93,6 +103,7 @@ module.exports = (
           minify: true,
           hash: true,
           cache: true,
+          favicon: './public/favicon.ico',
           templateParameters: {
             PUBLIC_URL:
               depEnv === 'production'
@@ -104,6 +115,6 @@ module.exports = (
       ],
     },
     modeConfig(mode),
-    presetConfig({mode, presets})
+    presetConfig({ mode, presets })
   );
 };
