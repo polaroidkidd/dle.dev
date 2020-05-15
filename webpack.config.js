@@ -1,8 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const modeConfig = (env) =>
-  require(`./build-utils/webpack/webpack.${env}`)(env);
+const modeConfig = (mode) => require(`./build-utils/webpack/webpack.${mode}`)(mode);
 const presetConfig = require('./build-utils/webpack/loadPresets');
 const copyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -101,10 +100,7 @@ module.exports = (
           cache: true,
           favicon: './public/favicon.ico',
           templateParameters: {
-            PUBLIC_URL:
-              depEnv === 'production'
-                ? 'https://dle.dev'
-                : 'https://staging.dle.dev',
+            PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
           },
         }),
         new webpack.ProgressPlugin(),

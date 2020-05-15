@@ -7,8 +7,7 @@ module.exports = ({ presets }) => {
   return {
     entry: ['./src/index.tsx'],
     output: {
-      filename:
-        presets === 'analyze' ? '[filename].js' : 'chunk.[chunkhash].js',
+      filename: presets === 'analyze' ? '[filename].js' : 'chunk.[chunkhash].js',
     },
     module: {
       rules: [
