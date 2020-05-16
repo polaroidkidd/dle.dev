@@ -5,6 +5,7 @@
     "target": "es5",
     "jsx": "react",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "lib": ["dom", "es2015"],
     "baseUrl": ".",
