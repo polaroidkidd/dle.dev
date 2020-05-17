@@ -1,13 +1,13 @@
 import { webpackConfig } from '../../webpack.config';
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
-
+const zlib = require('zlib');
+const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = ({ presets: presets }: webpackConfig) => {
   return {
     entry: ['./src/index.tsx'],
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[name].[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[chunkhash].js',
     },
     module: {
       rules: [
@@ -36,11 +36,15 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       },
     },
     plugins: [
-      new BrotliPlugin({
-        asset: '[file].br',
-        test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
-        threshold: 244,
-        deleteOriginalAssets: !presets.some((p) => p === 'analyze'),
+      // FixMe Compression/Brotli Plugin breaks loading of assets
+      new CompressionPlugin({
+        filename: '[path].br[query]',
+        algorithm: 'brotliCompress',
+        test: /\.(js|css|html|svg)$/,
+        compressionOptions: { level: 11 },
+        threshold: 10240,
+        minRatio: 0.8,
+        deleteOriginalAssets: false,
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
