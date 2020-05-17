@@ -1,4 +1,6 @@
-module.exports = (env) => {
+import { webpackConfig } from '../../webpack.config';
+
+module.exports = (env: webpackConfig) => {
   return {
     devtool: 'inline-source-map',
     devServer: {
