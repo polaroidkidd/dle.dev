@@ -7,7 +7,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
   return {
     entry: ['./src/index.tsx'],
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[name].[chunkhash].js',
     },
     module: {
       rules: [
@@ -21,12 +21,13 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       splitChunks: {
         cacheGroups: {
           vendor: {
-            name: presets.some((p) => p === 'analyze') ? 'vendors' : 'vendors.[chunkhash]',
+            name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all',
+            minSize: 0,
           },
           shared: {
-            name: presets.some((p) => p === 'analyze') ? 'shared' : 'shared.[chunkhash]',
+            name: 'shared',
             test: /[\\/]src[\\/]app[\\/]components[\\/]/,
             chunks: 'all',
             minSize: 0,
@@ -39,7 +40,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         asset: '[file].br',
         test: /\.(js|ts|jsx|tsx|scss|css|jpeg|jpg)/,
         threshold: 244,
-        deleteOriginalAssets: presets.some((p) => p === 'analyze'),
+        deleteOriginalAssets: !presets.some((p) => p === 'analyze'),
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
