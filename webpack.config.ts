@@ -104,9 +104,9 @@ module.exports = ({
           scriptLoading: 'defer',
           title: 'dle.dev',
           inject: 'body',
-          minify: mode === 'production' && presets.some((p) => p !== 'analyze'),
-          hash: mode === 'production' && presets.some((p) => p !== 'analyze'),
-          cache: mode === 'production' && presets.some((p) => p !== 'analyze'),
+          minify: mode === 'production' && !presets.some((p) => p !== 'analyze'),
+          hash: mode === 'production' && !presets.some((p) => p !== 'analyze'),
+          cache: mode === 'production' && !presets.some((p) => p !== 'analyze'),
           favicon: './public/favicon.ico',
           templateParameters: {
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',

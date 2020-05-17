@@ -34,7 +34,6 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       },
     },
     plugins: [
-      // FixMe Compression/Brotli Plugin breaks loading of assets
       new CompressionPlugin({
         filename: '[path].br[query]',
         algorithm: 'brotliCompress',
@@ -49,7 +48,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         test: /\.(js|css|html|svg|jpg)$/,
         compressionOptions: { level: 9 },
         minRatio: 1,
-        deleteOriginalAssets: true,
+        deleteOriginalAssets: false,
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
