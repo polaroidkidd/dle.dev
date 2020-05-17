@@ -54,5 +54,5 @@ else
   rm -rf ./dist
   yarn run build:staging
 
-  docker build . -t "${TAG_LATEST}"
+  docker build . --no-cache -t "${TAG_LATEST}"
 fi

@@ -7,7 +7,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
   return {
     entry: ['./src/index.tsx'],
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[name].[chunkhash].js',
     },
     module: {
       rules: [
@@ -24,12 +24,10 @@ module.exports = ({ presets: presets }: webpackConfig) => {
             name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
             chunks: 'all',
-            minSize: 0,
           },
           shared: {
             name: 'shared',
             test: /[\\/]src[\\/]app[\\/]components[\\/]/,
-            chunks: 'all',
             minSize: 0,
           },
         },
@@ -40,11 +38,18 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       new CompressionPlugin({
         filename: '[path].br[query]',
         algorithm: 'brotliCompress',
-        test: /\.(js|css|html|svg)$/,
+        test: /\.(js|css|html|svg|jpg)$/,
         compressionOptions: { level: 11 },
-        threshold: 10240,
-        minRatio: 0.8,
+        minRatio: 1,
         deleteOriginalAssets: false,
+      }),
+      new CompressionPlugin({
+        filename: '[path].gz[query]',
+        algorithm: 'gzip',
+        test: /\.(js|css|html|svg|jpg)$/,
+        compressionOptions: { level: 9 },
+        minRatio: 1,
+        deleteOriginalAssets: true,
       }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output

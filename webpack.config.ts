@@ -103,7 +103,7 @@ module.exports = ({
           template: './public/index.html',
           scriptLoading: 'defer',
           title: 'dle.dev',
-          inject: 'head',
+          inject: 'body',
           minify: mode === 'production' && presets.some((p) => p !== 'analyze'),
           hash: mode === 'production' && presets.some((p) => p !== 'analyze'),
           cache: mode === 'production' && presets.some((p) => p !== 'analyze'),
