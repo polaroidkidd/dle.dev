@@ -1,3 +1,3 @@
-import {Vitae} from './vitae';
+import { Vitae } from './vitae';
 
-export {Vitae};
+export { Vitae };

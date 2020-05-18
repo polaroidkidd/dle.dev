@@ -16,10 +16,7 @@ const NavigationItem: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={classNames(
-        'nav-item-container',
-        isActive ? 'nav-item-container__active' : ''
-      )}
+      className={classNames('nav-item-container', isActive ? 'nav-item-container__active' : '')}
       onClick={handleActiveNavigation}
     >
       <div className="nav-item-container--icon">{children}</div>
@@ -27,4 +24,4 @@ const NavigationItem: React.FC<Props> = ({
     </div>
   );
 };
-export {NavigationItem};
+export { NavigationItem };

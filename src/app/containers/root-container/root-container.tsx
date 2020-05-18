@@ -1,8 +1,8 @@
 import React from 'react';
-import {Route, Router, Switch} from 'react-router-dom';
-import {Blog, Contact, Home, Portfolio, Vitae} from '@pages';
-import {Navigation, ROUTES} from '@components';
-import {createBrowserHistory} from 'history';
+import { Route, Router, Switch } from 'react-router-dom';
+import { Blog, Contact, Home, Portfolio, Vitae } from '@pages';
+import { Navigation, ROUTES } from '@components';
+import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
 
@@ -10,7 +10,7 @@ type Props = {
   style: React.CSSProperties;
 };
 
-const RootContainer: React.FC<Props> = ({style}) => {
+const RootContainer: React.FC<Props> = ({ style }) => {
   return (
     <div style={style}>
       <Router history={history}>
@@ -36,4 +36,4 @@ const RootContainer: React.FC<Props> = ({style}) => {
     </div>
   );
 };
-export {RootContainer};
+export { RootContainer };

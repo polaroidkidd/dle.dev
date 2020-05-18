@@ -1,12 +1,12 @@
 import React from 'react';
-import {NavigationItem} from './index';
+import { NavigationItem } from './index';
 import './navigation.scss';
-import {Newspaper} from '@styled-icons/remix-line/Newspaper';
-import {WorkOutline} from '@styled-icons/material/WorkOutline';
-import {Blog} from '@styled-icons/fa-solid/Blog';
-import {ContactsBook} from '@styled-icons/remix-fill/ContactsBook';
-import {useHistory} from 'react-router-dom';
-import {ProfilePicture} from '../profile-picture';
+import { Newspaper } from '@styled-icons/remix-line/Newspaper';
+import { WorkOutline } from '@styled-icons/material/WorkOutline';
+import { Blog } from '@styled-icons/fa-solid/Blog';
+import { ContactsBook } from '@styled-icons/remix-fill/ContactsBook';
+import { useHistory } from 'react-router-dom';
+import { ProfilePicture } from '../profile-picture';
 import image from '../../assets/images/headshot/daniel_einars-400x500.jpg';
 
 type VITAE = 'VITAE';
@@ -158,4 +158,4 @@ const Navigation: React.FC = () => {
     </>
   );
 };
-export {Navigation};
+export { Navigation };

@@ -1,20 +1,15 @@
 import React from 'react';
 import './profile-picture.scss';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 type Props = {
   imageSrc: string;
   handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-const ProfilePicture: React.FC<Props> = ({
-  imageSrc,
-  handleActiveNavigation,
-}) => {
+const ProfilePicture: React.FC<Props> = ({ imageSrc, handleActiveNavigation }) => {
   const history = useHistory();
-  const [location, setLocation] = React.useState<string>(
-    history.location.pathname
-  );
+  const [location, setLocation] = React.useState<string>(history.location.pathname);
   const [isActive, setIsActive] = React.useState<boolean>(location === '/');
 
   React.useEffect(() => {
@@ -30,11 +25,7 @@ const ProfilePicture: React.FC<Props> = ({
   }, [location]);
 
   return (
-    <div
-      className={`profile-picture-container ${
-        isActive && 'profile-picture-container__active'
-      }`}
-    >
+    <div className={`profile-picture-container ${isActive && 'profile-picture-container__active'}`}>
       <div
         className={`profile-picture-container--border  ${
           isActive && 'profile-picture-container--border__active'

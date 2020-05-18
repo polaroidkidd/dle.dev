@@ -1,1 +1,1 @@
-export {AsyncRenderer} from './async-renderer';
+export { AsyncRenderer } from './async-renderer';

@@ -7,4 +7,4 @@ const Portfolio: React.FC = () => {
     </h2>
   );
 };
-export {Portfolio};
+export { Portfolio };

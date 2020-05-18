@@ -1,5 +1,5 @@
 import React from 'react';
-import {WelcomeMessage} from '../../components';
+import { WelcomeMessage } from '../../components';
 import './home.scss';
 
 const Home: React.FC = () => {
@@ -9,4 +9,4 @@ const Home: React.FC = () => {
     </section>
   );
 };
-export {Home};
+export { Home };

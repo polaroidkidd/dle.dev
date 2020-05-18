@@ -10,4 +10,4 @@ const LoadingIndicator = () => {
   );
 };
 
-export {LoadingIndicator};
+export { LoadingIndicator };

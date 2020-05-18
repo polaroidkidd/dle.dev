@@ -1,3 +1,3 @@
-import {WelcomeMessage} from './welcome-message';
+import { WelcomeMessage } from './welcome-message';
 
-export {WelcomeMessage};
+export { WelcomeMessage };

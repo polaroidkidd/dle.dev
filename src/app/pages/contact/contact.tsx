@@ -7,4 +7,4 @@ const Contact: React.FC = () => {
     </h2>
   );
 };
-export {Contact};
+export { Contact };

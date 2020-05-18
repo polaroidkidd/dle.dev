@@ -7,4 +7,4 @@ const Vitae: React.FC = () => {
     </h2>
   );
 };
-export {Vitae};
+export { Vitae };
