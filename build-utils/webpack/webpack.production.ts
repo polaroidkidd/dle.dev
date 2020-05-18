@@ -6,7 +6,9 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = ({ presets: presets }: webpackConfig) => {
   return {
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'bundle.[name].[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze')
+        ? '[name].js'
+        : 'bundle.[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -16,7 +18,18 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         },
       ],
     },
+    performance: {
+      hints: 'error',
+      maxAssetSize: 250 * 1024, // 100 KiB
+      maxEntrypointSize: 250 * 1024, // 100 KiB
+      assetFilter: function (assetFilename) {
+        return assetFilename.endsWith('.gz') || assetFilename.endsWith('.br');
+      },
+    },
     optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -55,7 +68,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[chunkhash].css',
         chunkFilename: presets.some((p) => p === 'analyze')
           ? '[name].css'
-          : 'style.[chunkhash].css',
+          : 'style.[contenthash].css',
       }),
     ],
   };
