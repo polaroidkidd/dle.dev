@@ -10,7 +10,7 @@
     "docker:run": "docker run --rm -p 8080:80 eu.gcr.io/dle-dev/frontend:staging",
     "docker:run:dev": "run-s build:dev docker:build docker:run ",
     "docker:run:prod": "run-s build:prod docker:build docker:run",
-    "build:staging": "run-s build:prod --env.depEnv staging",
+    "build:staging": "yarn run build:prod --env.depEnv staging",
     "build:prod:analyze": "yarn run build:prod --env.presets analyze",
     "build:dev:analyze": "yarn run  build:prod --env.presets analyze",
     "release": "standard-version",
