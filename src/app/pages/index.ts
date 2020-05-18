@@ -1,5 +1,5 @@
-export { Blog } from './blog';
-export { Home } from './home';
-export { Vitae } from './vitae';
-export { Portfolio } from './portfolio';
-export { Contact } from './contact';
+export * from './blog';
+export * from './home';
+export * from './vitae';
+export * from './portfolio';
+export * from './contact';

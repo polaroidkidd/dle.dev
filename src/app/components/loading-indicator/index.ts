@@ -1,1 +1,1 @@
-export { LoadingIndicator } from './loading-indicator';
+export * from './loading-indicator';

@@ -44,4 +44,4 @@ const ProfilePicture: React.FC<Props> = ({ imageSrc, handleActiveNavigation }) =
     </div>
   );
 };
-export default ProfilePicture;
+export { ProfilePicture };

@@ -1,3 +1,1 @@
-import { Blog } from './blog';
-
-export { Blog };
+export * from './blog';

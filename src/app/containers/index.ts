@@ -1,1 +1,1 @@
-export { RootContainer } from './root-container';
+export * from './root-container';
