@@ -5,9 +5,8 @@ const zlib = require('zlib');
 const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = ({ presets: presets }: webpackConfig) => {
   return {
-    entry: ['./src/index.tsx'],
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'chunk.[name].[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'bundle.[name].[chunkhash].js',
     },
     module: {
       rules: [

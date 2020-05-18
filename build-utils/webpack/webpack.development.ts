@@ -2,13 +2,12 @@ import { webpackConfig } from '../../webpack.config';
 
 module.exports = (env: webpackConfig) => {
   return {
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     devServer: {
       historyApiFallback: true,
       progress: true,
       stats: 'errors-only',
     },
-    entry: ['./src/index.tsx'],
     output: {
       filename: 'dev.bundle.js',
     },

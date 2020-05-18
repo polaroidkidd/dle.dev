@@ -29,6 +29,7 @@ module.exports = ({
         'react-hot-loader/babel',
         'core-js/modules/es.promise',
         'core-js/modules/es.array.iterator',
+        './src/index.tsx',
       ],
       output: {
         path: __dirname + '/dist',
@@ -73,6 +74,7 @@ module.exports = ({
                         '@styles': './src/app/styles',
                         '@assets': './src/app/assets',
                         '@containers': './src/app/containers',
+                        '@utils': './src/app/utils',
                       },
                     },
                   ],
@@ -105,7 +107,7 @@ module.exports = ({
           title: 'dle.dev',
           inject: 'body',
           minify: mode === 'production' && !presets.some((p) => p !== 'analyze'),
-          hash: mode === 'production' && !presets.some((p) => p !== 'analyze'),
+          hash: false,
           cache: mode === 'production' && !presets.some((p) => p !== 'analyze'),
           favicon: './public/favicon.ico',
           templateParameters: {
