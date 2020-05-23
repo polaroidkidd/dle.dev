@@ -1,4 +1,5 @@
 import { webpackConfig } from '../../webpack.config';
+import path = require('path');
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const zlib = require('zlib');
@@ -14,7 +15,31 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       rules: [
         {
           test: /\.s[ac]ss$/i,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+          use: [
+            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  mode: 'local',
+                  exportGlobals: false,
+                  context: path.resolve(__dirname, 'src'),
+                },
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: ['./src/app/styles/main.scss'],
+              },
+            },
+          ],
         },
       ],
     },

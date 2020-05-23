@@ -1,4 +1,5 @@
 import { webpackConfig } from '../../webpack.config';
+import path = require('path');
 
 module.exports = (env: webpackConfig) => {
   return {
@@ -7,6 +8,8 @@ module.exports = (env: webpackConfig) => {
       historyApiFallback: true,
       progress: true,
       stats: 'errors-only',
+      open: false,
+      port: 3000,
     },
     output: {
       filename: 'dev.bundle.js',
@@ -16,17 +19,28 @@ module.exports = (env: webpackConfig) => {
         {
           test: /\.s[ac]ss$/i,
           use: [
-            'style-loader',
+            { loader: 'style-loader' },
             {
               loader: 'css-loader',
               options: {
-                sourceMap: true,
+                modules: {
+                  mode: 'local',
+                  exportGlobals: false,
+                  localIdentName: '[local]',
+                  context: path.resolve(__dirname, 'src'),
+                },
               },
             },
             {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
+              },
+            },
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: ['./src/app/styles/main.scss'],
               },
             },
           ],

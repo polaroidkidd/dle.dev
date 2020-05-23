@@ -38,7 +38,7 @@ module.exports = ({
         alias: {
           'react-dom': '@hot-loader/react-dom',
         },
-        extensions: ['.ts', '.tsx', '.js'],
+        extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
       },
       module: {
         rules: [
@@ -67,7 +67,7 @@ module.exports = ({
                     'module-resolver',
                     {
                       root: ['.'],
-                      extensions: ['.ts', '.tsx', '.jsx', '.js'],
+                      extensions: ['.ts', '.tsx', '.jsx', '.js', '.css', '.scss'],
                       alias: {
                         '@components': './src/app/components',
                         '@pages': './src/app/pages',
@@ -83,7 +83,7 @@ module.exports = ({
             },
           },
           {
-            test: /\.(png|svg|jpg|jpeg|gif|ico)$/,
+            test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/,
             exclude: /node_modules/,
             use: [
               {
