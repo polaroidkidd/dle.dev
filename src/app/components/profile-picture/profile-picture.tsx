@@ -1,5 +1,5 @@
 import React from 'react';
-import { profilePictureContainerActive } from './profile-picture.module.scss';
+import './profile-picture.module.scss';
 import { useHistory } from 'react-router-dom';
 
 type Props = {
@@ -23,7 +23,6 @@ const ProfilePicture: React.FC<Props> = ({ imageSrc, handleActiveNavigation }) =
       setIsActive(false);
     }
   }, [location]);
-  console.log('style', profilePictureContainerActive);
   return (
     <div className={`profile-picture-container ${isActive && 'profile-picture-container__active'}`}>
       <div
