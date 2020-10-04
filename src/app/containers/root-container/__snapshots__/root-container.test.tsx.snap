@@ -9,7 +9,7 @@ exports[`Render Root Container 1`] = `
       className="profile-picture-container--border  profile-picture-container--border__active"
     >
       <img
-        alt="Profile Picture"
+        alt="Avatar"
         className="profile-picture-container--image profile-picture-container--image__active"
         onClick={[Function]}
         src="daniel_einars-400x500.jpg"

@@ -1,57 +1,72 @@
-import React from "react";
-import { blogEntriesURL } from "../../utils";
-import Axios from "axios";
-import ReactMarkdown from "react-markdown";
-import { trackPromise } from "react-promise-tracker";
-import { CodeBlock, LoadingIndicator } from "../../components";
-import "./blog.scss";
+import React from 'react';
+import { blogEntriesURL, replaceWhiteSpace } from '../../utils';
+import Axios from 'axios';
+import { BlogEntry, Card, LoadingIndicator } from '../../components';
+import './blog.scss';
+import { BlogEntryProperties } from '../../utils/constants';
+import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 
+type MergedURLs = {
+  local: string;
+  remote: string;
+}
 const Blog: React.FC = () => {
-  const [urls, serUrls] = React.useState<string[]>([]);
-  const [articles, setArticles] = React.useState<string[]>([]);
-  const [loading, setLoading] = React.useState<Boolean>(true);
+  const [blogEntriesMeta, setBlogEntriesMeta] = React.useState<BlogEntryProperties[]>();
+  const [URLs, setURLs] = React.useState<MergedURLs[]>()
+  const [isLoading, setIsLoading] = React.useState<boolean>(true);
+  const match = useRouteMatch();
+  React.useMemo(() => {
+    Axios.get(blogEntriesURL).then((response) => {
+        setBlogEntriesMeta(() => {
+          return response.data;
+        });
+        setIsLoading(() => false);
+      }
+    ).catch((e) => {
+      console.error(e);
+    });
 
-  React.useEffect(() => {
-    setTimeout(() => {
-        trackPromise(
-          Axios.get(blogEntriesURL).then((response) => {
-            serUrls(response.data);
-          })
-        ).catch(e => console.error(e))
-      }, 550
-    )
   }, []);
 
-  React.useEffect(() => {
-    urls.forEach((url) => {
-      trackPromise(Axios.get(url)
-        .then((response) => {
-          setArticles(((prevState) => [...prevState, response.data]));
-          setLoading(false);
-        })).catch(e => console.error(e));
-    });
-  }, [urls]);
+
+  React.useMemo(() => {
+    if (blogEntriesMeta) {
+      setURLs(() => {
+        return blogEntriesMeta.map((e) => {
+          return {
+            local: `${match.url}/${e.title.replace(replaceWhiteSpace(), '-')}`,
+            remote: e.url
+          }
+        })
+      })
+    }
+  }, [blogEntriesMeta])
 
   return (
     <>
       <div className="blog-container">
-        {loading && <LoadingIndicator/>}
-        {
-          articles.map((article, index) => (
-            <div className="markdown-body" key={index}>
-              <ReactMarkdown
-                source={article}
-                renderers={{
-                  code: CodeBlock,
-                }}
-              />
-            </div>
-          ))
+        {isLoading
+          ? <LoadingIndicator />
+          : blogEntriesMeta?.map((entry) => {
+            return (
+              <Link
+                to={`${match.url}/${entry.title.replace(replaceWhiteSpace(), "-")}`}
+                className="card"
+                key={entry.url}
+              >
+                <Card
+                  key={entry.url}
+                  title={entry.title}
+                  published={entry.published}>
+                </Card>
+              </Link>);
+          })
         }
-
       </div>
-
+      <Switch>
+        {URLs?.map(url => <Route path={url.local} key={url.remote}><BlogEntry url={url.remote} /></Route>)}
+      </Switch>
     </>
   );
 };

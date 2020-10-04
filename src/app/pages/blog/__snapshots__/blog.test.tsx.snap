@@ -2,15 +2,7 @@
 
 exports[`Render Blog Component 1`] = `
 <div
-  style={
-    Object {
-      "alignItems": "center",
-      "display": "flex",
-      "height": "100",
-      "justifyContent": "center",
-      "width": "100%",
-    }
-  }
+  className="blog-container"
 >
   <div
     className="loadingIndicator"

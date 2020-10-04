@@ -1,0 +1,37 @@
+@import "../../styles/main";
+
+.card {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid $color-primary-border;
+  width: 100%;
+  transition: transform 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  &:hover {
+    backface-visibility: hidden;
+    background-color: white;
+    border-color: #D6304C;
+    color: #D6304C;
+    cursor: pointer;
+    -webkit-font-smoothing: subpixel-antialiased;
+    transform: translateY(-0.7rem) scale(1.01, 1.015) translateZ(0);
+    z-index: 10;
+
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__published {
+
+  }
+}
+
+
+

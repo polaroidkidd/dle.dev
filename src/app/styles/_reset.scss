@@ -10,6 +10,10 @@ img, embed, object, video {
   max-width: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   overflow-y: scroll;
 }
