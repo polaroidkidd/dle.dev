@@ -1,2 +1,2 @@
-export { blogEntriesURL } from './constants';
-export { replaceWhiteSpace, replaceNumberIndents, encodeStringToTURL } from "./regexes"
+export { blogEntriesURL, BlogEntryProperties } from './constants';
+export { replaceWhiteSpace, replaceNumberIndents, encodeStringToTURL } from './regexes';

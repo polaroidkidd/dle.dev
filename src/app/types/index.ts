@@ -1,0 +1,1 @@
+export { BlogEntryProperties } from './blog';
