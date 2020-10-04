@@ -105,8 +105,7 @@
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^4.2.2"
-    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2",
     "webpack-plugin-critical": "^1.0.0"
   }
 }
