@@ -15,9 +15,20 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         {
           test: /\.s[ac]ss$/i,
           use: [
-            { loader: MiniCssExtractPlugin.loader },
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                esModule: true,
+                modules: {
+                  namedExport: true,
+                },
+              },
+            },
             {
               loader: 'css-loader',
+              options: {
+                esModule: true,
+              },
             },
             {
               loader: 'sass-loader',

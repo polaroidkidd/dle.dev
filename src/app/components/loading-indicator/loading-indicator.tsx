@@ -1,11 +1,10 @@
 import React from 'react';
-import style from './loading-indicator.module.scss';
 import Loader from 'react-loader-spinner';
+import './loading-indicator.scss';
 
 const LoadingIndicator = () => {
   return (
-  // @ts-ignore
-    <div className={style.loadingIndicator}>
+    <div className={'loadingIndicator'}>
       <Loader type="Oval" color={'#ADADAD'} width={100} height={100} />
     </div>
   );
