@@ -33,7 +33,7 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
   echo "$TAG_VERSION"
 
 
-  docker build . -t "${TAG_LATEST}"
+  docker build . --no-cache -t "${TAG_LATEST}"
   docker tag "${TAG_LATEST}" "${TAG_VERSION}"
 
 

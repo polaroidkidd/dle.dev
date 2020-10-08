@@ -31,6 +31,7 @@ module.exports = (env: webpackConfig) => {
                 },
               },
             },
+            { loader: 'postcss-loader' },
             {
               loader: 'sass-loader',
               options: {

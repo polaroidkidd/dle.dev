@@ -27,8 +27,15 @@ module.exports = ({
       mode: mode,
       entry: [
         'react-hot-loader/babel',
-        'core-js/modules/es.promise',
-        'core-js/modules/es.array.iterator',
+        // polyfills
+        'core-js/stable/object/assign',
+        'core-js/stable/object/values',
+        'core-js/stable/string/repeat',
+        'core-js/stable/array/includes',
+        'core-js/stable/regexp',
+        'core-js/stable/promise',
+        'regenerator-runtime/runtime',
+        // entrypoint
         './src/index.tsx',
       ],
       output: {
@@ -49,20 +56,33 @@ module.exports = ({
             use: {
               loader: 'babel-loader',
               options: {
-                cacheDirectory: true,
+                cacheDirectory: false,
                 babelrc: false,
                 presets: [
                   [
                     '@babel/preset-env',
-                    { targets: { browsers: 'last 2 versions' } }, // or whatever your project requires
+                    {
+                      corejs: {
+                        version: '3',
+                        proposals: true,
+                      },
+                      useBuiltIns: 'entry',
+                      targets: {
+                        browsers: ['>1%', 'Firefox ESR', 'not ie < 11'],
+                      },
+                    },
                   ],
                   '@babel/preset-typescript',
                   '@babel/preset-react',
                 ],
                 plugins: [
-                  '@babel/plugin-syntax-dynamic-import', // dynamic hot loading preset
+                  'syntax-async-functions',
+                  '@babel/transform-runtime',
+                  ['@babel/plugin-proposal-unicode-property-regex', { useUnicodeFlag: false }],
+                  '@babel/plugin-syntax-dynamic-import',
                   ['@babel/plugin-proposal-decorators', { legacy: true }],
                   ['@babel/plugin-proposal-class-properties', { loose: true }],
+                  '@babel/plugin-transform-object-assign',
                   'react-hot-loader/babel',
                   [
                     'module-resolver',

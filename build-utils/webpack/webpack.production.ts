@@ -30,6 +30,8 @@ module.exports = ({ presets: presets }: webpackConfig) => {
                 esModule: true,
               },
             },
+            { loader: 'postcss-loader' },
+
             {
               loader: 'sass-loader',
               options: {
@@ -47,7 +49,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
       ],
     },
     performance: {
-      hints: 'error',
+      hints: 'warning',
       maxAssetSize: 250 * 1024, // 100 KiB
       maxEntrypointSize: 250 * 1024, // 100 KiB
       assetFilter: function (assetFilename) {
