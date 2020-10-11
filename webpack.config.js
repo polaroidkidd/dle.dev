@@ -5,13 +5,7 @@ const modeConfig = ({ mode, presets }) => require(`./build-utils/webpack/webpack
 const presetConfig = require('./build-utils/webpack/loadPresets');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-export type webpackConfig = {
-  mode: 'production' | 'development';
-  presets: string[];
-  depEnv: 'production' | 'staging';
-};
-
-module.exports = ({ mode = 'production', presets: presets = [], depEnv = 'production' }: webpackConfig) => {
+module.exports = ({ mode = 'production', presets: presets = [], depEnv = 'production' }) => {
   if (typeof presets === 'string') {
     presets = new Array(presets);
   }

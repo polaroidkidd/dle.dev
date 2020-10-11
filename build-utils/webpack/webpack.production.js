@@ -1,9 +1,7 @@
-import { webpackConfig } from '../../webpack.config';
-
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const zlib = require('zlib');
 const CompressionPlugin = require('compression-webpack-plugin');
-module.exports = ({ presets: presets }: webpackConfig) => {
+module.exports = ({ presets: presets }) => {
   return {
     output: {
       filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'bundle.[name].[contenthash].js',

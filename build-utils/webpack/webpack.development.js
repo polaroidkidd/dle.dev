@@ -1,7 +1,6 @@
-import { webpackConfig } from '../../webpack.config';
 import path from 'path';
 
-module.exports = (env: webpackConfig) => {
+module.exports = (env) => {
   return {
     devtool: 'source-map',
     devServer: {
