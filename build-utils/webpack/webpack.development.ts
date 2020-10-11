@@ -1,5 +1,5 @@
 import { webpackConfig } from '../../webpack.config';
-import path = require('path');
+import path from 'path';
 
 module.exports = (env: webpackConfig) => {
   return {

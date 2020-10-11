@@ -1,10 +1,8 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
-const modeConfig = ({ mode, presets }) =>
-  require(`./build-utils/webpack/webpack.${mode}`)({ mode, presets });
+const modeConfig = ({ mode, presets }) => require(`./build-utils/webpack/webpack.${mode}`)({ mode, presets });
 const presetConfig = require('./build-utils/webpack/loadPresets');
-const copyPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 export type webpackConfig = {
@@ -13,11 +11,7 @@ export type webpackConfig = {
   depEnv: 'production' | 'staging';
 };
 
-module.exports = ({
-  mode = 'production',
-  presets: presets = [],
-  depEnv = 'production',
-}: webpackConfig) => {
+module.exports = ({ mode = 'production', presets: presets = [], depEnv = 'production' }: webpackConfig) => {
   if (typeof presets === 'string') {
     presets = new Array(presets);
   }

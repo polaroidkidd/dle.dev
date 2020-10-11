@@ -6,9 +6,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 module.exports = ({ presets: presets }: webpackConfig) => {
   return {
     output: {
-      filename: presets.some((p) => p === 'analyze')
-        ? '[name].js'
-        : 'bundle.[name].[contenthash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : 'bundle.[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -96,9 +94,7 @@ module.exports = ({ presets: presets }: webpackConfig) => {
         // Options similar to the same options in webpackOptions.output
         // both options are optional
         filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[chunkhash].css',
-        chunkFilename: presets.some((p) => p === 'analyze')
-          ? '[name].css'
-          : 'style.[name].[contenthash].css',
+        chunkFilename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
       }),
     ],
   };
