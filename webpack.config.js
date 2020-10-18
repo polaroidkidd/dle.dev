@@ -33,9 +33,8 @@ module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'p
       resolve: {
         alias: {
           'react-dom': '@hot-loader/react-dom',
-
-          process: 'process/browser',
         },
+        fallback: { path: require.resolve('path-browserify') },
         extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
       },
       module: {
