@@ -56,38 +56,25 @@ module.exports = ({ presets: presets }) => {
       runtimeChunk: {
         name: 'manifest',
       },
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            name: 'vendors',
-            test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
-          },
-          shared: {
-            name: 'shared',
-            test: /[\\/]src[\\/]app[\\/]components[\\/]/,
-            minSize: 0,
-          },
-        },
-      },
+      splitChunks: { chunks: 'all' },
     },
     plugins: [
-      new CompressionPlugin({
-        filename: '[path].br[query]',
-        algorithm: 'brotliCompress',
-        test: /\.(js|css|html|svg|jpg)$/,
-        compressionOptions: { level: 11 },
-        minRatio: 1,
-        deleteOriginalAssets: false,
-      }),
-      new CompressionPlugin({
-        filename: '[path].gz[query]',
-        algorithm: 'gzip',
-        test: /\.(js|css|html|svg|jpg)$/,
-        compressionOptions: { level: 9 },
-        minRatio: 1,
-        deleteOriginalAssets: false,
-      }),
+      // new CompressionPlugin({
+      //   filename: '[path].br[query]',
+      //   algorithm: 'brotliCompress',
+      //   test: /\.(js|css|html|svg|jpg)$/,
+      //   compressionOptions: { level: 11 },
+      //   minRatio: 1,
+      //   deleteOriginalAssets: false,
+      // }),
+      // new CompressionPlugin({
+      //   filename: '[path].gz[query]',
+      //   algorithm: 'gzip',
+      //   test: /\.(js|css|html|svg|jpg)$/,
+      //   compressionOptions: { level: 9 },
+      //   minRatio: 1,
+      //   deleteOriginalAssets: false,
+      // }),
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional

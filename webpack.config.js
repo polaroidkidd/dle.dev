@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const webpackMerge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const modeConfig = ({ mode, presets }) => require(`./build-utils/webpack/webpack.${mode}`)({ mode, presets });
 const presetConfig = require('./build-utils/webpack/loadPresets');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -10,7 +10,7 @@ module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'p
     presets = new Array(presets);
   }
 
-  return webpackMerge(
+  return merge(
     {
       mode: mode,
       entry: [
@@ -33,6 +33,8 @@ module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'p
       resolve: {
         alias: {
           'react-dom': '@hot-loader/react-dom',
+
+          process: 'process/browser',
         },
         extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
       },

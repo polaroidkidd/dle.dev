@@ -1,4 +1,4 @@
-const WebpackMerge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const applyPresets = (env) => {
   const { presets } = env;
@@ -8,7 +8,7 @@ const applyPresets = (env) => {
     return require(path.join(__dirname, `./presets/webpack.${presetName}`))(env);
   });
 
-  return WebpackMerge({}, ...mergedConfigs);
+  return merge({}, ...mergedConfigs);
 };
 
 module.exports = applyPresets;
