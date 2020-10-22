@@ -26,5 +26,6 @@
     }
   },
   "include": ["./src/**/*.tsx", "./src/**/*.ts", "./src/**/*.scss"],
+  "exclude": ["./utils/**/*.ts", "./node_modules"],
   "compileOnSave": false
 }
