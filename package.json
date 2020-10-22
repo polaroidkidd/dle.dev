@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --env.mode development --hot",
-    "build:dev": "webpack --env mode=development ",
-    "build:prod": "webpack --env mode=production  ",
-    "docker:build": "./docker-build.sh",
+    "build:dev": "webpack --config ./utils/webpack/webpack.config.ts --env mode=development ",
+    "build:prod": "webpack --config ./utils/webpack/webpack.config.ts --env mode=production  ",
+    "docker:build": "utils/scripts/docker-build.sh",
     "docker:run": "docker run --rm -p 8080:80 eu.gcr.io/dle-dev/frontend:staging",
     "docker:run:dev": "run-s build:dev docker:build docker:run ",
     "docker:run:prod": "run-s build:prod docker:build docker:run",
@@ -14,13 +14,13 @@
     "build:prod:analyze": "yarn run build:prod --env presets=analyze",
     "build:dev:analyze": "yarn run build:prod --env presets=analyze",
     "release": "standard-version",
-    "bnd": "./build-and-deploy.sh",
+    "bnd": "utils/scripts/build-and-deploy.sh",
     "lint": "eslint"
   },
   "homepage": "https://dle.dev",
   "husky": {
     "hooks": {
-      "commit-msg": "./vcs-check.sh",
+      "commit-msg": "./utils/scripts/vcs-check.sh",
       "pre-commit": "pretty-quick --staged"
     }
   },
@@ -88,7 +88,7 @@
     "@types/react-syntax-highlighter": "^13.5.0",
     "@types/styled-components": "^5.1.4",
     "@types/webfontloader": "^1.6.32",
-    "@types/webpack": "^4.41.22",
+    "@types/webpack": "^4.41.23",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
