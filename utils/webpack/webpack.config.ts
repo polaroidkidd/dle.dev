@@ -1,10 +1,10 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { webpack, Configuration, ProgressPlugin } from 'webpack';
+import { Configuration, ProgressPlugin } from 'webpack';
 import { merge } from 'webpack-merge';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-
 // custom loaders
-const modeConfig = ({ mode, presets }) => require(`./`)({ mode, presets });
+
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const presetConfig = require('./loadPresets');
 
 const config = ({
@@ -114,6 +114,7 @@ const config = ({
         ],
       },
       plugins: [
+        new CleanWebpackPlugin({}),
         new HtmlWebpackPlugin({
           template: './public/index.html',
           scriptLoading: 'defer',

@@ -1,7 +1,7 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const zlib = require('zlib');
-const CompressionPlugin = require('compression-webpack-plugin');
-module.exports = ({ presets: presets }) => {
+import { MiniCssExtractPlugin } from 'mini-css-extract-plugin';
+import { CompressionPlugin } from 'compression-webpack-plugin';
+
+const productionConfig = (presets: string[]) => {
   return {
     output: {
       filename: presets.some((p) => p === 'analyze') ? '[name].[id].js' : '[name].[chunkhash].js',
@@ -97,3 +97,5 @@ module.exports = ({ presets: presets }) => {
     ],
   };
 };
+
+export { productionConfig };

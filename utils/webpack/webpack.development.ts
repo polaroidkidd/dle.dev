@@ -1,6 +1,6 @@
 import path from 'path';
 
-module.exports = (env) => {
+const developmentConfig = () => {
   return {
     devtool: 'source-map',
     devServer: {
@@ -41,7 +41,7 @@ module.exports = (env) => {
             {
               loader: 'sass-resources-loader',
               options: {
-                resources: ['./src/app/styles/main.scss'],
+                resourcs: ['./src/app/styles/main.scss'],
               },
             },
           ],
@@ -50,3 +50,5 @@ module.exports = (env) => {
     },
   };
 };
+
+export { developmentConfig };
