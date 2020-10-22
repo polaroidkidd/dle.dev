@@ -1,3 +1,3 @@
-import BlogEntry from "./blog-entry";
+import BlogEntry from './blog-entry';
 
 export { BlogEntry };

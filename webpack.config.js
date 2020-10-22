@@ -5,9 +5,9 @@ const modeConfig = ({ mode, presets }) => require(`./build-utils/webpack/webpack
 const presetConfig = require('./build-utils/webpack/loadPresets');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'production' }) => {
-  if (typeof presets === 'string') {
-    presets = new Array(presets);
+module.exports = ({ mode = 'production', presets, depEnv = 'production' }) => {
+  if (presets !== undefined) {
+    presets = presets.split(',');
   }
 
   return merge(
@@ -95,6 +95,7 @@ module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'p
           {
             test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/,
             exclude: /node_modules/,
+            type: 'asset/resource',
             use: [
               {
                 loader: 'url-loader',
@@ -116,7 +117,21 @@ module.exports = (env, { mode = 'production', presets: presets = [], depEnv = 'p
           scriptLoading: 'defer',
           title: 'dle.dev',
           inject: 'body',
-          minify: mode === 'production' && !presets.some((p) => p !== 'analyze'),
+          minify:
+            mode === 'production' && !presets.some((p) => p !== 'analyze')
+              ? {
+                  removeComments: true,
+                  collapseWhitespace: true,
+                  removeRedundantAttributes: true,
+                  useShortDoctype: true,
+                  removeEmptyAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  keepClosingSlash: true,
+                  minifyJS: true,
+                  minifyCSS: true,
+                  minifyURLs: true,
+                }
+              : true,
           hash: false,
           cache: mode === 'production' && !presets.some((p) => p !== 'analyze'),
           favicon: './public/favicon.ico',

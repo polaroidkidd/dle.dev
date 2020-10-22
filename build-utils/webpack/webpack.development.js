@@ -7,7 +7,8 @@ module.exports = (env) => {
       historyApiFallback: true,
       progress: true,
       stats: 'errors-only',
-      open: false,
+      open: true,
+      hot: true,
       port: 3000,
     },
     output: {
