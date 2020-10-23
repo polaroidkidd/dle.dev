@@ -1,6 +1,8 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration, ProgressPlugin } from 'webpack';
 import { merge } from 'webpack-merge';
+import { developmentConfig } from './webpack.development';
+import { productionConfig } from './webpack.production';
 // custom loaders
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -33,7 +35,7 @@ const config = ({
         './src/index.tsx',
       ],
       output: {
-        path: __dirname + '/dist',
+        path: __dirname + '/../../dist',
         publicPath: '/',
       },
       resolve: {
@@ -114,7 +116,7 @@ const config = ({
         ],
       },
       plugins: [
-        new CleanWebpackPlugin({}),
+        new CleanWebpackPlugin({ verbose: true }),
         new HtmlWebpackPlugin({
           template: './public/index.html',
           scriptLoading: 'defer',
@@ -145,9 +147,17 @@ const config = ({
         new ProgressPlugin({}),
       ],
     },
-    modeConfig({ mode, presets }),
+    modeConfig(mode, presets),
     presetConfig({ mode, presets })
   );
+};
+
+const modeConfig = (mode: Configuration['mode'], presets: string[]): Configuration => {
+  if (mode === 'production') {
+    return productionConfig(presets);
+  } else {
+    return developmentConfig();
+  }
 };
 
 export default config;

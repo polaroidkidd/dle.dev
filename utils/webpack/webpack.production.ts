@@ -1,10 +1,11 @@
-import { MiniCssExtractPlugin } from 'mini-css-extract-plugin';
-import { CompressionPlugin } from 'compression-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+import { Configuration } from 'webpack';
 
-const productionConfig = (presets: string[]) => {
+const productionConfig = (presets: string[]): Configuration => {
   return {
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].[id].js' : '[name].[chunkhash].js',
+      filename: presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -75,21 +76,23 @@ const productionConfig = (presets: string[]) => {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[chunkhash].css',
+        filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
         chunkFilename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
       }),
       new CompressionPlugin({
-        filename: '[path].[query].[name].br',
+        filename: '[path][base].br',
         algorithm: 'brotliCompress',
-        test: /\.(js|css|html|svg|jpg)$/,
+        test: /\.(js|css|svg|jpg)$/,
+        exclude: /\.(html|json|txt)$/,
         compressionOptions: { level: 11 },
         minRatio: 1,
         deleteOriginalAssets: false,
       }),
       new CompressionPlugin({
-        filename: '[path].[query].[name].gz',
+        filename: '[path][base].gz',
         algorithm: 'gzip',
-        test: /\.(js|css|html|svg|jpg)$/,
+        test: /\.(js|css|svg|jpg)$/,
+        exclude: /\.(html|json|txt)$/,
         compressionOptions: { level: 9 },
         minRatio: 1,
         deleteOriginalAssets: false,
