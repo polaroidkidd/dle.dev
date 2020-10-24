@@ -106,7 +106,7 @@ else
     echo "***************************************************"
     echo "**************** PUSHING TO REMOTE ****************"
     echo "***************************************************"
-    docker push "${TAG_VERSION}"
+    docker push "${TAG_LATEST}"
   fi
 
   if [[ -v RUN ]]; then
@@ -114,7 +114,5 @@ else
     echo "************ STARTING LOCAL CONTAINER *************"
     echo "***************************************************"
     docker run --rm -p 8080:80 "${TAG_LATEST}"
-  else
-    echo "no run command given"
   fi
 fi
