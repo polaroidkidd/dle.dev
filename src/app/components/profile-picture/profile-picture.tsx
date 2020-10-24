@@ -1,5 +1,5 @@
 import React from 'react';
-import './profile-picture.module.scss';
+import './profile-picture.scss';
 import { useHistory } from 'react-router-dom';
 
 type Props = {
@@ -25,15 +25,9 @@ const ProfilePicture: React.FC<Props> = ({ imageSrc, handleActiveNavigation }) =
   }, [location]);
   return (
     <div className={`profile-picture-container ${isActive && 'profile-picture-container__active'}`}>
-      <div
-        className={`profile-picture-container--border  ${
-          isActive && 'profile-picture-container--border__active'
-        }`}
-      >
+      <div className={`profile-picture-container--border  ${isActive && 'profile-picture-container--border__active'}`}>
         <img
-          className={`profile-picture-container--image ${
-            isActive && 'profile-picture-container--image__active'
-          }`}
+          className={`profile-picture-container--image ${isActive && 'profile-picture-container--image__active'}`}
           // className="profile-picture-container--image"
           src={imageSrc}
           alt="Avatar"

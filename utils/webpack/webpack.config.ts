@@ -1,10 +1,10 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { Configuration, ProgressPlugin } from 'webpack';
+import { Configuration, ProgressPlugin, ProvidePlugin } from 'webpack';
 import { merge } from 'webpack-merge';
 import { developmentConfig } from './webpack.development';
 import { productionConfig } from './webpack.production';
-// custom loaders
 
+// custom loaders
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const presetConfig = require('./loadPresets');
@@ -47,6 +47,18 @@ const config = ({
       },
       module: {
         rules: [
+          {
+            test: /node_modules\/vfile\/core\.js/,
+            use: [
+              {
+                loader: 'imports-loader',
+                options: {
+                  type: 'commonjs',
+                  imports: ['single process/browser process'],
+                },
+              },
+            ],
+          },
           {
             test: /\.([jt])sx?$/,
             exclude: /node_modules/,
@@ -102,14 +114,9 @@ const config = ({
           },
           {
             test: /\.(png|svg|jpg|jpeg|gif|ico|webp)$/,
-            exclude: /node_modules/,
-            type: 'asset/resource',
             use: [
               {
-                loader: 'url-loader',
-                options: {
-                  limit: 500,
-                },
+                loader: 'file-loader',
               },
             ],
           },

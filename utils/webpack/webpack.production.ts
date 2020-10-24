@@ -1,6 +1,14 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import { Configuration } from 'webpack';
+import { Compiler, Configuration } from 'webpack';
+
+interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
+  apply(compiler: Compiler): void;
+}
+
+interface CompressionPluginExtended extends CompressionPlugin {
+  apply(compiler: Compiler): void;
+}
 
 const productionConfig = (presets: string[]): Configuration => {
   return {
@@ -78,7 +86,7 @@ const productionConfig = (presets: string[]): Configuration => {
         // both options are optional
         filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
         chunkFilename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
-      }),
+      }) as MiniCssExtractPluginExtended,
       new CompressionPlugin({
         filename: '[path][base].br',
         algorithm: 'brotliCompress',
@@ -87,7 +95,7 @@ const productionConfig = (presets: string[]): Configuration => {
         compressionOptions: { level: 11 },
         minRatio: 1,
         deleteOriginalAssets: false,
-      }),
+      }) as CompressionPluginExtended,
       new CompressionPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',
@@ -96,7 +104,7 @@ const productionConfig = (presets: string[]): Configuration => {
         compressionOptions: { level: 9 },
         minRatio: 1,
         deleteOriginalAssets: false,
-      }),
+      }) as CompressionPluginExtended,
     ],
   };
 };

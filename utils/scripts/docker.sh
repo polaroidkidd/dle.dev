@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-while getopts :epr option; do
+while getopts e:pr option; do
   case "${option}" in
     e) ENVIRONMENT=${OPTARG};;
     p) PUSH=${OPTARG};;
@@ -95,19 +95,6 @@ else
     yarn run build:dev
   fi
 
-  if [[ "${ENVIRONMENT}" == "prod" ]]; then
-    echo "***************************************************"
-    echo "************** BUILDING PROD RELEASE **************"
-    echo "***************************************************"
-    yarn run build:prod
-  else
-    echo "***************************************************"
-    echo "************** BUILDING DEV RELEASE ***************"
-    echo "***************************************************"
-    yarn run build:dev
-  fi
-
-
 
   echo "***************************************************"
   echo "************ BUILDING DOCKER CONTAINER ************"
@@ -126,6 +113,8 @@ else
     echo "***************************************************"
     echo "************ STARTING LOCAL CONTAINER *************"
     echo "***************************************************"
-    docker run --rm -p 8080:80 eu.gcr.io/dle-dev/frontend:"${TAG_LATEST}"
+    docker run --rm -p 8080:80 "${TAG_LATEST}"
+  else
+    echo "no run command given"
   fi
 fi
