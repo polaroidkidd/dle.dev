@@ -30,7 +30,6 @@ const developmentConfig = (): Configuration => {
                   mode: 'local',
                   exportGlobals: false,
                   localIdentName: '[local]',
-                  context: path.resolve(__dirname, 'src'),
                 },
               },
             },
@@ -44,7 +43,7 @@ const developmentConfig = (): Configuration => {
             {
               loader: 'sass-resources-loader',
               options: {
-                resourcs: ['./src/app/styles/main.scss'],
+                resources: ['./src/app/styles/main.scss'],
               },
             },
           ],
