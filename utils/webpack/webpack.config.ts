@@ -6,6 +6,7 @@ import { productionConfig } from './webpack.production';
 
 // custom loaders
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const PolyfillInjectorPlugin = require('webpack-polyfill-injector');
 
 const presetConfig = require('./loadPresets');
 
@@ -21,45 +22,11 @@ const config = ({
   return merge(
     {
       mode: mode,
-      entry: [
-        'react-hot-loader/babel',
-        // polyfills
-        // general polyfills
-        // 'core-js/stable/promise',
-        // 'core-js/stable/string/repeat',
-        // 'core-js/stable/regexp',
-        // 'core-js/stable/set',
-        // // specific polyfills
-        // 'core-js/stable/array/fill',
-        // 'core-js/stable/array/includes',
-        // 'core-js/stable/array/from',
-        // 'core-js/stable/object/assign',
-        // 'core-js/stable/object/values',
-        'regenerator-runtime/runtime',
-        // polyfills not imported yet from core-js
-        // 'core-js/stable/array-buffer',
-        // 'core-js/stable/array',
-        // 'core-js/stable/data-view',
-        // 'core-js/stable/date',
-        // 'core-js/stable/dom-collections',
-        // 'core-js/stable/function',
-        // 'core-js/stable/json',
-        // 'core-js/stable/map',
-        // 'core-js/stable/math',
-        // 'core-js/stable/number',
-        // 'core-js/stable/object',
-        // 'core-js/stable/reflect',
-        // 'core-js/stable/string',
-        // 'core-js/stable/symbol',
-        // 'core-js/stable/typed-array',
-        // 'core-js/stable/url-search-params',
-        // 'core-js/stable/url',
-        // 'core-js/stable/weak-map',
-        // 'core-js/stable/weak-set',
-
-        // entrypoint
-        './src/index.tsx',
-      ],
+      entry: {
+        app: `webpack-polyfill-injector?${JSON.stringify({
+          modules: ['core-js/stable/regexp', 'react-hot-loader/babel', './src/index.tsx'], // list your entry modules for the `app` entry chunk
+        })}!`, // don't forget the trailing exclamation mark!
+      },
       output: {
         path: __dirname + '/../../dist',
         publicPath: '/',
@@ -150,6 +117,19 @@ const config = ({
       },
       plugins: [
         new CleanWebpackPlugin({ verbose: true }),
+        new PolyfillInjectorPlugin({
+          polyfills: [
+            'Promise',
+            'Array.prototype.fill',
+            'Array.from',
+            'String.prototype.repeat',
+            'RegExp.prototype.flags',
+            'Set',
+            'Array.prototype.includes',
+            'Object.assign',
+            'Object.values',
+          ],
+        }),
         new HtmlWebpackPlugin({
           template: './public/index.html',
           scriptLoading: 'defer',
