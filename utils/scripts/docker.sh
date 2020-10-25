@@ -56,7 +56,7 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
   echo "***************************************************"
   echo "************** BUILDING PROD RELEASE **************"
   echo "***************************************************"
-  yarn run build:prod
+  yarn run prod:build
 
   echo "***************************************************"
   echo "************ BUILDING DOCKER CONTAINER ************"
@@ -87,12 +87,12 @@ else
     echo "***************************************************"
     echo "************** BUILDING PROD RELEASE **************"
     echo "***************************************************"
-    yarn run build:prod
+    yarn run prod:build
   else
     echo "***************************************************"
     echo "************** BUILDING DEV RELEASE ***************"
     echo "***************************************************"
-    yarn run build:dev
+    yarn run dev:build
   fi
 
 
