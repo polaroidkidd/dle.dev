@@ -24,13 +24,39 @@ const config = ({
       entry: [
         'react-hot-loader/babel',
         // polyfills
+        // general polyfills
+        'core-js/stable/promise',
+        'core-js/stable/string/repeat',
+        'core-js/stable/regexp',
+        'core-js/stable/set',
+        // specific polyfills
+        'core-js/stable/array/fill',
+        'core-js/stable/array/includes',
+        'core-js/stable/array/from',
         'core-js/stable/object/assign',
         'core-js/stable/object/values',
-        'core-js/stable/string/repeat',
-        'core-js/stable/array/includes',
-        'core-js/stable/regexp',
-        'core-js/stable/promise',
         'regenerator-runtime/runtime',
+        // polyfills not imported yet from core-js
+        // 'core-js/stable/array-buffer',
+        // 'core-js/stable/array',
+        // 'core-js/stable/data-view',
+        // 'core-js/stable/date',
+        // 'core-js/stable/dom-collections',
+        // 'core-js/stable/function',
+        // 'core-js/stable/json',
+        // 'core-js/stable/map',
+        // 'core-js/stable/math',
+        // 'core-js/stable/number',
+        // 'core-js/stable/object',
+        // 'core-js/stable/reflect',
+        // 'core-js/stable/string',
+        // 'core-js/stable/symbol',
+        // 'core-js/stable/typed-array',
+        // 'core-js/stable/url-search-params',
+        // 'core-js/stable/url',
+        // 'core-js/stable/weak-map',
+        // 'core-js/stable/weak-set',
+
         // entrypoint
         './src/index.tsx',
       ],
