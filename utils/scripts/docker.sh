@@ -10,21 +10,15 @@ while getopts e:pr option; do
   esac
 done
 
-function npmVersion() {
-  node <<EOJS
-  var pjson = require('./package.json');
-  console.log(pjson.version);
-EOJS
-}
 
-function npmName() {
-  node <<EOJS
-  var pjson = require('./package.json');
-  console.log(pjson.name);
-EOJS
-}
+HOST="eu.gcr.io/dle-dev"
+NAME=$(npx -c 'echo "$npm_package_name"')
+VERSION=$(npx -c 'echo "$npm_package_version"')
 
-
+TAG=${HOST}/${NAME}
+TAG_VERSION=${TAG}:${VERSION}
+TAG_LATEST=${TAG}:latest
+TAG_STAGING=${TAG}:staging
 
 
 if  [[ -v INVALID ]]; then
@@ -41,13 +35,6 @@ fi
 
 if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
   #  We are on master, only prod releases are possible here. Only the -p flag will be respected here.
-  HOST="eu.gcr.io/dle-dev"
-  NAME=$(npmName)
-  VERSION=$(npmVersion)
-
-  TAG=${HOST}/${NAME}
-  TAG_LATEST=${TAG}:latest
-  TAG_VERSION=${TAG}:${VERSION}
 
   echo "$TAG_LATEST"
   echo "$TAG_VERSION"
@@ -75,25 +62,18 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
 else
   #  We are on on a development branch. Commandline options -e and -r will be respected.
 
-  HOST="eu.gcr.io/dle-dev"
-  NAME=$(npmName)
-  VERSION=$(npmVersion)
-
-  TAG=${HOST}/${NAME}
-  TAG_LATEST=${TAG}:staging
-
-  rm -rf ./dist
-  if [[ "${ENVIRONMENT}" == "prod" ]]; then
-    echo "***************************************************"
-    echo "************** BUILDING PROD RELEASE **************"
-    echo "***************************************************"
-    yarn run prod:build
-  else
-    echo "***************************************************"
-    echo "************** BUILDING DEV RELEASE ***************"
-    echo "***************************************************"
-    yarn run dev:build
-  fi
+  # rm -rf ./dist
+  # if [[ "${ENVIRONMENT}" == "prod" ]]; then
+  #   echo "***************************************************"
+  #   echo "************** BUILDING PROD RELEASE **************"
+  #   echo "***************************************************"
+  #   yarn run prod:build
+  # else
+  #   echo "***************************************************"
+  #   echo "************** BUILDING DEV RELEASE ***************"
+  #   echo "***************************************************"
+  #   yarn run dev:build
+  # fi
 
 
   echo "***************************************************"
@@ -106,7 +86,10 @@ else
     echo "***************************************************"
     echo "**************** PUSHING TO REMOTE ****************"
     echo "***************************************************"
-    docker push "${TAG_LATEST}"
+    echo "Image: ${TAG_STAGING}"
+    echo "***************************************************"
+    docker tag "${TAG_LATEST}" "${TAG_STAGING}"
+    docker push "${TAG_STAGING}"
   fi
 
   if [[ -v RUN ]]; then
