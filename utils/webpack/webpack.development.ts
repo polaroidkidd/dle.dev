@@ -1,9 +1,8 @@
 import path from 'path';
-import { Configuration } from 'webpack';
-import { Configuration as WebPackDevServerConfig } from 'webpack-dev-server';
+import { Configuration } from './webpack.config';
 
 const developmentConfig = (): Configuration => {
-  const devServer: WebPackDevServerConfig = {
+  const devServer = {
     historyApiFallback: true,
     stats: 'errors-only',
     open: true,

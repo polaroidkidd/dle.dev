@@ -1,6 +1,12 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { Configuration, ProgressPlugin, ProvidePlugin } from 'webpack';
+import { Configuration as WebpackConfiguration, ProgressPlugin, ProvidePlugin } from 'webpack';
 import { merge } from 'webpack-merge';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+
+export interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration;
+}
+
 import { developmentConfig } from './webpack.development';
 import { productionConfig } from './webpack.production';
 
