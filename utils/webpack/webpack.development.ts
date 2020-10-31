@@ -2,17 +2,15 @@ import path from 'path';
 import { Configuration } from './webpack.config';
 
 const developmentConfig = (): Configuration => {
-  const devServer = {
-    historyApiFallback: true,
-    stats: 'errors-only',
-    open: true,
-    hot: true,
-    port: 3000,
-  };
-
   return {
     devtool: 'source-map',
-    devServer: devServer,
+    devServer: {
+      historyApiFallback: true,
+      stats: 'errors-only',
+      open: true,
+      hot: true,
+      port: 3000,
+    },
     output: {
       filename: 'dev.bundle.js',
     },

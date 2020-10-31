@@ -42,20 +42,20 @@ const config = ({
       entry: [
         'react-hot-loader/babel',
         // polyfills
-
-        // general polyfills
-        'core-js/es/promise',
-        'core-js/es/regexp',
-        'core-js/es/set',
-
-        // specific polyfills
-        'core-js/es/array/fill',
-        'core-js/es/array/includes',
-        'core-js/es/array/from',
-        'core-js/es/object/assign',
-        'core-js/es/object/values',
-        'core-js/es/string/repeat',
-        'regenerator-runtime/runtime',
+        //
+        // // general polyfills
+        // 'core-js/es/promise',
+        // 'core-js/es/regexp',
+        // 'core-js/es/set',
+        //
+        // // specific polyfills
+        // 'core-js/es/array/fill',
+        // 'core-js/es/array/includes',
+        // 'core-js/es/array/from',
+        // 'core-js/es/object/assign',
+        // 'core-js/es/object/values',
+        // 'core-js/es/string/repeat',
+        // 'regenerator-runtime/runtime',
 
         // polyfills not imported yet from core-js
         /*
