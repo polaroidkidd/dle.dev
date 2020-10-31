@@ -2,28 +2,40 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration as WebpackConfiguration, ProgressPlugin, ProvidePlugin } from 'webpack';
 import { merge } from 'webpack-merge';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 export interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
+// Webpack Configs
 import { developmentConfig } from './webpack.development';
 import { productionConfig } from './webpack.production';
+import { applyPresets } from './loadPresets';
 
-// custom loaders
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-const presetConfig = require('./loadPresets');
-
+/**
+ * Base Webpack Configuration
+ * @param mode Webpack Mode (prod, dev, none)
+ * @param presets Currently available preset is "analyze"
+ * @param depEnv Deployment Environment (production, staging)
+ */
 const config = ({
   mode = 'production',
-  presets = [],
+  presets = undefined,
   depEnv = 'production',
 }: {
   mode: Configuration['mode'];
-  presets?: string[];
+  presets?: string;
   depEnv?: string;
 }): Configuration => {
+  const { presetsArray, hasPresets }: { presetsArray: string[]; hasPresets: boolean } =
+    presets === undefined
+      ? {
+          presetsArray: [],
+          hasPresets: false,
+        }
+      : { presetsArray: presets.split(','), hasPresets: true };
+
   return merge(
     {
       mode: mode,
@@ -46,25 +58,27 @@ const config = ({
         'regenerator-runtime/runtime',
 
         // polyfills not imported yet from core-js
-        // 'core-js/stable/array-buffer',
-        // 'core-js/stable/array',
-        // 'core-js/stable/data-view',
-        // 'core-js/stable/date',
-        // 'core-js/stable/dom-collections',
-        // 'core-js/stable/function',
-        // 'core-js/stable/json',
-        // 'core-js/stable/map',
-        // 'core-js/stable/math',
-        // 'core-js/stable/number',
-        // 'core-js/stable/object',
-        // 'core-js/stable/reflect',
-        // 'core-js/stable/string',
-        // 'core-js/stable/symbol',
-        // 'core-js/stable/typed-array',
-        // 'core-js/stable/url-search-params',
-        // 'core-js/stable/url',
-        // 'core-js/stable/weak-map',
-        // 'core-js/stable/weak-set',
+        /*
+        'core-js/stable/array-buffer',
+        'core-js/stable/array',
+        'core-js/stable/data-view',
+        'core-js/stable/date',
+        'core-js/stable/dom-collections',
+        'core-js/stable/function',
+        'core-js/stable/json',
+        'core-js/stable/map',
+        'core-js/stable/math',
+        'core-js/stable/number',
+        'core-js/stable/object',
+        'core-js/stable/reflect',
+        'core-js/stable/string',
+        'core-js/stable/symbol',
+        'core-js/stable/typed-array',
+        'core-js/stable/url-search-params',
+        'core-js/stable/url',
+        'core-js/stable/weak-map',
+        'core-js/stable/weak-set',
+        */
 
         // entrypoint
         './src/index.tsx',
@@ -165,7 +179,7 @@ const config = ({
           title: 'dle.dev',
           inject: 'body',
           minify:
-            mode === 'production' && !presets.some((p) => p !== 'analyze')
+            mode === 'production' && hasPresets && !presetsArray.some((p) => p !== 'analyze')
               ? {
                   removeComments: true,
                   collapseWhitespace: true,
@@ -178,9 +192,9 @@ const config = ({
                   minifyCSS: true,
                   minifyURLs: true,
                 }
-              : true,
+              : false,
           hash: false,
-          cache: mode === 'production' && !presets.some((p) => p !== 'analyze'),
+          cache: mode === 'production' && hasPresets && !presetsArray.some((p) => p !== 'analyze'),
           favicon: './public/favicon.ico',
           templateParameters: {
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
@@ -189,8 +203,8 @@ const config = ({
         new ProgressPlugin({}),
       ],
     },
-    modeConfig(mode, presets),
-    presetConfig({ mode, presets })
+    modeConfig(mode, hasPresets ? presetsArray : undefined),
+    applyPresets(mode, hasPresets ? presetsArray : undefined)
   );
 };
 

@@ -10,10 +10,10 @@ interface CompressionPluginExtended extends CompressionPlugin {
   apply(compiler: Compiler): void;
 }
 
-const productionConfig = (presets: string[]): Configuration => {
+const productionConfig = (presets: string[] | undefined): Configuration => {
   return {
     output: {
-      filename: presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
+      filename: presets && presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -84,8 +84,9 @@ const productionConfig = (presets: string[]): Configuration => {
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // both options are optional
-        filename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
-        chunkFilename: presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
+        filename: presets && presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
+        chunkFilename:
+          presets && presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
       }) as MiniCssExtractPluginExtended,
       new CompressionPlugin({
         filename: '[path][base].br',

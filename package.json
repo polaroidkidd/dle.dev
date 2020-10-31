@@ -3,19 +3,20 @@
   "version": "0.1.21",
   "private": true,
   "scripts": {
-    "start": "webpack-dev-server --env.mode development --hot",
-    "dev:build": "env-cmd -f .env.build webpack --config ./utils/webpack/webpack.config.ts --env mode=development ",
-    "dev:build:analyze": "yarn run build:prod --env presets=analyze",
-    "prod:build": "env-cmd -f .env.build webpack --config ./utils/webpack/webpack.config.ts --env mode=production  ",
-    "prod:build:analyze": "yarn run build:prod --env presets=analyze",
+    "release": "standard-version",
+    "webpack:build": "env-cmd -f .env.build webpack --config ./utils/webpack/webpack.config.ts",
+    "webpack:serve": "env-cmd -f .env.build webpack serve --config ./utils/webpack/webpack.config.ts",
+    "start": "yarn run webpack:serve --env mode=development --hot",
+    "dev:build": "yarn run webpack:build --env mode=development ",
+    "dev:build:analyze": "yarn run dev:build --env presets=analyze",
+    "prod:build": "yarn run webpack:build --env mode=production  ",
+    "prod:build:analyze": "yarn run prod:build --env presets=analyze",
     "docker:dev:run": "./utils/scripts/docker.sh -e dev -r",
     "docker:dev:build": "./utils/scripts/docker.sh -e dev",
     "docker:dev:release": "./utils/scripts/docker.sh -e dev -p",
     "docker:prod:build": "./utils/scripts/docker.sh -e prod",
     "docker:prod:run": "./utils/scripts/docker.sh -e prod -r",
-    "docker:prod:release": "./utils/scripts/docker.sh -e prod -p",
-    "lint": "eslint",
-    "release": "standard-version"
+    "docker:prod:release": "./utils/scripts/docker.sh -e prod -p"
   },
   "homepage": "https://dle.dev",
   "husky": {
