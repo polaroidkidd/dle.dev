@@ -1,9 +1,10 @@
 import React from 'react';
-import { blogEntriesURL, BlogEntryProperties, replaceWhiteSpace } from '@utils';
+import { blogEntriesURL, replaceWhiteSpace } from '@utils';
 import Axios from 'axios';
 import { BlogEntry, Card, LoadingIndicator } from '@components';
 import './blog.scss';
 import { Link, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { BlogEntryProperties } from '../../types';
 
 type MergedURLs = {
   local: string;
