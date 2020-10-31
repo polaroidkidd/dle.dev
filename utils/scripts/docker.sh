@@ -62,18 +62,18 @@ if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
 else
   #  We are on on a development branch. Commandline options -e and -r will be respected.
 
-  # rm -rf ./dist
-  # if [[ "${ENVIRONMENT}" == "prod" ]]; then
-  #   echo "***************************************************"
-  #   echo "************** BUILDING PROD RELEASE **************"
-  #   echo "***************************************************"
-  #   yarn run prod:build
-  # else
-  #   echo "***************************************************"
-  #   echo "************** BUILDING DEV RELEASE ***************"
-  #   echo "***************************************************"
-  #   yarn run dev:build
-  # fi
+  rm -rf ./dist
+  if [[ "${ENVIRONMENT}" == "prod" ]]; then
+    echo "***************************************************"
+    echo "************** BUILDING PROD RELEASE **************"
+    echo "***************************************************"
+    yarn run prod:build
+  else
+    echo "***************************************************"
+    echo "************** BUILDING DEV RELEASE ***************"
+    echo "***************************************************"
+    yarn run dev:build
+  fi
 
 
   echo "***************************************************"
