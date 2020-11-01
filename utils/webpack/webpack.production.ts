@@ -67,11 +67,26 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
       },
       moduleIds: 'named',
       splitChunks: {
+        chunks: 'all',
+        maxInitialRequests: Infinity,
+        minSize: 0,
         cacheGroups: {
-          vendor: {
-            name: 'vendors',
-            test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
+          vendorMain: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-promise-tracker|axios|classnames|csstype|react-loader-spinner|styled-components|styled-icons|webfontloader)[\\/]/,
+            name: 'vendorMain',
+          },
+          vendorCoreJS: {
+            test: /[\\/]node_modules[\\/]core-js[\\/]/,
+            name: 'vendorCoreJS',
+          },
+          vendorReactMarkdown: {
+            test: /[\\/]node_modules[\\/]react-markdown[\\/]/,
+            name: 'vendorReactMarkdown',
+          },
+
+          vendorReactSyntaxHighlighter: {
+            test: /[\\/]node_modules[\\/]react-syntax-highlighter[\\/]/,
+            name: 'vendorReactSyntaxHighlighter',
           },
         },
       },

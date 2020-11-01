@@ -38,61 +38,47 @@ const config = ({
         }
       : { presetsArray: presets.split(','), hasPresets: true };
   const isProduction: boolean = mode === 'production';
+
+  const entryPointsProduction = [
+    // general polyfills
+    'core-js/es/promise',
+    'core-js/es/regexp',
+    'core-js/es/set',
+    // specific polyfills
+    'core-js/es/array/fill',
+    'core-js/es/array/includes',
+    'core-js/es/array/from',
+    'core-js/es/object/assign',
+    'core-js/es/object/values',
+    'core-js/es/string/repeat',
+    'regenerator-runtime/runtime',
+
+    // entrypoint
+    './src/index.tsx',
+  ];
+
+  const entryPointsDevelopment = [
+    'react-hot-loader/babel',
+
+    // entrypoint
+    './src/index.tsx',
+  ];
+
   return merge(
     {
       mode: mode,
-      entry: [
-        isProduction && 'react-hot-loader/babel',
-        // polyfills
-        //
-        // // general polyfills
-        'core-js/es/promise',
-        'core-js/es/regexp',
-        'core-js/es/set',
-        //
-        // // specific polyfills
-        'core-js/es/array/fill',
-        'core-js/es/array/includes',
-        'core-js/es/array/from',
-        'core-js/es/object/assign',
-        'core-js/es/object/values',
-        'core-js/es/string/repeat',
-        'regenerator-runtime/runtime',
+      entry: isProduction ? entryPointsProduction : entryPointsDevelopment,
 
-        // polyfills not imported yet from core-js
-        /*
-        'core-js/stable/array-buffer',
-        'core-js/stable/array',
-        'core-js/stable/data-view',
-        'core-js/stable/date',
-        'core-js/stable/dom-collections',
-        'core-js/stable/function',
-        'core-js/stable/json',
-        'core-js/stable/map',
-        'core-js/stable/math',
-        'core-js/stable/number',
-        'core-js/stable/object',
-        'core-js/stable/reflect',
-        'core-js/stable/string',
-        'core-js/stable/symbol',
-        'core-js/stable/typed-array',
-        'core-js/stable/url-search-params',
-        'core-js/stable/url',
-        'core-js/stable/weak-map',
-        'core-js/stable/weak-set',
-        */
-
-        // entrypoint
-        './src/index.tsx',
-      ],
       output: {
         path: __dirname + '/../../dist',
         publicPath: '/',
       },
       resolve: {
-        alias: {
-          'react-dom': '@hot-loader/react-dom',
-        },
+        alias: !isProduction
+          ? {
+              'react-dom': '@hot-loader/react-dom',
+            }
+          : {},
         fallback: { path: require.resolve('path-browserify') },
         extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
       },
@@ -177,9 +163,19 @@ const config = ({
         new CleanWebpackPlugin({ verbose: true }),
         new HtmlWebpackPlugin({
           template: './public/index.html',
-          scriptLoading: 'defer',
+
           title: 'dle.dev',
           inject: 'head',
+          excludeChunks: isProduction && [
+            'blog',
+            'contact',
+            'home',
+            'style',
+            'vitae',
+            'vendorReactMarkdown',
+            'vendorReactSyntaxHighlighter',
+            'vendorCoreJS',
+          ],
           minify:
             isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze')
               ? {
@@ -204,7 +200,11 @@ const config = ({
         }),
         new PreloadWebpackPlugin({
           rel: 'preload',
-          include: ['home', 'blog', 'contact', 'vitae', 'main', 'vendor'],
+          include: ['home', 'blog', 'contact', 'vitae', 'main', 'vendorMain'],
+        }),
+        new PreloadWebpackPlugin({
+          rel: 'prefetch',
+          include: ['vendorReactSyntaxHighlighter', 'vendorReactMarkdown', 'vendorCoreJS'],
         }),
         new ProgressPlugin({}),
       ],
