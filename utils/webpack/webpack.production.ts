@@ -1,6 +1,9 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import { Compiler, Configuration } from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 
 interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
   apply(compiler: Compiler): void;
@@ -20,29 +23,47 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
         {
           test: /\.s[ac]ss$/i,
           use: [
-            {
-              loader: MiniCssExtractPlugin.loader,
-              options: {
-                esModule: true,
-                modules: {
-                  namedExport: true,
-                },
-              },
-            },
+            { loader: 'style-loader' },
             {
               loader: 'css-loader',
               options: {
-                esModule: true,
+                modules: {
+                  mode: 'local',
+                  exportGlobals: false,
+                  localIdentName: '[local]',
+                },
               },
             },
             { loader: 'postcss-loader' },
-
             {
               loader: 'sass-loader',
               options: {
                 sourceMap: true,
               },
             },
+            // {
+            //   loader: MiniCssExtractPlugin.loader,
+            //   options: {
+            //     esModule: true,
+            //     modules: {
+            //       namedExport: true,
+            //     },
+            //   },
+            // },
+            // {
+            //   loader: 'css-loader',
+            //   options: {
+            //     esModule: true,
+            //   },
+            // },
+            // { loader: 'postcss-loader' },
+            //
+            // {
+            //   loader: 'sass-loader',
+            //   options: {
+            //     sourceMap: true,
+            //   },
+            // },
             {
               loader: 'sass-resources-loader',
               options: {

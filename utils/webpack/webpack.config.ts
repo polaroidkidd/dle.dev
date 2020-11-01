@@ -37,12 +37,12 @@ const config = ({
           hasPresets: false,
         }
       : { presetsArray: presets.split(','), hasPresets: true };
-
+  const isProduction: boolean = mode === 'production';
   return merge(
     {
       mode: mode,
       entry: [
-        mode === 'production' && 'react-hot-loader/babel',
+        isProduction && 'react-hot-loader/babel',
         // polyfills
         //
         // // general polyfills
@@ -181,7 +181,7 @@ const config = ({
           title: 'dle.dev',
           inject: 'body',
           minify:
-            mode === 'production' && hasPresets && !presetsArray.some((p) => p !== 'analyze')
+            isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze')
               ? {
                   removeComments: true,
                   collapseWhitespace: true,
@@ -196,26 +196,22 @@ const config = ({
                 }
               : false,
           hash: false,
-          cache: mode === 'production' && hasPresets && !presetsArray.some((p) => p !== 'analyze'),
+          cache: isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze'),
           favicon: './public/favicon.ico',
           templateParameters: {
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
           },
         }),
-        new PreloadWebpackPlugin({
-          rel: 'preload',
-          include: ['home'],
-        }),
         new ProgressPlugin({}),
       ],
     },
-    modeConfig(mode, hasPresets ? presetsArray : undefined),
+    modeConfig(isProduction, hasPresets ? presetsArray : undefined),
     applyPresets(mode, hasPresets ? presetsArray : undefined)
   );
 };
 
-const modeConfig = (mode: IConfiguration['mode'], presets: string[]): IConfiguration => {
-  if (mode === 'production') {
+const modeConfig = (isProduction: boolean, presets: string[]): IConfiguration => {
+  if (isProduction) {
     return productionConfig(presets);
   } else {
     return developmentConfig();
