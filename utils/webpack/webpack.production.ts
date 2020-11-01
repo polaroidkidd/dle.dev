@@ -65,16 +65,12 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
       runtimeChunk: {
         name: 'manifest',
       },
+      moduleIds: 'named',
       splitChunks: {
         cacheGroups: {
           vendor: {
             name: 'vendors',
             test: /[\\/]node_modules[\\/]/,
-            chunks: 'all',
-          },
-          shared: {
-            name: 'shared',
-            test: /[\\/]src[\\/]app[\\/]components[\\/]/,
             chunks: 'all',
           },
         },

@@ -1,7 +1,7 @@
 import path from 'path';
-import { Configuration } from './webpack.config';
+import { IConfiguration } from './webpack.config';
 
-const developmentConfig = (): Configuration => {
+const developmentConfig = (): IConfiguration => {
   return {
     devtool: 'source-map',
     devServer: {

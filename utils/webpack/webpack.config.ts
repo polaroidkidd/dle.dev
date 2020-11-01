@@ -2,9 +2,11 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import { Configuration as WebpackConfiguration, ProgressPlugin, ProvidePlugin } from 'webpack';
 import { merge } from 'webpack-merge';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-export interface Configuration extends WebpackConfiguration {
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
+
+export interface IConfiguration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
@@ -24,10 +26,10 @@ const config = ({
   presets = undefined,
   depEnv = 'production',
 }: {
-  mode: Configuration['mode'];
+  mode: IConfiguration['mode'];
   presets?: string;
   depEnv?: string;
-}): Configuration => {
+}): IConfiguration => {
   const { presetsArray, hasPresets }: { presetsArray: string[]; hasPresets: boolean } =
     presets === undefined
       ? {
@@ -200,6 +202,10 @@ const config = ({
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
           },
         }),
+        new PreloadWebpackPlugin({
+          rel: 'preload',
+          include: ['home'],
+        }),
         new ProgressPlugin({}),
       ],
     },
@@ -208,7 +214,7 @@ const config = ({
   );
 };
 
-const modeConfig = (mode: Configuration['mode'], presets: string[]): Configuration => {
+const modeConfig = (mode: IConfiguration['mode'], presets: string[]): IConfiguration => {
   if (mode === 'production') {
     return productionConfig(presets);
   } else {

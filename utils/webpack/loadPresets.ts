@@ -1,9 +1,9 @@
 import { merge } from 'webpack-merge';
-import { Configuration } from './webpack.config';
+import { IConfiguration } from './webpack.config';
 
 const path = require('path');
 
-const applyPresets = (mode: Configuration['mode'], presets: string[]) => {
+const applyPresets = (mode: IConfiguration['mode'], presets: string[]) => {
   if (presets === undefined) return {};
 
   const mergedPresets = [].concat(...[presets]);
