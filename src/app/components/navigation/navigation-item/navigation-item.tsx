@@ -1,6 +1,5 @@
 import React from 'react';
 import './navigation-item.scss';
-import classNames from 'classnames';
 
 type Props = {
   description: 'vitae' | 'portfolio' | 'blog' | 'contact';
@@ -8,15 +7,10 @@ type Props = {
   handleActiveNavigation: (e: React.MouseEvent<HTMLDivElement>) => void;
 };
 
-const NavigationItem: React.FC<Props> = ({
-  description,
-  isActive,
-  handleActiveNavigation,
-  children,
-}) => {
+const NavigationItem: React.FC<Props> = ({ description, isActive, handleActiveNavigation, children }) => {
   return (
     <div
-      className={classNames('nav-item-container', isActive ? 'nav-item-container__active' : '')}
+      className={`'nav-item-container' ${isActive && 'nav-item-container__active'}`}
       onClick={handleActiveNavigation}
     >
       <div className="nav-item-container--icon">{children}</div>
