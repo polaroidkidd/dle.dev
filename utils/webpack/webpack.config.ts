@@ -179,7 +179,7 @@ const config = ({
           template: './public/index.html',
           scriptLoading: 'defer',
           title: 'dle.dev',
-          inject: 'body',
+          inject: 'head',
           minify:
             isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze')
               ? {
@@ -201,6 +201,10 @@ const config = ({
           templateParameters: {
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
           },
+        }),
+        new PreloadWebpackPlugin({
+          rel: 'preload',
+          include: ['home', 'blog', 'contact', 'vitae', 'main', 'vendor'],
         }),
         new ProgressPlugin({}),
       ],
