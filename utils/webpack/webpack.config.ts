@@ -40,7 +40,7 @@ const config = ({
     {
       mode: mode,
       entry: [
-        'react-hot-loader/babel',
+        mode === 'production' && 'react-hot-loader/babel',
         // polyfills
         //
         // // general polyfills

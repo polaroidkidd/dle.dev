@@ -70,4 +70,4 @@ const Blog: React.FC = () => {
     </>
   );
 };
-export { Blog };
+export default Blog;
