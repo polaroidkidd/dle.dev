@@ -61,6 +61,7 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
         return assetFilename.endsWith('.gz') || assetFilename.endsWith('.br');
       },
     },
+    //^(?!.*(trunk|tags|branches)).*$
     optimization: {
       runtimeChunk: {
         name: 'manifest',
@@ -72,7 +73,7 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
         minSize: 0,
         cacheGroups: {
           vendorMain: {
-            test: /[\\/]node_modules[\\/](react|react-dom|react-promise-tracker|axios|classnames|csstype|react-loader-spinner|styled-components|styled-icons|webfontloader)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|react-promise-tracker|axios|classnames|csstype|react-loader-spinner|styled-components|@styled-icons|webfontloader|react-router|react-router-dom)[\\/]/,
             name: 'vendorMain',
           },
           vendorCoreJS: {
@@ -87,6 +88,38 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
           vendorReactSyntaxHighlighter: {
             test: /[\\/]node_modules[\\/]react-syntax-highlighter[\\/]/,
             name: 'vendorReactSyntaxHighlighter',
+          },
+          vendorUtils: {
+            test(module: Configuration) {
+              // Only node_modules are needed
+              // @ts-ignore
+              if (!module.context.includes('node_modules')) {
+                return false;
+              }
+
+              // But not node modules that contain these key words in the path
+              // @ts-ignore
+              return ![
+                'react',
+                'react-dom',
+                'react-promise-tracker',
+                'axios',
+                'classnames',
+                'csstype',
+                'react-loader-spinner',
+                'styled-components',
+                '@styled-icons',
+                'webfontloader',
+                'react-router',
+                'react-router-dom',
+                'core-js',
+                'react-markdown',
+                'react-syntax-highlighter',
+              ].some((str) => module.context.includes(str));
+            },
+            name: 'vendorUtils',
+            chunks: 'all',
+            reuseExistingChunk: true,
           },
         },
       },

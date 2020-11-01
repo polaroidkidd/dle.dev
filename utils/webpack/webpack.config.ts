@@ -1,5 +1,5 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import { Configuration as WebpackConfiguration, ProgressPlugin, ProvidePlugin } from 'webpack';
+import { Configuration as WebpackConfiguration, ProgressPlugin } from 'webpack';
 import { merge } from 'webpack-merge';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
@@ -162,19 +162,21 @@ const config = ({
       plugins: [
         new CleanWebpackPlugin({ verbose: true }),
         new HtmlWebpackPlugin({
+          filename: 'index.html',
           template: './public/index.html',
-
           title: 'dle.dev',
-          inject: 'head',
-          excludeChunks: isProduction && [
+          inject: 'body',
+          excludeChunks: [
             'blog',
             'contact',
             'home',
             'style',
             'vitae',
+            'vendorMain',
+            'vendorCoreJS',
             'vendorReactMarkdown',
             'vendorReactSyntaxHighlighter',
-            'vendorCoreJS',
+            'vendorUtils',
           ],
           minify:
             isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze')
@@ -202,11 +204,11 @@ const config = ({
           rel: 'preload',
           include: ['home', 'blog', 'contact', 'vitae', 'main', 'vendorMain'],
         }),
-        new PreloadWebpackPlugin({
-          rel: 'prefetch',
-          include: ['vendorReactSyntaxHighlighter', 'vendorReactMarkdown', 'vendorCoreJS'],
-        }),
-        new ProgressPlugin({}),
+        // new PreloadWebpackPlugin({
+        //   rel: 'prefetch',
+        //   include: ['vendorReactSyntaxHighlighter', 'vendorReactMarkdown', 'vendorCoreJS'],
+        // }),
+        new ProgressPlugin({ activeModules: true, entries: true, modules: true, profile: true, percentBy: 'modules' }),
       ],
     },
     modeConfig(isProduction, hasPresets ? presetsArray : undefined),
