@@ -9,44 +9,36 @@ type Props = {
   style: React.CSSProperties;
 };
 
-const BlogPage = React.lazy(() => import('../../pages/blog/blog'));
-const ContactPage = React.lazy(() => import('../../pages/contact/contact'));
-const HomePage = React.lazy(() => import('../../pages/home/home'));
-const PortfolioPage = React.lazy(() => import('../../pages/portfolio/portfolio'));
-const VitaePage = React.lazy(() => import('../../pages/vitae/vitae'));
+const BlogPage = React.lazy(() => import(/* webpackChunkName: "blog" */ '../../pages/blog/blog'));
+const ContactPage = React.lazy(() => import(/* webpackChunkName: "contact" */ '../../pages/contact/contact'));
+const HomePage = React.lazy(() => import(/* webpackChunkName: "home" */ '../../pages/home/home'));
+const PortfolioPage = React.lazy(() => import(/* webpackChunkName: "portfolio" */ '../../pages/portfolio/portfolio'));
+const VitaePage = React.lazy(() => import(/* webpackChunkName: "vitae" */ '../../pages/vitae/vitae'));
 
 const RootContainer: React.FC<Props> = ({ style }) => {
   return (
     <div style={style}>
       <Router history={history}>
         <Navigation />
-        <Switch>
-          <Route path={ROUTES.PORTFOLIO}>
-            <React.Suspense fallback={<LoadingIndicator />}>
+        <React.Suspense fallback={<LoadingIndicator />}>
+          <Switch>
+            <Route path={ROUTES.PORTFOLIO}>
               <PortfolioPage />
-            </React.Suspense>
-          </Route>
-          <Route path={ROUTES.BLOG}>
-            <React.Suspense fallback={<LoadingIndicator />}>
+            </Route>
+            <Route path={ROUTES.BLOG}>
               <BlogPage />
-            </React.Suspense>
-          </Route>
-          <Route path={ROUTES.VITAE}>
-            <React.Suspense fallback={<LoadingIndicator />}>
+            </Route>
+            <Route path={ROUTES.VITAE}>
               <VitaePage />
-            </React.Suspense>
-          </Route>
-          <Route path={ROUTES.CONTACT}>
-            <React.Suspense fallback={<LoadingIndicator />}>
+            </Route>
+            <Route path={ROUTES.CONTACT}>
               <ContactPage />
-            </React.Suspense>
-          </Route>
-          <Route path={ROUTES.HOME}>
-            <React.Suspense fallback={<LoadingIndicator />}>
+            </Route>
+            <Route path={ROUTES.HOME}>
               <HomePage />
-            </React.Suspense>
-          </Route>
-        </Switch>
+            </Route>
+          </Switch>
+        </React.Suspense>
       </Router>
     </div>
   );
