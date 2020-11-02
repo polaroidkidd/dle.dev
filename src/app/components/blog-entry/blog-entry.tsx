@@ -114,29 +114,17 @@ const BlogEntry: React.FC<Props> = (props) => {
               });
               //render author
               const author = children[2].props.children.map((child: any) => {
-                return (
-                  <p key={Math.random().toString(36)}>
-                    <strong>{child.props.children[0].props.value}</strong>
-                  </p>
-                );
+                return <strong key={Math.random().toString(36)}>{child.props.children[0].props.value}</strong>;
               });
 
               // render datePublished
               const datePublished = children[3].props.children.map((child: any) => {
-                return (
-                  <p key={Math.random().toString(36)}>
-                    <strong>{child.props.children[0].props.value}</strong>
-                  </p>
-                );
+                return <strong key={Math.random().toString(36)}>{child.props.children[0].props.value}</strong>;
               });
 
               // render dateEdited
               const dateEdited = children[4].props.children.map((child: any) => {
-                return (
-                  <p key={Math.random().toString(36)}>
-                    <strong>{child.props.children[0].props.value}</strong>
-                  </p>
-                );
+                return <strong key={Math.random().toString(36)}>{child.props.children[0].props.value}</strong>;
               });
 
               // remove custom rendered elements (title, description, date published  dated edited)
