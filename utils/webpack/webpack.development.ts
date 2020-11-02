@@ -19,10 +19,13 @@ const developmentConfig = (): IConfiguration => {
         {
           test: /\.s[ac]ss$/i,
           use: [
-            { loader: 'style-loader' },
+            {
+              loader: 'style-loader',
+            },
             {
               loader: 'css-loader',
               options: {
+                sourceMap: true,
                 modules: {
                   mode: 'local',
                   exportGlobals: false,
@@ -30,7 +33,7 @@ const developmentConfig = (): IConfiguration => {
                 },
               },
             },
-            { loader: 'postcss-loader' },
+            { loader: 'postcss-loader', options: { sourceMap: true } },
             {
               loader: 'sass-loader',
               options: {
@@ -40,6 +43,7 @@ const developmentConfig = (): IConfiguration => {
             {
               loader: 'sass-resources-loader',
               options: {
+                sourceMap: true,
                 resources: ['./src/app/styles/main.scss'],
               },
             },
