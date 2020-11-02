@@ -193,7 +193,7 @@ const config = ({
             'vendorUtils',
           ],
         }),
-        new ProgressPlugin({ activeModules: true, entries: true, modules: true, profile: true, percentBy: 'modules' }),
+        new ProgressPlugin({}),
       ],
     },
     modeConfig(isProduction, hasPresets ? presetsArray : undefined),
