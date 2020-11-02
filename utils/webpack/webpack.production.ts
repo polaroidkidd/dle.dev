@@ -73,53 +73,63 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
         minSize: 0,
         cacheGroups: {
           vendorMain: {
-            test: /[\\/]node_modules[\\/](react|react-dom|react-promise-tracker|axios|classnames|csstype|react-loader-spinner|styled-components|@styled-icons|webfontloader|react-router|react-router-dom)[\\/]/,
+            test(module: Configuration) {
+              return (
+                module.context.includes('node_modules') &&
+                [
+                  'react',
+                  'react-dom',
+                  'react-router',
+                  'react-router-dom',
+                  'react-promise-tracker',
+                  'axios',
+                  'webfontloader',
+                  'react-loader-spinner',
+                  'styled-components',
+                  '@styled-icons',
+                ].some((name) => module.context.includes(name))
+              );
+            },
             name: 'vendorMain',
           },
-          vendorCoreJS: {
-            test: /[\\/]node_modules[\\/]core-js[\\/]/,
-            name: 'vendorCoreJS',
+          vendorBlogRender: {
+            test(module: Configuration) {
+              return (
+                module.context.includes('node_modules') &&
+                ['react-markdown', 'react-syntax-highlighter'].some((name) => module.context.includes(name))
+              );
+            },
+            name: 'vendorBlogRender',
           },
-          vendorReactMarkdown: {
-            test: /[\\/]node_modules[\\/]react-markdown[\\/]/,
-            name: 'vendorReactMarkdown',
+          coreJS: {
+            test(module: Configuration) {
+              return module.context.includes('node_modules') && ['core-js'].some((str) => module.context.includes(str));
+            },
+            name: 'coreJS',
           },
 
-          vendorReactSyntaxHighlighter: {
-            test: /[\\/]node_modules[\\/]react-syntax-highlighter[\\/]/,
-            name: 'vendorReactSyntaxHighlighter',
-          },
           vendorUtils: {
             test(module: Configuration) {
-              // Only node_modules are needed
-              // @ts-ignore
-              if (!module.context.includes('node_modules')) {
-                return false;
-              }
-
-              // But not node modules that contain these key words in the path
-              // @ts-ignore
-              return ![
-                'react',
-                'react-dom',
-                'react-promise-tracker',
-                'axios',
-                'classnames',
-                'csstype',
-                'react-loader-spinner',
-                'styled-components',
-                '@styled-icons',
-                'webfontloader',
-                'react-router',
-                'react-router-dom',
-                'core-js',
-                'react-markdown',
-                'react-syntax-highlighter',
-              ].some((str) => module.context.includes(str));
+              return (
+                module.context.includes('node_modules') &&
+                ![
+                  'react-markdown',
+                  'react-syntax-highlighter',
+                  'react',
+                  'react-dom',
+                  'react-router',
+                  'react-router-dom',
+                  'react-promise-tracker',
+                  'axios',
+                  'webfontloader',
+                  'react-loader-spinner',
+                  'styled-components',
+                  '@styled-icons',
+                  'core-js',
+                ].some((str) => module.context.includes(str))
+              );
             },
             name: 'vendorUtils',
-            chunks: 'all',
-            reuseExistingChunk: true,
           },
         },
       },

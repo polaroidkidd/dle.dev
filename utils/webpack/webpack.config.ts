@@ -39,35 +39,15 @@ const config = ({
       : { presetsArray: presets.split(','), hasPresets: true };
   const isProduction: boolean = mode === 'production';
 
-  const entryPointsProduction = [
-    // general polyfills
-    'core-js/es/promise',
-    'core-js/es/regexp',
-    'core-js/es/set',
-    // specific polyfills
-    'core-js/es/array/fill',
-    'core-js/es/array/includes',
-    'core-js/es/array/from',
-    'core-js/es/object/assign',
-    'core-js/es/object/values',
-    'core-js/es/string/repeat',
-    'regenerator-runtime/runtime',
-
-    // entrypoint
-    './src/index.tsx',
-  ];
-
-  const entryPointsDevelopment = [
-    'react-hot-loader/babel',
-
-    // entrypoint
-    './src/index.tsx',
-  ];
-
   return merge(
     {
       mode: mode,
-      entry: isProduction ? entryPointsProduction : entryPointsDevelopment,
+      entry: [
+        'react-hot-loader/babel',
+
+        // entrypoint
+        './src/index.tsx',
+      ],
 
       output: {
         path: __dirname + '/../../dist',
@@ -173,9 +153,8 @@ const config = ({
             'style',
             'vitae',
             'vendorMain',
-            'vendorCoreJS',
-            'vendorReactMarkdown',
-            'vendorReactSyntaxHighlighter',
+            'vendorBlogRender',
+            'coreJS',
             'vendorUtils',
           ],
           minify:
@@ -202,7 +181,17 @@ const config = ({
         }),
         new PreloadWebpackPlugin({
           rel: 'preload',
-          include: ['home', 'blog', 'contact', 'vitae', 'main', 'vendorMain'],
+          include: [
+            'blog',
+            'contact',
+            'home',
+            'style',
+            'vitae',
+            'vendorMain',
+            'vendorBlogRender',
+            'coreJS',
+            'vendorUtils',
+          ],
         }),
         // new PreloadWebpackPlugin({
         //   rel: 'prefetch',
