@@ -193,10 +193,6 @@ const config = ({
             'vendorUtils',
           ],
         }),
-        // new PreloadWebpackPlugin({
-        //   rel: 'prefetch',
-        //   include: ['vendorReactSyntaxHighlighter', 'vendorReactMarkdown', 'vendorCoreJS'],
-        // }),
         new ProgressPlugin({ activeModules: true, entries: true, modules: true, profile: true, percentBy: 'modules' }),
       ],
     },
