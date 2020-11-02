@@ -1,3 +1,4 @@
+import { polyfillPromise } from './polyfills';
 import React from 'react';
 import { render } from 'react-dom';
 import App from './app';
@@ -5,6 +6,9 @@ import App from './app';
 const styles: React.CSSProperties = {
   margin: '0 auto',
 };
+
+// Require for dynamic import statements
+polyfillPromise();
 
 if (
   'fetch' in window &&
@@ -22,7 +26,7 @@ if (
 ) {
   renderApp();
 } else {
-  import(/* webpackChunkName: "polyfills" */ './polyfills').then(renderApp);
+  import(/* webpackChunkName: "core-js" */ 'core-js/es').then(renderApp);
 }
 
 function renderApp() {
