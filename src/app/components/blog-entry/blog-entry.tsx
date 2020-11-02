@@ -105,13 +105,17 @@ const BlogEntry: React.FC<Props> = (props) => {
                 if (child.props.value) {
                   return child.props.value;
                 } else if (child.props.href) {
-                  return <a href={child.props.children[0].props.value}>{child.props.children[0].props.value}</a>;
+                  return (
+                    <a key={Math.random().toString(36)} href={child.props.children[0].props.value}>
+                      {child.props.children[0].props.value}
+                    </a>
+                  );
                 }
               });
               //render author
               const author = children[2].props.children.map((child: any) => {
                 return (
-                  <p>
+                  <p key={Math.random().toString(36)}>
                     <strong>{child.props.children[0].props.value}</strong>
                   </p>
                 );
@@ -120,7 +124,7 @@ const BlogEntry: React.FC<Props> = (props) => {
               // render datePublished
               const datePublished = children[3].props.children.map((child: any) => {
                 return (
-                  <p>
+                  <p key={Math.random().toString(36)}>
                     <strong>{child.props.children[0].props.value}</strong>
                   </p>
                 );
@@ -129,7 +133,7 @@ const BlogEntry: React.FC<Props> = (props) => {
               // render dateEdited
               const dateEdited = children[4].props.children.map((child: any) => {
                 return (
-                  <p>
+                  <p key={Math.random().toString(36)}>
                     <strong>{child.props.children[0].props.value}</strong>
                   </p>
                 );
