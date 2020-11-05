@@ -1,19 +1,18 @@
-import React from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { base16AteliersulphurpoolLight } from "react-syntax-highlighter/dist/esm/styles/prism";
+import React from 'react';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { base16AteliersulphurpoolLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
+
+SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 interface ICodeBlockProps {
   value: string;
-  language: string;
+  language: 'jsx' | 'tsx' | 'typescript' | 'javascript';
 }
 
-const CodeBlock: React.FC<ICodeBlockProps> = ({value, language}) => {
+const CodeBlock: React.FC<ICodeBlockProps> = ({ value, language }) => {
   return (
-    <SyntaxHighlighter
-      language={language}
-      style={base16AteliersulphurpoolLight}
-      customStyle={{fontSize: "1.5rem"}}
-    >
+    <SyntaxHighlighter language={'jsx'} style={base16AteliersulphurpoolLight} customStyle={{ fontSize: '1.5rem' }}>
       {value}
     </SyntaxHighlighter>
   );
