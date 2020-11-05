@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.22](https://github.com/polaroidkidd/dle.dev/compare/v0.1.21...v0.1.22) (2020-11-05)
+
+
+### Bug Fixes
+
+* reduce prism library import footprint ([9d21e6e](https://github.com/polaroidkidd/dle.dev/commit/9d21e6eaa6bc36930cbf5e8c5e38fc7b9a832b26))
+
 ### [0.1.21](https://github.com/polaroidkidd/dle.dev/compare/v0.1.20...v0.1.21) (2020-10-04)
 
 
