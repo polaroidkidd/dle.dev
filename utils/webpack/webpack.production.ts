@@ -1,5 +1,6 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import { Compiler, Configuration } from 'webpack';
 
 interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
@@ -39,9 +40,6 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
 
             {
               loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-              },
             },
             {
               loader: 'sass-resources-loader',
@@ -63,8 +61,11 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
     },
     //^(?!.*(trunk|tags|branches)).*$
     optimization: {
+      minimize: true,
+      minimizer: [`...`, new CssMinimizerPlugin()],
+
       runtimeChunk: {
-        name: 'manifest',
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
       moduleIds: 'named',
       splitChunks: {
