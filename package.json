@@ -9,14 +9,14 @@
     "start": "yarn run webpack:serve --env mode=development --hot",
     "dev:build": "yarn run webpack:build --env mode=development ",
     "dev:build:analyze": "yarn run dev:build --env presets=analyze",
+    "dev:docker:run": "./utils/scripts/docker.sh -e dev -r",
+    "dev:docker:build": "./utils/scripts/docker.sh -e dev",
+    "dev:docker:release": "./utils/scripts/docker.sh -e dev -p",
     "prod:build": "yarn run webpack:build --env mode=production  ",
     "prod:build:analyze": "yarn run prod:build --env presets=analyze",
-    "docker:dev:run": "./utils/scripts/docker.sh -e dev -r",
-    "docker:dev:build": "./utils/scripts/docker.sh -e dev",
-    "docker:dev:release": "./utils/scripts/docker.sh -e dev -p",
-    "docker:prod:build": "./utils/scripts/docker.sh -e prod",
-    "docker:prod:run": "./utils/scripts/docker.sh -e prod -r",
-    "docker:prod:release": "./utils/scripts/docker.sh -e prod -p"
+    "prod:docker:build": "./utils/scripts/docker.sh -e prod",
+    "prod:docker:run": "./utils/scripts/docker.sh -e prod -r",
+    "prod:docker:release": "./utils/scripts/docker.sh -e prod -p"
   },
   "homepage": "https://dle.dev",
   "husky": {
@@ -107,6 +107,7 @@
     "env-cmd": "^10.1.0",
     "extract-css-chunks-webpack-plugin": "^4.8.0",
     "file-loader": "^6.1.1",
+    "html-inline-css-webpack-plugin": "^1.9.0",
     "html-webpack-plugin": "^5.0.0-alpha.6",
     "husky": "^4.3.0",
     "imports-loader": "^1.2.0",
