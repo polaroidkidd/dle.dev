@@ -1,6 +1,7 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
 import { Compiler, Configuration } from 'webpack';
 
 interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
@@ -22,21 +23,14 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
           test: /\.s[ac]ss$/i,
           use: [
             {
-              loader: MiniCssExtractPlugin.loader,
+              loader: 'style-loader',
               options: {
-                esModule: true,
-                modules: {
-                  namedExport: true,
-                },
+                injectType: 'singletonStyleTag',
               },
             },
             {
               loader: 'css-loader',
-              options: {
-                esModule: true,
-              },
             },
-            { loader: 'postcss-loader' },
 
             {
               loader: 'sass-loader',
@@ -62,7 +56,7 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
     //^(?!.*(trunk|tags|branches)).*$
     optimization: {
       minimize: true,
-      minimizer: [`...`, new CssMinimizerPlugin()],
+      minimizer: [`...`, new TerserPlugin(), new CssMinimizerPlugin()],
 
       runtimeChunk: {
         name: (entrypoint) => `runtime-${entrypoint.name}`,
@@ -136,22 +130,6 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
       },
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
-        filename: presets && presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
-        chunkFilename:
-          presets && presets.some((p) => p === 'analyze') ? '[name].css' : 'style.[name].[contenthash].css',
-      }) as MiniCssExtractPluginExtended,
-      new CompressionPlugin({
-        filename: '[path][base].br',
-        algorithm: 'brotliCompress',
-        test: /\.(js|css|svg|jpg)$/,
-        exclude: /\.(html|json|txt)$/,
-        compressionOptions: { level: 11 },
-        minRatio: 1,
-        deleteOriginalAssets: false,
-      }) as CompressionPluginExtended,
       new CompressionPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',

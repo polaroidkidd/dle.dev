@@ -42,12 +42,16 @@ const config = ({
   return merge(
     {
       mode: mode,
-      entry: [
-        'react-hot-loader/babel',
+      entry: isProduction
+        ? {
+            entry: './src/index.tsx',
+          }
+        : [
+            'react-hot-loader/babel',
 
-        // entrypoint
-        './src/index.tsx',
-      ],
+            // entrypoint
+            './src/index.tsx',
+          ],
 
       output: {
         path: __dirname + '/../../dist',
@@ -145,20 +149,9 @@ const config = ({
           filename: 'index.html',
           template: './public/index.html',
           title: 'dle.dev',
-          inject: 'body',
-          excludeChunks: [
-            'blog',
-            'contact',
-            'home',
-            'style',
-            'vitae',
-            'vendorMain',
-            'vendorBlogRender',
-            'coreJS',
-            'vendorUtils',
-          ],
+          inject: 'head',
           minify:
-            isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze')
+            isProduction && !hasPresets
               ? {
                   removeComments: true,
                   collapseWhitespace: true,
@@ -172,26 +165,12 @@ const config = ({
                   minifyURLs: true,
                 }
               : false,
-          hash: false,
-          cache: isProduction && hasPresets && !presetsArray.some((p) => p !== 'analyze'),
+          hash: true,
+          cache: isProduction && !hasPresets,
           favicon: './public/favicon.ico',
           templateParameters: {
             PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
           },
-        }),
-        new PreloadWebpackPlugin({
-          rel: 'preload',
-          include: [
-            'blog',
-            'contact',
-            'home',
-            'style',
-            'vitae',
-            'vendorMain',
-            'vendorBlogRender',
-            'coreJS',
-            'vendorUtils',
-          ],
         }),
         new ProgressPlugin({}),
       ],
