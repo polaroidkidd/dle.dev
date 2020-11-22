@@ -15,6 +15,11 @@ const developmentConfig = (): IConfiguration => {
     output: {
       filename: 'dev.bundle.js',
     },
+    entry: [
+      'react-hot-loader/babel',
+      // entrypoint
+      './src/index.tsx',
+    ],
     module: {
       rules: [
         {

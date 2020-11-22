@@ -1,11 +1,10 @@
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import { Compiler, Configuration } from 'webpack';
 import InlineChunkHtmlPlugin from 'inline-chunk-html-plugin';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { Compiler, Configuration } from 'webpack';
 
 interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
   apply(compiler: Compiler): void;
@@ -19,6 +18,10 @@ const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 
   const hasPresets = presets !== undefined;
 
   return {
+    entry: [
+      // entrypoint
+      './src/index.tsx',
+    ],
     output: {
       filename: hasPresets && presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
     },
@@ -124,6 +127,7 @@ const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 
           },
         },
       },
+      // Inline webpack loader chunk since it's a small script
       runtimeChunk: {
         name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
@@ -134,12 +138,13 @@ const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 
         // both options are optional
         filename: '[name].[contenthash:8].css',
         chunkFilename: '[name].[contenthash:8].chunk.css',
-      }),
+      }) as MiniCssExtractPluginExtended,
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: './public/index.html',
         title: 'dle.dev',
         inject: true,
+        scriptLoading: 'defer',
         minify: !hasPresets
           ? {
               removeComments: true,
@@ -154,7 +159,7 @@ const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 
               minifyURLs: true,
             }
           : false,
-        hash: true,
+        hash: false, // breaks the InlineChunkHtmlPlugin
         cache: !hasPresets,
         favicon: './public/favicon.ico',
         templateParameters: {
@@ -162,7 +167,6 @@ const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 
         },
       }),
       new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+\.js/]),
-
       new CompressionPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',

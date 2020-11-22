@@ -43,27 +43,15 @@ const config = ({
   return merge(
     {
       mode: mode,
-      entry: isProduction
-        ? {
-            entry: './src/index.tsx',
-          }
-        : [
-            'react-hot-loader/babel',
-
-            // entrypoint
-            './src/index.tsx',
-          ],
 
       output: {
         path: __dirname + '/../../dist',
         publicPath: '/',
       },
       resolve: {
-        alias: !isProduction
-          ? {
-              'react-dom': '@hot-loader/react-dom',
-            }
-          : {},
+        alias: {
+          'react-dom': '@hot-loader/react-dom',
+        },
         fallback: { path: require.resolve('path-browserify') },
         extensions: ['.ts', '.tsx', '.js', '.css', '.scss'],
       },
