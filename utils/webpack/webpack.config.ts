@@ -14,6 +14,7 @@ export interface IConfiguration extends WebpackConfiguration {
 import { developmentConfig } from './webpack.development';
 import { productionConfig } from './webpack.production';
 import { applyPresets } from './loadPresets';
+import InlineChunkHtmlPlugin from 'inline-chunk-html-plugin';
 
 /**
  * Base Webpack Configuration
@@ -28,7 +29,7 @@ const config = ({
 }: {
   mode: IConfiguration['mode'];
   presets?: string;
-  depEnv?: string;
+  depEnv?: 'production' | 'staging';
 }): IConfiguration => {
   const { presetsArray, hasPresets }: { presetsArray: string[]; hasPresets: boolean } =
     presets === undefined
@@ -143,46 +144,16 @@ const config = ({
           },
         ],
       },
-      plugins: [
-        new CleanWebpackPlugin({ verbose: true }),
-        new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: './public/index.html',
-          title: 'dle.dev',
-          inject: 'head',
-          minify:
-            isProduction && !hasPresets
-              ? {
-                  removeComments: true,
-                  collapseWhitespace: true,
-                  removeRedundantAttributes: true,
-                  useShortDoctype: true,
-                  removeEmptyAttributes: true,
-                  removeStyleLinkTypeAttributes: true,
-                  keepClosingSlash: true,
-                  minifyJS: true,
-                  minifyCSS: true,
-                  minifyURLs: true,
-                }
-              : false,
-          hash: true,
-          cache: isProduction && !hasPresets,
-          favicon: './public/favicon.ico',
-          templateParameters: {
-            PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
-          },
-        }),
-        new ProgressPlugin({}),
-      ],
+      plugins: [new CleanWebpackPlugin({ verbose: true }), new ProgressPlugin({})],
     },
-    modeConfig(isProduction, hasPresets ? presetsArray : undefined),
+    modeConfig(isProduction, hasPresets ? presetsArray : undefined, depEnv),
     applyPresets(mode, hasPresets ? presetsArray : undefined)
   );
 };
 
-const modeConfig = (isProduction: boolean, presets: string[]): IConfiguration => {
+const modeConfig = (isProduction: boolean, presets: string[], depEnv): IConfiguration => {
   if (isProduction) {
-    return productionConfig(presets);
+    return productionConfig(presets, depEnv);
   } else {
     return developmentConfig();
   }

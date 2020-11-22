@@ -111,6 +111,7 @@
     "html-webpack-plugin": "^5.0.0-alpha.6",
     "husky": "^4.3.0",
     "imports-loader": "^1.2.0",
+    "inline-chunk-html-plugin": "^1.1.1",
     "inline-source-map": "^0.6.2",
     "mini-css-extract-plugin": "^1.2.0",
     "node-sass": "^4.14.1",

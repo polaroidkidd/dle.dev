@@ -3,6 +3,9 @@ import CompressionPlugin from 'compression-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { Compiler, Configuration } from 'webpack';
+import InlineChunkHtmlPlugin from 'inline-chunk-html-plugin';
+// import HtmlWebpackPlugin from 'html-webpack-plugin';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 interface MiniCssExtractPluginExtended extends MiniCssExtractPlugin {
   apply(compiler: Compiler): void;
@@ -12,10 +15,12 @@ interface CompressionPluginExtended extends CompressionPlugin {
   apply(compiler: Compiler): void;
 }
 
-const productionConfig = (presets: string[] | undefined): Configuration => {
+const productionConfig = (presets: string[] | undefined, depEnv: 'production' | 'staging'): Configuration => {
+  const hasPresets = presets !== undefined;
+
   return {
     output: {
-      filename: presets && presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
+      filename: hasPresets && presets.some((p) => p === 'analyze') ? '[name].js' : '[name].[contenthash].js',
     },
     module: {
       rules: [
@@ -23,10 +28,7 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
           test: /\.s[ac]ss$/i,
           use: [
             {
-              loader: 'style-loader',
-              options: {
-                injectType: 'singletonStyleTag',
-              },
+              loader: MiniCssExtractPlugin.loader,
             },
             {
               loader: 'css-loader',
@@ -56,16 +58,10 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
     //^(?!.*(trunk|tags|branches)).*$
     optimization: {
       minimize: true,
-      minimizer: [`...`, new TerserPlugin(), new CssMinimizerPlugin()],
-
-      runtimeChunk: {
-        name: (entrypoint) => `runtime-${entrypoint.name}`,
-      },
+      minimizer: [`...`, new TerserPlugin()],
       moduleIds: 'named',
       splitChunks: {
         chunks: 'all',
-        maxInitialRequests: Infinity,
-        minSize: 0,
         cacheGroups: {
           vendorMain: {
             test(module: Configuration) {
@@ -128,8 +124,45 @@ const productionConfig = (presets: string[] | undefined): Configuration => {
           },
         },
       },
+      runtimeChunk: {
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
+      },
     },
     plugins: [
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: '[name].[contenthash:8].css',
+        chunkFilename: '[name].[contenthash:8].chunk.css',
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: './public/index.html',
+        title: 'dle.dev',
+        inject: true,
+        minify: !hasPresets
+          ? {
+              removeComments: true,
+              collapseWhitespace: true,
+              removeRedundantAttributes: true,
+              useShortDoctype: true,
+              removeEmptyAttributes: true,
+              removeStyleLinkTypeAttributes: true,
+              keepClosingSlash: true,
+              minifyJS: true,
+              minifyCSS: true,
+              minifyURLs: true,
+            }
+          : false,
+        hash: true,
+        cache: !hasPresets,
+        favicon: './public/favicon.ico',
+        templateParameters: {
+          PUBLIC_URL: depEnv === 'production' ? 'https://dle.dev' : 'https://staging.dle.dev',
+        },
+      }),
+      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+\.js/]),
+
       new CompressionPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',

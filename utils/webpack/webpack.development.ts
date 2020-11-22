@@ -1,5 +1,6 @@
 import path from 'path';
 import { IConfiguration } from './webpack.config';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const developmentConfig = (): IConfiguration => {
   return {
@@ -51,6 +52,21 @@ const developmentConfig = (): IConfiguration => {
         },
       ],
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: './public/index.html',
+        title: 'dle.dev',
+        inject: 'head',
+        minify: false,
+        hash: true,
+        cache: true,
+        favicon: './public/favicon.ico',
+        templateParameters: {
+          PUBLIC_URL: 'https://staging.dle.dev',
+        },
+      }),
+    ],
   };
 };
 
