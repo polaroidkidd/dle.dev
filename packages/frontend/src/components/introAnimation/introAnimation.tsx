@@ -1,6 +1,7 @@
 import { animated, useSpring } from "@react-spring/web";
 import React from "react";
-import { AnimatedText, mainHeadingAnimConfig } from "@components";
+import { AnimatedText } from "./animatedText";
+import { mainHeadingAnimConfig } from "./animationConfigs";
 import styles from "./introAnimation.module.scss";
 import classNames from "classnames";
 

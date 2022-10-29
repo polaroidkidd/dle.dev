@@ -13,15 +13,12 @@
     "docker:build:frontend": "./docker.sh -m frontend",
     "docker:build:frontend:no-cache": "./docker.sh -m frontend -c",
     "docker:release:frontend": "./docker.sh -m frontend -p",
-    "docker:release:frontend:no-cache": "./docker.sh -m frontend -p -c",
-    "docker:build:backend": "./docker.sh -m backend",
-    "docker:build:backend:no-cache": "./docker.sh -m backend -c",
-    "docker:release:backend": "./docker.sh -m backend -p",
-    "docker:release:backend:no-cache": "./docker.sh -m backend -p -c"
+    "docker:release:frontend:no-cache": "./docker.sh -m frontend -p -c"
   },
   "homepage": "https://dle.dev",
   "workspaces": [
-    "./packages/*"
+    "./packages/frontend"
+
   ],
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.3.1",

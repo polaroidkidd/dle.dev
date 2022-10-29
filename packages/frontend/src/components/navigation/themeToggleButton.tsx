@@ -1,7 +1,7 @@
 import { animated, useSpring } from "@react-spring/web";
 import type { CSSProperties, HTMLAttributes } from "react";
 import React, { useContext, useMemo } from "react";
-import { ThemeContext } from "@services";
+import { ThemeContext } from "@services/theme/themeContext";
 
 const defaultProperties = {
   dark: {

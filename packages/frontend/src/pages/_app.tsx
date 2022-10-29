@@ -1,22 +1,18 @@
 import React from "react";
-import { Container } from "@components";
-import { ThemeContextProvider, getApolloClient } from "@services";
+import { Container } from "@components/container/container";
+import { ThemeContextProvider } from "@services/theme/themeContext";
 import "../styles/global.scss";
-import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
 import "tailwindcss/tailwind.css";
 
 function Root(props: AppProps) {
   const { Component, pageProps } = props;
-  const client = getApolloClient();
 
   return (
     <ThemeContextProvider>
-      <ApolloProvider client={client}>
-        <Container>
-          <Component {...pageProps} />
-        </Container>
-      </ApolloProvider>
+      <Container>
+        <Component {...pageProps} />
+      </Container>
     </ThemeContextProvider>
   );
 }

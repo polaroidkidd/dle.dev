@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
-import { ThemeConstants } from "@services";
+import { ThemeConstants } from "@services/theme/themeConstants";
 import styles from "./navbar.module.scss";
-import type { IBlogConfig } from "@lib";
-import { getBlogEntries, replaceWhitespaceWithDash } from "@lib";
+import type { IBlogConfig } from "@lib/blogEntries";
+import { getBlogEntries, replaceWhitespaceWithDash } from "@lib/blogEntries";
 import classNames from "classnames";
 import Link from "next/link";
 

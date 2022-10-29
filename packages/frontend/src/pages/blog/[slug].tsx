@@ -1,5 +1,5 @@
-import { ThemeConstants } from "@services";
-import { getBlogEntries, getBlogEntry, replaceWhitespaceWithDash } from "@lib";
+import { ThemeConstants } from "@services/theme/themeConstants";
+import { getBlogEntries, getBlogEntry, replaceWhitespaceWithDash } from "@lib/blogEntries";
 import classNames from "classnames";
 import type {
   GetStaticPropsContext,

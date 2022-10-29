@@ -26,6 +26,6 @@ module.exports = {
         "wip",
       ],
     ],
-    "scope-enum": [2, "always", ["frontend", "backend", "root"]],
+    "scope-enum": [2, "always", ["frontend", "root"]],
   },
 };
