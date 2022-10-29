@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/polaroidkidd/dle.dev/compare/v0.1.23...v1.0.0) (2022-10-29)
+
+
+### Features
+
+* **frontend, backend:** completed migration to nextjs and strapi ([3c7db87](https://github.com/polaroidkidd/dle.dev/commit/3c7db87a32972643f55be2cb7a57dbe811b50d85))
+
 ### [0.1.23](https://github.com/polaroidkidd/dle.dev/compare/v0.1.22...v0.1.23) (2020-11-05)
 
 ### [0.1.22](https://github.com/polaroidkidd/dle.dev/compare/v0.1.21...v0.1.22) (2020-11-05)

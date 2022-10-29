@@ -1,6 +1,7 @@
 {
   "name": "dle.dev",
   "private": true,
+  "version": "1.0.0",
   "scripts": {
     "dev:back": "yarn workspace backend back:dev",
     "dev:front": "yarn workspace next-frontend front:dev",
