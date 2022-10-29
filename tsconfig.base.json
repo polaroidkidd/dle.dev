@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "noImplicitThis": true,
+    "strictBindCallApply": true,
+    "noEmit": true
+  },
+  "include": ["./**/*.ts", "./**/*.tsx"],
+  "exclude": ["node_modules"]
+}

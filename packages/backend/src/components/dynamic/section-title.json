@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_dynamic_section_titles",
+  "info": {
+    "displayName": "Section Title",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "chapterTitle": {
+      "type": "string",
+      "required": true
+    },
+    "chapterNumber": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

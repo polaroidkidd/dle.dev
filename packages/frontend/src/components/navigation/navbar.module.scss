@@ -1,0 +1,13 @@
+.blog{
+  &:hover{
+    .blogItems{
+      max-height: 100vh;
+    }
+  }
+}
+.blogItems{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms;
+
+}

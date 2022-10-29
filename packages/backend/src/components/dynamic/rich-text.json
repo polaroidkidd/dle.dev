@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_dynamic_rich_texts",
+  "info": {
+    "displayName": "RichText",
+    "icon": "envelope-open-text",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "richText": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

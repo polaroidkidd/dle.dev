@@ -1,0 +1,44 @@
+module.exports = {
+  root: true,
+  parser: "@typescript-eslint/parser",
+  plugins: ["@typescript-eslint"],
+  overrides: [
+    {
+      files: ["*.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+      },
+      parserOptions: {
+        allowAutomaticSingleRunInference: true,
+        project: ["./tsconfig.base.json"],
+      },
+    },
+  ],
+  rules: {
+    "func-style": ["error", "declaration"],
+    "no-console": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        prefer: "type-imports",
+        disallowTypeAnnotations: true,
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+  },
+  env: {
+    node: true,
+    browser: true,
+    amd: true,
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "next",
+    "next/core-web-vitals",
+  ],
+};

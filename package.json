@@ -1,82 +1,61 @@
 {
-  "name": "frontend",
-  "version": "0.1.23",
+  "name": "dle.dev",
   "private": true,
-  "dependencies": {
-    "classnames": "^2.2.6",
-    "github-markdown-css": "^4.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-loader-spinner": "^3.1.5",
-    "react-markdown": "^4.3.1",
-    "react-promise-tracker": "^2.1.0",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.4.3",
-    "react-syntax-highlighter": "^12.2.1",
-    "styled-components": "^5.0.1",
-    "styled-icons": "^9.3.0",
-    "typescript": "~3.7.2",
-    "webfontloader": "^1.6.28"
-  },
   "scripts": {
-    "start": "react-scripts start",
-    "build:prod": "dotenv -e .env react-scripts build",
-    "build:dev": "dotenv -e .env.development react-scripts build --profile",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev:back": "yarn workspace backend back:dev",
+    "dev:front": "yarn workspace next-frontend front:dev",
+    "dev": "concurrently \"yarn dev:back\" \"yarn dev:front\"",
+    "lint": "yarn eslint '**/*.{js,jsx,ts,tsx}' --resolve-plugins-relative-to .",
+    "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'",
+    "prepare": "husky install",
     "release": "standard-version",
-    "bnd": "./build-and-deploy.sh",
-    "lint": "eslint"
+    "docker:build:frontend": "./docker.sh -m frontend",
+    "docker:build:frontend:no-cache": "./docker.sh -m frontend -c",
+    "docker:release:frontend": "./docker.sh -m frontend -p",
+    "docker:release:frontend:no-cache": "./docker.sh -m frontend -p -c",
+    "docker:build:backend": "./docker.sh -m backend",
+    "docker:build:backend:no-cache": "./docker.sh -m backend -c",
+    "docker:release:backend": "./docker.sh -m backend -p",
+    "docker:release:backend:no-cache": "./docker.sh -m backend -p -c"
   },
   "homepage": "https://dle.dev",
-  "husky": {
-    "hooks": {
-      "commit-msg": "./vcs-check.sh"
-    }
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "transformIgnorePatterns": [
-      "/node_modules/(?!(react-syntax-highlighter)/)"
-    ]
-  },
+  "workspaces": [
+    "./packages/*"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
     "@commitlint/config-conventional": "^8.2.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/axios": "^0.14.0",
-    "@types/classnames": "^2.2.9",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/react-loader-spinner": "^3.1.0",
-    "@types/react-router-dom": "^5.1.3",
-    "@types/react-syntax-highlighter": "^11.0.4",
-    "@types/react-test-renderer": "^16.9.2",
-    "@types/webfontloader": "^1.6.29",
-    "dotenv-cli": "^3.1.0",
-    "husky": "^3.1.0",
-    "live-server": "^1.2.1",
-    "node-sass": "^4.13.1",
-    "react-test-renderer": "^16.12.0",
     "standard-version": "^8.0.1",
-    "webpack-plugin-critical": "^1.0.0"
+    "@next/eslint-plugin-next": "^12.3.1",
+    "@trivago/prettier-plugin-sort-imports": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.37.0",
+    "eslint": "^7.15.0",
+    "eslint-config-next": "^12.3.0",
+    "eslint-config-prettier": "^7.0.0",
+    "eslint-plugin-prettier": "^3.2.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.7.1",
+    "tailwindcss": "3.0.5",
+    "typescript": "^4.8.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn prettier --config ./.prettierrc.js  --write",
+      "yarn eslint --cache --quiet -c ./.eslintrc.js"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "./vcs-check.sh",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@types/jest": "^29.0.0",
+    "concurrently": "^7.5.0"
+  },
+  "resolutions": {
+    "graphql": "16.6.0"
   }
 }

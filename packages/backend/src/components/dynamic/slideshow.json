@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_dynamic_slideshows",
+  "info": {
+    "displayName": "Slideshow",
+    "icon": "images",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "slideShow": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}
