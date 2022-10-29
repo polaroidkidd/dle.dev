@@ -7,7 +7,7 @@ networks:
 
 services:
   next:
-    image: eu.gcr.io/dle-dev/next-frontend:latest
+    image: eu.gcr.io/dle-dev/frontend:latest
     container_name: dle-next
     ports:
       - "3000:3000"

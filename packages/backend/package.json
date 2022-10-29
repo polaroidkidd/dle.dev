@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "private": true,
-  "version": "0.0.1",
   "description": "A Strapi application",
   "scripts": {
     "back:db": "cd db && ./run.sh",

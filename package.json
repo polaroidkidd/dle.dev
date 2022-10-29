@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev:back": "yarn workspace backend back:dev",
-    "dev:front": "yarn workspace next-frontend front:dev",
+    "dev:front": "yarn workspace frontend front:dev",
     "dev": "concurrently \"yarn dev:back\" \"yarn dev:front\"",
     "lint": "yarn eslint '**/*.{js,jsx,ts,tsx}' --resolve-plugins-relative-to .",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx}'",
@@ -24,9 +24,6 @@
     "./packages/*"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0",
-    "standard-version": "^8.0.1",
     "@next/eslint-plugin-next": "^12.3.1",
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@typescript-eslint/eslint-plugin": "^5.37.0",
@@ -48,13 +45,15 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "./vcs-check.sh",
       "pre-commit": "lint-staged"
     }
   },
   "dependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "@types/jest": "^29.0.0",
-    "concurrently": "^7.5.0"
+    "concurrently": "^7.5.0",
+    "standard-version": "^9.5.0"
   },
   "resolutions": {
     "graphql": "16.6.0"

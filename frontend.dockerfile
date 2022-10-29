@@ -23,7 +23,7 @@ COPY --from=deps ./base/packages/frontend/package.json packages/frontend/package
 COPY ./packages/frontend packages/frontend
 COPY ./tsconfig.base.json .
 
-RUN yarn workspace next-frontend build
+RUN yarn workspace frontend build
 
 # Production image, copy all the files and run next
 FROM node:16-alpine AS runner
@@ -62,5 +62,5 @@ EXPOSE ${PORT}
 # Uncomment the following line in case you want to disable telemetry.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD yarn workspace next-frontend start
+CMD yarn workspace frontend start
 # https://dev.to/siddharthvenkatesh/docker-setup-for-yarn-workspaces-4pnj

@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+if [ "$(git rev-parse --abbrev-ref HEAD)" = "master" ]; then
+
+
+. "$(dirname -- "$0")/_/husky.sh"
+
+npx --no -- commitlint --edit
+fi

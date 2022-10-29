@@ -1,6 +1,5 @@
 {
-    "name": "next-frontend",
-    "version": "0.0.1",
+    "name": "frontend",
     "private": true,
     "scripts": {
         "dev": "next dev",
