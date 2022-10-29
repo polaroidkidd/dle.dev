@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/polaroidkidd/dle.dev/compare/v1.0.0...v1.0.1) (2022-10-29)
+
+
+### Bug Fixes
+
+* **root:** commitlint & standard-version fixed and updated ([a8ecb10](https://github.com/polaroidkidd/dle.dev/commit/a8ecb10c1eb416a6e414b012f0b1c5f7b1146cf0))
+
 ## [1.0.0](https://github.com/polaroidkidd/dle.dev/compare/v0.1.23...v1.0.0) (2022-10-29)
 
 
