@@ -1,6 +1,7 @@
 import React from "react";
 import { ThemeConstants } from "@services/theme/themeConstants";
-import { getBlogEntries, getBlogEntry, stripMdFromMarkdownFilename } from "@lib/blogEntries";
+import { getBlogEntries, getBlogEntry } from "@lib/blogEntries";
+import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
 import classNames from "classnames";
 import { NextSeo } from "next-seo";
 import type {
@@ -44,7 +45,6 @@ export async function getStaticProps({
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" "),
       },
-      revalidate: 60,
     };
   } else {
     return {

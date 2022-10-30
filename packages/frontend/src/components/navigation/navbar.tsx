@@ -4,7 +4,7 @@ import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
 import { ThemeConstants } from "@services/theme/themeConstants";
 import styles from "./navbar.module.scss";
 import type { INavbarBlogArticle } from "@lib/blogEntries";
-import { stripMdFromMarkdownFilename } from "@lib/blogEntries";
+import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
 import classNames from "classnames";
 import Link from "next/link";
 

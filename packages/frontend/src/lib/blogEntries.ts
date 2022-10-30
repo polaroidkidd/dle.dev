@@ -1,4 +1,6 @@
+import type { ICommitMeta } from "../@types/github";
 import toc from "@jsdevtools/rehype-toc";
+import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
 import rehypeDocument from "rehype-document";
 import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
@@ -68,6 +70,10 @@ export async function getBlogEntry(slug: string): Promise<{ content: string }> {
   };
 }
 
-export function stripMdFromMarkdownFilename(value: string): string {
-  return value.replace(/\.md/g, "");
+export async function getBlogMetaData(fileName: string): Promise<ICommitMeta[]> {
+  const response = await fetch(
+    `${process.env.GITHUB_BLOG_META as string}/${fileName}`,
+    ssrGithubHeaders,
+  );
+  return (await response.json()) as ICommitMeta[];
 }

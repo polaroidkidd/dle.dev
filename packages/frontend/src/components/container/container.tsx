@@ -10,7 +10,7 @@ interface IContainer {
 
 export function Container({ children, articles }: IContainer) {
   return (
-    <div className={classNames("container max-w-6xl mt-20 mb-32")}>
+    <div className={classNames("container max-w-6xl mt-20 mb-32 md:mb-0")}>
       <Navbar articles={articles} />
       <div className={classNames("container", "p-2", "z-10")}>{children}</div>
     </div>
