@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/polaroidkidd/dle.dev/compare/v1.3.2...v1.4.0) (2022-10-30)
+
+
+### Features
+
+* **frontend:** added article archive to homepage ([d45f567](https://github.com/polaroidkidd/dle.dev/commit/d45f567af42c951cb8983c1e726d7f4034d29e70))
+
 ### [1.3.2](https://github.com/polaroidkidd/dle.dev/compare/v1.3.1...v1.3.2) (2022-10-30)
 
 
