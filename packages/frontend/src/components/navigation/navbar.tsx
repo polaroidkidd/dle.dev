@@ -1,3 +1,4 @@
+import { animated, useSpring } from "@react-spring/web";
 import { useEffect, useState } from "react";
 import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
 import { ThemeConstants } from "@services/theme/themeConstants";
@@ -78,16 +79,31 @@ function HomeLink() {
 }
 
 function BlogMenuItem() {
+  const [showBlogLinks, setShowBlogLinks] = useState(false);
+
+  function onMouseEnter() {
+    setShowBlogLinks(true);
+  }
+
+  function onMouseLeaveOrOnClick() {
+    setShowBlogLinks(false);
+  }
+
   return (
-    <div className={classNames("mr-auto", ...navBoarder, styles.blog)}>
+    <div
+      className={classNames("mr-auto", ...navBoarder, styles.blog)}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeaveOrOnClick}
+      onClick={onMouseLeaveOrOnClick}
+    >
       <div className={classNames("transition-colors", "z-40")}>Blog</div>
 
-      <BlogLinks />
+      <BlogLinks showBlogLinks={showBlogLinks} />
     </div>
   );
 }
 
-function BlogLinks() {
+function BlogLinks({ showBlogLinks }: { showBlogLinks: boolean }) {
   const [blogs, setBlogs] = useState<IBlogConfig[]>([]);
   useEffect(() => {
     async function fetchBlogs() {
@@ -97,16 +113,28 @@ function BlogLinks() {
     fetchBlogs();
   }, []);
 
+  const [animationProps] = useSpring(
+    {
+      config: {
+        duration: 200,
+      },
+      maxHeight: showBlogLinks ? "100vh" : "0",
+      overflow: "hidden",
+    },
+    [showBlogLinks],
+  );
+
   if (blogs.length > 0) {
     return (
-      <div
+      <animated.div
+        style={animationProps}
         className={classNames(
           "absolute",
           "top-full",
           "px-3",
-          styles.blogItems,
-          "",
+          "overflow-clip",
           "-translate-x-6",
+          "transition-all",
         )}
       >
         {blogs.map((blog, index) => {
@@ -140,7 +168,7 @@ function BlogLinks() {
             </Link>
           );
         })}
-      </div>
+      </animated.div>
     );
   }
   return null;
