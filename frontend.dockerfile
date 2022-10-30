@@ -45,6 +45,7 @@ RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 COPY --from=builder ./base/packages/frontend/next.config.js ./packages/frontend/next.config.js
+COPY --from=builder ./base/packages/frontend/.env.production ./packages/frontend/.env.production
 COPY --from=builder ./base/packages/frontend/public ./packages/frontend/public
 COPY --from=builder --chown=nextjs:nodejs ./base/packages/frontend/.next ./packages/frontend/.next
 COPY --from=builder ./base/node_modules node_modules
