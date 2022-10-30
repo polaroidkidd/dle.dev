@@ -40,6 +40,7 @@ if [[ -v PUSH ]]; then
   echo "***************************************************"
   if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
     docker push "${TAG_VERSION}"
+    docker push "${TAG_LATEST}"
   else
     docker push "${TAG_LATEST}"
   fi

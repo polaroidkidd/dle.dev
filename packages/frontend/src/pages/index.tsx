@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { IntroAnimation } from "@components/introAnimation/introAnimation";
 import avatar from "@public/images/daniel_einars-400x500.3aa2364c.jpg";
 import classNames from "classnames";
+import { NextSeo } from "next-seo";
 import Image from "next/image";
 
 export default function Home(): JSX.Element {
@@ -14,6 +15,10 @@ export default function Home(): JSX.Element {
 
   return (
     <>
+      <NextSeo
+        title="Daniel Einars | Web-Dev"
+        description="I build web things, consult and walk my dog."
+      />
       <div className={classNames("flex flex-col items-center  md:flex-row md:items-stretch")}>
         <div
           className={classNames(

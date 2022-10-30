@@ -8,4 +8,8 @@ module.exports = withPlugins([withBundleAnalyzer], {
   images: {
     domains: ["localhost"],
   },
+  i18n: {
+    locales: ["en"],
+    defaultLocale: "en",
+  },
 });

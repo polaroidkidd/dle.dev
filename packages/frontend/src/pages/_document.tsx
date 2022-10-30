@@ -4,9 +4,7 @@ export default class _Document extends Document {
   render() {
     return (
       <Html>
-        <Head>
-          <title>dle.dev</title>
-        </Head>
+        <Head />
         <body className="bg-neutral-50 dark:bg-neutral-900 transition-colors overflow-x-hidden ">
           <Main />
           <NextScript />
