@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/polaroidkidd/dle.dev/compare/v1.2.0...v1.3.0) (2022-10-30)
+
+
+### Features
+
+* added some seo and ISR ([8344e49](https://github.com/polaroidkidd/dle.dev/commit/8344e49be08012f5908437397373799d9dabf4b3))
+
 ## [1.2.0](https://github.com/polaroidkidd/dle.dev/compare/v1.1.3...v1.2.0) (2022-10-30)
 
 
