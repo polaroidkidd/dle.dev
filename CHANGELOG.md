@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/polaroidkidd/dle.dev/compare/v1.1.2...v1.1.3) (2022-10-30)
+
+
+### Bug Fixes
+
+* **frontend:** navbar blog link animation ([84163c4](https://github.com/polaroidkidd/dle.dev/commit/84163c436823f5b8b965db0d2c04391d14b82dfa))
+
 ### [1.1.2](https://github.com/polaroidkidd/dle.dev/compare/v1.1.1...v1.1.2) (2022-10-29)
 
 
