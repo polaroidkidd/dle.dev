@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/polaroidkidd/dle.dev/compare/v1.1.3...v1.2.0) (2022-10-30)
+
+
+### Features
+
+* removed call to separate blog entires ([2ca76eb](https://github.com/polaroidkidd/dle.dev/commit/2ca76ebdc7524da42b3c5f62bd5ae77a0889dc46))
+
 ### [1.1.3](https://github.com/polaroidkidd/dle.dev/compare/v1.1.2...v1.1.3) (2022-10-30)
 
 
