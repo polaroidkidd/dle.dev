@@ -8,28 +8,50 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
-export interface IBlogConfig {
+export interface INavbarBlogArticle {
   title: string;
-  published: string;
-  url: string;
 }
-export async function getBlogEntries(): Promise<IBlogConfig[]> {
-  const response = await fetch(process.env.NEXT_PUBLIC_BLOG_ENTRIES_URL as string);
-  return (await response.json()) as IBlogConfig[];
+
+export interface IGithubArticleMetaData {
+  name: string;
+  path: string;
+  sha: string;
+  size: number;
+  url: string;
+  html_url: string;
+  git_url: string;
+  download_url: string;
+  type: string;
+  _links: {
+    self: string;
+    git: string;
+    html: string;
+  };
+}
+const ssrGithubHeaders = {
+  headers: {
+    Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
+  },
+};
+
+export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
+  const response = await fetch(process.env.BLOG_ENTRIES_URL as string, ssrGithubHeaders);
+
+  return await response.json();
 }
 
 export async function getBlogEntry(slug: string): Promise<{ content: string }> {
   const blogUrl = await getBlogEntries().then((res) =>
     res.reduce((acc, curr) => {
-      if (replaceWhitespaceWithDash(curr.title.toLowerCase()) === slug) {
-        return curr.url;
+      if (stripMdFromMarkdownFilename(curr.name.toLowerCase()) === slug) {
+        return curr.download_url;
       } else {
         return acc;
       }
     }, ""),
   );
 
-  const blogContent = await fetch(blogUrl);
+  const blogContent = await fetch(blogUrl, ssrGithubHeaders);
   const text = await blogContent.text();
   const content = await unified()
     .use(remarkParse)
@@ -46,6 +68,6 @@ export async function getBlogEntry(slug: string): Promise<{ content: string }> {
   };
 }
 
-export function replaceWhitespaceWithDash(value: string): string {
-  return value.replace(/\s/g, "-");
+export function stripMdFromMarkdownFilename(value: string): string {
+  return value.replace(/\.md/g, "");
 }

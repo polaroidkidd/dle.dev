@@ -1,14 +1,18 @@
 import { animated, useSpring } from "@react-spring/web";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
 import { ThemeConstants } from "@services/theme/themeConstants";
 import styles from "./navbar.module.scss";
-import type { IBlogConfig } from "@lib/blogEntries";
-import { getBlogEntries, replaceWhitespaceWithDash } from "@lib/blogEntries";
+import type { INavbarBlogArticle } from "@lib/blogEntries";
+import { stripMdFromMarkdownFilename } from "@lib/blogEntries";
 import classNames from "classnames";
 import Link from "next/link";
 
-export function Navbar() {
+interface IArticles {
+  articles: INavbarBlogArticle[];
+}
+
+export function Navbar(props: IArticles) {
   return (
     <nav
       className={classNames(
@@ -44,7 +48,7 @@ export function Navbar() {
     >
       <div className={classNames("container max-w-6xl", "flex", "h-full")}>
         <HomeLink />
-        <BlogMenuItem />
+        <BlogMenuItem articles={props.articles} />
         <ThemeToggleButton />
       </div>
     </nav>
@@ -78,7 +82,7 @@ function HomeLink() {
   );
 }
 
-function BlogMenuItem() {
+function BlogMenuItem(props: IArticles) {
   const [showBlogLinks, setShowBlogLinks] = useState(false);
 
   function onMouseEnter() {
@@ -98,20 +102,23 @@ function BlogMenuItem() {
     >
       <div className={classNames("transition-colors", "z-40")}>Blog</div>
 
-      <BlogLinks showBlogLinks={showBlogLinks} />
+      <BlogLinks showBlogLinks={showBlogLinks} articles={props.articles} />
     </div>
   );
 }
 
-function BlogLinks({ showBlogLinks }: { showBlogLinks: boolean }) {
-  const [blogs, setBlogs] = useState<IBlogConfig[]>([]);
-  useEffect(() => {
-    async function fetchBlogs() {
-      const blogResponse: IBlogConfig[] = await getBlogEntries();
-      setBlogs(() => blogResponse);
-    }
-    fetchBlogs();
-  }, []);
+interface IBlogLinks extends IArticles {
+  showBlogLinks: boolean;
+}
+
+function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
+  // useEffect(() => {
+  //   async function fetchBlogs() {
+  //     const blogResponse: IBlogConfig[] = await getBlogEntries();
+  //     setBlogs(() => blogResponse);
+  //   }
+  //   fetchBlogs();
+  // }, []);
 
   const [animationProps] = useSpring(
     {
@@ -124,7 +131,7 @@ function BlogLinks({ showBlogLinks }: { showBlogLinks: boolean }) {
     [showBlogLinks],
   );
 
-  if (blogs.length > 0) {
+  if (articles && articles.length > 0) {
     return (
       <animated.div
         style={animationProps}
@@ -137,13 +144,16 @@ function BlogLinks({ showBlogLinks }: { showBlogLinks: boolean }) {
           "transition-all",
         )}
       >
-        {blogs.map((blog, index) => {
+        {articles.map((blog, index) => {
           return (
-            <Link key={blog.url} href={`/blog/${replaceWhitespaceWithDash(blog.title)}`}>
+            <Link
+              key={blog.title.replace(/\s/g, "")}
+              href={`/blog/${stripMdFromMarkdownFilename(blog.title)}`}
+            >
               <div
                 className={classNames(
                   "border-b",
-                  { "border-b-0 rounded-b": index === blogs.length - 1 },
+                  { "border-b-0 rounded-b": index === articles.length - 1 },
                   "p-2",
                   "transition-colors",
                   // light mode
@@ -163,7 +173,10 @@ function BlogLinks({ showBlogLinks }: { showBlogLinks: boolean }) {
                   "dark:hover:bg-gray-800",
                 )}
               >
-                {blog.title}
+                {blog.title
+                  .split("-")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
               </div>
             </Link>
           );

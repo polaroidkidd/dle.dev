@@ -4,11 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev",
-        "front:dev": "next dev",
-        "frontend:build": "next build",
+        "front:dev": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
-        "front:build": "next build",
+        "front:build": "next build --debug",
         "front:svgr": "npx @svgr/cli -d src/components/icons --ignore-existing --icon --typescript public/icons",
         "front:build:analyze": "ANALYZE=true yarn run front:build",
         "front:test": "jest -c test/jest.config.js",

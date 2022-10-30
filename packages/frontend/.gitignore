@@ -17,3 +17,5 @@ node_modules
 .yarn/cache
 /packages/backend/dist/
 .eslintcache
+.env.production
+.env.development

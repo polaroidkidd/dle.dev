@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from "react";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import Cookies from "js-cookie";
 
 const initialState = false;
@@ -14,10 +14,9 @@ interface ThemePropsInterface {
 }
 
 export function ThemeContextProvider(props: ThemePropsInterface): ReactElement {
-  useEffect(() => initialThemeHandler(), []);
   const [isDarkTheme, setIsDarkTheme] = useState(initialState);
 
-  function initialThemeHandler(): void {
+  const initialThemeHandler = useCallback((): void => {
     const themeCookie = Cookies.get("theme");
     setIsDarkTheme(themeCookie === "dark");
     if (themeCookie) {
@@ -31,7 +30,8 @@ export function ThemeContextProvider(props: ThemePropsInterface): ReactElement {
         expires: expires,
       });
     }
-  }
+  }, [isDarkTheme]);
+  useEffect(() => initialThemeHandler(), [initialThemeHandler]);
 
   function toggleThemeHandler(): void {
     const themeCookie = Cookies.get("theme");

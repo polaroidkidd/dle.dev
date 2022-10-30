@@ -1,5 +1,5 @@
 import { ThemeConstants } from "@services/theme/themeConstants";
-import { getBlogEntries, getBlogEntry, replaceWhitespaceWithDash } from "@lib/blogEntries";
+import { getBlogEntries, getBlogEntry, stripMdFromMarkdownFilename } from "@lib/blogEntries";
 import classNames from "classnames";
 import type {
   GetStaticPropsContext,
@@ -43,10 +43,10 @@ export async function getStaticProps({
 
 export async function getStaticPaths() {
   const blogs = await getBlogEntries();
-  const paths = blogs.map(({ title }) => {
+  const paths = blogs.map(({ name }) => {
     return {
       params: {
-        slug: replaceWhitespaceWithDash(title),
+        slug: stripMdFromMarkdownFilename(name),
       },
     };
   });
