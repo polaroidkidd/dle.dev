@@ -20,6 +20,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
       "@lib/*": [
         "src/lib/*"
       ],
