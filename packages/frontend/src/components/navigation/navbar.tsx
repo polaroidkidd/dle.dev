@@ -85,19 +85,14 @@ function HomeLink() {
 function BlogMenuItem(props: IArticles) {
   const [showBlogLinks, setShowBlogLinks] = useState(false);
 
-  function onMouseEnter() {
-    setShowBlogLinks(true);
-  }
-
   function onMouseLeaveOrOnClick() {
-    setShowBlogLinks(false);
+    setShowBlogLinks((ps) => !ps);
   }
 
   return (
     <div
+      id="blog-navbar-item"
       className={classNames("mr-auto", ...navBoarder, styles.blog)}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeaveOrOnClick}
       onClick={onMouseLeaveOrOnClick}
     >
       <div className={classNames("transition-colors", "z-40")}>Blog</div>
@@ -111,15 +106,28 @@ interface IBlogLinks extends IArticles {
   showBlogLinks: boolean;
 }
 
-function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
-  // useEffect(() => {
-  //   async function fetchBlogs() {
-  //     const blogResponse: IBlogConfig[] = await getBlogEntries();
-  //     setBlogs(() => blogResponse);
-  //   }
-  //   fetchBlogs();
-  // }, []);
+const navBarBlogItemClasses = [
+  "border-b",
+  "p-2",
+  "transition-colors",
+  // light mode
+  "bg-neutral-100",
+  "bg-opacity-70",
+  "hover:bg-opacity-70",
+  "backdrop-blur-lg",
+  "hover:bg-gray-200",
 
+  // dark mode
+  "dark:border-gray-900",
+  "dark:border-opacity-5",
+  "dark:bg-neutral-900",
+  "dark:bg-opacity-70",
+  "dark:hover:bg-opacity-70",
+  "dark:backdrop-blur-lg",
+  "dark:hover:bg-gray-800",
+];
+
+function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
   const [animationProps] = useSpring(
     {
       config: {
@@ -144,6 +152,11 @@ function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
           "transition-all",
         )}
       >
+        <Link href="/blog">
+          <div className={classNames("border-b-0 rounded-b", ...navBarBlogItemClasses)}>
+            Article Archive
+          </div>
+        </Link>
         {articles.map((blog, index) => {
           return (
             <Link
@@ -152,25 +165,8 @@ function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
             >
               <div
                 className={classNames(
-                  "border-b",
                   { "border-b-0 rounded-b": index === articles.length - 1 },
-                  "p-2",
-                  "transition-colors",
-                  // light mode
-                  "bg-neutral-100",
-                  "bg-opacity-70",
-                  "hover:bg-opacity-70",
-                  "backdrop-blur-lg",
-                  "hover:bg-gray-200",
-
-                  // dark mode
-                  "dark:border-gray-900",
-                  "dark:border-opacity-5",
-                  "dark:bg-neutral-900",
-                  "dark:bg-opacity-70",
-                  "dark:hover:bg-opacity-70",
-                  "dark:backdrop-blur-lg",
-                  "dark:hover:bg-gray-800",
+                  ...navBarBlogItemClasses,
                 )}
               >
                 {blog.title
