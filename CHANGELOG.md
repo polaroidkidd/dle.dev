@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/polaroidkidd/dle.dev/compare/v1.4.1...v1.4.2) (2022-10-31)
+
+
+### Bug Fixes
+
+* **frontend:** mobile safari image outline ([fb119ef](https://github.com/polaroidkidd/dle.dev/commit/fb119efddd930c7fa4a2d63e8830a3cdc503cf88))
+
 ### [1.4.1](https://github.com/polaroidkidd/dle.dev/compare/v1.4.0...v1.4.1) (2022-10-31)
 
 
