@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/polaroidkidd/dle.dev/compare/v1.4.0...v1.4.1) (2022-10-31)
+
+
+### Bug Fixes
+
+* **frontend:** mobile nav bar click events ([998106a](https://github.com/polaroidkidd/dle.dev/commit/998106a05431af3fa81eee76904f15daf4152336))
+
 ## [1.4.0](https://github.com/polaroidkidd/dle.dev/compare/v1.3.2...v1.4.0) (2022-10-30)
 
 
