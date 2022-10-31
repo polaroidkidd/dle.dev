@@ -28,10 +28,7 @@ export default function Home({
         <div
           className={classNames(
             "rounded-full",
-            "overflow-clip",
-            "outline outline-offset-1 outline-2",
-            "outline-red-300",
-            "hover:outline-red-400 hover:outline-offset-4 hover:outline-2",
+            "ring",
             "transition-all",
             "flex",
             "justify-center",
