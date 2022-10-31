@@ -1,7 +1,6 @@
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
-import { ThemeConstants } from "@services/theme/themeConstants";
 import styles from "./navbar.module.scss";
 import type { INavbarBlogArticle } from "@lib/blogEntries";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
@@ -16,37 +15,31 @@ export function Navbar(props: IArticles) {
   return (
     <nav
       className={classNames(
-        "mx-5",
         "px-5",
-        "mt-2",
+        "mt-0",
         "min-w-max",
         "h-14",
         "transition-colors",
-        "rounded",
-        ThemeConstants.PRIMARY_TEXT_COLOR,
         "fixed",
         "top-0",
         "left-0",
         "right-0",
         "z-20",
-        "border",
-        // background
-        "drop-shadow-lg",
-
+        "border-b",
+        "border-red-300",
+        "drop-shadow-md",
         // background light
-        "border-neutral-200",
-        "border-opacity-80",
         "bg-opacity-20",
-        "backdrop-blur-lg",
+        "backdrop-blur-2xl",
 
         // background dark
-        "dark:border-gray-500",
-        "dark:border-opacity-50",
-        "dark:bg-opacity-20",
-        "dark:backdrop-blur-lg",
+        "dark:text-neutral-100",
+        "dark:border-opacity-30",
       )}
     >
-      <div className={classNames("container max-w-6xl", "flex", "h-full")}>
+      <div
+        className={classNames("container", "max-w-6xl", "flex flex-row", "h-full", "justify-start")}
+      >
         <HomeLink />
         <BlogMenuItem articles={props.articles} />
         <ThemeToggleButton />
@@ -58,25 +51,26 @@ export function Navbar(props: IArticles) {
 const navBoarder = [
   "cursor-pointer",
   "transition-colors",
-  "hover:bg-neutral-100",
   "h-100",
   "flex",
-  "justify-center",
-  "flex-col",
-  "dark:hover:bg-neutral-800",
+  "flex-row",
+  "items-center",
+  "basis-24",
   "px-3",
+  // light
   "border-x",
   "border-transparent",
-  "hover:border-neutral-200",
-  "hover:border-x",
   "border-opacity-80",
-  "hover:dark:border-gray-500",
-  "hover:dark:border-opacity-50",
+  "hover:border-red-300",
+  "hover:border-opacity-30",
+  "hover:border-x",
+  // dark
+  "dark:hover:bg-neutral-800",
 ];
 
 function HomeLink() {
   return (
-    <span className={classNames(...navBoarder)}>
+    <span className={classNames("justify-center", ...navBoarder)}>
       <Link href="/">Home</Link>
     </span>
   );
@@ -89,11 +83,16 @@ function BlogMenuItem(props: IArticles) {
     setShowBlogLinks((ps) => !ps);
   }
 
+  function hide() {
+    setShowBlogLinks(false);
+  }
+
   return (
     <div
       id="blog-navbar-item"
-      className={classNames("mr-auto", ...navBoarder, styles.blog)}
+      className={classNames("mr-auto", "justify-center", "relative", ...navBoarder, styles.blog)}
       onClick={onMouseLeaveOrOnClick}
+      onMouseLeave={hide}
     >
       <div className={classNames("transition-colors", "z-40")}>Blog</div>
 
@@ -146,16 +145,16 @@ function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
         className={classNames(
           "absolute",
           "top-full",
+          "left-3",
           "px-3",
           "overflow-clip",
           "-translate-x-6",
           "transition-all",
+          "min-w-max",
         )}
       >
         <Link href="/blog">
-          <div className={classNames("border-b-0 rounded-b", ...navBarBlogItemClasses)}>
-            Article Archive
-          </div>
+          <div className={classNames(...navBarBlogItemClasses)}>Article Archive</div>
         </Link>
         {articles.map((blog, index) => {
           return (

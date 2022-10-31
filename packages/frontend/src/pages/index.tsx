@@ -28,7 +28,10 @@ export default function Home({
         <div
           className={classNames(
             "rounded-full",
-            "ring",
+            "ring-2",
+            "ring-red-400",
+            "subpixel-antialiased",
+            "antialiased",
             "transition-all",
             "flex",
             "justify-center",

@@ -13,13 +13,21 @@ export function ArticleCard({ date, title }: IArticleCard) {
         className={classNames(
           "mb-12 p-4 ",
           "transition-all cursor-pointer",
-          "border-2 border-red-400 rounded-l rounded-br",
-          "drop-shadow-sm hover:drop-shadow-md",
-          "transition-all",
           "bg-white",
-          "dark:bg-neutral-800 dark:text-neutral-100",
           "flex flex-col justify-center items-start",
           "relative",
+          "border",
+          "rounded",
+          "border-red-300",
+          "drop-shadow-md",
+          "hover:drop-shadow-lg",
+          "border-x",
+
+          // dark
+          "dark:hover:border-red-200 dark:bg-neutral-800",
+          "dark:border-transparent",
+          "dark:hover:border-red-300",
+          "dark:bg-neutral-800 dark:text-neutral-100",
         )}
       >
         <div className="font-bold text-lg ">
@@ -28,16 +36,7 @@ export function ArticleCard({ date, title }: IArticleCard) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ")}
         </div>
-        <div
-          className={classNames(
-            "p-1",
-            "font-thin text-xs",
-            "border-x-2 border-t-2 border-red-400 rounded-t",
-            "absolute -top-7 -right-0.5",
-            "bg-white",
-            "dark:bg-neutral-800 dark:text-neutral-100",
-          )}
-        >
+        <div className={classNames("p-1", "font-thin text-xs", "absolute -top-7 -right-0.5")}>
           {new Date(date).toDateString()}
         </div>
       </div>
