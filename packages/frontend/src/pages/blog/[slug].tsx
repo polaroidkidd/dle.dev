@@ -12,11 +12,14 @@ import type {
 import type { ParsedUrlQuery } from "querystring";
 
 interface IBlogProps {
-  content: string;
-  title: string;
+  content: string | null;
+  title: string | null;
 }
 
-export default function Blog({ content, title }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Blog({
+  content,
+  title,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <NextSeo title={title || "Daniel Einars | Web-Dev"} />
@@ -34,21 +37,27 @@ interface IParams extends ParsedUrlQuery {
 
 export async function getStaticProps({
   params,
-}: GetStaticPropsContext<IParams>): Promise<GetStaticPropsResult<IBlogProps | null>> {
-  if (params) {
-    const { content } = await getBlogEntry(params.slug.toLowerCase());
+}: GetStaticPropsContext<IParams>): Promise<
+  GetStaticPropsResult<IBlogProps | null>
+> {
+  try {
+    const { content } = await getBlogEntry(
+      params?.slug.toLowerCase() as string,
+    );
     return {
       props: {
         content,
-        title: params.slug
+        title: (params?.slug as string)
           .split("-")
           .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
           .join(" "),
       },
+      revalidate: 60,
     };
-  } else {
+  } catch (e) {
     return {
-      props: null,
+      revalidate: 60,
+      notFound: true,
     };
   }
 }

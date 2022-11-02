@@ -1,6 +1,6 @@
 import React from "react";
 import { ArticleCard } from "@components/articleCard/articleCard";
-import { IntroAnimation } from "@components/introAnimation/introAnimation";
+import { AntroAnimation } from "@components/introAnimation/antroAnimation";
 import avatar from "@public/images/daniel_einars-400x500.3aa2364c.jpg";
 import { getBlogEntries, getBlogMetaData } from "@lib/blogEntries";
 import classNames from "classnames";
@@ -24,7 +24,11 @@ export default function Home({
         title="Daniel Einars | Web-Dev"
         description="I build web things, consult and walk my dog."
       />
-      <div className={classNames("flex flex-col items-center  md:flex-row md:items-stretch")}>
+      <div
+        className={classNames(
+          "flex flex-col items-center  md:flex-row md:items-stretch",
+        )}
+      >
         <div
           className={classNames(
             "rounded-full",
@@ -42,14 +46,20 @@ export default function Home({
         >
           <Image src={avatar} alt="avatar" objectFit="cover" />
         </div>
-        <IntroAnimation />
+        <AntroAnimation />
       </div>
 
       <div className="container max-w-screen-sm px-10 flex flex-col justify-center items-stretch mt-12">
         <h2 className="mb-10">Previous Articles:</h2>
-        {blogsMetaData.map((meta) => (
-          <ArticleCard title={meta.title} date={meta.publishedOn} key={meta.title} />
-        ))}
+        {blogsMetaData
+          .sort((a, b) => Date.parse(b.publishedOn) - Date.parse(a.publishedOn))
+          .map((meta) => (
+            <ArticleCard
+              title={meta.title}
+              date={meta.publishedOn}
+              key={meta.title}
+            />
+          ))}
       </div>
     </>
   );
@@ -71,5 +81,6 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<IHome>> {
 
   return {
     props: { blogsMetaData },
+    revalidate: 60,
   };
 }

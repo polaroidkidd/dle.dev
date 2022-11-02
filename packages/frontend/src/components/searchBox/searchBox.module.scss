@@ -1,0 +1,33 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(white, 0.2);
+  //backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.input {
+  position: relative;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+
+
+  background: transparent;
+  border-bottom: 1px solid #f87171;
+  color: #292524;
+  font-size: 1.24rem;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+}
+
+
+.noScroll{
+  overflow: hidden;
+}

@@ -1,12 +1,8 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -20,90 +16,18 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@layouts/*": [
-        "src/layouts/*"
-      ],
-      "@lib/*": [
-        "src/lib/*"
-      ],
-      "@lib": [
-        "src/lib"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@components": [
-        "src/components"
-      ],
-      "@public/*": [
-        "public/*"
-      ],
-      "@public": [
-        "public"
-      ],
-      "@definitions/*": [
-        "src/definitions/*"
-      ],
-      "@definitions": [
-        "src/definitions"
-      ],
-      "@interfaces/*": [
-        "src/interfaces/*"
-      ],
-      "@interfaces": [
-        "src/interfaces"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@styles": [
-        "src/styles"
-      ],
-      "@components/icons/*": [
-        "src/components/icons/*"
-      ],
-      "@components/icons": [
-        "src/components/icons"
-      ],
-      "@services/*": [
-        "src/services/*"
-      ],
-      "@services": [
-        "src/services"
-      ],
-      "@graphqlTypes/*": [
-        "__generated__/*"
-      ],
-      "@graphqlTypes": [
-        "__generated__"
-      ],
-      "@test/*": [
-        "test/*"
-      ],
-      "@test": [
-        "test"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ],
-      "@utils": [
-        "src/utils"
-      ],
-      "@types": [
-        "src/@types/api"
-      ]
+      "@model/*": ["./src/model/*"],
+      "@components/*":["./src/components/*"],
+      "@icons/*":["./src/components/icons/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@pages/*":["./src/pages/*"],
+      "@services/*": ["./src/services/*"],
+      "@styles/*":["./src/styles/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@public/*": ["./public/*"]
     },
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules",
-    "__generated__/globalTypes.ts",
-    "test/*",
-    "cypress/*"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "__generated__/globalTypes.ts", "test/*", "cypress/*"]
 }

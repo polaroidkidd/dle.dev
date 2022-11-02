@@ -19,7 +19,7 @@ const animatedTextColor = [
   styles.backgroundAnimate,
 ];
 
-export function IntroAnimation() {
+export function AntroAnimation() {
   const [mainHeadingAnimation] = useSpring(mainHeadingAnimConfig, []);
 
   return (
@@ -41,7 +41,10 @@ export function IntroAnimation() {
           "flex flex-col items-center md:items-start w-full h-36 md:h-auto overflow-hidden",
         )}
       >
-        <animated.div style={mainHeadingAnimation} className={classNames(animatedTextColor)}>
+        <animated.div
+          style={mainHeadingAnimation}
+          className={classNames(animatedTextColor)}
+        >
           I help companies
         </animated.div>
         <AnimatedText animatedTextColor={animatedTextColor} />

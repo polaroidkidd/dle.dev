@@ -20,7 +20,9 @@ export function ThemeContextProvider(props: ThemePropsInterface): ReactElement {
     const themeCookie = Cookies.get("theme");
     setIsDarkTheme(themeCookie === "dark");
     if (themeCookie) {
-      document.querySelector("html")?.classList.remove(isDarkTheme ? "dark" : "light");
+      document
+        .querySelector("html")
+        ?.classList.remove(isDarkTheme ? "dark" : "light");
       document.querySelector("html")?.classList.add(themeCookie);
     } else {
       const date = new Date();
@@ -46,8 +48,12 @@ export function ThemeContextProvider(props: ThemePropsInterface): ReactElement {
   }
 
   function toggleDarkClassToBody(): void {
-    document.querySelector("html")?.classList.remove(isDarkTheme ? "dark" : "light");
-    document.querySelector("html")?.classList.add(!isDarkTheme ? "dark" : "light");
+    document
+      .querySelector("html")
+      ?.classList.remove(isDarkTheme ? "dark" : "light");
+    document
+      .querySelector("html")
+      ?.classList.add(!isDarkTheme ? "dark" : "light");
   }
 
   return (

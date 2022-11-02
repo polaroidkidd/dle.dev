@@ -24,7 +24,9 @@ function Text({
         { opacity: 1, transform: "translate3d(0%, 0px, 0px)" },
         {
           opacity: clamp ? 1 : 0,
-          transform: clamp ? "translate3d(0, 0px, 0px)" : "translate3d(0px, 25%, 0px)",
+          transform: clamp
+            ? "translate3d(0, 0px, 0px)"
+            : "translate3d(0px, 25%, 0px)",
         },
       ],
       onRest: () => {
@@ -58,7 +60,11 @@ const texts = [
   "grow.",
 ];
 
-export function AnimatedText({ animatedTextColor }: { animatedTextColor: string[] }): JSX.Element {
+export function AnimatedText({
+  animatedTextColor,
+}: {
+  animatedTextColor: string[];
+}): JSX.Element {
   const initialArray = new Array(texts.length).fill(false);
   initialArray[0] = true;
   const [animateAtIndex, setAnimateAtIndex] = useState<boolean[]>(initialArray);

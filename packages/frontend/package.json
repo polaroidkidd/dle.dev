@@ -13,7 +13,8 @@
         "front:test": "jest -c test/jest.config.js",
         "front:cypress:open": "cypress open",
         "front:cypress:run": "cypress run --config video=false",
-        "front:cypress:test": "start-server-and-test start http://localhost:3000 cypress:run"
+        "front:cypress:test": "start-server-and-test start http://localhost:3000 cypress:run",
+        "svgr": "svgr  -d src/components/icons --ignore-existing --icon --typescript public/icons --no-index "
     },
     "dependencies": {
         "@babel/core": "^7.12.10",
@@ -22,13 +23,13 @@
         "@jsdevtools/rehype-toc": "^3.0.2",
         "@next/bundle-analyzer": "^13.0.0",
         "@react-spring/web": "^9.5.5",
-        "@svgr/cli": "^5.5.0",
+        "@svgr/cli": "^6.5.1",
         "@testing-library/react": "^11.2.3",
         "@testing-library/react-hooks": "^5.0.0",
         "@types/babel__core": "^7",
         "@types/jest": "^29.0.0",
         "@types/js-cookie": "^3.0.2",
-        "@types/node": "^14.14.13",
+        "@types/node": "^18.11.9",
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
         "@typescript-eslint/eslint-plugin": "^4.9.1",
@@ -50,6 +51,7 @@
         "jest": "^26.6.3",
         "js-cookie": "^3.0.1",
         "lint-staged": "^10.5.3",
+        "lodash.debounce": "^4.0.8",
         "next": "^12.3.0",
         "next-compose-plugins": "^2.2.1",
         "next-seo": "^5.11.1",
@@ -65,6 +67,7 @@
         "rehype-slug": "^5.0.1",
         "rehype-stringify": "^9.0.3",
         "remark": "^14.0.2",
+        "remark-frontmatter": "^4.0.1",
         "remark-html": "^15.0.1",
         "remark-parse": "^10.0.1",
         "remark-rehype": "^10.1.0",
@@ -79,5 +82,8 @@
         "typescript": "^4.8.3",
         "unified": "^10.1.2",
         "zustand": "^4.1.1"
+    },
+    "devDependencies": {
+        "@types/lodash.debounce": "^4.0.7"
     }
 }

@@ -36,7 +36,13 @@ export function ArticleCard({ date, title }: IArticleCard) {
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ")}
         </div>
-        <div className={classNames("p-1", "font-thin text-xs", "absolute -top-7 -right-0.5")}>
+        <div
+          className={classNames(
+            "p-1",
+            "font-thin text-xs",
+            "absolute -top-7 -right-0.5",
+          )}
+        >
           {new Date(date).toDateString()}
         </div>
       </div>

@@ -75,7 +75,8 @@ export function ThemeToggleButton({
     return animationProperties;
   }, [animationProperties]);
 
-  const { circle, svg, lines, mask } = properties[!isDarkTheme ? "dark" : "light"];
+  const { circle, svg, lines, mask } =
+    properties[!isDarkTheme ? "dark" : "light"];
 
   const svgContainerProps = useSpring({
     ...svg,
@@ -97,7 +98,7 @@ export function ThemeToggleButton({
   const uniqueMaskId = `circle-mask-${id}`;
 
   return (
-    <div className="flex justify-center my-auto">
+    <div className=" ml-auto flex justify-center my-auto">
       <animated.svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}

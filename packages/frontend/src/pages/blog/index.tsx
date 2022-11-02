@@ -1,8 +1,7 @@
 import React from "react";
 import { ArticleCard } from "@components/articleCard/articleCard";
 import { getBlogEntries, getBlogMetaData } from "@lib/blogEntries";
-import type { GetStaticPropsResult } from "next/types";
-import type { InferGetStaticPropsType } from "next/types";
+import type { GetStaticPropsResult, InferGetStaticPropsType } from "next/types";
 
 interface IBlogArchive {
   blogsMetaData: {
@@ -19,14 +18,20 @@ export default function BlogArchive({
       <div className="container max-w-screen-sm px-10 flex flex-col justify-center items-stretch mt-12">
         <h2 className="mb-10">Previous Articles:</h2>
         {blogsMetaData.map((meta) => (
-          <ArticleCard title={meta.title} date={meta.publishedOn} key={meta.title} />
+          <ArticleCard
+            title={meta.title}
+            date={meta.publishedOn}
+            key={meta.title}
+          />
         ))}
       </div>
     </>
   );
 }
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<IBlogArchive>> {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<IBlogArchive>
+> {
   const blogEntries = await getBlogEntries();
   const blogsMetaData: {
     title: string;
@@ -42,5 +47,6 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<IBlogArchiv
 
   return {
     props: { blogsMetaData },
+    revalidate: 60,
   };
 }

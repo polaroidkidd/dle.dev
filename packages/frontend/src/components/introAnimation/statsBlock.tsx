@@ -18,10 +18,21 @@ export function StatsBlock({
   return (
     <animated.div
       style={statsBlockAnimation}
-      className={classNames("w-full", "z-10", "relative", "border-gray-700 dark:border-blue-200")}
+      className={classNames(
+        "w-full",
+        "z-10",
+        "relative",
+        "border-gray-700 dark:border-blue-200",
+      )}
     >
       <div
-        className={classNames(styles.imageClipPath, "h-80", "md:h-96", "overflow-clip", "bg-black")}
+        className={classNames(
+          styles.imageClipPath,
+          "h-80",
+          "md:h-96",
+          "overflow-clip",
+          "bg-black",
+        )}
       >
         <video
           controls={false}
@@ -38,8 +49,14 @@ export function StatsBlock({
             "opacity-80",
           )}
         >
-          <source type="video/mp4" src={`/videos/${sunriseTimelapse}-vp9-q63.webm`} />
-          <source type="video/mp4" src={`/videos/${sunriseTimelapse}-vpx-q63.webm`} />
+          <source
+            type="video/mp4"
+            src={`/videos/${sunriseTimelapse}-vp9-q63.webm`}
+          />
+          <source
+            type="video/mp4"
+            src={`/videos/${sunriseTimelapse}-vpx-q63.webm`}
+          />
           <source type="video/mp4" src={`/videos/${sunriseTimelapse}.webm`} />
           <source type="video/mp4" src={`/videos/${sunriseTimelapse}.mp4`} />
         </video>
@@ -81,8 +98,14 @@ export function StatsBlock({
               "text-white",
             )}
           >
-            <Counter counter={yearsOfExperienceCounter} text="Years of Experience" />
-            <Counter counter={successfulProjectsCounter} text="Successful Projects" />
+            <Counter
+              counter={yearsOfExperienceCounter}
+              text="Years of Experience"
+            />
+            <Counter
+              counter={successfulProjectsCounter}
+              text="Successful Projects"
+            />
           </div>
         </div>
       </div>
@@ -90,7 +113,13 @@ export function StatsBlock({
   );
 }
 
-function Counter({ text, counter }: { text: string; counter: { number: SpringValue<number> } }) {
+function Counter({
+  text,
+  counter,
+}: {
+  text: string;
+  counter: { number: SpringValue<number> };
+}) {
   return (
     <div className={classNames("flex", "first:mb-3", "md:first:mb-0")}>
       <div className={classNames("text-white")}>

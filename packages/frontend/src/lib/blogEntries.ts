@@ -1,5 +1,5 @@
-import type { ICommitMeta } from "../@types/github";
 import toc from "@jsdevtools/rehype-toc";
+import type { ICommitMeta } from "@model/github";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
 import rehypeDocument from "rehype-document";
 import rehypeFormat from "rehype-format";
@@ -37,7 +37,10 @@ const ssrGithubHeaders = {
 };
 
 export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
-  const response = await fetch(process.env.BLOG_ENTRIES_URL as string, ssrGithubHeaders);
+  const response = await fetch(
+    process.env.BLOG_ENTRIES_URL as string,
+    ssrGithubHeaders,
+  );
 
   return await response.json();
 }
@@ -70,10 +73,19 @@ export async function getBlogEntry(slug: string): Promise<{ content: string }> {
   };
 }
 
-export async function getBlogMetaData(fileName: string): Promise<ICommitMeta[]> {
+export async function getBlogMetaData(
+  fileName: string,
+): Promise<ICommitMeta[]> {
   const response = await fetch(
     `${process.env.GITHUB_BLOG_META as string}/${fileName}`,
     ssrGithubHeaders,
   );
   return (await response.json()) as ICommitMeta[];
+}
+
+export async function fetchBlogContent(url: string): Promise<string> {
+  const response = await fetch(url);
+  const text = await response.text();
+
+  return text.toString();
 }

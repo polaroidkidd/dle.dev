@@ -1,6 +1,7 @@
 import { animated, useSpring } from "@react-spring/web";
 import { useState } from "react";
 import { ThemeToggleButton } from "@components/navigation/themeToggleButton";
+import { SearchBox } from "@components/searchBox/searchBox";
 import styles from "./navbar.module.scss";
 import type { INavbarBlogArticle } from "@lib/blogEntries";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
@@ -38,10 +39,17 @@ export function Navbar(props: IArticles) {
       )}
     >
       <div
-        className={classNames("container", "max-w-6xl", "flex flex-row", "h-full", "justify-start")}
+        className={classNames(
+          "container",
+          "max-w-6xl",
+          "flex flex-row",
+          "h-full",
+          "justify-start",
+        )}
       >
         <HomeLink />
         <BlogMenuItem articles={props.articles} />
+        <SearchBox />
         <ThemeToggleButton />
       </div>
     </nav>
@@ -90,7 +98,12 @@ function BlogMenuItem(props: IArticles) {
   return (
     <div
       id="blog-navbar-item"
-      className={classNames("mr-auto", "justify-center", "relative", ...navBoarder, styles.blog)}
+      className={classNames(
+        "justify-center",
+        "relative",
+        ...navBoarder,
+        styles.blog,
+      )}
       onClick={onMouseLeaveOrOnClick}
       onMouseLeave={hide}
     >
@@ -154,7 +167,9 @@ function BlogLinks({ showBlogLinks, articles }: IBlogLinks) {
         )}
       >
         <Link href="/blog">
-          <div className={classNames(...navBarBlogItemClasses)}>Article Archive</div>
+          <div className={classNames(...navBarBlogItemClasses)}>
+            Article Archive
+          </div>
         </Link>
         {articles.map((blog, index) => {
           return (
