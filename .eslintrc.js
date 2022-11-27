@@ -10,7 +10,7 @@ module.exports = {
       },
       parserOptions: {
         allowAutomaticSingleRunInference: true,
-        project: ["./tsconfig.base.json"],
+        project: ["./tsconfig.json"],
       },
     },
   ],

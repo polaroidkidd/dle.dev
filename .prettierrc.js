@@ -5,17 +5,4 @@ module.exports = {
   singleQuote: false,
   printWidth: 80,
   tabWidth: 2,
-  plugins: [require.resolve("@trivago/prettier-plugin-sort-imports")],
-  importOrder: [
-    "/wdyr",
-    "react",
-    "@types",
-    "@components(.*)$",
-    "@pages(.*)$",
-    "@services(.*)$",
-    "@public(.*)$",
-    "<THIRD_PARTY_MODULES>",
-  ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
 };

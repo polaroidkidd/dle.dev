@@ -2,7 +2,6 @@
 set -e
 while getopts cm:p option; do
   case "${option}" in
-  m) MODULE=${OPTARG} ;;
   p) PUSH=${OPTARG} ;;
   c) NO_CACHE=${OPTARG} ;;
   *) INVALID=${OPTARG} ;;
@@ -10,26 +9,25 @@ while getopts cm:p option; do
 done
 
 HOST="eu.gcr.io/dle-dev"
-NAME=$(node -e "console.log(require('./packages/${MODULE}/package.json').name);")
-VERSION=$(node -e "console.log(require('./packages/${MODULE}/package.json').version);")
+NAME=$(node -e "console.log(require('./package.json').name);")
+VERSION=$(node -e "console.log(require('./package.json').version);")
 
 TAG=${HOST}/${NAME}
 TAG_VERSION=${TAG}:${VERSION}
 TAG_LATEST=${TAG}:latest
 
-echo "Module: ${MODULE}"
 echo "$TAG_VERSION"
 
 if [[ -v NO_CACHE ]]; then
   echo "***************************************************"
   echo "****************** CLEAN BUILD ********************"
   echo "***************************************************"
-  docker build --no-cache . -t "${TAG_LATEST}" -f ./${MODULE}.dockerfile --network="host"
+  docker build --no-cache . -t "${TAG_LATEST}" -f ./Dockerfile --network="host"
 else
   echo "***************************************************"
   echo "***************** CACHED BUILD ********************"
   echo "***************************************************"
-  docker build . -t "${TAG_LATEST}" -f ./${MODULE}.dockerfile --network="host"
+  docker build . -t "${TAG_LATEST}" -f ./Dockerfile --network="host"
 fi
 
 docker tag "${TAG_LATEST}" "${TAG_VERSION}"

@@ -1,0 +1,19 @@
+
+.blogItems{
+  transition: max-height 500ms;
+
+}
+
+.navbarContainer{
+
+  &::before{
+    z-index: -1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    backdrop-filter: blur(20px);
+  }
+}
