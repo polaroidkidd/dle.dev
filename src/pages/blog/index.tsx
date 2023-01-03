@@ -3,12 +3,12 @@ import { ArticleCard } from "@components/articleCard/articleCard";
 import { getBlogEntries, getBlogMetaData } from "@lib/blogEntries";
 import type { GetStaticPropsResult, InferGetStaticPropsType } from "next/types";
 
-interface IBlogArchive {
+type IBlogArchive = {
   blogsMetaData: {
     title: string;
     publishedOn: string;
   }[];
-}
+};
 
 export default function BlogArchive({
   blogsMetaData,

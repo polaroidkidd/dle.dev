@@ -1,11 +1,12 @@
-import GithubIcon from "@public/icons/github.svg";
-import LinkedIn from "@public/icons/linkedin.svg";
-import Unknown from "@public/icons/circle-wavy-question.svg";
-export interface IProfile {
+import { IconLinkedin } from "@icons/IconLinkedin";
+import { IconGithub } from "@icons/IconGithub";
+import { IconCircleQuestionWavy } from "@icons/IconCircleQuestionWavy";
+
+export type IProfile = HTMLAnchorElement & {
   network: string;
   username: string;
   url: string;
-}
+};
 
 enum PROFILE {
   LinkedIn = "LinkedIn",
@@ -13,24 +14,31 @@ enum PROFILE {
   Unknown = "Unknown",
 }
 
-export function Profile({ network, url, username }: IProfile) {
+export function Profile({ network, url }: Omit<IProfile, "children">) {
+  if (url === undefined) {
+    return null;
+  }
+
   return (
-    <>
-      {getIcon(network as PROFILE)}
-      <div>network: {network}</div>
-      <div>username: {username}</div>
-      <div>url: {url}</div>
-    </>
+    <a
+      href={url}
+      className="transition-all flex flex-col justify-center items-center hover:text-red-600 dark:hover:text-red-300"
+    >
+      {getIcon(network as PROFILE, 8)}
+      {network}
+    </a>
   );
 }
 
-function getIcon(network: PROFILE): JSX.Element {
+function getIcon(network: PROFILE, width: number): JSX.Element {
   switch (network) {
     case PROFILE.LinkedIn:
-      return <LinkedIn />;
+      return (
+        <IconLinkedin className={`w-${width}`} aria-label="linkedin link" />
+      );
     case PROFILE.Github:
-      return <GithubIcon />;
+      return <IconGithub className={`w-${width}`} aria-label="github link" />;
     default:
-      return <Unknown />;
+      return <IconCircleQuestionWavy className={`w-${width} `} />;
   }
 }

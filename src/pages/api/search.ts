@@ -3,25 +3,25 @@ import { fetchBlogContent, getBlogEntries } from "@lib/blogEntries";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 let metaData: IGithubArticleMetaData[];
-export interface IBlogContent {
+export type IBlogContent = {
   name: string;
   sections: {
     sectionTitle: string;
     body: string;
   }[];
-}
+};
 
 const contentMap: IBlogContent[] = [];
 
-interface IQuery extends NextApiRequest {
+type IQuery = NextApiRequest & {
   query: {
     q?: string;
   };
-}
+};
 
-interface IResponse {
+type IResponse = {
   results: string[];
-}
+};
 let timestamp = Date.now();
 
 async function search(req: IQuery, res: NextApiResponse<IResponse>) {

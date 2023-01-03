@@ -1,8 +1,8 @@
-export interface ILocation {
+export type ILocation = {
   address?: string;
   countryCode?: string;
   region?: string;
-}
+};
 
 export function Location({ address, countryCode, region }: ILocation) {
   return (

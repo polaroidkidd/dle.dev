@@ -1,6 +1,4 @@
-import classNames from "classnames";
-
-export interface IProject {
+export type IProject = {
   name: string;
   description: string;
   summary?: string;
@@ -9,7 +7,7 @@ export interface IProject {
   highlights: string[];
   entity?: string;
   type?: string;
-}
+};
 
 export function Project({
   description,
@@ -22,7 +20,7 @@ export function Project({
   type,
 }: IProject) {
   return (
-    <div className={classNames("border rounded border-red-300", "mb-2 p-2")}>
+    <>
       <div>name: {name}</div>
       <div>description: {description}</div>
       <div>summary: {summary}</div>
@@ -31,6 +29,6 @@ export function Project({
       <div>highlights: {highlights}</div>
       <div>entity: {entity}</div>
       <div>type: {type}</div>
-    </div>
+    </>
   );
 }

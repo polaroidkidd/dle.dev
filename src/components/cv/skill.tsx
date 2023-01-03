@@ -1,16 +1,20 @@
-import classNames from "classnames";
+import { Technologies } from "@components/cv/work/technologies";
 
-export interface ISkill {
+export type ISkill = {
   name: string;
   keywords: string[];
-}
+};
 
 export function Skill(props: ISkill) {
   return (
-    <div className={classNames("border rounded border-red-300", "mb-2 p-2")}>
-      {" "}
-      <div>name: {props.name}</div>
-      <div>keywords: {props.keywords}</div>
+    <div className="flex relative mb-2">
+      <div className="mt-3 w-full">
+        <div className="mb-2 text-lg font-extralight text-center w-full my-4">
+          <div className="transition-all block">{props.name}</div>
+
+          <Technologies technologies={props.keywords} hideTitle={true} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -8,12 +8,12 @@ import { NextSeo } from "next-seo";
 import Image from "next/image";
 import type { GetStaticPropsResult, InferGetStaticPropsType } from "next/types";
 
-interface IHome {
+type IHome = {
   blogsMetaData: {
     title: string;
     publishedOn: string;
   }[];
-}
+};
 
 export default function Home({
   blogsMetaData,
@@ -56,7 +56,10 @@ export default function Home({
       <h2 className="w-full text-2xl mt-10 text-center pb-0 underline">
         Latest articles
       </h2>
-      <div className="container max-w-screen-sm pb-10 flex flex-col justify-center items-stretch pt-10">
+      <div
+        className="container max-w-screen-sm pb-10 flex flex-col justify-center items-stretch pt-10"
+        data-cy="article-container"
+      >
         {blogsMetaData
           .sort((a, b) => Date.parse(b.publishedOn) - Date.parse(a.publishedOn))
           .map((meta) => (
@@ -86,7 +89,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<IHome>> {
   }
 
   return {
-    props: { blogsMetaData },
+    props: { blogsMetaData: blogsMetaData.slice(0, 4) },
     revalidate: 60,
   };
 }

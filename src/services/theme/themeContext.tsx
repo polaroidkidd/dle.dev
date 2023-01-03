@@ -9,9 +9,9 @@ export const ThemeContext = createContext({
   toggleThemeHandler: () => {},
 });
 
-interface ThemePropsInterface {
+type ThemePropsInterface = {
   children: ReactNode;
-}
+};
 
 export function ThemeContextProvider(props: ThemePropsInterface): ReactElement {
   const [isDarkTheme, setIsDarkTheme] = useState(initialState);

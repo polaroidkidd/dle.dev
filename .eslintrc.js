@@ -40,5 +40,6 @@ module.exports = {
     "prettier/@typescript-eslint",
     "next",
     "next/core-web-vitals",
+    "plugin:cypress/recommended",
   ],
 };

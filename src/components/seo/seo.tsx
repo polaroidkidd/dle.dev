@@ -2,14 +2,14 @@ import React from "react";
 import { DEFAULT_VIEWPORT } from "@utils/constants";
 import Head from "next/head";
 
-interface ISeo {
+type ISeo = {
   metaViewport: string;
   metaDescription: string;
   metaRobots: string;
   metaTitle: string;
   keywords: string;
   canonicalURL: string;
-}
+};
 
 export function Seo({
   metaViewport = DEFAULT_VIEWPORT,

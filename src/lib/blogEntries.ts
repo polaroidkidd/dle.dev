@@ -9,12 +9,14 @@ import rehypeStringify from "rehype-stringify";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import rehypeRewrite from "rehype-rewrite";
+import type { RootContent } from "hast";
 
-export interface INavbarBlogArticle {
+export type INavbarBlogArticle = {
   title: string;
-}
+};
 
-export interface IGithubArticleMetaData {
+export type IGithubArticleMetaData = {
   name: string;
   path: string;
   sha: string;
@@ -29,7 +31,7 @@ export interface IGithubArticleMetaData {
     git: string;
     html: string;
   };
-}
+};
 export const ssrGithubHeaders = {
   headers: {
     Authorization: `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`,
@@ -65,6 +67,21 @@ export async function getBlogEntry(slug: string): Promise<{ content: string }> {
     .use(rehypeFormat)
     .use(rehypeSlug)
     .use(toc, { headings: ["h2", "h3"] })
+    .use(rehypeRewrite, {
+      rewrite: (
+        node: RootContent & {
+          tagName: string;
+          children: Record<string, []>[];
+          properties: Record<string, string>;
+        },
+      ) => {
+        if (node.tagName === "nav") {
+          if (node.children[0].children.length === 0) {
+            node.properties.className = "hidden";
+          }
+        }
+      },
+    })
     .use(rehypeHighlight)
     .use(rehypeStringify)
     .process(text);

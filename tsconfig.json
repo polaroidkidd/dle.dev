@@ -15,19 +15,21 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
+      "@mocks/*": ["./src/__mocks__/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@model/*": ["./src/model/*"],
-      "@components/*":["./src/components/*"],
-      "@icons/*":["./src/components/icons/*"],
+      "@components/*": ["./src/components/*"],
+      "@icons/*": ["./src/components/icons/*"],
       "@lib/*": ["./src/lib/*"],
-      "@pages/*":["./src/pages/*"],
+      "@pages/*": ["./src/pages/*"],
       "@services/*": ["./src/services/*"],
-      "@styles/*":["./src/styles/*"],
+      "@styles/*": ["./src/styles/*"],
       "@utils/*": ["./src/utils/*"],
       "@public/*": ["./public/*"]
     },
     "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "__generated__/globalTypes.ts", "test/*", "cypress/*"]
+  "types": ["cypress", "cypress-axe", "node"],
+  "exclude": ["node_modules", ".git"]
 }

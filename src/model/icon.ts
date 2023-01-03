@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
 
-export interface IIcon extends HTMLAttributes<SVGSVGElement> {
+export type IIcon = HTMLAttributes<SVGSVGElement> & {
   width?: number;
-}
+};

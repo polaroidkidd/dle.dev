@@ -4,9 +4,9 @@ import { Navbar } from "@components/navigation/navbar";
 import { Merriweather } from "@next/font/google";
 import classNames from "classnames";
 
-interface IRootLayout {
+type IRootLayout = {
   children: ReactNode;
-}
+};
 
 const merriWeather = Merriweather({
   preload: true,

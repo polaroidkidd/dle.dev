@@ -1,28 +1,28 @@
-export interface IAuthorBasic {
+export type IAuthorBasic = {
   name: string;
   email: string;
   date: string;
-}
+};
 
-export interface ICommitterBasic {
+export type ICommitterBasic = {
   name: string;
   email: string;
   date: string;
-}
+};
 
-export interface ITree {
+export type ITree = {
   sha: string;
   url: string;
-}
+};
 
-export interface IVerification {
+export type IVerification = {
   verified: boolean;
   reason: string;
   signature: string;
   payload: string;
-}
+};
 
-export interface ICommit {
+export type ICommit = {
   author: IAuthorBasic;
   committer: ICommitterBasic;
   message: string;
@@ -30,9 +30,9 @@ export interface ICommit {
   url: string;
   comment_count: number;
   verification: IVerification;
-}
+};
 
-export interface IAuthorDetail {
+export type IAuthorDetail = {
   login: string;
   id: number;
   node_id: string;
@@ -51,9 +51,9 @@ export interface IAuthorDetail {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
-export interface ICommitterDetail {
+export type ICommitterDetail = {
   login: string;
   id: number;
   node_id: string;
@@ -72,15 +72,15 @@ export interface ICommitterDetail {
   received_events_url: string;
   type: string;
   site_admin: boolean;
-}
+};
 
-export interface IParent {
+export type IParent = {
   sha: string;
   url: string;
   html_url: string;
-}
+};
 
-export interface ICommitMeta {
+export type ICommitMeta = {
   sha: string;
   node_id: string;
   commit: ICommit;
@@ -90,4 +90,4 @@ export interface ICommitMeta {
   author: IAuthorDetail;
   committer: ICommitterDetail;
   parents: IParent[];
-}
+};

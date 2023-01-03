@@ -39,13 +39,13 @@ const defaultProperties = {
 
 type SVGProps = Omit<HTMLAttributes<HTMLOrSVGElement>, "onChange">;
 
-interface IThemeToggle extends SVGProps {
+type IThemeToggle = SVGProps & {
   style?: CSSProperties;
   size?: number | string;
   animationProperties?: typeof defaultProperties;
   moonColor?: string;
   sunColor?: string;
-}
+};
 
 const id = "1";
 
@@ -98,7 +98,7 @@ export function ThemeToggleButton({
   const uniqueMaskId = `circle-mask-${id}`;
 
   return (
-    <div className="my-auto ml-auto pl-4">
+    <div className="my-auto ml-auto pl-4" data-cy="themeToggleButton">
       <animated.svg
         xmlns="http://www.w3.org/2000/svg"
         width={size}

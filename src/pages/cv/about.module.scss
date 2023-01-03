@@ -1,0 +1,13 @@
+.headings {
+
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @apply py-2;
+      @apply text-neutral-800;
+      @apply dark:text-neutral-100;
+      @apply font-thin;
+      //@apply font-thin #{!important};
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import Link from "next/link";
 
-interface IArticleCard {
+type IArticleCard = {
   title: string;
   date: string;
   isLast?: boolean;
-}
+};
 
 export function ArticleCard({ date, title, isLast = false }: IArticleCard) {
   return (

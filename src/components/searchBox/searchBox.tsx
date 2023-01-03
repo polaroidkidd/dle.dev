@@ -25,16 +25,15 @@ export function SearchBox() {
   }, [router.asPath]);
 
   async function getResults() {
-    if (query.length > 2) {
-      const results = await fetchResults(query);
-      setResults(results);
-      setIsLoading(false);
-    }
+    const results = await fetchResults(query);
+    setResults(results);
+    setIsLoading(false);
   }
 
   useEffect(() => {
     const debouncedGetResults = debounce(getResults, 250);
-    if (query.length > 0) {
+    if (query.length > 2) {
+      setIsLoading(true);
       debouncedGetResults();
     }
   }, [query]);
@@ -85,6 +84,7 @@ export function SearchBox() {
         [`z-10 fixed top-0 left-0 right-0 bottom-0 ${styles.mobileSearchContainer}`]:
           showMobileSearch,
       })}
+      data-cy="searchOverlay"
     >
       <div
         className={classNames(
@@ -127,9 +127,13 @@ export function SearchBox() {
           ref={inputRef}
         />
         <IconLoading
-          className={classNames("fill-red-600 p-2 h-9", {
-            hidden: !isLoading,
-          })}
+          aria-label="loading"
+          className={classNames(
+            "fill-red-600 p-2 h-9 absolute top-0 left-0 md:static  z-100 h-10 md:h-9 ",
+            {
+              hidden: !isLoading,
+            },
+          )}
         />
       </div>
       <SearchResults results={results} />

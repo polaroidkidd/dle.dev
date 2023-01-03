@@ -6,6 +6,13 @@ module.exports = withPlugins([withBundleAnalyzer], {
   reactStrictMode: false,
   swcMinify: true,
   images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "simpleicons.org",
+        port: "",
+      },
+    ],
     domains: ["localhost"],
   },
   i18n: {
@@ -20,5 +27,13 @@ module.exports = withPlugins([withBundleAnalyzer], {
     });
 
     return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap.xml",
+        destination: "/api/sitemap",
+      },
+    ];
   },
 });

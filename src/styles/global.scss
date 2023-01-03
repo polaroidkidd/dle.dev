@@ -39,6 +39,7 @@ code {
     @apply py-4;
     @apply text-neutral-800;
     @apply dark:text-neutral-100;
+    @apply font-bold #{!important};
   }
 
   a.toc-link.toc-link-h#{$i} {
@@ -68,8 +69,11 @@ li {
   @apply py-0.5 dark:text-neutral-50;
 }
 
-p, ul, ol, a{
-  @apply font-light #{!important}
+p,
+ul,
+ol,
+a {
+  @apply font-light #{!important};
 }
 
 nav.toc {
@@ -82,7 +86,7 @@ nav.toc {
 ol {
   @apply list-decimal;
   padding: 0.5rem 0 0 2.5rem !important;
-  li{
+  li {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
@@ -90,7 +94,7 @@ ol {
 ul {
   @apply list-disc #{!important};
   padding: 0.5rem 0 0 2.5rem !important;
-  li{
+  li {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
   }
@@ -100,13 +104,7 @@ h1 {
   @apply text-2xl #{!important};
   @apply font-bold #{!important};
 }
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @apply font-bold #{!important};
-}
+
 p {
   @apply font-thin;
   @apply text-neutral-800;

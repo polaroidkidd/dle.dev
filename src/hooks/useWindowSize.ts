@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import throttle from "lodash.throttle";
 
-interface Size {
+type ISize = {
   width: number | undefined;
   height: number | undefined;
-}
+};
 
-export function useWindowSize(throttleDelay = 500): Size {
+export function useWindowSize(throttleDelay = 500): ISize {
   // Initialize state with undefined width/height so server and client renders match
   // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState<Size>({
+  const [windowSize, setWindowSize] = useState<ISize>({
     width: undefined,
     height: undefined,
   });

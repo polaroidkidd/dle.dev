@@ -1,14 +1,11 @@
-
-.blogItems{
+.blogItems {
   transition: max-height 500ms;
-
 }
 
-.navbarContainer{
-
-  &::before{
+.navbarContainer {
+  &::before {
     z-index: -1;
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;

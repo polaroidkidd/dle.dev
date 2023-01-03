@@ -10,10 +10,10 @@ import type {
   InferGetStaticPropsType,
 } from "next/types";
 import type { ParsedUrlQuery } from "querystring";
-interface IBlogProps {
+type IBlogProps = {
   content: string | null;
   title: string | null;
-}
+};
 
 export default function Blog({
   content,
@@ -29,10 +29,10 @@ export default function Blog({
   );
 }
 
-interface IParams extends ParsedUrlQuery {
+type IParams = ParsedUrlQuery & {
   slug: string;
   title: string;
-}
+};
 
 export async function getStaticProps({
   params,
