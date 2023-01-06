@@ -24,17 +24,15 @@ export function SearchBox() {
     setShowMobileSearch(false);
   }, [router.asPath]);
 
-  async function getResults() {
-    const results = await fetchResults(query);
-    setResults(results);
-    setIsLoading(false);
-  }
-
   useEffect(() => {
-    const debouncedGetResults = debounce(getResults, 250);
-    if (query.length > 2) {
+    async function getResults() {
       setIsLoading(true);
-      debouncedGetResults();
+      const results = await fetchResults(query);
+      setResults(results);
+      setIsLoading(false);
+    }
+    if (query.length > 0) {
+      getResults();
     }
   }, [query]);
 
@@ -48,12 +46,11 @@ export function SearchBox() {
     setShowMobileSearch(
       width !== undefined && width <= 640 && results.length > 0,
     );
-  }, [width]);
+  }, [results.length, width]);
 
-  function onChange(event: ChangeEvent<HTMLInputElement>) {
-    setIsLoading(true);
+  const onChange = debounce((event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
-  }
+  }, 250);
 
   function onClickSearch(event: MouseEvent<SVGSVGElement>) {
     event.preventDefault();
@@ -122,7 +119,6 @@ export function SearchBox() {
           type={"text"}
           name={"search"}
           onChange={onChange}
-          value={query}
           size={1}
           ref={inputRef}
         />

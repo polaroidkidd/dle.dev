@@ -18,11 +18,9 @@ const navBoarder = [
   "border-opacity-80",
   "hover:border-red-300",
   "hover:border-opacity-50",
-  "hover:border-b-4",
   // dark
   "dark:hover:bg-neutral-800",
-  "border-b-4",
-  "border-white",
+  "border-b",
 ];
 
 type IStandardNavbarLink = {
@@ -41,8 +39,8 @@ export function StandardNavbarLink({ href, text }: IStandardNavbarLink) {
   return (
     <Link
       href={href}
-      className={classNames("justify-center", ...navBoarder, {
-        "border-b-4 border-b-red-500": isAt,
+      className={classNames("py-2", "justify-center", ...navBoarder, {
+        "border-b-2 sm:border-b-4 border-b-red-500": isAt,
       })}
       data-cy={href}
     >
