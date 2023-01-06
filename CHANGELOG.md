@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/polaroidkidd/dle.dev/compare/v1.8.0...v1.9.0) (2023-01-06)
+
+
+### Features
+
+* updated mobile navigation bar ([40e949a](https://github.com/polaroidkidd/dle.dev/commit/40e949a9ac66d4c7172634e05564772d00220299))
+
 ## [1.8.0](https://github.com/polaroidkidd/dle.dev/compare/v1.7.0...v1.8.0) (2023-01-03)
 
 
