@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.1](https://github.com/polaroidkidd/dle.dev/compare/v1.9.0...v1.9.1) (2023-01-07)
+
+
+### Bug Fixes
+
+* frosted glass spacing in mobile navigation ([c8ba87a](https://github.com/polaroidkidd/dle.dev/commit/c8ba87a3bb56446ee9f5056a332fcfc7f1d362a0))
+
 ## [1.9.0](https://github.com/polaroidkidd/dle.dev/compare/v1.8.0...v1.9.0) (2023-01-06)
 
 
