@@ -104,7 +104,7 @@ export function Navbar() {
             "left-0 right-0",
             "-z-10",
             styles.frostedGlassGradient,
-            isMenuHidden ? "-translate-y-[10rem]" : "translate-y-[46px]",
+            isMenuHidden ? "-translate-y-[10rem]" : "translate-y-[40px]",
           )}
         >
           <StandardNavbarLink text="Home" href="/" />
