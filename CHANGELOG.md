@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.9.2](https://github.com/polaroidkidd/dle.dev/compare/v1.9.1...v1.9.2) (2023-02-05)
+
+
+### Bug Fixes
+
+* navbar spacing ([936a4d5](https://github.com/polaroidkidd/dle.dev/commit/936a4d5503746e919a275db46732bdd1f865695a))
+
 ### [1.9.1](https://github.com/polaroidkidd/dle.dev/compare/v1.9.0...v1.9.1) (2023-01-07)
 
 
