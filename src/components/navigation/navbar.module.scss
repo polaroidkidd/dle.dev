@@ -11,23 +11,23 @@
     left: 0;
     height: 100%;
     width: 100vw;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
   }
 }
 
-.frostedGlassGradient {
-  &:after {
+.menuBlockFrostedGlass {
+  &::before {
     z-index: -1;
     content: "";
     position: absolute;
     top: 0;
     left: 0;
-    height: 200%;
+    height: 100%;
     width: 100vw;
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
     //background-color: red;
     //border: 2px solid red;
-    mask: linear-gradient(0deg, transparent, black 50%);
+    //mask: linear-gradient(0deg, transparent, black 50%);
   }
 }
 

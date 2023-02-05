@@ -8,7 +8,7 @@ export function PositionSummary({ summary, highlights }: IPositionSummary) {
     <div className="mb-4">
       {summary && (
         <div>
-          <h2 className="font-normal block border-b border-b-red-100 mb-2 pb-0">
+          <h2 className="block border-b border-b-red-100 mb-2 pb-0">
             Responsibilities
           </h2>
           <p>{summary}</p>

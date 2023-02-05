@@ -44,12 +44,7 @@ function CV({ cv }: InferGetStaticPropsType<typeof getStaticProps>) {
     cv;
 
   return (
-    <article
-      className={classNames(
-        styles.headings,
-        "text-neutral-900 dark:text-neutral-50",
-      )}
-    >
+    <article className={classNames(styles.headings)}>
       <AboutSectionContainer isCollapsable={false}>
         <AboutSectionItemContainer>
           <Basics

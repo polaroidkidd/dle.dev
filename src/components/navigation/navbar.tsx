@@ -35,21 +35,13 @@ export function Navbar() {
     <nav
       className={classNames(
         "px-5",
-        "mt-0",
-        "min-w-max",
-        "h-12 sm:h-14",
-        "transition-colors",
+        "h-14",
         "fixed",
         "top-0",
         "left-0",
         "right-0",
         "z-50",
         "text-base sm:text-xl",
-        "bg-opacity-20",
-        "border-b",
-        "border-red-300",
-        "dark:text-neutral-100",
-        "dark:border-opacity-30",
         "print:hidden",
         styles.navbarContainer,
       )}
@@ -83,8 +75,9 @@ export function Navbar() {
           "px-2",
           "w-screen",
           "border-b",
-          "border-red-300",
-          "h-12",
+          "border-neutral-800",
+          "h-14",
+          "relative",
         )}
       >
         <ThemeToggleButton />
@@ -99,17 +92,19 @@ export function Navbar() {
 
         <div
           className={classNames(
-            "transition-transform ease-in-out",
+            "transition-transform ease-in-out duration-300",
             "absolute",
+            "bottom-[116px]",
             "left-0 right-0",
-            "-z-10",
-            styles.frostedGlassGradient,
-            isMenuHidden ? "-translate-y-[10rem]" : "translate-y-[40px]",
+            "-z-50",
+            "pt-[58px]",
+            styles.menuBlockFrostedGlass,
+            isMenuHidden ? "translate-y-0" : "translate-y-[280px]",
           )}
         >
-          <StandardNavbarLink text="Home" href="/" />
-          <StandardNavbarLink text="Blog" href="/blog" />
-          <StandardNavbarLink text="CV" href="/cv" />
+          <StandardNavbarLink text="home" href="/" />
+          <StandardNavbarLink text="blog" href="/blog" />
+          <StandardNavbarLink text="curriculum vitae" href="/cv" />
         </div>
       </div>
     </nav>

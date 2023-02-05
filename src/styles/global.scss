@@ -117,3 +117,18 @@ nav.toc:before {
   content: "Table of Contents";
   @apply text-blue-600 dark:text-blue-400 text-lg font-bold;
 }
+
+blockquote {
+  position: relative;
+  left: 0.75rem;
+
+  max-width: 90%;
+  border-left: 0.2rem solid #ccc;
+  padding: 0.5rem;
+  margin: 5rem;
+}
+
+blockquote p {
+  display: inline;
+  font-style: italic;
+}

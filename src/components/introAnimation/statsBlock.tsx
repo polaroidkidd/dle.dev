@@ -73,7 +73,6 @@ export function StatsBlock({
       >
         <div
           className={classNames(
-            "font-bold",
             "border-t-4",
             "border-b-4",
             "px-4",
@@ -95,7 +94,6 @@ export function StatsBlock({
               "justify-around",
               "items-center",
               "w-full",
-              "text-white",
             )}
           >
             <Counter

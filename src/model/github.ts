@@ -91,3 +91,8 @@ export type ICommitMeta = {
   committer: ICommitterDetail;
   parents: IParent[];
 };
+
+export type IBlogMetaData = {
+  title: string;
+  publishedOn: string;
+};

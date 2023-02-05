@@ -1,4 +1,5 @@
 import { StartEndDate } from "./startEndDate";
+import classNames from "classnames";
 
 type IPosition = {
   company: string;
@@ -20,12 +21,20 @@ export function Position({
   return (
     <div className="flex relative mb-2">
       <div className="mt-3 w-full">
-        <div className="mb-2 text-lg font-extralight text-center w-full my-4">
+        <div className="flex flex-col mb-2 text-lg text-center w-full my-4">
           {url ? (
             <a
               href={url}
               target="_blank"
-              className="transition-all block text-red-600 underline hover:text-red-400 visited:text-red-600 dark:hover:text-red-300 dark:text-red-400"
+              className={classNames(
+                "transition-all",
+                "text-red-600",
+                "underline",
+                "hover:text-red-400",
+                "visited:text-red-600",
+                "dark:hover:text-red-300",
+                "dark:text-red-400",
+              )}
               rel="noreferrer"
             >
               {company}
@@ -34,7 +43,7 @@ export function Position({
             <div className="transition-all block">{company}</div>
           )}
           <span className="text-sm">&nbsp;in&nbsp;{location}</span>
-          <div className="text-sm font-light">{position}</div>
+          <div className="text-sm">{position}</div>
         </div>
       </div>
 

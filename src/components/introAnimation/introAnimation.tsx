@@ -4,6 +4,7 @@ import { AnimatedText } from "./animatedText";
 import { mainHeadingAnimConfig } from "./animationConfigs";
 import styles from "./introAnimation.module.scss";
 import classNames from "classnames";
+import { Typography } from "@components/base/Typography";
 
 const animatedTextColor = [
   "bg-clip-text",
@@ -26,13 +27,13 @@ export function IntroAnimation() {
     <div
       className={classNames(
         "transition-colors",
-        "font-extrabold",
         "font-serif",
         "text-4xl",
         "md:text-6xl",
         "subpixel-antialiased",
         "w-full",
         "flex flex-col items-center justify-center",
+        "mt-4",
       )}
     >
       <div
@@ -40,12 +41,14 @@ export function IntroAnimation() {
           "flex flex-col items-center  w-full h-36 md:h-auto overflow-hidden",
         )}
       >
-        <animated.div
-          style={mainHeadingAnimation}
-          className={classNames(animatedTextColor)}
-        >
-          I help companies
-        </animated.div>
+        <Typography variant={"h2"} size="xxl" noPadding>
+          <animated.div
+            style={mainHeadingAnimation}
+            className={classNames(animatedTextColor)}
+          >
+            I help companies
+          </animated.div>
+        </Typography>
         <AnimatedText animatedTextColor={animatedTextColor} />
       </div>
     </div>

@@ -24,7 +24,7 @@ export function NotableProject({
     >
       <div className="mb-2">
         <span>Client: </span>
-        <span className="font-normal">{project}</span>
+        <span>{project}</span>
       </div>
 
       <div className="pb-6">

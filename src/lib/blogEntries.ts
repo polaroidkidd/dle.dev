@@ -10,6 +10,7 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import rehypeRewrite from "rehype-rewrite";
+import remarkGfm from "remark-gfm";
 import type { RootContent } from "hast";
 
 export type INavbarBlogArticle = {
@@ -83,6 +84,7 @@ export async function getBlogEntry(slug: string): Promise<{ content: string }> {
       },
     })
     .use(rehypeHighlight)
+    .use(remarkGfm)
     .use(rehypeStringify)
     .process(text);
   return {

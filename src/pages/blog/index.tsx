@@ -2,6 +2,8 @@ import React from "react";
 import { ArticleCard } from "@components/articleCard/articleCard";
 import { getBlogEntries, getBlogMetaData } from "@lib/blogEntries";
 import type { GetStaticPropsResult, InferGetStaticPropsType } from "next/types";
+import type { IBlogMetaData } from "@model/github";
+import { sortBlogsByMostRecent } from "@utils/sortUtils";
 
 type IBlogArchive = {
   blogsMetaData: {
@@ -34,10 +36,7 @@ export async function getStaticProps(): Promise<
   GetStaticPropsResult<IBlogArchive>
 > {
   const blogEntries = await getBlogEntries();
-  const blogsMetaData: {
-    title: string;
-    publishedOn: string;
-  }[] = [];
+  const blogsMetaData: IBlogMetaData[] = [];
   for (const blogEntry of blogEntries) {
     const meta = await getBlogMetaData(blogEntry.name);
     blogsMetaData.push({
@@ -47,7 +46,9 @@ export async function getStaticProps(): Promise<
   }
 
   return {
-    props: { blogsMetaData },
+    props: {
+      blogsMetaData: blogsMetaData.sort(sortBlogsByMostRecent),
+    },
     revalidate: 60,
   };
 }

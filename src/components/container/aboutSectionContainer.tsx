@@ -18,7 +18,7 @@ export function AboutSectionContainer({
 }: IAboutSectionContainer) {
   const [isCollapsed, setIsCollapsed] = useState(isInitiallyCollapsed);
 
-  function toggleVisibility(event: MouseEvent<HTMLButtonElement>) {
+  function toggleVisibility(event: MouseEvent<HTMLDivElement>) {
     event.preventDefault();
     setIsCollapsed((ps) => !ps);
   }
@@ -26,14 +26,20 @@ export function AboutSectionContainer({
   return (
     <section>
       <div
-        className={classNames("flex", "relative", "justify-center", {
-          "border-b border-red-300": isCollapsable,
-        })}
+        className={classNames(
+          "cursor-pointer",
+          "flex",
+          "relative",
+          "justify-center",
+          {
+            "border-b border-red-300": isCollapsable,
+          },
+        )}
+        onClick={toggleVisibility}
       >
         <SectionTitle title={sectionTitle} />
         <ExpandCollapseSectionButton
           isCollapsable={isCollapsable}
-          toggleVisibility={toggleVisibility}
           isCollapsed={isCollapsed}
         />
       </div>
@@ -45,12 +51,10 @@ export function AboutSectionContainer({
 type IExpandCollapseSectionButton = {
   isCollapsable: boolean;
   isCollapsed: boolean;
-  toggleVisibility: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 function ExpandCollapseSectionButton({
   isCollapsable,
-  toggleVisibility,
   isCollapsed,
 }: IExpandCollapseSectionButton) {
   if (!isCollapsable) {
@@ -58,25 +62,23 @@ function ExpandCollapseSectionButton({
   }
 
   return (
-    <button
-      type="button"
+    <div
       className={classNames(
         "transition-all tracking-tighter absolute right-0 top-1/2 -translate-y-1/2  text-4xl",
         {
           "rotate-180": !isCollapsed,
         },
       )}
-      onClick={toggleVisibility}
     >
       <IconChevron width={25} />
-    </button>
+    </div>
   );
 }
 
 function SectionTitle({ title }: { title?: string }) {
   return title ? (
     <h2
-      className="pl-2 text-center text-2xl font-extralight  dark:text-neutral-50"
+      className="pl-2 text-center text-2xl"
       id={title?.toLowerCase().replaceAll(" ", "-")}
     >
       {title}

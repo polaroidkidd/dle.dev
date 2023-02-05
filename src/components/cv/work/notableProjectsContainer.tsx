@@ -19,7 +19,7 @@ export function NotableProjectsContainer({
 
   return (
     <>
-      <h2 className="font-normal block border-b border-b-red-100 mb-2 pb-0 dark:text-neutral-50">
+      <h2 className="block border-b border-b-red-100 mb-2 pb-0">
         Notable Projects
       </h2>
       {notableProjects.map(

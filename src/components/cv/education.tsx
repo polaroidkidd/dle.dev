@@ -20,7 +20,7 @@ export function Education({
   return (
     <div className="flex relative mb-2">
       <div className="mt-3 w-full">
-        <div className="mb-2 text-lg font-extralight text-center w-full my-4">
+        <div className="mb-2 text-lg text-center w-full my-4">
           {url ? (
             <a
               href={url}
@@ -50,8 +50,8 @@ function Thesis({ thesis }: { thesis?: string }) {
 
   return (
     <>
-      <div className="py-2 font-extralight">Thesis</div>
-      <div className="text-sm font-light">{thesis}</div>
+      <div className="py-2">Thesis</div>
+      <div className="text-sm">{thesis}</div>
     </>
   );
 }

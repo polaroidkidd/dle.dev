@@ -1,6 +1,7 @@
 import { animated, config, useSpring } from "@react-spring/web";
 import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import { Typography } from "@components/base/Typography";
 
 function Text({
   text,
@@ -39,12 +40,14 @@ function Text({
   );
 
   return (
-    <animated.div
-      style={spring}
-      className={classNames("text-center md:text-left pb-2", animatedTextColor)}
-    >
-      {text}
-    </animated.div>
+    <Typography variant={"h2"} size="xxl" noPadding>
+      <animated.div
+        style={spring}
+        className={classNames("text-center", "pb-2", animatedTextColor)}
+      >
+        {text}
+      </animated.div>
+    </Typography>
   );
 }
 

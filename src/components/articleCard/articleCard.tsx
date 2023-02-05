@@ -29,21 +29,17 @@ export function ArticleCard({ date, title, isLast = false }: IArticleCard) {
           "dark:hover:border-red-200 dark:bg-neutral-800",
           "dark:border-transparent",
           "dark:hover:border-red-300",
-          "dark:bg-neutral-800 dark:text-neutral-100",
+          "dark:bg-neutral-800",
         )}
       >
-        <div className="font-bold text-lg ">
+        <div className="text-lg ">
           {title
             .split("-")
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(" ")}
         </div>
         <div
-          className={classNames(
-            "p-1",
-            "font-thin text-xs",
-            "absolute -top-7 -right-0.5",
-          )}
+          className={classNames("p-1", "text-xs", "absolute -top-7 -right-0.5")}
         >
           {new Date(date).toDateString()}
         </div>

@@ -7,6 +7,8 @@ import classNames from "classnames";
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import type { GetStaticPropsResult, InferGetStaticPropsType } from "next/types";
+import { Typography } from "@components/base/Typography";
+import { sortBlogsByMostRecent } from "@utils/sortUtils";
 
 type IHome = {
   blogsMetaData: {
@@ -24,7 +26,7 @@ export default function Home({
         title="Daniel Einars | Web-Dev"
         description="I build web things, consult and walk my dog."
       />
-      <div className={classNames("flex flex-col items-center")}>
+      <div className={classNames("flex", "flex-col", "items-center")}>
         <div
           className={classNames(
             "rounded-full",
@@ -53,9 +55,14 @@ export default function Home({
         <IntroAnimation />
       </div>
 
-      <h2 className="w-full text-2xl mt-10 text-center pb-0 underline">
+      <Typography
+        variant="h2"
+        size="xl"
+        align="center"
+        format={["underline", "strong"]}
+      >
         Latest articles
-      </h2>
+      </Typography>
       <div
         className="container max-w-screen-sm pb-10 flex flex-col justify-center items-stretch pt-10"
         data-cy="article-container"
@@ -89,7 +96,9 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<IHome>> {
   }
 
   return {
-    props: { blogsMetaData: blogsMetaData.slice(0, 4) },
+    props: {
+      blogsMetaData: blogsMetaData.sort(sortBlogsByMostRecent).slice(0, 4),
+    },
     revalidate: 60,
   };
 }

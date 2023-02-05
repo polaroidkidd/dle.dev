@@ -1,8 +1,6 @@
 import React from "react";
-import { ThemeConstants } from "@services/theme/themeConstants";
 import { getBlogEntries, getBlogEntry } from "@lib/blogEntries";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
-import classNames from "classnames";
 import { NextSeo } from "next-seo";
 import type {
   GetStaticPropsContext,
@@ -10,6 +8,7 @@ import type {
   InferGetStaticPropsType,
 } from "next/types";
 import type { ParsedUrlQuery } from "querystring";
+
 type IBlogProps = {
   content: string | null;
   title: string | null;
@@ -22,9 +21,7 @@ export default function Blog({
   return (
     <div>
       <NextSeo title={title || "Daniel Einars | Web-Dev"} />
-      <div className={classNames(ThemeConstants.PRIMARY_TEXT_COLOR)}>
-        <div dangerouslySetInnerHTML={{ __html: content ?? "" }} />
-      </div>
+      <div dangerouslySetInnerHTML={{ __html: content ?? "" }} />
     </div>
   );
 }
