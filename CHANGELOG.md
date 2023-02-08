@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/polaroidkidd/dle.dev/compare/v1.9.2...v1.10.0) (2023-02-08)
+
+
+### Features
+
+* increase number of blog entries on homepage ([771a572](https://github.com/polaroidkidd/dle.dev/commit/771a572e7c1a614901aba8553ef11b7bcf78aae7))
+
 ### [1.9.2](https://github.com/polaroidkidd/dle.dev/compare/v1.9.1...v1.9.2) (2023-02-05)
 
 
