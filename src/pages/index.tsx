@@ -97,7 +97,7 @@ export async function getStaticProps(): Promise<GetStaticPropsResult<IHome>> {
 
   return {
     props: {
-      blogsMetaData: blogsMetaData.sort(sortBlogsByMostRecent).slice(0, 4),
+      blogsMetaData: blogsMetaData.sort(sortBlogsByMostRecent),
     },
     revalidate: 60,
   };
