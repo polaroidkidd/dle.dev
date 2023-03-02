@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/polaroidkidd/dle.dev/compare/v1.11.0...v1.12.0) (2023-03-02)
+
+
+### Features
+
+* csp headers and performance improvements ([5c8fc07](https://github.com/polaroidkidd/dle.dev/commit/5c8fc0708c4f81cb69fc8fc57dbad260a902eddd))
+
 ## [1.11.0](https://github.com/polaroidkidd/dle.dev/compare/v1.10.0...v1.11.0) (2023-02-14)
 
 
