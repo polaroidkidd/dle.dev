@@ -8,9 +8,7 @@ const isDev = process.env.NODE_ENV === "development";
 const ContentSecurityPolicy = `
   default-src 'none';
   script-src ${isDev ? `'unsafe-inline' 'unsafe-eval'` : "self"} ;
-  script-src-elem 'self' https://brain.dle.dev/js/script.js ${
-    isDev && "unsafe-inline"
-  } ;
+  script-src-elem 'self' 'unsafe-inline' https://brain.dle.dev/js/script.js ;
   
   style-src 'self' 'unsafe-inline';
   style-src-elem 'self' 'unsafe-inline';
@@ -29,7 +27,6 @@ const ContentSecurityPolicy = `
   frame-ancestors 'none';
   form-action 'none';
   block-all-mixed-content;
-  disown-opener; 
   upgrade-insecure-requests;
 `;
 

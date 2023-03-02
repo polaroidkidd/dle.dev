@@ -43,6 +43,7 @@ export default function Home({
           )}
         >
           <Image
+            priority={true}
             src={avatar}
             alt="avatar"
             style={{

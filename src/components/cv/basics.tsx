@@ -62,6 +62,7 @@ export function Basics({ profiles, name }: IBasics) {
         </div>
         <div className="flex justify-center items-center">
           <Image
+            priority={true}
             src={avatar}
             alt="avatar"
             className={"rounded-full border border-red-300 w-32"}
