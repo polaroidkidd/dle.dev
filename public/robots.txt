@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /cdn-cgi/
-Allow: /
-
-Sitemap: http://www.dle.dev/sitemap.xml

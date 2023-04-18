@@ -191,3 +191,25 @@ dist
 .pnp.*
 
 .git
+
+# .dockerignore
+
+.vscode
+.husky
+.svelte-kit
+build
+
+node_modules
+
+.git
+.gitattributes
+
+.eslintignore
+.eslintrc.cjs
+
+.prettierrc
+.pretieriignore
+
+README.md
+
+Dockerfile

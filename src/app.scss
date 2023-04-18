@@ -1,0 +1,129 @@
+@use "sass:meta";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	scroll-padding-top: 4rem;
+}
+
+pre,
+code {
+	white-space: pre-wrap;
+	overflow-x: auto;
+}
+.hljs {
+	display: inline-block;
+	overflow-x: scroll;
+	padding: 0.5em;
+	padding-right: 100%;
+	background: #002b36;
+	color: #839496;
+	-webkit-text-size-adjust: none;
+	@apply rounded;
+	@apply border;
+	@apply border-neutral-300  dark:border-amber-100;
+	@apply my-2;
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		@apply py-4;
+		@apply text-neutral-800;
+		@apply dark:text-neutral-100;
+		@apply font-bold #{!important};
+	}
+
+	a.toc-link.toc-link-h#{$i} {
+		@apply text-blue-700 dark:text-blue-400;
+	}
+
+	a.toc-link.toc-link-h#{$i}:visited {
+		@apply text-blue-500 dark:text-blue-700;
+	}
+	a.toc-link.toc-link-h#{$i}:hover {
+		@apply text-blue-600 dark:text-blue-600;
+	}
+}
+
+p > a {
+	@apply text-blue-700 dark:text-blue-400;
+}
+
+p > a {
+	@apply text-blue-500 dark:text-blue-700;
+}
+p > a {
+	@apply text-blue-600 dark:text-blue-600;
+}
+
+li {
+	@apply py-0.5 dark:text-neutral-50;
+}
+
+p,
+ul,
+ol,
+a {
+	@apply font-light #{!important};
+}
+
+nav.toc {
+	ol {
+		@apply list-none;
+		padding: 0;
+	}
+}
+
+ol {
+	@apply list-decimal;
+	padding: 0.5rem 0 0 2.5rem !important;
+	li {
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
+	}
+}
+ul {
+	@apply list-disc #{!important};
+	padding: 0.5rem 0 0 2.5rem !important;
+	li {
+		padding-top: 0.25rem;
+		padding-bottom: 0.25rem;
+	}
+}
+
+h1 {
+	@apply text-2xl #{!important};
+	@apply font-bold #{!important};
+}
+
+p {
+	@apply font-thin;
+	@apply text-neutral-800;
+	@apply dark:text-neutral-100;
+	@apply text-base;
+}
+nav.toc {
+	@apply rounded border border-y-neutral-200 dark:border-neutral-700 p-3 bg-neutral-100 dark:bg-neutral-800;
+}
+nav.toc:before {
+	content: "Table of Contents";
+	@apply text-blue-600 dark:text-blue-400 text-lg font-bold;
+}
+
+blockquote {
+	position: relative;
+	left: 0.75rem;
+
+	max-width: 90%;
+	border-left: 0.2rem solid #ccc;
+	padding: 0.5rem;
+	margin: 5rem;
+}
+
+blockquote p {
+	display: inline;
+	font-style: italic;
+}
