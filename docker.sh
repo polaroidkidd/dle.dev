@@ -14,7 +14,7 @@ VERSION=$(node -e "console.log(require('./package.json').version);")
 
 TAG=${HOST}/${NAME}
 TAG_VERSION=${TAG}:${VERSION}
-TAG_LATEST=${TAG}:svelte
+TAG_LATEST=${TAG}:latest
 
 echo "$TAG_VERSION"
 
