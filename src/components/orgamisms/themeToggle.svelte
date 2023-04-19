@@ -1,7 +1,7 @@
 <script lang="ts">
 	import classNames from "classnames";
 	import Cookies from "js-cookie";
-	import { onMount } from "svelte";
+
 	export let shouldRender: boolean;
 	function loadTheme(): boolean {
 		const themeCookie = Cookies.get("theme");
@@ -29,6 +29,15 @@
 			secure: true,
 			expires: expires
 		});
+
+		const faviconEl: HTMLElement | null =
+			document.getElementById("favicon-icon");
+		if (isDarkTheme) {
+			faviconEl?.setAttribute("href", "favicon-light.svg");
+		} else {
+			faviconEl?.setAttribute("href", "favicon-dark.svg");
+		}
+
 		isDarkTheme = !isDarkTheme;
 	}
 	$: isDarkTheme = loadTheme();
