@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/polaroidkidd/dle.dev/compare/v1.12.0...v1.14.0) (2023-04-19)
+
+
+### Features
+
+* Migrate from NextJS to Svelte ([da93bd4](https://github.com/polaroidkidd/dle.dev/commit/da93bd405265c780ac4e2bbba6616d4a75a9bd59))
+* sync favicon icon style with current theme ([81c3019](https://github.com/polaroidkidd/dle.dev/commit/81c301912d7e393274ddbbfb991cb5931dee7ef9))
+
 ## [1.13.0](https://github.com/polaroidkidd/dle.dev/compare/v1.12.0...v1.13.0) (2023-04-18)
 
 
