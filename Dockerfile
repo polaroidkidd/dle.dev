@@ -2,15 +2,13 @@
 FROM node:16-alpine as DEPENDENCY
 
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN npm install -g pnpm@7.32.0;
-RUN pnpm install --frozen-lockfile
-
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 FROM node:16-alpine as BUILDER
 WORKDIR /app
 COPY --from=DEPENDENCY /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+RUN yarn run build
 
 
 FROM node:16-alpine as RUNNER
