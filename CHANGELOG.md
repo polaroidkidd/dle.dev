@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/polaroidkidd/dle.dev/compare/v1.14.0...v1.15.0) (2023-04-20)
+
+
+### Features
+
+* migrate to yarn ([7488a0e](https://github.com/polaroidkidd/dle.dev/commit/7488a0e2a33c07c3061d0aed5daea6f3633409c7))
+
 ## [1.14.0](https://github.com/polaroidkidd/dle.dev/compare/v1.12.0...v1.14.0) (2023-04-19)
 
 
