@@ -35,13 +35,14 @@
 	import IconTailwind from "@components/atoms/icons/IconTailwind.svelte";
 	import Typography from "@components/atoms/typography/typography.svelte";
 	import IconQuestionCircle from "@components/atoms/icons/IconQuestionCircle.svelte";
+	import type { SvelteComponent } from "svelte";
 	export let technologies: string[] = [];
 	export let hideTitle = false;
 
 	const parsedTechnologies = technologies.map((tech) =>
 		tech.replaceAll(" ", "-").toLocaleLowerCase()
 	);
-	const TechLogos: Record<string, any> = {
+	const TechLogos: Record<string, unknown> = {
 		android: IconAndroid,
 		docker: IconDocker,
 		github: IconGithub,
@@ -77,13 +78,19 @@
 		return parsedTechnologies.includes(key);
 	});
 
-	const usedLogos = logoKeys.map((key) => {
+	const usedLogos: Record<
+		string,
+		{ name: string; component: typeof SvelteComponent }
+	> = logoKeys.reduce((acc, curr) => {
 		return {
-			component:
-				TechLogos[key] !== undefined ? TechLogos[key] : TechLogos["unknown"],
-			text: key
+			...acc,
+			[curr]: {
+				name: curr,
+
+				component: TechLogos[curr]
+			}
 		};
-	});
+	}, {});
 </script>
 
 {#if !hideTitle}
@@ -93,10 +100,10 @@
 <div
 	class="flex flex-row py-2 w-1/2 flex-wrap mx-auto justify-center items-center"
 >
-	{#each usedLogos as { component, text }, i}
+	{#each Object.values(usedLogos) as { component, name }, i}
 		<div class="flex flex-col p-6">
 			<svelte:component this={component} class="fill-red-500 h-8 my-1" />
-			<Typography align="center">{text}</Typography>
+			<Typography align="center">{name}</Typography>
 		</div>
 	{/each}
 </div>

@@ -46,8 +46,8 @@ export const ssrGithubHeaders = {
 };
 
 export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
-	const response = await fetch(BLOG_ENTRIES_URL as string, ssrGithubHeaders);
-	return await response.json();
+	const response = await fetch(BLOG_ENTRIES_URL, ssrGithubHeaders);
+	return (await response.json()) as IGithubArticleMetaData[];
 }
 
 export async function getBlogEntry(slug: string): Promise<string> {
@@ -71,7 +71,7 @@ export async function getBlogMetaData(
 	fileName: string
 ): Promise<ICommitMeta[]> {
 	const response = await fetch(
-		`${GITHUB_BLOG_META as string}/${fileName}`,
+		`${GITHUB_BLOG_META}/${fileName}`,
 		ssrGithubHeaders
 	);
 	return (await response.json()) as ICommitMeta[];

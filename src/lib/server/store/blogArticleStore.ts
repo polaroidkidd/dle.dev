@@ -24,7 +24,7 @@ function createBlogArticleStore() {
 
 			return {
 				title: slug,
-				content: getBlogEntryContent(slug.toLowerCase() as string)
+				content: getBlogEntryContent(slug.toLowerCase())
 			};
 		});
 
@@ -40,12 +40,14 @@ function createBlogArticleStore() {
 
 		store.set(updatedContentMap);
 		timeoutId = setTimeout(
+			// eslint-disable-next-line @typescript-eslint/no-misused-promises
 			refreshStore,
 			dayjs.duration({ hours: 1 }).asMilliseconds()
 		);
 	};
-	refreshStore();
-
+	refreshStore().catch((error) => {
+		console.error(error);
+	});
 	return {
 		subscribe: store.subscribe,
 		set: store.set,
@@ -56,9 +58,7 @@ function createBlogArticleStore() {
 		updateStoreAndGetArticle: async (slug: string) => {
 			try {
 				console.info(`${dayjs().toISOString()} -- fetching article: "${slug}"`);
-				const response = await getBlogEntryContent(
-					slug.toLowerCase() as string
-				);
+				const response = await getBlogEntryContent(slug.toLowerCase());
 
 				store.update((store) => {
 					store[slug] = response;

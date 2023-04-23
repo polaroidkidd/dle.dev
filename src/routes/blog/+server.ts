@@ -4,8 +4,7 @@ import {
 	type IGithubArticleMetaData
 } from "@lib/server/blog";
 import { json } from "@sveltejs/kit";
-
-import type { PageServerLoad } from "./$types";
+import type { RequestEvent } from "../$types";
 
 let metaData: IGithubArticleMetaData[];
 export type IBlogContent = {
@@ -20,7 +19,7 @@ const contentMap: IBlogContent[] = [];
 
 let timestamp = Date.now();
 
-export const GET = async function search({ url }) {
+export const GET = async function search({ url }: RequestEvent) {
 	const query = url.searchParams.get("q");
 	const now = Date.now();
 	const diff = new Date(now - timestamp).getSeconds();

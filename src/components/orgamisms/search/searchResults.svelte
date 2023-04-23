@@ -1,19 +1,44 @@
+<script lang="ts" context="module">
+	type ISearchResult = { article: string; chapters: IChapterTitleAndTag[] };
+
+	type IChapterTitleAndTag = {
+		title: string;
+		tag: string;
+	};
+	type IGroupedResults = Record<string, ISearchResult>;
+</script>
+
 <script lang="ts">
 	import classNames from "classnames";
 	import { browser } from "$app/environment";
-	type IGroupedResults = Record<string, string[]>;
 
 	export let results: string[] = [];
 	export let hasNoResults: boolean;
 	$: groupedResults = results.reduce<IGroupedResults>((acc, curr) => {
 		const [title, chapter] = curr.split("#");
-
-		if (acc[title]) {
-			acc[title].push(chapter);
-		} else {
-			acc[title] = [chapter];
-		}
-		return acc;
+		const parsedTitle = title
+			.split("-")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(" ");
+		const parsedChapter = chapter
+			.replace(/[0-9]/g, "")
+			.split("-")
+			.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+			.join(" ")
+			.trim();
+		const chapterTitleAndTag = {
+			title: parsedChapter,
+			tag: chapter.replaceAll("--", "-")
+		};
+		return {
+			...acc,
+			[title]: {
+				article: parsedTitle,
+				chapters: acc[title]
+					? [...acc[title].chapters, chapterTitleAndTag]
+					: [chapterTitleAndTag]
+			}
+		};
 	}, {});
 	$: {
 		if (browser) {
@@ -51,17 +76,14 @@
 			)}
 		>
 			<div class={classNames("flex-grow h-full min-h-fit overflow-y-auto")}>
-				{#each Object.keys(groupedResults) as blog, index}
+				{#each Object.keys(groupedResults) as blog}
 					<div>
 						<h2 class="font-black px-5 pb-0">
-							{blog
-								.split("-")
-								.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-								.join(" ")}
+							{groupedResults[blog].article}
 						</h2>
 
-						{#each groupedResults[blog] as chapter}
-							<a href={`/blog/${blog}#${chapter.replace(/--/g, "-")}`}>
+						{#each groupedResults[blog].chapters as { title, tag }}
+							<a href={`/blog/${blog}#${tag}`}>
 								<div
 									class={classNames(
 										"cursor-pointer",
@@ -78,13 +100,7 @@
 									)}
 								>
 									<div>
-										{chapter
-											.replace(/[0-9]/g, "")
-											.split("-")
-											.map(
-												(word) => word.charAt(0).toUpperCase() + word.slice(1)
-											)
-											.join(" ")}
+										{title}
 									</div>
 								</div>
 							</a>

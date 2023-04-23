@@ -4,7 +4,7 @@ import type { PageServerLoad } from "./$types";
 import { blogStore } from "@lib/server/store/blogMetaDataStore";
 import type { IBlogMetaData } from "@model/github";
 
-export const load = (async ({ setHeaders }) => {
+export const load = (({ setHeaders }) => {
 	const blogTitlesAnLastEditDates: IBlogMetaData[] | undefined =
 		blogStore.getMeta();
 

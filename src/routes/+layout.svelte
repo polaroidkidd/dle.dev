@@ -7,8 +7,8 @@
 	import Head from "@components/orgamisms/seo/head.svelte";
 	import { fly } from "svelte/transition";
 	import { cubicIn, cubicOut } from "svelte/easing";
-
-	export let data;
+	import type { LayoutData } from "./$types";
+	export let data: LayoutData;
 
 	const duration = 300;
 	const delay = duration + 100;

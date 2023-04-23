@@ -22,12 +22,15 @@ function createCvStore() {
 
 			set(cv);
 			timeoutId = setTimeout(
+				// eslint-disable-next-line @typescript-eslint/no-misused-promises
 				refreshStore,
 				dayjs.duration({ hours: 1 }).asMilliseconds()
 			);
 		};
 
-		refreshStore();
+		refreshStore().catch((error) => {
+			console.error(error);
+		});
 		return () => clearTimeout(timeoutId);
 	});
 	return {

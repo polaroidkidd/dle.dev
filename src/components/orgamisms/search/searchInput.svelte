@@ -31,7 +31,8 @@
 			}
 		}
 	}
-	$: results = [];
+	let results: Array<string> = [];
+
 	$: mobileSearchVisibillity(innerWidth);
 	$: if ($navigating?.to !== $navigating?.from) {
 		showMobileSearch = false;
@@ -44,8 +45,8 @@
 		if (query !== null) {
 			isLoading = true;
 			const response = await fetch(`/blog?q=${searchQuery}`);
-			results = await response.json();
 			isLoading = false;
+			results = (await response.json()) as [];
 		}
 	}, 150);
 

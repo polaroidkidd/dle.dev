@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<script is:inline>
+			const themeCookie = document.cookie
+				.split("; ")
+				.find((row) => row.startsWith("theme="))
+				?.split("=")[1];
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<script is:inline>
-		const themeCookie = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith("theme="))
-			?.split("=")[1];
+			if (themeCookie && themeCookie === "dark") {
+				document.querySelector("html")?.classList.add("dark");
+			}
+		</script>
+		%sveltekit.head%
+	</head>
 
-		if (themeCookie && themeCookie === "dark") {
-			document.querySelector("html")?.classList.add("dark")
-		}
-	</script>
-	%sveltekit.head%
-</head>
-
-<body data-sveltekit-preload-data="hover" class="bg-white dark:bg-neutral-900 transition-colors">
-
-	<div style="display: contents">%sveltekit.body%</div>
-	<script defer data-domain="svelte.dle.dev" src="https://brain.dle.dev/js/script.js"></script>
-</body>
-
+	<body
+		data-sveltekit-preload-data="hover"
+		class="bg-white dark:bg-neutral-900 transition-colors"
+	>
+		<div style="display: contents">%sveltekit.body%</div>
+		<script
+			defer
+			data-domain="svelte.dle.dev"
+			src="https://brain.dle.dev/js/script.js"
+		></script>
+	</body>
 </html>

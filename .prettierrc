@@ -2,7 +2,7 @@
 	"useTabs": true,
 	"singleQuote": false,
 	"trailingComma": "none",
-	"htmlWhitespaceSensitivity":"ignore",
+	"htmlWhitespaceSensitivity": "ignore",
 	"printWidth": 80,
 	"plugins": ["prettier-plugin-svelte"],
 	"pluginSearchDirs": ["."],

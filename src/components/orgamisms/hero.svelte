@@ -66,6 +66,7 @@
 							duration: 500
 						}}
 						on:introend={() => {
+							// eslint-disable-next-line @typescript-eslint/no-floating-promises
 							new Promise(() => {
 								setTimeout(() => {
 									if (current < tags.length - 1) {
