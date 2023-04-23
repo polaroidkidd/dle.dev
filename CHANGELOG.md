@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/polaroidkidd/dle.dev/compare/v1.15.0...v1.16.0) (2023-04-23)
+
+
+### Features
+
+* fixed prettier and typescript linting and errors ([32f02e7](https://github.com/polaroidkidd/dle.dev/commit/32f02e7137914ce2eef3f26a87e7f9f6808e288c))
+
 ## [1.15.0](https://github.com/polaroidkidd/dle.dev/compare/v1.14.0...v1.15.0) (2023-04-20)
 
 
