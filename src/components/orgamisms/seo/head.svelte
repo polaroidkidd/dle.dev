@@ -2,7 +2,7 @@
 	import Favicon from "./favicon.svelte";
 
 	export let title = "Daniel L. Einars | Web Dev";
-	export let description = "I build web things, consult and walk my dog.";
+	export let description = "Bridging the gap between business and engineering.";
 </script>
 
 <svelte:head>

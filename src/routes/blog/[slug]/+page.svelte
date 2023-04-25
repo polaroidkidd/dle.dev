@@ -1,14 +1,55 @@
 <script lang="ts">
 	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
 	import type { PageData } from "./$types";
+	import IconArrowUp from "@components/atoms/icons/IconArrowUp.svelte";
 	import github from "svelte-highlight/styles/github";
+	import classNames from "classnames";
 
 	export let data: PageData;
+
+	export let showOnPx = 150;
+	let hidden = true;
+
+	function goTop() {
+		document.body.scrollIntoView();
+	}
+
+	function scrollContainer() {
+		return document.documentElement || document.body;
+	}
+
+	function handleOnScroll() {
+		if (!scrollContainer()) {
+			return;
+		}
+
+		if (scrollContainer().scrollTop > showOnPx) {
+			hidden = false;
+		} else {
+			hidden = true;
+		}
+	}
 </script>
 
 <svelte:head>
 	{@html github}
 </svelte:head>
+<svelte:window on:scroll={handleOnScroll} />
+<button class:hidden on:click={goTop}>
+	<IconArrowUp
+		class={classNames(
+			"transition-colors",
+			"fixed",
+			"cursor-pointer",
+			"sm:bottom-1",
+			"sm:right-1",
+			"bottom-1",
+			"right-1",
+			"stroke-red-300",
+			"hover:stroke-red-600"
+		)}
+	/>
+</button>
 {#if data.article !== undefined}
 	{@html data.article}
 {:else}
