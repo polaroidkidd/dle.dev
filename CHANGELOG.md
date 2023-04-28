@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.17.0](https://github.com/polaroidkidd/dle.dev/compare/v1.16.1...v1.17.0) (2023-04-28)
+
+
+### Features
+
+* implement scroll-back-up-error ([ec6956f](https://github.com/polaroidkidd/dle.dev/commit/ec6956f100134cc6cd8608c1524ffaf06140b295))
+* update seo search result sub heading ([b0b3dd5](https://github.com/polaroidkidd/dle.dev/commit/b0b3dd528201c7fa1cb5679e6edf0de3a9d1bede))
+
 ### [1.16.1](https://github.com/polaroidkidd/dle.dev/compare/v1.16.0...v1.16.1) (2023-04-23)
 
 
