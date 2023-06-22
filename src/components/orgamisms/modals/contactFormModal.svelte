@@ -9,6 +9,7 @@
 	import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
 
 	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
+	import classNames from "classnames";
 
 	export let formData: SuperValidated<IContactSchema>;
 	let isSubmitting = false;
@@ -43,11 +44,13 @@
 			} else {
 				modalStore.trigger(error);
 			}
+			document?.body.classList.remove("overflow-hidden");
 		}
 	});
 
 	function closeModal() {
 		modalStore.clear();
+		document?.body.classList.remove("overflow-hidden");
 	}
 </script>
 
@@ -55,7 +58,12 @@
 	action="/contact?/message"
 	{enhance}
 	method="POST"
-	class="w-modal relative bg-surface-300 dark:bg-surface-800 rounded-lg  pt-10"
+	class={classNames(
+		"relative scroll-p-8",
+		"",
+		"w-screen -m-4 rounded-none mt-16",
+		"md:dark:bg-surface-800 md:rounded-lg  md:pt-10 md:m-0 md:w-modal md:h-min md:bg-surface-300 md:mt-0"
+	)}
 >
 	<Text
 		type="text"
@@ -85,12 +93,11 @@
 		bind:value={$form.text}
 		invalidData={$errors.text}
 	/>
-	<div class="flex justify-center gap-4">
+	<div class="flex justify-around pt-5">
 		<SimpleButton
 			type="reset"
 			ariaLabel="Close Contact Modal"
 			disabled={isSubmitting}
-			class=" mt-4 w-full flex justify-center"
 			onClick={closeModal}
 		>
 			Cancel
@@ -99,7 +106,6 @@
 			type="submit"
 			disabled={isSubmitting}
 			ariaLabel="Submit Contact Form"
-			class=" mt-4 w-full flex justify-center"
 		>
 			{#if isSubmitting}
 				<IconLoading class="h-6 fill-red-950" />

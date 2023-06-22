@@ -1,8 +1,9 @@
 <script lang="ts">
 	import "@fontsource/lato";
 	import "@fontsource/merriweather";
-	import "../theme.scss";
 	import "@skeletonlabs/skeleton/styles/skeleton.css";
+
+	import "../theme.scss";
 	import "../app.scss";
 
 	import classNames from "classnames";

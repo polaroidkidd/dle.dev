@@ -17,17 +17,7 @@
 	aria-label={ariaLabel}
 	formaction={formAction}
 	on:click={onClick}
-	class={classNames(
-		"transition-colors",
-		"bg-transparent border-white border",
-		"hover:bg-white",
-		"text-white hover:text-red-700",
-		"font-bold",
-		"py-2",
-		"px-4",
-		"rounded",
-		clazz
-	)}
+	class="btn variant-filled"
 	tabindex={tabIndex}
 	{disabled}
 >

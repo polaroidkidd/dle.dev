@@ -18,6 +18,7 @@
 	};
 
 	function openModal() {
+		document?.body.classList.add("overflow-hidden");
 		modalStore.trigger(modal);
 	}
 

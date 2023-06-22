@@ -13,7 +13,7 @@
 	use:enhance
 	{method}
 	{action}
-	class={classNames("px-8", "pt-6", "pb-8", "mb-4", clazz)}
+	class={classNames("px-8", "pt-6", "pb-8", clazz)}
 >
 	<slot />
 </form>
