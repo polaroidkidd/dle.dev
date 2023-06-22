@@ -23,7 +23,7 @@
 	$: current = 0;
 </script>
 
-<div class={classNames("flex", "flex-col", "items-center  min-h-[600px]")}>
+<div class={classNames("flex", "flex-col", "items-center", "min-h-[600px]")}>
 	<Avatar alt="" imageSrc={avatar} />
 	{#if ready}
 		<div in:fly={{ x: 200, duration: 500 }}>
@@ -34,7 +34,7 @@
 				weight="bold"
 				align="center"
 				variant="h2"
-				customClasses={classNames(
+				class={classNames(
 					"bg-clip-text",
 					"text-transparent",
 					"bg-gradient-to-b",
@@ -84,7 +84,7 @@
 							size="4xl"
 							weight="bold"
 							variant="h2"
-							customClasses={classNames(
+							class={classNames(
 								"bg-clip-text",
 								"text-transparent",
 								"bg-gradient-to-b",

@@ -1,8 +1,17 @@
-export type IVariant = "h1" | "h2" | "h3" | "p" | "span";
+export type IVariant = "h1" | "h2" | "h3" | "p" | "span" | "div";
 export type IWeight = "thin" | "light" | "medium" | "bold" | "extrabold";
 export type IAlign = "left" | "center" | "right" | "justify" | "start" | "end";
 export type IFamily = "serif" | "sans" | "mono";
-export type ISize = "sm" | "base" | "lg" | "2xl" | "3xl" | "4xl";
+export type ISize =
+	| "sm"
+	| "base"
+	| "lg"
+	| "2xl"
+	| "3xl"
+	| "4xl"
+	| "5xl"
+	| "6xl"
+	| "7xl";
 export type ISpacing = 0 | 1 | 2 | 3 | 4 | 5;
 
 function getFontWeight(weight: IWeight) {
@@ -78,6 +87,15 @@ function getTextSize(size: ISize) {
 		}
 		case "4xl": {
 			return "text-4xl";
+		}
+		case "5xl": {
+			return "text-5xl";
+		}
+		case "6xl": {
+			return "text-6xl";
+		}
+		case "7xl": {
+			return "text-7xl";
 		}
 		default: {
 			return "text-base";

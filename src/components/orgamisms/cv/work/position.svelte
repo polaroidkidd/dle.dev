@@ -19,7 +19,7 @@
 						align="center"
 						size="lg"
 						variant="h2"
-						customClasses={classNames(
+						class={classNames(
 							"transition-all",
 							"text-red-600",
 							"underline",

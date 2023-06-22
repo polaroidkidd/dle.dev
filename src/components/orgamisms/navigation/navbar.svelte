@@ -3,11 +3,24 @@
 	import NavbarLink from "@components/orgamisms/navigation/navbarLink.svelte";
 	import ThemeToggle from "../themeToggle.svelte";
 	import SearchInput from "../search/searchInput.svelte";
+	import IconMail from "@components/atoms/icons/IconMail.svelte";
+	import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
 	let innerWidth = 0;
 
 	function toggleThemeButtonVisibillity(width: number) {
 		return width >= 640;
 	}
+
+	const modal: ModalSettings = {
+		type: "component",
+		// Pass the component registry key as a string:
+		component: "contact"
+	};
+
+	function openModal() {
+		modalStore.trigger(modal);
+	}
+
 	$: toggleThemeButtonVisibillity(innerWidth);
 	$: shouldShowDesktopThemeToggle = toggleThemeButtonVisibillity(innerWidth);
 </script>
@@ -34,8 +47,8 @@
 		class={classNames(
 			"hidden",
 			"sm:container",
-			"sm:max-w-6xl",
 			"sm:flex sm:flex-row",
+			"sm:items-center",
 			"sm:h-full",
 			"sm:justify-start"
 		)}
@@ -44,7 +57,21 @@
 		<NavbarLink text="blog" target="/blog" />
 		<NavbarLink text="cv" target="/cv" />
 		<SearchInput />
+
 		<ThemeToggle shouldRender={shouldShowDesktopThemeToggle} />
+		<button on:click={openModal}>
+			<IconMail
+				class={classNames(
+					"text-xl",
+					"py-2",
+					"cursor-pointer",
+					"transition-all",
+					"h-12 w-12",
+					"stroke-red-400",
+					"hover:stroke-red-600"
+				)}
+			/>
+		</button>
 	</div>
 
 	<!--{/*MOBILE NAVBAR*/}-->
@@ -68,6 +95,19 @@
 		<NavbarLink text="cv" target="/cv" />
 		<SearchInput />
 		<ThemeToggle shouldRender={!shouldShowDesktopThemeToggle} />
+		<button on:click={openModal}>
+			<IconMail
+				class={classNames(
+					"text-xl",
+					"py-2",
+					"cursor-pointer",
+					"transition-all",
+					"h-12 w-12",
+					"stroke-red-400",
+					"hover:stroke-red-600"
+				)}
+			/>
+		</button>
 	</div>
 	<!--	</div>-->
 </nav>

@@ -27,20 +27,12 @@
 </script>
 
 <AboutSectionContainer isCollapsable={false}>
-	<Basics
-		name={basics.name}
-		label={basics.label}
-		image={basics.image}
-		email={basics.email}
-		phone={basics.phone}
-		location={basics.location}
-		profiles={basics.profiles}
-	/>
+	<Basics name={basics.name} label={basics.label} profiles={basics.profiles} />
 </AboutSectionContainer>
 
 <AboutSectionContainer
-	isInitiallyCollapsed={true}
-	sectionTitle="Employment History"
+	isInitiallyCollapsed={false}
+	sectionTitle="Previous Work"
 >
 	{#each work as { startDate, endDate, url, name, summary, highlights, notableProjects, position, primaryTools, technology }}
 		<WorkContainer

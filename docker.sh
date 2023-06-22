@@ -15,9 +15,11 @@ VERSION=$(node -e "console.log(require('./package.json').version);")
 TAG=${HOST}/${NAME}
 TAG_VERSION=${TAG}:${VERSION}
 TAG_LATEST=${TAG}:latest
-
-echo "$TAG_VERSION"
-
+if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
+  echo "$TAG_VERSION"
+else
+  echo "$TAG_LATEST"
+fi
 if [[ -v NO_CACHE ]]; then
   echo "***************************************************"
   echo "****************** CLEAN BUILD ********************"
@@ -30,7 +32,9 @@ else
   docker build . -t "${TAG_LATEST}" -f ./Dockerfile --network="host"
 fi
 
-docker tag "${TAG_LATEST}" "${TAG_VERSION}"
+if [[ $(git rev-parse --abbrev-ref HEAD) == master ]]; then
+  docker tag "${TAG_LATEST}" "${TAG_VERSION}"
+fi
 
 if [[ -v PUSH ]]; then
   echo "***************************************************"

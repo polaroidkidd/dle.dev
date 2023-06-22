@@ -18,9 +18,11 @@
 
 	<body
 		data-sveltekit-preload-data="hover"
-		class="bg-white dark:bg-neutral-900 transition-colors"
+		class="transition-colors"
 	>
-		<div style="display: contents">%sveltekit.body%</div>
+		<div style="display: contents" class="h-full overflow-hidden">
+			%sveltekit.body%
+		</div>
 		<script
 			defer
 			data-domain="dle.dev"

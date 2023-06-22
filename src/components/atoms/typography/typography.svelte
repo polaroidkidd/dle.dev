@@ -17,7 +17,8 @@
 	export let padding: ISpacing = 0;
 	export let margin: ISpacing = 0;
 	export let size: ISize = "base";
-	export let customClasses = "";
+	let clazz = "";
+	export { clazz as class };
 	let fontWeight = fontUtils.getFontWeight(weight);
 	let textAlign = fontUtils.getTextAlign(align);
 	let fontType = fontUtils.getFontType(family);
@@ -35,7 +36,7 @@
 		textSize,
 		_padding,
 		_margin,
-		`${customClasses}`
+		clazz
 	)}
 >
 	<slot />

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import classNames from "classnames";
-	import Image from "@components/atoms/image.svelte";
+	import Image from "@components/atoms/assets/image.svelte";
 	export let imageSrc: string;
 	export let alt = "";
 </script>
@@ -17,7 +17,8 @@
 		"justify-center",
 		"w-60",
 		"mb-4 md:mb-0",
-		"overflow-hidden"
+		"overflow-hidden",
+		"m-1"
 	)}
 >
 	<Image {imageSrc} {alt} width={240} height={304} />

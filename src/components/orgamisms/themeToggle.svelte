@@ -89,6 +89,8 @@
 		</svg>
 	</button>
 	<!-- content here -->
+{:else}
+	<div class="w-[51px]" />
 {/if}
 
 <style lang="scss">
