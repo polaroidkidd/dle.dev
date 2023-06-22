@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.19.1](https://github.com/polaroidkidd/dle.dev/compare/v1.19.0...v1.19.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* update commitlint config to include dependabot MRs ([fd45ca6](https://github.com/polaroidkidd/dle.dev/commit/fd45ca6ec77cb5709ed943e7768f590211f72d47))
+
 ## [1.19.0](https://github.com/polaroidkidd/dle.dev/compare/v1.18.0...v1.19.0) (2023-06-22)
 
 
