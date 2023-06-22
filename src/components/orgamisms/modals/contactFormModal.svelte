@@ -7,12 +7,10 @@
 	import SimpleButton from "@components/atoms/buttons/simpleButton.svelte";
 	import { contactSchema, type IContactSchema } from "../../../schemas/contact";
 	import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
-	import IconClose from "@components/atoms/icons/IconClose.svelte";
+
 	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
 
 	export let formData: SuperValidated<IContactSchema>;
-	export let showClose = true;
-
 	let isSubmitting = false;
 	const success: ModalSettings = {
 		type: "alert",
@@ -39,7 +37,7 @@
 		},
 		onResult: ({ result }) => {
 			isSubmitting = false;
-			modalStore.close();
+			modalStore.clear();
 			if (result.status === 200) {
 				modalStore.trigger(success);
 			} else {
@@ -49,7 +47,7 @@
 	});
 
 	function closeModal() {
-		modalStore.close();
+		modalStore.clear();
 	}
 </script>
 
@@ -59,13 +57,6 @@
 	method="POST"
 	class="w-modal relative bg-surface-300 dark:bg-surface-800 rounded-lg  pt-10"
 >
-	{#if showClose}
-		<button on:click={closeModal} class="absolute -top-10 -right-10">
-			<IconClose
-				class="w-8 border-2 rounded-full bg-surface-900 hover:bg-red-500 transition-colors"
-			/>
-		</button>
-	{/if}
 	<Text
 		type="text"
 		fieldName="firstName"
@@ -94,14 +85,27 @@
 		bind:value={$form.text}
 		invalidData={$errors.text}
 	/>
-	<SimpleButton
-		disabled={isSubmitting}
-		class=" mt-4 w-full flex justify-center"
-	>
-		{#if isSubmitting}
-			<IconLoading class="h-6 fill-red-950" />
-		{:else}
-			Submit
-		{/if}
-	</SimpleButton>
+	<div class="flex justify-center gap-4">
+		<SimpleButton
+			type="reset"
+			ariaLabel="Close Contact Modal"
+			disabled={isSubmitting}
+			class=" mt-4 w-full flex justify-center"
+			onClick={closeModal}
+		>
+			Cancel
+		</SimpleButton>
+		<SimpleButton
+			type="submit"
+			disabled={isSubmitting}
+			ariaLabel="Submit Contact Form"
+			class=" mt-4 w-full flex justify-center"
+		>
+			{#if isSubmitting}
+				<IconLoading class="h-6 fill-red-950" />
+			{:else}
+				Submit
+			{/if}
+		</SimpleButton>
+	</div>
 </Form>
