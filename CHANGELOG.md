@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.20.0](https://github.com/polaroidkidd/dle.dev/compare/v1.19.2...v1.20.0) (2023-06-22)
+
+
+### Features
+
+* include cancel button next to submit button in form ([cc77bc9](https://github.com/polaroidkidd/dle.dev/commit/cc77bc959c685cb61712f29892c0be348f6cf437))
+
 ### [1.19.2](https://github.com/polaroidkidd/dle.dev/compare/v1.19.1...v1.19.2) (2023-06-22)
 
 ### [1.19.1](https://github.com/polaroidkidd/dle.dev/compare/v1.19.0...v1.19.1) (2023-06-22)
