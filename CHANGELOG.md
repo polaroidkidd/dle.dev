@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.21.0](https://github.com/polaroidkidd/dle.dev/compare/v1.20.0...v1.21.0) (2023-06-22)
+
+
+### Features
+
+* update contact form mobile design and usabillity ([f959cb7](https://github.com/polaroidkidd/dle.dev/commit/f959cb7ef6eae7a61d084859b34fed14d61681e0))
+
 ## [1.20.0](https://github.com/polaroidkidd/dle.dev/compare/v1.19.2...v1.20.0) (2023-06-22)
 
 
