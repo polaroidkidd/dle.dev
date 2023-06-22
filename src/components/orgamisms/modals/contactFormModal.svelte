@@ -59,10 +59,8 @@
 	{enhance}
 	method="POST"
 	class={classNames(
-		"relative scroll-p-8",
-		"",
-		"w-screen -m-4 rounded-none mt-16",
-		"md:dark:bg-surface-800 md:rounded-lg  md:pt-10 md:m-0 md:w-modal md:h-min md:bg-surface-300 md:mt-0"
+		"relative scroll-p-8 -m-4 rounded-none mt-16 w-modal",
+		"md:dark:bg-surface-800 md:rounded-lg md:pt-10 md:m-0 md:h-min md:bg-surface-300 md:mt-0"
 	)}
 >
 	<Text
