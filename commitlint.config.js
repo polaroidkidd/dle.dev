@@ -23,7 +23,8 @@ module.exports = {
 				"revert",
 				"style",
 				"test",
-				"wip"
+				"wip",
+				"deps-dev"
 			]
 		],
 		"scope-enum": [2, "always", ["frontend", "root"]]
