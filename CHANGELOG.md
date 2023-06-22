@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.21.1](https://github.com/polaroidkidd/dle.dev/compare/v1.21.0...v1.21.1) (2023-06-22)
+
+
+### Bug Fixes
+
+* contact form modal width on desktop ([6f694a1](https://github.com/polaroidkidd/dle.dev/commit/6f694a1d291ad5660d3299357a15262146f09c18))
+
 ## [1.21.0](https://github.com/polaroidkidd/dle.dev/compare/v1.20.0...v1.21.0) (2023-06-22)
 
 
