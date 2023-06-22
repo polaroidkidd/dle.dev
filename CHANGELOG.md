@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.19.0](https://github.com/polaroidkidd/dle.dev/compare/v1.18.0...v1.19.0) (2023-06-22)
+
+
+### Features
+
+* contact form & skeleton-ui ([0b9ca45](https://github.com/polaroidkidd/dle.dev/commit/0b9ca458f7b108adade317d6b364b669a5df68e5))
+
 ## [1.18.0](https://github.com/polaroidkidd/dle.dev/compare/v1.16.1...v1.18.0) (2023-05-22)
 
 
