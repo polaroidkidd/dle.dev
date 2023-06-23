@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.22.0](https://github.com/polaroidkidd/dle.dev/compare/v1.21.1...v1.22.0) (2023-06-23)
+
+
+### Features
+
+* migrate to cloudflare pages ([8c748ce](https://github.com/polaroidkidd/dle.dev/commit/8c748ce5bba7fc606a6ed793f6a46fbd841625f8))
+
 ### [1.21.1](https://github.com/polaroidkidd/dle.dev/compare/v1.21.0...v1.21.1) (2023-06-22)
 
 
