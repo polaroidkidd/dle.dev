@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
+import { Octokit } from "octokit";
 
 import {
 	BLOG_ENTRIES_URL,
@@ -45,36 +46,20 @@ export const ssrGithubHeaders = {
 	}
 };
 
+const app = new Octokit({
+	auth: GITHUB_ACCESS_TOKEN
+});
+
 export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
-	const response = await fetch(BLOG_ENTRIES_URL, ssrGithubHeaders);
-	return (await response.json()) as IGithubArticleMetaData[];
-}
-
-export async function getBlogEntry(slug: string): Promise<string> {
-	const blogUrl = await getBlogEntries().then((res) =>
-		res.reduce((acc, curr) => {
-			if (stripMdFromMarkdownFilename(curr.name.toLowerCase()) === slug) {
-				return curr.download_url;
-			} else {
-				return acc;
-			}
-		}, "")
-	);
-
-	const blogContent = await fetch(blogUrl, ssrGithubHeaders);
-	const text = await blogContent.text();
-
-	return text.toString();
+	const response = await app.request(`GET ${BLOG_ENTRIES_URL}`);
+	return response.data as IGithubArticleMetaData[];
 }
 
 export async function getBlogMetaData(
 	fileName: string
 ): Promise<ICommitMeta[]> {
-	const response = await fetch(
-		`${GITHUB_BLOG_META}/${fileName}`,
-		ssrGithubHeaders
-	);
-	return (await response.json()) as ICommitMeta[];
+	const response = await app.request(`GET ${GITHUB_BLOG_META}/${fileName}`);
+	return response.data as ICommitMeta[];
 }
 
 export async function fetchBlogContent(url: string): Promise<string> {

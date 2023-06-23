@@ -50,14 +50,13 @@
 		)}
 	/>
 </button>
-{#if data.article !== undefined}
-	{@html data.article}
-{:else}
-	{#await data.streamed.article}
-		<IconLoading class="h-12 fill-red-600" />
-	{:then article}
-		{@html article}
-	{:catch error}
-		<h2>{error.message}</h2>
-	{/await}
-{/if}
+
+{#await data.streamed.article}
+	<IconLoading
+		class="h-12 fill-red-600 absolute left-1/2 top-1/4 -translate-x-1/2 -translate-y-3/4"
+	/>
+{:then article}
+	{@html article}
+{:catch error}
+	<h2>{error.message}</h2>
+{/await}

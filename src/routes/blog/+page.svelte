@@ -16,15 +16,11 @@
 		<div
 			class="container max-w-screen-sm pb-10 flex flex-col justify-center items-stretch pt-10"
 		>
-			{#if data.blogsMetaData !== undefined}
-				<ArticleCards blogsMetaData={data.blogsMetaData} />
-			{:else if data.streamed !== undefined}
-				{#await data.streamed.blogsMetaData}
-					<IconLoading class="h-12 fill-red-600" />
-				{:then blogsMetaData}
-					<ArticleCards {blogsMetaData} />
-				{/await}
-			{/if}
+			{#await data.streamed.blogsMetaData}
+				<IconLoading class="h-12 fill-red-600" />
+			{:then blogsMetaData}
+				<ArticleCards {blogsMetaData} />
+			{/await}
 		</div>
 	</div>
 </div>

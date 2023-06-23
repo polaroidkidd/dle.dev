@@ -13,7 +13,7 @@ interface INextcloudCSRFToken {
 }
 
 export const actions = {
-	message: async ({ request }: { request: Request }) => {
+	message: async ({ request }) => {
 		const csrfTokenResponse = await fetch("https://cloud.dle.dev/csrftoken");
 		const csrfToken = (await csrfTokenResponse.json()) as INextcloudCSRFToken;
 		try {
@@ -30,15 +30,17 @@ export const actions = {
 			headers.set(
 				"Authorization",
 				"Basic " +
-					Buffer.from(
+					btoa(
 						// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 						`${NEXTCLOUD_CONTACT_FORM_LOGIN}:${NEXTCLOUD_CONTACT_FORM_PSW}`
-					).toString("base64")
+					)
 			);
 			headers.set("Content-Type", "application/json");
 			headers.set("OCS-APIRequest", "true");
+			headers.set("Accept", "application/json;charset=UTF-8");
+			headers.set("credentials", "include");
 
-			const response = await fetch(
+			const postRequest = new Request(
 				"https://cloud.dle.dev/ocs/v2.php/apps/forms/api/v2.1/submission/insert",
 				{
 					headers: headers,
@@ -53,11 +55,15 @@ export const actions = {
 							"4": [form.data.text]
 						},
 						shareHash: "g2Tr7W5JC9iqx59TZYiY675n"
-					})
+					}),
+					redirect: "follow"
 				}
 			);
+			const response = await fetch(postRequest);
+			console.log("response", response);
+
 			if (response.status !== 200) {
-				throw error(response.status);
+				throw error(404, "some other error");
 			}
 
 			form.data = {
@@ -71,7 +77,7 @@ export const actions = {
 			return { form };
 		} catch (e) {
 			throw error(
-				500,
+				400,
 				"oops, something went wrong on the server! I've been notified and will look into it. Please try again later or reach out via info@dle.dev"
 			);
 		}

@@ -13,3 +13,4 @@ vite.config.ts.timestamp-*
 !.vscode/tasks.json
 yarn-error.log
 appwrite/volumes/
+.wrangler
