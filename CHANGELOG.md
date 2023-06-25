@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.23.1](https://github.com/polaroidkidd/dle.dev/compare/v1.23.0...v1.23.1) (2023-06-25)
+
+
+### Bug Fixes
+
+* remove cloudflare web analytics code block ([5ee6ecb](https://github.com/polaroidkidd/dle.dev/commit/5ee6ecb6342f45234ef4de14cef68d68441c395b))
+
 ## [1.23.0](https://github.com/polaroidkidd/dle.dev/compare/v1.22.0...v1.23.0) (2023-06-23)
 
 
