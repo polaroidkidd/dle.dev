@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.24.0](https://github.com/polaroidkidd/dle.dev/compare/v1.23.1...v1.24.0) (2023-07-03)
+
+
+### Features
+
+* update svelte to version 4 ([4c6af92](https://github.com/polaroidkidd/dle.dev/commit/4c6af925720bfa3377562724733a821f5b4b1e44))
+
 ### [1.23.1](https://github.com/polaroidkidd/dle.dev/compare/v1.23.0...v1.23.1) (2023-06-25)
 
 
