@@ -4,37 +4,41 @@
 	import IconArrowUp from "@components/atoms/icons/IconArrowUp.svelte";
 	import github from "svelte-highlight/styles/github";
 	import classNames from "classnames";
+	import { onDestroy, onMount } from "svelte";
 
 	export let data: PageData;
 
-	export let showOnPx = 150;
 	let hidden = true;
 
 	function goTop() {
 		document.body.scrollIntoView();
 	}
+	let observer: MutationObserver;
 
-	function scrollContainer() {
-		return document.documentElement || document.body;
-	}
+	onMount(() => {
+		observer = new MutationObserver(() => {
+			const hashUrl = document.URL.split("#")[1];
+			if (hashUrl) {
+				document.getElementById(hashUrl)?.scrollIntoView();
+			}
+		});
+		observer.observe(document.body, {
+			attributes: false,
+			childList: true,
+			subtree: true
+		});
+	});
 
-	function handleOnScroll() {
-		if (!scrollContainer()) {
-			return;
+	onDestroy(() => {
+		if (observer) {
+			observer.disconnect();
 		}
-
-		if (scrollContainer().scrollTop > showOnPx) {
-			hidden = false;
-		} else {
-			hidden = true;
-		}
-	}
+	});
 </script>
 
 <svelte:head>
 	{@html github}
 </svelte:head>
-<svelte:window on:scroll={handleOnScroll} />
 <button class:hidden on:click={goTop}>
 	<IconArrowUp
 		class={classNames(

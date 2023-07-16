@@ -115,6 +115,7 @@
 	<SearchResults
 		{results}
 		hasNoResults={query.length > 0 && results.length === 0}
+		{isLoading}
 		closeSearchResults={() => {
 			results = [];
 			query = "";
@@ -150,13 +151,6 @@
 	.mobileLoadingIcon {
 		fill: theme("colors.red.500");
 		width: 5rem;
-
-		//z-index: 400;
-		//width: 10rem;
-		//height: 10rem;
-		//left: 50%;
-		//bottom: 50%;
-		//transform: translate(-50%, -50%);
 	}
 
 	.mobileSearchContainer {
