@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.25.0](https://github.com/polaroidkidd/dle.dev/compare/v1.24.1...v1.25.0) (2023-07-18)
+
+
+### Features
+
+* replace custom hero animation with swiperjs ([eb3bd1c](https://github.com/polaroidkidd/dle.dev/commit/eb3bd1c7a078e28540839cc078c4c5930e51eabc))
+
 ### [1.24.1](https://github.com/polaroidkidd/dle.dev/compare/v1.24.0...v1.24.1) (2023-07-16)
 
 
