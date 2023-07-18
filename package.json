@@ -80,6 +80,7 @@
 		"remark-gfm": "^3.0.1",
 		"remark-parse": "^10.0.1",
 		"remark-rehype": "^10.1.0",
+		"swiper": "^10.0.4",
 		"unified": "^10.1.2",
 		"wrangler": "^3.1.1"
 	}

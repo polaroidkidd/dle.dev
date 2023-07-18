@@ -1,108 +1,66 @@
 <script lang="ts">
-	import classNames from "classnames";
-	import avatar from "@assets/images/daniel_einars-400x500.3aa2364c.jpg";
 	import { onMount } from "svelte";
-	import { fly } from "svelte/transition";
-	import Typography from "@components/atoms/typography/typography.svelte";
+	import classNames from "classnames";
+	import { Swiper } from "swiper";
+	import { Autoplay } from "swiper/modules";
+	import "swiper/css";
+	import "swiper/css/autoplay";
+
+	import avatar from "@assets/images/daniel_einars-400x500.3aa2364c.jpg";
 	import Avatar from "@components/molecules/avatar.svelte";
+	import HeroText from "@components/molecules/heroText.svelte";
 
-	let ready = false;
-	onMount(() => (ready = true));
-
-	const tags = [
-		"increase conversions.",
-		"generate leads.",
-		"tackle technical debt.",
-		"design customer journeys.",
-		"optimize landingpages.",
-		"improve customer retention.",
-		"build web applications.",
-		"boost developer productivity.",
-		"grow."
-	];
-	$: current = 0;
+	onMount(() => {
+		new Swiper(".cta-swiper", {
+			modules: [Autoplay],
+			spaceBetween: 30,
+			allowTouchMove: false,
+			centeredSlides: true,
+			autoplay: {
+				delay: 2000,
+				disableOnInteraction: false,
+				stopOnLastSlide: true
+			}
+		});
+	});
 </script>
 
 <div class={classNames("flex", "flex-col", "items-center", "min-h-[600px]")}>
 	<Avatar alt="" imageSrc={avatar} />
-	{#if ready}
-		<div in:fly={{ x: 200, duration: 500 }}>
-			<Typography
-				family="serif"
-				margin={5}
-				size="4xl"
-				weight="bold"
-				align="center"
-				variant="h2"
-				class={classNames(
-					"bg-clip-text",
-					"text-transparent",
-					"bg-gradient-to-b",
-					"from-yellow-300",
-					"to-purple-700",
-					"bg-gradient-to-r",
-					"from-pink-500",
-					"via-red-500",
-					"to-yellow-500",
-					"background-animate",
-					"backgroundAnimate"
-				)}
-			>
-				I help companies
-			</Typography>
-		</div>
 
-		<div class="relative w-screen">
-			{#each tags as tag, i}
-				{#if i === current}
-					<div
-						in:fly={{
-							delay: current != 0 ? 500 : 0,
-							x: 200,
-							duration: 500
-						}}
-						out:fly|local={{
-							x: -500,
-							duration: 500
-						}}
-						on:introend={() => {
-							// eslint-disable-next-line @typescript-eslint/no-floating-promises
-							new Promise(() => {
-								setTimeout(() => {
-									if (current < tags.length - 1) {
-										current++;
-									}
-								}, 2000);
-							});
-						}}
-						class="absolute left-1/2 -translate-x-1/2 w-screen"
-					>
-						<Typography
-							family="serif"
-							align="center"
-							padding={3}
-							size="4xl"
-							weight="bold"
-							variant="h2"
-							class={classNames(
-								"bg-clip-text",
-								"text-transparent",
-								"bg-gradient-to-b",
-								"from-yellow-300",
-								"to-purple-700",
-								"bg-gradient-to-r",
-								"from-pink-500",
-								"via-red-500",
-								"to-yellow-500",
-								"background-animate",
-								"backgroundAnimate"
-							)}
-						>
-							{tag}
-						</Typography>
-					</div>
-				{/if}
-			{/each}
+	<HeroText text="I help companies" />
+
+	<div class="relative w-screen">
+		<div class="swiper cta-swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<HeroText text="increase conversions." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="generate leads." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="tackle technical debt." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="design customer journeys." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="optimize landingpages." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="improve customer retention." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="build web applications." />"
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="boost developer productivity." />
+				</div>
+				<div class="swiper-slide">
+					<HeroText text="grow." />
+				</div>
+			</div>
 		</div>
-	{/if}
+	</div>
 </div>
