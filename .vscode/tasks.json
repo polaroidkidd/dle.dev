@@ -39,6 +39,13 @@
 			"problemMatcher": [],
 			"label": "npm: docker:release:no-cache",
 			"detail": "./docker.sh -p -c"
+		},
+		{
+			"type": "npm",
+			"script": "test:integration",
+			"problemMatcher": [],
+			"label": "npm: test:integration",
+			"detail": "playwright test"
 		}
 	]
 }
