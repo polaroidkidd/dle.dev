@@ -18,7 +18,9 @@
 		"docker:build:no-cache": "./docker.sh -c",
 		"docker:release": "./docker.sh -p",
 		"docker:release:no-cache": "./docker.sh -p -c",
-		"test:integration": "playwright test"
+		"test:integration": "playwright test",
+		"test:integration:report": "playwright test  && npx playwright show-report",
+		"test:integration:ui": "playwright test --ui"
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^1.0.0",
