@@ -4,10 +4,9 @@ name: Pull Request
 
 on: pull_request
 
-concurrency: 
+concurrency:
   group: ${{ github.head_ref }}
   cancel-in-progress: true
-
 
 jobs:
   Verify:
@@ -16,18 +15,18 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install
         run: |
-          pnpm ci
+          pnpm install
       - name: Lint
         run: |
           pnpm run lint
       - name: Check
         run: |
-          pnpm run check          
+          pnpm run check
       - name: test:unit
         run: |
           pnpm run test:unit
       - name: Install playwright browsers
-        run: npx playwright install --with-deps          
+        run: npx playwright install --with-deps
       - name: Test
         run: |
           pnpm run test
@@ -43,12 +42,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Install
         run: |
-          pnpm install      
+          pnpm install
       - name: Build
         run: |
           pnpm run build
       # Run a build step here if your project requires
-
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
@@ -64,7 +62,7 @@ jobs:
           # Optional: Change the working directory
           # workingDirectory: my-site
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          wranglerVersion: '3'          
+          wranglerVersion: "3"
   Clean-Up:
     needs: [Publish]
     if: always()
@@ -76,4 +74,3 @@ jobs:
           rm -rf ./* || true
           rm -rf ./.??* || true
           ls -la ./
- 

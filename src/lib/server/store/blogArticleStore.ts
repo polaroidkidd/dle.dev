@@ -11,9 +11,7 @@ function createBlogArticleStore() {
 	const store = writable<Record<string, string>>({});
 	const refreshStore = async () => {
 		if (timeoutId) {
-			console.info(
-				`${dayjs().toISOString()} -- clearing timeoutId before fetching articles to refresh store`
-			);
+			console.info(`${dayjs().toISOString()} -- clearing timeoutId before fetching articles to refresh store`);
 			clearTimeout(timeoutId);
 		}
 
@@ -28,9 +26,7 @@ function createBlogArticleStore() {
 			};
 		});
 
-		const resolvedPromises = await Promise.all(
-			articlePromises.map((blog) => blog.content)
-		);
+		const resolvedPromises = await Promise.all(articlePromises.map((blog) => blog.content));
 		const updatedContentMap = resolvedPromises.reduce((acc, curr, index) => {
 			return {
 				...acc,

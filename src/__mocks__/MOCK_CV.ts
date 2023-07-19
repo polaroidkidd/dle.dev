@@ -22,8 +22,7 @@ export const MOCK_CV = {
 			position: "Senior Software Engineer",
 			url: "https://ti8m.ch",
 			startDate: "2022-06-01",
-			summary:
-				"Develop software solutions for clients of ti&m AG & internal projects.",
+			summary: "Develop software solutions for clients of ti&m AG & internal projects.",
 			notableProjects: [
 				{
 					project: "Redacted (NDA)",
@@ -61,40 +60,22 @@ export const MOCK_CV = {
 			url: "https://ti8m.ch",
 			startDate: "2019-09-01",
 			endDate: "2022-06-01",
-			summary:
-				"Develop software solutions for clients of ti&m AG & internal projects",
+			summary: "Develop software solutions for clients of ti&m AG & internal projects",
 			notableProjects: [
 				{
 					project: "Redacted (NDA)",
-					summary:
-						"Responsible for all B2C-facing react applications and support for the Magnolia CMS.",
+					summary: "Responsible for all B2C-facing react applications and support for the Magnolia CMS.",
 					highlights: [
 						"Improve code maintainability by introducing/upgrading linting tools such as eslint, lint-staged and prettier",
 						"Improve developer experience by introducing/upgrading developer tools such hot-module-reloader or upgrading various libraries",
 						"Implementation of site-wide design updates throughout the react applications and Magnolia"
 					],
-					technology: [
-						"Javascript",
-						"Typescript",
-						"React",
-						"NextJS",
-						"Java",
-						"Node"
-					]
+					technology: ["Javascript", "Typescript", "React", "NextJS", "Java", "Node"]
 				},
 				{
 					project: "Redacted (NDA)",
 					summary: "Develop browser-only based liveness verification tool",
-					technology: [
-						"Javascript",
-						"Typescript",
-						"React",
-						"FaceAPI",
-						"Web-Workers",
-						"Node",
-						"Python",
-						"TensorFlow"
-					]
+					technology: ["Javascript", "Typescript", "React", "FaceAPI", "Web-Workers", "Node", "Python", "TensorFlow"]
 				}
 			]
 		},
@@ -132,8 +113,7 @@ export const MOCK_CV = {
 			url: "https://www.bearingpoint.com/de-ch/",
 			startDate: "2017-04-01",
 			endDate: "2016-02-01",
-			summary:
-				"Support the Solutions Financial Services EasyTax Team in their daily duties & build automation tools.",
+			summary: "Support the Solutions Financial Services EasyTax Team in their daily duties & build automation tools.",
 			highlights: [
 				"Development of web scrapers for automated querying of currency exchange rates with Python 3.6 using Selenium, PhantomJS & BeautifulSoup",
 				"Data transformation of currency exchange rates into BearingPoint’s EasyTax XML-Format with Python",
@@ -264,23 +244,12 @@ export const MOCK_CV = {
 			description: "AI powered photo management service",
 			summary: "Contributor to the librephotos/frontend repository",
 			startDate: "2022-06-01",
-			keywords: [
-				"react",
-				"typescript",
-				"redux",
-				"redux-toolkit",
-				"mantine component library",
-				"nginx"
-			],
-			highlights: [
-				"Major library upgrades",
-				"Migration from redux to RTK and RTK Query"
-			]
+			keywords: ["react", "typescript", "redux", "redux-toolkit", "mantine component library", "nginx"],
+			highlights: ["Major library upgrades", "Migration from redux to RTK and RTK Query"]
 		},
 		{
 			name: "Selfhosted Services",
-			description:
-				"I selfhost public applications (nextcloud, bitwarden, paperless etc.)",
+			description: "I selfhost public applications (nextcloud, bitwarden, paperless etc.)",
 			highlights: [
 				"Migration to the CloudFlare Argo Tunnel to mitigate DDOS attacks",
 				"conigured fail2ban, automated updates, upgrades and off-site backups"

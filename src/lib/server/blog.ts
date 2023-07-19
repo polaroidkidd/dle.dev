@@ -12,11 +12,7 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { Octokit } from "octokit";
 
-import {
-	BLOG_ENTRIES_URL,
-	GITHUB_ACCESS_TOKEN,
-	GITHUB_BLOG_META
-} from "$env/static/private";
+import { BLOG_ENTRIES_URL, GITHUB_ACCESS_TOKEN, GITHUB_BLOG_META } from "$env/static/private";
 import type { ICommitMeta } from "@model/github";
 import { sortBlogsByMostRecent } from "@utils/sortUtils";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
@@ -55,9 +51,7 @@ export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
 	return response.data as IGithubArticleMetaData[];
 }
 
-export async function getBlogMetaData(
-	fileName: string
-): Promise<ICommitMeta[]> {
+export async function getBlogMetaData(fileName: string): Promise<ICommitMeta[]> {
 	const response = await app.request(`GET ${GITHUB_BLOG_META}/${fileName}`);
 	return response.data as ICommitMeta[];
 }
@@ -113,9 +107,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 
 export async function fetchBlogTitlesAndLastEditDate() {
 	const freshBlogEntries = await getBlogEntries();
-	const metaPromises = freshBlogEntries.map((entry) =>
-		getBlogMetaData(entry.name)
-	);
+	const metaPromises = freshBlogEntries.map((entry) => getBlogMetaData(entry.name));
 	const metaValues = await Promise.all(metaPromises);
 	const blogTitlesAnLastEditDates = metaValues
 		.map((value, index) => ({

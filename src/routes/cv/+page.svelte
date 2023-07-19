@@ -23,13 +23,3 @@
 		/>
 	{/await}
 </article>
-
-<style lang="scss">
-	.headings {
-		@for $i from 1 through 6 {
-			h#{$i} {
-				@apply py-2;
-			}
-		}
-	}
-</style>

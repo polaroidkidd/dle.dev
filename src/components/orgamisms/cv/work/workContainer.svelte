@@ -5,7 +5,6 @@
 	import PositionSummary from "./positionSummary.svelte";
 	import type { INotableProject } from "@model/cv";
 	export let notableProjects: INotableProject[];
-	export let primaryTools: string[];
 	export let technology: string[];
 	export let name: string;
 	export let position: string;

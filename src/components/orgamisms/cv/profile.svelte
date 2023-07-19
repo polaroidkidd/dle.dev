@@ -7,6 +7,7 @@
 	export let network: PROFILE;
 	export let url: string;
 	let clazz = "";
+	// eslint-disable-next-line svelte/valid-compile
 	export { clazz as class };
 	function getIcon(network: PROFILE) {
 		switch (network) {

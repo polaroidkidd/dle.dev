@@ -1,8 +1,4 @@
-import {
-	fetchBlogContent,
-	getBlogEntries,
-	type IGithubArticleMetaData
-} from "@lib/server/blog";
+import { fetchBlogContent, getBlogEntries, type IGithubArticleMetaData } from "@lib/server/blog";
 import { json } from "@sveltejs/kit";
 import type { RequestEvent } from "../$types";
 

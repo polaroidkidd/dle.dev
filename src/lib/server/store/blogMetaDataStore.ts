@@ -11,9 +11,7 @@ function createBlogStore() {
 	const store = readable<IBlogMetaData[]>(undefined, (set) => {
 		const refreshStore = async () => {
 			if (timeoutId) {
-				console.info(
-					`${dayjs().toISOString()} -- clearing timeoutId before fetching blog entires`
-				);
+				console.info(`${dayjs().toISOString()} -- clearing timeoutId before fetching blog entires`);
 				clearTimeout(timeoutId);
 			}
 			console.info(`${dayjs().toISOString()} -- fetching blog entires`);
