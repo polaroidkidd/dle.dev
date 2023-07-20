@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'          
+          cache: "pnpm"
       - name: Install
         run: |
           pnpm install
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.16.0]    
+        node-version: [18.16.0]
     needs: [Verify]
     permissions:
       contents: read
@@ -61,7 +61,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'   
+          cache: "pnpm"
       - name: Build
         run: |
           pnpm run build
