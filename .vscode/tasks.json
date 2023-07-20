@@ -46,6 +46,13 @@
 			"problemMatcher": [],
 			"label": "npm: test:integration",
 			"detail": "playwright test"
+		},
+		{
+			"type": "npm",
+			"script": "test:unit",
+			"problemMatcher": [],
+			"label": "npm: test:unit",
+			"detail": "vitest"
 		}
 	]
 }

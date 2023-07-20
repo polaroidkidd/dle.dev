@@ -164,7 +164,6 @@
 	}
 
 	.searchCloseIcon {
-		// eslint-disable-next-line css-syntax-error
 		@media (min-width: theme("screens.sm")) {
 			cursor: theme("cursor.auto");
 			top: unset;
