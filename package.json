@@ -61,7 +61,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/lato": "4.5.10",
+		"@fontsource/lato": "5.0.5",
 		"@fontsource/merriweather": "^4.5.14",
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"@types/js-cookie": "^3.0.3",
