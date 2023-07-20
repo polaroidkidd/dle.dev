@@ -32,7 +32,7 @@ jobs:
           pnpm run lint
       - name: Check
         run: |
-          pnpm run check          
+          pnpm run check
       - name: Unit Test
         run: |
           pnpm run test:unit
