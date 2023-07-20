@@ -31,6 +31,15 @@ jobs:
         run: |
           pnpm run lint
       - name: Check
+        env:
+          BLOG_ENTRIES_URL: ${{ secrets.BLOG_ENTRIES_URL}}
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN}}
+          GH_BLOG_REPO: ${{ secrets.GH_BLOG_REPO}}
+          GH_BLOG_META: ${{ secrets.GH_BLOG_META}}
+          GH_CV_META: ${{ secrets.GH_CV_META}}
+          PORT: ${{ secrets.PORT}}
+          NEXTCLOUD_CONTACT_FORM_LOGIN: ${{ secrets.NEXTCLOUD_CONTACT_FORM_LOGIN}}
+          NEXTCLOUD_CONTACT_FORM_PSW: ${{ secrets.NEXTCLOUD_CONTACT_FORM_PSW}}
         run: |
           pnpm run check
       - name: Unit Test
@@ -39,6 +48,15 @@ jobs:
       - name: Install playwright browsers
         run: npx playwright install --with-deps
       - name: Integration Test
+        env:
+          BLOG_ENTRIES_URL: ${{ secrets.BLOG_ENTRIES_URL}}
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN}}
+          GH_BLOG_REPO: ${{ secrets.GH_BLOG_REPO}}
+          GH_BLOG_META: ${{ secrets.GH_BLOG_META}}
+          GH_CV_META: ${{ secrets.GH_CV_META}}
+          PORT: ${{ secrets.PORT}}
+          NEXTCLOUD_CONTACT_FORM_LOGIN: ${{ secrets.NEXTCLOUD_CONTACT_FORM_LOGIN}}
+          NEXTCLOUD_CONTACT_FORM_PSW: ${{ secrets.NEXTCLOUD_CONTACT_FORM_PSW}}
         run: |
           pnpm run test:integration
 
@@ -68,6 +86,15 @@ jobs:
       # Run a build step here if your project requires
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@v1
+        env:
+          BLOG_ENTRIES_URL: ${{ secrets.BLOG_ENTRIES_URL}}
+          GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN}}
+          GH_BLOG_REPO: ${{ secrets.GH_BLOG_REPO}}
+          GH_BLOG_META: ${{ secrets.GH_BLOG_META}}
+          GH_CV_META: ${{ secrets.GH_CV_META}}
+          PORT: ${{ secrets.PORT}}
+          NEXTCLOUD_CONTACT_FORM_LOGIN: ${{ secrets.NEXTCLOUD_CONTACT_FORM_LOGIN}}
+          NEXTCLOUD_CONTACT_FORM_PSW: ${{ secrets.NEXTCLOUD_CONTACT_FORM_PSW}}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 2db6966ce8cb9a6aebb318ab0d2e4d4c
