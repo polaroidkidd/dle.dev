@@ -84,11 +84,6 @@ jobs:
         run: |
           pnpm install
       - name: Build
-        run: |
-          pnpm run build
-      # Run a build step here if your project requires
-      - name: Publish to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
         env:
           BLOG_ENTRIES_URL: ${{ secrets.BLOG_ENTRIES_URL}}
           GH_ACCESS_TOKEN: ${{ secrets.GH_ACCESS_TOKEN}}
@@ -98,6 +93,11 @@ jobs:
           PORT: ${{ secrets.PORT}}
           NEXTCLOUD_CONTACT_FORM_LOGIN: ${{ secrets.NEXTCLOUD_CONTACT_FORM_LOGIN}}
           NEXTCLOUD_CONTACT_FORM_PSW: ${{ secrets.NEXTCLOUD_CONTACT_FORM_PSW}}
+        run: |
+          pnpm run build
+      # Run a build step here if your project requires
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 2db6966ce8cb9a6aebb318ab0d2e4d4c
