@@ -1,6 +1,5 @@
 import toc from "@jsdevtools/rehype-toc";
-import type { RootContent } from "hast";
-import rehypeDocument from "rehype-document";
+import rehypeDocument, { type Root } from "rehype-document";
 import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRewrite from "rehype-rewrite";
@@ -12,11 +11,7 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { Octokit } from "octokit";
 
-import {
-	BLOG_ENTRIES_URL,
-	GITHUB_ACCESS_TOKEN,
-	GITHUB_BLOG_META
-} from "$env/static/private";
+import { BLOG_ENTRIES_URL, GH_ACCESS_TOKEN, GH_BLOG_META } from "$env/static/private";
 import type { ICommitMeta } from "@model/github";
 import { sortBlogsByMostRecent } from "@utils/sortUtils";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
@@ -42,12 +37,12 @@ export type IGithubArticleMetaData = {
 };
 export const ssrGithubHeaders = {
 	headers: {
-		Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`
+		Authorization: `Bearer ${GH_ACCESS_TOKEN}`
 	}
 };
 
 const app = new Octokit({
-	auth: GITHUB_ACCESS_TOKEN
+	auth: GH_ACCESS_TOKEN
 });
 
 export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
@@ -55,10 +50,8 @@ export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
 	return response.data as IGithubArticleMetaData[];
 }
 
-export async function getBlogMetaData(
-	fileName: string
-): Promise<ICommitMeta[]> {
-	const response = await app.request(`GET ${GITHUB_BLOG_META}/${fileName}`);
+export async function getBlogMetaData(fileName: string): Promise<ICommitMeta[]> {
+	const response = await app.request(`GET ${GH_BLOG_META}/${fileName}`);
 	return response.data as ICommitMeta[];
 }
 
@@ -91,7 +84,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 		.use(toc, { headings: ["h2", "h3"] })
 		.use(rehypeRewrite, {
 			rewrite: (
-				node: RootContent & {
+				node: Root & {
 					tagName: string;
 					children: Record<string, []>[];
 					properties: Record<string, string>;
@@ -113,9 +106,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 
 export async function fetchBlogTitlesAndLastEditDate() {
 	const freshBlogEntries = await getBlogEntries();
-	const metaPromises = freshBlogEntries.map((entry) =>
-		getBlogMetaData(entry.name)
-	);
+	const metaPromises = freshBlogEntries.map((entry) => getBlogMetaData(entry.name));
 	const metaValues = await Promise.all(metaPromises);
 	const blogTitlesAnLastEditDates = metaValues
 		.map((value, index) => ({

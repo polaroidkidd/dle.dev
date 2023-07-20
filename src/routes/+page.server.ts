@@ -5,8 +5,7 @@ import { blogStore } from "@lib/server/store/blogMetaDataStore";
 import type { IBlogMetaData } from "@model/github";
 
 export const load = (({ setHeaders }) => {
-	const blogTitlesAnLastEditDates: IBlogMetaData[] | undefined =
-		blogStore.getMeta();
+	const blogTitlesAnLastEditDates: IBlogMetaData[] | undefined = blogStore.getMeta();
 
 	setHeaders({
 		"cache-control": "max-age=31536000,immutable"

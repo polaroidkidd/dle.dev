@@ -3,10 +3,7 @@ import { contactSchema } from "../../schemas/contact";
 import type { Actions } from "@sveltejs/kit";
 import { error, fail } from "@sveltejs/kit";
 import type { PageServerLoad } from "../$types";
-import {
-	NEXTCLOUD_CONTACT_FORM_LOGIN,
-	NEXTCLOUD_CONTACT_FORM_PSW
-} from "$env/static/private";
+import { NEXTCLOUD_CONTACT_FORM_LOGIN, NEXTCLOUD_CONTACT_FORM_PSW } from "$env/static/private";
 
 interface INextcloudCSRFToken {
 	token: string;
@@ -40,25 +37,22 @@ export const actions = {
 			headers.set("Accept", "application/json;charset=UTF-8");
 			headers.set("credentials", "include");
 
-			const postRequest = new Request(
-				"https://cloud.dle.dev/ocs/v2.php/apps/forms/api/v2.1/submission/insert",
-				{
-					headers: headers,
-					method: "POST",
-					body: JSON.stringify({
-						formId: 1,
-						userId: `anon-user-${csrfToken.token}`,
-						answers: {
-							"1": [form.data.firstName],
-							"2": [form.data.lastName],
-							"3": [form.data.email],
-							"4": [form.data.text]
-						},
-						shareHash: "g2Tr7W5JC9iqx59TZYiY675n"
-					}),
-					redirect: "follow"
-				}
-			);
+			const postRequest = new Request("https://cloud.dle.dev/ocs/v2.php/apps/forms/api/v2.1/submission/insert", {
+				headers: headers,
+				method: "POST",
+				body: JSON.stringify({
+					formId: 1,
+					userId: `anon-user-${csrfToken.token}`,
+					answers: {
+						"1": [form.data.firstName],
+						"2": [form.data.lastName],
+						"3": [form.data.email],
+						"4": [form.data.text]
+					},
+					shareHash: "g2Tr7W5JC9iqx59TZYiY675n"
+				}),
+				redirect: "follow"
+			});
 			const response = await fetch(postRequest);
 			console.log("response", response);
 

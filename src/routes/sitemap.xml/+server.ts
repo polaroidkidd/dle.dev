@@ -33,12 +33,8 @@ async function fetchSitemap(host = "dle.dev"): Promise<string> {
 
 	const siteMapXMLUrls = [
 		...[
-			sitemapURLTemplate
-				.replaceAll("!!__URL__!!", host)
-				.replace("!!__LAST_MOD__!!", `${today.toISOString()}`),
-			sitemapURLTemplate
-				.replaceAll("!!__URL__!!", `${host}/cv`)
-				.replace("!!__LAST_MOD__!!", `${today.toISOString()}`)
+			sitemapURLTemplate.replaceAll("!!__URL__!!", host).replace("!!__LAST_MOD__!!", `${today.toISOString()}`),
+			sitemapURLTemplate.replaceAll("!!__URL__!!", `${host}/cv`).replace("!!__LAST_MOD__!!", `${today.toISOString()}`)
 		],
 		...blogSitemapData.map((data) => {
 			return sitemapURLTemplate

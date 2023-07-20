@@ -3,6 +3,7 @@
 	import classNames from "classnames";
 	import { Swiper } from "swiper";
 	import { Autoplay } from "swiper/modules";
+
 	import "swiper/css";
 	import "swiper/css/autoplay";
 

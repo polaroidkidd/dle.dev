@@ -37,6 +37,7 @@
 </script>
 
 <svelte:head>
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html github}
 </svelte:head>
 <button class:hidden on:click={goTop}>
@@ -60,6 +61,7 @@
 		class="h-12 fill-red-600 absolute left-1/2 top-1/4 -translate-x-1/2 -translate-y-3/4"
 	/>
 {:then article}
+<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html article}
 {:catch error}
 	<h2>{error.message}</h2>

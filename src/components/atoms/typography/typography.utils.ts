@@ -2,16 +2,7 @@ export type IVariant = "h1" | "h2" | "h3" | "p" | "span" | "div";
 export type IWeight = "thin" | "light" | "medium" | "bold" | "extrabold";
 export type IAlign = "left" | "center" | "right" | "justify" | "start" | "end";
 export type IFamily = "serif" | "sans" | "mono";
-export type ISize =
-	| "sm"
-	| "base"
-	| "lg"
-	| "2xl"
-	| "3xl"
-	| "4xl"
-	| "5xl"
-	| "6xl"
-	| "7xl";
+export type ISize = "sm" | "base" | "lg" | "2xl" | "3xl" | "4xl" | "5xl" | "6xl" | "7xl";
 export type ISpacing = 0 | 1 | 2 | 3 | 4 | 5;
 
 function getFontWeight(weight: IWeight) {

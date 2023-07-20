@@ -1,13 +1,5 @@
 <script lang="ts">
-	import type {
-		IAward,
-		IBasics,
-		ICertificate,
-		IEducation,
-		ILanguage,
-		ISkill,
-		IWorkContainer
-	} from "@model/cv";
+	import type { IAward, IBasics, ICertificate, IEducation, ILanguage, ISkill, IWorkContainer } from "@model/cv";
 	import AboutSectionContainer from "@components/orgamisms/aboutSectionContainer.svelte";
 	import Basics from "@components/orgamisms/cv/basics.svelte";
 	import WorkContainer from "@components/orgamisms/cv/work/workContainer.svelte";
@@ -30,11 +22,8 @@
 	<Basics name={basics.name} label={basics.label} profiles={basics.profiles} />
 </AboutSectionContainer>
 
-<AboutSectionContainer
-	isInitiallyCollapsed={false}
-	sectionTitle="Previous Work"
->
-	{#each work as { startDate, endDate, url, name, summary, highlights, notableProjects, position, primaryTools, technology }}
+<AboutSectionContainer isInitiallyCollapsed={false} sectionTitle="Previous Work">
+	{#each work as { startDate, endDate, url, name, summary, highlights, notableProjects, position, technology }}
 		<WorkContainer
 			{endDate}
 			{highlights}
@@ -45,7 +34,6 @@
 			{url}
 			{notableProjects}
 			{technology}
-			{primaryTools}
 		/>
 	{/each}
 </AboutSectionContainer>
@@ -67,21 +55,13 @@
 	{/each}
 </AboutSectionContainer>
 
-<AboutSectionContainer
-	isInitiallyCollapsed={true}
-	isCollapsable={true}
-	sectionTitle="Skills"
->
+<AboutSectionContainer isInitiallyCollapsed={true} isCollapsable={true} sectionTitle="Skills">
 	{#each skills as { name, keywords }}
 		<Skill {name} {keywords} />
 	{/each}
 </AboutSectionContainer>
 
-<AboutSectionContainer
-	isInitiallyCollapsed={true}
-	isCollapsable={true}
-	sectionTitle="Languages"
->
+<AboutSectionContainer isInitiallyCollapsed={true} isCollapsable={true} sectionTitle="Languages">
 	{#each languages as { language, fluency }}
 		<Language {language} {fluency} />
 	{/each}

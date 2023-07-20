@@ -1,5 +1,5 @@
 {
-	"*.{js,ts,svelte,css,scss,postcss,md,json}": [
+	"*.{js,ts,svelte,css,scss,postcss,md,json,yml}": [
 		"prettier --write --plugin-search-dir=.",
 		"prettier --check --plugin-search-dir=."
 	],
