@@ -2,7 +2,7 @@ import type { LayoutServerLoad } from "./$types";
 
 import { superValidate } from "sveltekit-superforms/server";
 import { contactSchema, type IContactSchema } from "../schemas/contact";
-import type { SuperValidated } from "sveltekit-superforms/index";
+import type { SuperValidated } from "sveltekit-superforms";
 
 let form: SuperValidated<IContactSchema> | null = null;
 

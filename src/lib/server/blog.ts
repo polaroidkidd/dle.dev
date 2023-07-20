@@ -1,6 +1,5 @@
 import toc from "@jsdevtools/rehype-toc";
-import type { RootContent } from "hast";
-import rehypeDocument from "rehype-document";
+import rehypeDocument, { type Root } from "rehype-document";
 import rehypeFormat from "rehype-format";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRewrite from "rehype-rewrite";
@@ -85,7 +84,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 		.use(toc, { headings: ["h2", "h3"] })
 		.use(rehypeRewrite, {
 			rewrite: (
-				node: RootContent & {
+				node: Root & {
 					tagName: string;
 					children: Record<string, []>[];
 					properties: Record<string, string>;

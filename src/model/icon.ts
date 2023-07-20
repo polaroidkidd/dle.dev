@@ -1,5 +1,3 @@
-import type { HTMLAttributes } from "react";
-
-export type IIcon = HTMLAttributes<SVGSVGElement> & {
+export type IIcon = SVGSVGElement & {
 	width?: number;
 };

@@ -1,7 +1,9 @@
+<script lang="ts" context="module">
+</script>
+
 <script lang="ts">
-	import type { SuperValidated } from "sveltekit-superforms";
+	import type { SuperValidated, ZodValidation } from "sveltekit-superforms";
 	import { superForm } from "sveltekit-superforms/client";
-	import Form from "@components/atoms/forms/form.svelte";
 	import Text from "@components/atoms/forms/text.svelte";
 	import TextArea from "@components/atoms/forms/textArea.svelte";
 	import SimpleButton from "@components/atoms/buttons/simpleButton.svelte";
@@ -27,7 +29,7 @@
 		buttonTextCancel: "OK"
 	};
 
-	const { form, errors, enhance } = superForm(formData, {
+	const { form, errors, enhance } = superForm<ZodValidation<IContactSchema>>(formData, {
 		validationMethod: "onblur",
 		defaultValidator: "keep",
 		validators: contactSchema,
@@ -54,11 +56,14 @@
 	}
 </script>
 
-<Form
+<form
 	action="/contact?/message"
-	{enhance}
+	use:enhance
 	method="POST"
 	class={classNames(
+		"px-8",
+		"pt-6",
+		"pb-8",
 		"relative scroll-p-8 -m-4 rounded-none mt-16 w-modal",
 		"md:dark:bg-surface-800 md:rounded-lg md:pt-10 md:m-0 md:h-min md:bg-surface-300 md:mt-0"
 	)}
@@ -77,34 +82,14 @@
 		bind:value={$form.lastName}
 		invalidData={$errors.lastName}
 	/>
-	<Text
-		type="email"
-		fieldName="email"
-		labelText="Email"
-		bind:value={$form.email}
-		invalidData={$errors.email}
-	/>
+	<Text type="email" fieldName="email" labelText="Email" bind:value={$form.email} invalidData={$errors.email} />
 
-	<TextArea
-		fieldName="text"
-		labelText="Message"
-		bind:value={$form.text}
-		invalidData={$errors.text}
-	/>
+	<TextArea fieldName="text" labelText="Message" bind:value={$form.text} invalidData={$errors.text} />
 	<div class="flex justify-around pt-5">
-		<SimpleButton
-			type="reset"
-			ariaLabel="Close Contact Modal"
-			disabled={isSubmitting}
-			onClick={closeModal}
-		>
+		<SimpleButton type="reset" ariaLabel="Close Contact Modal" disabled={isSubmitting} onClick={closeModal}>
 			Cancel
 		</SimpleButton>
-		<SimpleButton
-			type="submit"
-			disabled={isSubmitting}
-			ariaLabel="Submit Contact Form"
-		>
+		<SimpleButton type="submit" disabled={isSubmitting} ariaLabel="Submit Contact Form">
 			{#if isSubmitting}
 				<IconLoading class="h-6 fill-red-950" />
 			{:else}
@@ -112,4 +97,4 @@
 			{/if}
 		</SimpleButton>
 	</div>
-</Form>
+</form>

@@ -4,6 +4,6 @@
 	export let title: string;
 </script>
 
-<Typography align="center" size="2xl" customClasses="py-3">
+<Typography align="center" size="2xl" class="py-3">
 	{title}
 </Typography>
