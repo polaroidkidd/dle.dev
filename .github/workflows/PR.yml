@@ -11,11 +11,19 @@ concurrency:
 jobs:
   Verify:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.16.0]
     steps:
-      - uses: actions/checkout@v2
-      - name: Install pnpm
-        run: |
-          npm install -g pnpm
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'          
       - name: Install
         run: |
           pnpm install
@@ -36,6 +44,9 @@ jobs:
 
   Publish:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.16.0]    
     needs: [Verify]
     permissions:
       contents: read
@@ -43,9 +54,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install
-        run: |
-          pnpm install
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.6.7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'pnpm'   
       - name: Build
         run: |
           pnpm run build
