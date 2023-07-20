@@ -11,7 +11,7 @@ import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 import { Octokit } from "octokit";
 
-import { BLOG_ENTRIES_URL, GITHUB_ACCESS_TOKEN, GITHUB_BLOG_META } from "$env/static/private";
+import { BLOG_ENTRIES_URL, GH_ACCESS_TOKEN, GH_BLOG_META } from "$env/static/private";
 import type { ICommitMeta } from "@model/github";
 import { sortBlogsByMostRecent } from "@utils/sortUtils";
 import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
@@ -37,12 +37,12 @@ export type IGithubArticleMetaData = {
 };
 export const ssrGithubHeaders = {
 	headers: {
-		Authorization: `Bearer ${GITHUB_ACCESS_TOKEN}`
+		Authorization: `Bearer ${GH_ACCESS_TOKEN}`
 	}
 };
 
 const app = new Octokit({
-	auth: GITHUB_ACCESS_TOKEN
+	auth: GH_ACCESS_TOKEN
 });
 
 export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
@@ -51,7 +51,7 @@ export async function getBlogEntries(): Promise<IGithubArticleMetaData[]> {
 }
 
 export async function getBlogMetaData(fileName: string): Promise<ICommitMeta[]> {
-	const response = await app.request(`GET ${GITHUB_BLOG_META}/${fileName}`);
+	const response = await app.request(`GET ${GH_BLOG_META}/${fileName}`);
 	return response.data as ICommitMeta[];
 }
 
