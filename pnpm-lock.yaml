@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@fontsource/lato':
-    specifier: 4.5.10
-    version: 4.5.10
+    specifier: 5.0.5
+    version: 5.0.5
   '@fontsource/merriweather':
     specifier: ^4.5.14
     version: 4.5.14
@@ -951,8 +951,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@fontsource/lato@4.5.10:
-    resolution: {integrity: sha512-2hYR6r661Cq9B8zugtu6yxuOKqrVhAgfOSaPSq8XoxbC4ebsl0KOTy/vPoP+9U7JuQVLfrmikirW4a9Z0nDUug==}
+  /@fontsource/lato@5.0.5:
+    resolution: {integrity: sha512-hZ9tmHO8vmXPxNAWENTcitEabJeKbOICwok4EBjVIuY985dg1AAy0vUGUMVTpPKgf425An/+qCrO/GJt3tP2Uw==}
     dev: false
 
   /@fontsource/merriweather@4.5.14:
