@@ -1,17 +1,9 @@
 <script lang="ts">
-	import classNames from "classnames";
 	let clazz = "";
 	export { clazz as class };
 </script>
 
-<svg
-	width="24"
-	height="24"
-	viewBox="0 0 180 180"
-	version="1.1"
-	id="svg5"
-	class={clazz}
->
+<svg width="24" height="24" viewBox="0 0 180 180" version="1.1" id="svg5" class={clazz}>
 	<g id="layer1">
 		<g
 			aria-label="dle"

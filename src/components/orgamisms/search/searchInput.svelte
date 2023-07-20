@@ -59,25 +59,14 @@
 
 <div
 	class={classNames("flex items-center my-auto sm:w-full", {
-		[`z-10 fixed top-0 left-0 right-0 bottom-0 mobileSearchContainer`]:
-			showMobileSearch
+		[`z-10 fixed top-0 left-0 right-0 bottom-0 mobileSearchContainer`]: showMobileSearch
 	})}
 	data-cy="searchOverlay"
 >
 	<div
-		class={classNames(
-			"flex items-center w-full",
-			"sm:border rounded border-red-300 ",
-			"bg-transparent",
-			"ml-3",
-			"h-9"
-		)}
+		class={classNames("flex items-center w-full", "sm:border rounded border-red-300 ", "bg-transparent", "ml-3", "h-9")}
 	>
-		<SearchOrCloseIcon
-			{showMobileSearch}
-			showClose={results.length > 0}
-			{onClickSearch}
-		/>
+		<SearchOrCloseIcon {showMobileSearch} showClose={results.length > 0} {onClickSearch} />
 		<input
 			class={classNames(
 				"bg-transparent",
@@ -92,8 +81,7 @@
 					hidden: !showMobileSearch && mobileSearchVisibillity(innerWidth)
 				},
 				{
-					"visible absolute top-0 left-0 right-0 w-full text-center h-10 bg-white":
-						showMobileSearch
+					"visible absolute top-0 left-0 right-0 w-full text-center h-10 bg-white": showMobileSearch
 				}
 			)}
 			placeholder={"Quick Search"}
@@ -103,12 +91,9 @@
 		/>
 		<IconLoading
 			ariaLabel="loading"
-			class={classNames(
-				"fill-red-600 p-2 absolute top-0 left-0 md:static  z-100 h-10 md:h-9 ",
-				{
-					hidden: !isLoading
-				}
-			)}
+			class={classNames("fill-red-600 p-2 absolute top-0 left-0 md:static  z-100 h-10 md:h-9 ", {
+				hidden: !isLoading
+			})}
 		/>
 	</div>
 
@@ -164,7 +149,7 @@
 	}
 
 	.searchCloseIcon {
-		@media (min-width: theme("screens.sm")) {
+		@media (min-width: "640px") {
 			cursor: theme("cursor.auto");
 			top: unset;
 			right: unset;

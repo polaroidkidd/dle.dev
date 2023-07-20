@@ -39,9 +39,7 @@
 	export let technologies: string[] = [];
 	export let hideTitle = false;
 
-	const parsedTechnologies = technologies.map((tech) =>
-		tech.replaceAll(" ", "-").toLocaleLowerCase()
-	);
+	const parsedTechnologies = technologies.map((tech) => tech.replaceAll(" ", "-").toLocaleLowerCase());
 	const TechLogos: Record<string, unknown> = {
 		android: IconAndroid,
 		docker: IconDocker,
@@ -78,29 +76,27 @@
 		return parsedTechnologies.includes(key);
 	});
 
-	const usedLogos: Record<
-		string,
-		{ name: string; component: typeof SvelteComponent }
-	> = logoKeys.reduce((acc, curr) => {
-		return {
-			...acc,
-			[curr]: {
-				name: curr,
+	const usedLogos: Record<string, { name: string; component: typeof SvelteComponent }> = logoKeys.reduce(
+		(acc, curr) => {
+			return {
+				...acc,
+				[curr]: {
+					name: curr,
 
-				component: TechLogos[curr]
-			}
-		};
-	}, {});
+					component: TechLogos[curr]
+				}
+			};
+		},
+		{}
+	);
 </script>
 
 {#if !hideTitle}
 	<Typography variant="h3">Technologies:</Typography>
 {/if}
 
-<div
-	class="flex flex-row py-2 w-1/2 flex-wrap mx-auto justify-center items-center"
->
-	{#each Object.values(usedLogos) as { component, name }, i}
+<div class="flex flex-row py-2 w-1/2 flex-wrap mx-auto justify-center items-center">
+	{#each Object.values(usedLogos) as { component, name }}
 		<div class="flex flex-col p-6">
 			<svelte:component this={component} class="fill-red-500 h-8 my-1" />
 			<Typography align="center">{name}</Typography>
