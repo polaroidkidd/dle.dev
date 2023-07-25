@@ -47,7 +47,7 @@
 		"sass": "1.64.1",
 		"standard-version": "^9.5.0",
 		"svelte": "4.1.0",
-		"svelte-check": "3.4.4",
+		"svelte-check": "3.4.6",
 		"svelte-highlight": "^7.3.0",
 		"svelte-preprocess": "5.0.4",
 		"sveltekit-superforms": "^1.1.3",
