@@ -19,7 +19,8 @@
 		"test:unit": "vitest --run",
 		"test:integration": "playwright test",
 		"test:integration:report": "playwright test  && npx playwright show-report",
-		"test:integration:ui": "playwright test --ui"
+		"test:integration:ui": "playwright test --ui",
+		"test:integration:ci": "playwright test --project=chromium"
 	},
 	"devDependencies": {
 		"@neoconfetti/svelte": "^1.0.0",
