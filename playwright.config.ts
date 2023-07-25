@@ -1,4 +1,4 @@
-import type { PlaywrightTestConfig } from "@playwright/test";
+import { devices, type PlaywrightTestConfig } from "@playwright/test";
 
 const config: PlaywrightTestConfig = {
 	webServer: {
@@ -16,7 +16,17 @@ const config: PlaywrightTestConfig = {
 		viewport: { width: 1920, height: 1080 }
 	},
 	testDir: "tests",
-	testMatch: /(.+\.)?(test|spec)\.[jt]s/
+	testMatch: /(.+\.)?(test|spec)\.[jt]s/,
+
+	projects: [
+		{
+			name: "chromium",
+			use: {
+				...devices["Desktop Chrome"],
+				channel: "chrome"
+			}
+		}
+	]
 };
 
 export default config;
