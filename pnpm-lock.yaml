@@ -75,8 +75,8 @@ dependencies:
     specifier: ^10.1.2
     version: 10.1.2
   wrangler:
-    specifier: ^3.1.1
-    version: 3.1.1
+    specifier: ^3.3.0
+    version: 3.3.0
 
 devDependencies:
   '@neoconfetti/svelte':
@@ -6625,8 +6625,8 @@ packages:
       regexparam: 2.0.1
     dev: true
 
-  /wrangler@3.1.1:
-    resolution: {integrity: sha512-iG6QGOt+qgSm7UroJ8IJ+JdXEcDcW7yp9ilP0V7alCGhKm8shqa/M1iyMOpukZSCSZo8Vmn5nH2C9OY1PR3dQQ==}
+  /wrangler@3.3.0:
+    resolution: {integrity: sha512-m9+mmf3BOT5Q6pPxiXOa/MkmCrJO/CGxuePrDW0las4oNmPdT+seYxQZkM8QJVKANm0MBuU1dJqSPPF3arh73w==}
     engines: {node: '>=16.13.0'}
     hasBin: true
     dependencies:
