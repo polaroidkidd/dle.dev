@@ -1,6 +1,6 @@
-import preprocess from "svelte-preprocess";
-import adapter from "@sveltejs/adapter-cloudflare";
-import { vitePreprocess } from "@sveltejs/kit/vite";
+import adapter from '@sveltejs/adapter-cloudflare';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -20,22 +20,22 @@ const config = {
 		adapter: adapter({
 			// See below for an explanation of these options
 			routes: {
-				include: ["/*"],
-				exclude: ["<all>"]
+				include: ['/*'],
+				exclude: ['<all>']
 			}
 		}),
 		alias: {
-			"@mocks/*": "./src/__mocks__/*",
-			"@hooks/*": "./src/hooks/*",
-			"@model/*": "./src/model/*",
-			"@components/*": "./src/components/*",
-			"@icons/*": "./src/components/icons/*",
-			"@lib/*": "./src/lib/*",
-			"@pages/*": "./src/pages/*",
-			"@services/*": "./src/services/*",
-			"@styles/*": "./src/styles/*",
-			"@utils/*": "./src/utils/*",
-			"@assets/*": "./src/assets/*"
+			'@mocks/*': './src/__mocks__/*',
+			'@hooks/*': './src/hooks/*',
+			'@model/*': './src/model/*',
+			'@components/*': './src/components/*',
+			'@icons/*': './src/components/icons/*',
+			'@lib/*': './src/lib/*',
+			'@pages/*': './src/pages/*',
+			'@services/*': './src/services/*',
+			'@styles/*': './src/styles/*',
+			'@utils/*': './src/utils/*',
+			'@assets/*': './src/assets/*'
 		}
 	}
 };

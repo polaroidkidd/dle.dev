@@ -1,20 +1,20 @@
-import toc from "@jsdevtools/rehype-toc";
-import rehypeDocument, { type Root } from "rehype-document";
-import rehypeFormat from "rehype-format";
-import rehypeHighlight from "rehype-highlight";
-import rehypeRewrite from "rehype-rewrite";
-import { default as rehypeSlug } from "rehype-slug";
-import rehypeStringify from "rehype-stringify";
-import remarkGfm from "remark-gfm";
-import remarkParse from "remark-parse";
-import remarkRehype from "remark-rehype";
-import { unified } from "unified";
-import { Octokit } from "octokit";
+import toc from '@jsdevtools/rehype-toc';
+import type { ICommitMeta } from '@model/github';
+import { sortBlogsByMostRecent } from '@utils/sortUtils';
+import { stripMdFromMarkdownFilename } from '@utils/stringUtils';
+import { Octokit } from 'octokit';
+import rehypeDocument, { type Root } from 'rehype-document';
+import rehypeFormat from 'rehype-format';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRewrite from 'rehype-rewrite';
+import { default as rehypeSlug } from 'rehype-slug';
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
 
-import { BLOG_ENTRIES_URL, GH_ACCESS_TOKEN, GH_BLOG_META } from "$env/static/private";
-import type { ICommitMeta } from "@model/github";
-import { sortBlogsByMostRecent } from "@utils/sortUtils";
-import { stripMdFromMarkdownFilename } from "@utils/stringUtils";
+import { BLOG_ENTRIES_URL, GH_ACCESS_TOKEN, GH_BLOG_META } from '$env/static/private';
 export type INavbarBlogArticle = {
 	title: string;
 };
@@ -70,7 +70,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 			} else {
 				return acc;
 			}
-		}, "")
+		}, '')
 	);
 
 	const blogContent = await fetch(blogUrl, ssrGithubHeaders);
@@ -81,7 +81,7 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 		.use(rehypeDocument)
 		.use(rehypeFormat)
 		.use(rehypeSlug)
-		.use(toc, { headings: ["h2", "h3"] })
+		.use(toc, { headings: ['h2', 'h3'] })
 		.use(rehypeRewrite, {
 			rewrite: (
 				node: Root & {
@@ -90,9 +90,9 @@ export async function getBlogEntryContent(slug: string): Promise<string> {
 					properties: Record<string, string>;
 				}
 			) => {
-				if (node.tagName === "nav") {
+				if (node.tagName === 'nav') {
 					if (node.children[0].children.length === 0) {
-						node.properties.className = "hidden";
+						node.properties.className = 'hidden';
 					}
 				}
 			}
@@ -111,7 +111,7 @@ export async function fetchBlogTitlesAndLastEditDate() {
 	const blogTitlesAnLastEditDates = metaValues
 		.map((value, index) => ({
 			publishedOn: value[0].commit.author.date,
-			title: freshBlogEntries[index].name.replace(/\.md/g, "")
+			title: freshBlogEntries[index].name.replace(/\.md/g, '')
 		}))
 		.sort(sortBlogsByMostRecent);
 

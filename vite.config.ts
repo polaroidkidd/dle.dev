@@ -1,16 +1,23 @@
-import { sveltekit } from "@sveltejs/kit/vite";
-import { defineConfig } from "vitest/config";
-import tsconfigPaths from "vite-tsconfig-paths";
+import { sveltekit } from '@sveltejs/kit/vite';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 export default defineConfig({
-	// @ts-ignore
 	plugins: [tsconfigPaths(), sveltekit()],
 	server: {
 		port: 3000
 	},
 	preview: {
-		port: 3001
+		port: 3000
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			target: 'esnext'
+		}
+	},
+	build: {
+		target: 'es2020'
 	},
 	test: {
-		include: ["src/**/*.{test,spec}.{js,ts}"]
+		include: ['tests/unit/**/*.{test,spec}.{js,ts}']
 	}
 });
