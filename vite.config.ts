@@ -4,10 +4,10 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
 	plugins: [tsconfigPaths(), sveltekit()],
 	server: {
-		port: 3000
+		port: 4000
 	},
 	preview: {
-		port: 3000
+		port: 4000
 	},
 	optimizeDeps: {
 		esbuildOptions: {
