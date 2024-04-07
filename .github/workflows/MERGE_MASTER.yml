@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.16.0]
+        node-version: [20.9.0]
     permissions:
       contents: read
       deployments: write
@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
+          cache: 'pnpm'
       - name: Install
         run: |
           pnpm install
@@ -58,13 +58,13 @@ jobs:
           # Optional: Change the working directory
           # workingDirectory: my-site
           # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
-          wranglerVersion: "3"
+          wranglerVersion: '3'
   Clean-Up:
     needs: [Publish]
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: "Cleanup build folder"
+      - name: 'Cleanup build folder'
         run: |
           ls -la ./
           rm -rf ./* || true
