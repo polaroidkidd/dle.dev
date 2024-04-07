@@ -1,7 +1,7 @@
 <script lang="ts">
-	import classNames from "classnames";
-	export let ariaLabel = "";
-	let clazz = "";
+	import classNames from 'classnames';
+	export let ariaLabel = '';
+	let clazz = '';
 	export { clazz as class };
 </script>
 

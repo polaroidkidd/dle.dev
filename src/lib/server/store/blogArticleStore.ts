@@ -1,9 +1,8 @@
-import { getBlogEntryContent } from "@lib/server/blog";
-import { error } from "@sveltejs/kit";
-
-import { get, writable } from "svelte/store";
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
+import { getBlogEntryContent } from '@lib/server/blog';
+import { error } from '@sveltejs/kit';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import { get, writable } from 'svelte/store';
 
 dayjs.extend(duration);
 let timeoutId: ReturnType<typeof setTimeout>;
@@ -11,7 +10,9 @@ function createBlogArticleStore() {
 	const store = writable<Record<string, string>>({});
 	const refreshStore = async () => {
 		if (timeoutId) {
-			console.info(`${dayjs().toISOString()} -- clearing timeoutId before fetching articles to refresh store`);
+			console.info(
+				`${dayjs().toISOString()} -- clearing timeoutId before fetching articles to refresh store`
+			);
 			clearTimeout(timeoutId);
 		}
 
@@ -65,9 +66,9 @@ function createBlogArticleStore() {
 			} catch (e) {
 				throw error(404, {
 					message: `Blog with title "${slug
-						.split("-")
+						.split('-')
 						.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-						.join(" ")}" Not Found`
+						.join(' ')}" Not Found`
 				});
 			}
 		}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Typography from "@components/atoms/typography/typography.svelte";
+	import Typography from '@components/atoms/typography/typography.svelte';
 
 	export let title: string;
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StartEndDate from "./work/startEndDate.svelte";
+	import StartEndDate from './work/startEndDate.svelte';
 	export let title: string;
 	export let date: string;
 	export let issuer: string;

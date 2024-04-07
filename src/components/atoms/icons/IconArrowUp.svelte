@@ -1,7 +1,7 @@
 <script lang="ts">
-	import classNames from "classnames";
+	import classNames from 'classnames';
 
-	let clazz = "";
+	let clazz = '';
 	export { clazz as class };
 </script>
 
@@ -15,7 +15,7 @@
 	stroke-width="1"
 	stroke-linecap="round"
 	stroke-linejoin="round"
-	class={classNames("feather feather-arrow-up", clazz)}
+	class={classNames('feather feather-arrow-up', clazz)}
 >
 	<line x1="12" y1="19" x2="12" y2="5" />
 	<polyline points="5 12 12 5 19 12" />

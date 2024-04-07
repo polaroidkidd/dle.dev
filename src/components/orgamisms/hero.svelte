@@ -1,18 +1,18 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import classNames from "classnames";
-	import { Swiper } from "swiper";
-	import { Autoplay } from "swiper/modules";
+	import { onMount } from 'svelte';
+	import classNames from 'classnames';
+	import { Swiper } from 'swiper';
+	import { Autoplay } from 'swiper/modules';
 
-	import "swiper/css";
-	import "swiper/css/autoplay";
+	import 'swiper/css';
+	import 'swiper/css/autoplay';
 
-	import avatar from "@assets/images/daniel_einars-400x500.3aa2364c.jpg";
-	import Avatar from "@components/molecules/avatar.svelte";
-	import HeroText from "@components/molecules/heroText.svelte";
+	import avatar from '@assets/images/daniel_einars-400x500.3aa2364c.jpg';
+	import Avatar from '@components/molecules/avatar.svelte';
+	import HeroText from '@components/molecules/heroText.svelte';
 
 	onMount(() => {
-		new Swiper(".cta-swiper", {
+		new Swiper('.cta-swiper', {
 			modules: [Autoplay],
 			spaceBetween: 30,
 			allowTouchMove: false,
@@ -26,7 +26,7 @@
 	});
 </script>
 
-<div class={classNames("flex", "flex-col", "items-center", "min-h-[600px]")}>
+<div class={classNames('flex', 'flex-col', 'items-center', 'min-h-[600px]')}>
 	<Avatar alt="" imageSrc={avatar} />
 
 	<HeroText text="I help companies" />

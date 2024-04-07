@@ -1,7 +1,7 @@
 <script lang="ts">
-	import classNames from "classnames";
-	let clazz = "";
-	export let ariaLabel = "";
+	import classNames from 'classnames';
+	let clazz = '';
+	export let ariaLabel = '';
 
 	export { clazz as class };
 </script>
@@ -15,7 +15,7 @@
 		stroke-width="2"
 		stroke-linecap="round"
 		stroke-linejoin="round"
-		class={classNames("feather feather-x", clazz)}
+		class={classNames('feather feather-x', clazz)}
 		aria-label={ariaLabel}
 	>
 		<line x1="18" y1="6" x2="6" y2="18" />

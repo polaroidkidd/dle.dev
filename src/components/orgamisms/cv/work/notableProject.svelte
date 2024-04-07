@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Typography from "@components/atoms/typography/typography.svelte";
-	import classNames from "classnames";
-	import Technologies from "./technologies.svelte";
+	import Typography from '@components/atoms/typography/typography.svelte';
+	import classNames from 'classnames';
+	import Technologies from './technologies.svelte';
 	export let project: string;
 	export let summary: string;
 	export let highlights: string[] | undefined;
@@ -10,8 +10,8 @@
 </script>
 
 <div
-	class={classNames("pt-2 mb-4 pb-2", {
-		"border-b border-b-red-100": !isLast
+	class={classNames('pt-2 mb-4 pb-2', {
+		'border-b border-b-red-100': !isLast
 	})}
 >
 	<div class="mb-2">

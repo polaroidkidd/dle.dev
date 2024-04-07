@@ -1,5 +1,6 @@
-import { getBlogEntries, getBlogMetaData } from "@lib/server/blog";
-import type { RequestEvent, RequestHandler } from "./$types";
+import { getBlogEntries, getBlogMetaData } from '@lib/server/blog';
+
+import type { RequestEvent, RequestHandler } from './$types';
 
 const sitemapURLTemplate = `<url>
     <loc>https://!!__URL__!!</loc>
@@ -14,7 +15,7 @@ const sitemapTemplate = `<?xml version="1.0" encoding="UTF-8"?>
 
 const sitemaps: Record<string, string | undefined> = {};
 
-async function fetchSitemap(host = "dle.dev"): Promise<string> {
+async function fetchSitemap(host = 'dle.dev'): Promise<string> {
 	const blogEntries = await getBlogEntries();
 	const blogSitemapData: Array<{ url: string; lastUpdate: string }> = [];
 
@@ -25,7 +26,7 @@ async function fetchSitemap(host = "dle.dev"): Promise<string> {
 
 		blogSitemapData.push({
 			lastUpdate: date.toISOString(),
-			url: `blog/${blogEntry.name.replace(/\.md/g, "")}`
+			url: `blog/${blogEntry.name.replace(/\.md/g, '')}`
 		});
 	}
 
@@ -33,17 +34,21 @@ async function fetchSitemap(host = "dle.dev"): Promise<string> {
 
 	const siteMapXMLUrls = [
 		...[
-			sitemapURLTemplate.replaceAll("!!__URL__!!", host).replace("!!__LAST_MOD__!!", `${today.toISOString()}`),
-			sitemapURLTemplate.replaceAll("!!__URL__!!", `${host}/cv`).replace("!!__LAST_MOD__!!", `${today.toISOString()}`)
+			sitemapURLTemplate
+				.replaceAll('!!__URL__!!', host)
+				.replace('!!__LAST_MOD__!!', `${today.toISOString()}`),
+			sitemapURLTemplate
+				.replaceAll('!!__URL__!!', `${host}/cv`)
+				.replace('!!__LAST_MOD__!!', `${today.toISOString()}`)
 		],
 		...blogSitemapData.map((data) => {
 			return sitemapURLTemplate
-				.replaceAll("!!__URL__!!", `${host}/${data.url}`)
-				.replace("!!__LAST_MOD__!!", data.lastUpdate);
+				.replaceAll('!!__URL__!!', `${host}/${data.url}`)
+				.replace('!!__LAST_MOD__!!', data.lastUpdate);
 		})
-	].join("\n");
+	].join('\n');
 
-	return sitemapTemplate.replace("!!__SITEMAP_URLS__!!", siteMapXMLUrls);
+	return sitemapTemplate.replace('!!__SITEMAP_URLS__!!', siteMapXMLUrls);
 }
 
 export const GET = (async ({ url: { hostname } }: RequestEvent) => {
@@ -51,8 +56,8 @@ export const GET = (async ({ url: { hostname } }: RequestEvent) => {
 		sitemaps[hostname] = await fetchSitemap(hostname);
 	}
 	const res = new Response(sitemaps[hostname]);
-	res.headers.set("Cache-Control", "max-age=0, s-maxage=3600");
-	res.headers.set("Content-Type", "application/xml");
+	res.headers.set('Cache-Control', 'max-age=0, s-maxage=3600');
+	res.headers.set('Content-Type', 'application/xml');
 
 	return res;
 }) satisfies RequestHandler;

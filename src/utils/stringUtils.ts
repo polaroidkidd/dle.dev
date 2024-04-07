@@ -1,5 +1,5 @@
 export function stripMdFromMarkdownFilename(value: string): string {
-	return value.replace(/\.md/g, "");
+	return value.replace(/\.md/g, '');
 }
 
 export function capitalize(value: string): string {

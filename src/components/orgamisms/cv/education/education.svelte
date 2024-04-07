@@ -1,6 +1,6 @@
 <script lang="ts">
-	import StartEndDate from "../work/startEndDate.svelte";
-	import Thesis from "./thesis.svelte";
+	import StartEndDate from '../work/startEndDate.svelte';
+	import Thesis from './thesis.svelte';
 	export let institution: string;
 	export let url: string;
 	export let area: string;

@@ -6,11 +6,12 @@ node_modules
 .env
 .env.*
 !.env.example
-
+prisma/seed.js
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 package-lock.json
 yarn.lock
-src.React
-.eslintrc.cjs
-vite.config.ts
+prisma
+db
+**/*.postcss
+*.MD

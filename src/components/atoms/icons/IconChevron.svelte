@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let width: number | undefined = undefined;
-	let clazz = "";
+	let clazz = '';
 	export { clazz as class };
 </script>
 

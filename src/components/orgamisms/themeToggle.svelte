@@ -1,19 +1,19 @@
 <script lang="ts">
-	import classNames from "classnames";
-	import Cookies from "js-cookie";
+	import classNames from 'classnames';
+	import Cookies from 'js-cookie';
 
 	export let shouldRender: boolean;
 	function loadTheme(): boolean {
-		const themeCookie = Cookies.get("theme");
+		const themeCookie = Cookies.get('theme');
 		if (themeCookie) {
-			if (themeCookie === "dark") {
-				document.querySelector("html")?.classList.add("dark");
+			if (themeCookie === 'dark') {
+				document.querySelector('html')?.classList.add('dark');
 				return true;
 			}
 		}
 		const date = new Date();
 		const expires = new Date(date.setMonth(date.getMonth() + 1));
-		Cookies.set("theme", "light", {
+		Cookies.set('theme', 'light', {
 			secure: true,
 			expires: expires
 		});
@@ -21,21 +21,20 @@
 	}
 
 	function toggle() {
-		document.querySelector("html")?.classList.toggle("dark");
-		const themeCookie = Cookies.get("theme");
+		document.querySelector('html')?.classList.toggle('dark');
+		const themeCookie = Cookies.get('theme');
 		const date = new Date();
 		const expires = new Date(date.setMonth(date.getMonth() + 1));
-		Cookies.set("theme", themeCookie === "light" ? "dark" : "light", {
+		Cookies.set('theme', themeCookie === 'light' ? 'dark' : 'light', {
 			secure: true,
 			expires: expires
 		});
 
-		const faviconEl: HTMLElement | null =
-			document.getElementById("favicon-icon");
+		const faviconEl: HTMLElement | null = document.getElementById('favicon-icon');
 		if (isDarkTheme) {
-			faviconEl?.setAttribute("href", "favicon-light.svg");
+			faviconEl?.setAttribute('href', 'favicon-light.svg');
 		} else {
-			faviconEl?.setAttribute("href", "favicon-dark.svg");
+			faviconEl?.setAttribute('href', 'favicon-dark.svg');
 		}
 
 		isDarkTheme = !isDarkTheme;
@@ -46,10 +45,7 @@
 {#if shouldRender}
 	<button
 		on:click={toggle}
-		class={classNames(
-			"my-auto sm:ml-auto pl-4 animate",
-			!isDarkTheme ? "moon" : "sun"
-		)}
+		class={classNames('my-auto sm:ml-auto pl-4 animate', !isDarkTheme ? 'moon' : 'sun')}
 		type="button"
 		aria-label="Toggle Theme Button"
 	>
@@ -65,14 +61,7 @@
 			class="animate moon"
 		>
 			<mask id="mask" class="animate">
-				<rect
-					x="0"
-					y="0"
-					width="100%"
-					height="100%"
-					fill="white"
-					class="animate"
-				/>
+				<rect x="0" y="0" width="100%" height="100%" fill="white" class="animate" />
 				<circle cx="12" cy="4" r="4" class="animate" />
 			</mask>
 			<circle cx="12" cy="12" mask="url(#mask)" class="animate moon" />

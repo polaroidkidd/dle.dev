@@ -1,6 +1,6 @@
 <script lang="ts">
-	import classNames from "classnames";
-	import Typography from "../typography/typography.svelte";
+	import classNames from 'classnames';
+	import Typography from '../typography/typography.svelte';
 	export let labelText: string;
 	export let fieldName: string;
 	export let value: string;
@@ -17,7 +17,7 @@
 	maxlength={maxLength}
 	minlength={20}
 	rows="10"
-	class={classNames("textarea", "bg-primary-50", "py-2", "px-5", "mb-3")}
+	class={classNames('textarea', 'bg-primary-50', 'py-2', 'px-5', 'mb-3')}
 	name={fieldName}
 	bind:value
 	data-invalid={invalidData}

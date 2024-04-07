@@ -1,9 +1,8 @@
-import { fetchBlogTitlesAndLastEditDate } from "@lib/server/blog";
-import type { IBlogMetaData } from "@model/github";
-import { get, readable } from "svelte/store";
-
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
+import { fetchBlogTitlesAndLastEditDate } from '@lib/server/blog';
+import type { IBlogMetaData } from '@model/github';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import { get, readable } from 'svelte/store';
 dayjs.extend(duration);
 
 let timeoutId: ReturnType<typeof setTimeout>;

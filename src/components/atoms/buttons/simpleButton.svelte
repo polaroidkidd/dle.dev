@@ -1,14 +1,11 @@
 <script lang="ts">
-
 	export let tabIndex = -1;
 	export let disabled = false;
 	// eslint-disable-next-line @typescript-eslint/no-empty-function
 	export let onClick: () => void = function noop() {};
 	export let formAction: string | null = null;
 	export let ariaLabel: string | null = null;
-	export let type: "reset" | "submit" | null | undefined = null;
-
-
+	export let type: 'reset' | 'submit' | null | undefined = null;
 </script>
 
 <button

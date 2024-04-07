@@ -2,39 +2,39 @@
 </script>
 
 <script lang="ts">
-	import type { SuperValidated, ZodValidation } from "sveltekit-superforms";
-	import { superForm } from "sveltekit-superforms/client";
-	import Text from "@components/atoms/forms/text.svelte";
-	import TextArea from "@components/atoms/forms/textArea.svelte";
-	import SimpleButton from "@components/atoms/buttons/simpleButton.svelte";
-	import { contactSchema, type IContactSchema } from "../../../schemas/contact";
-	import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+	import type { SuperValidated, ZodValidation } from 'sveltekit-superforms';
+	import { superForm } from 'sveltekit-superforms/client';
+	import Text from '@components/atoms/forms/text.svelte';
+	import TextArea from '@components/atoms/forms/textArea.svelte';
+	import SimpleButton from '@components/atoms/buttons/simpleButton.svelte';
+	import { contactSchema, type IContactSchema } from '../../../schemas/contact';
+	import { modalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 
-	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
-	import classNames from "classnames";
+	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
+	import classNames from 'classnames';
 
 	export let formData: SuperValidated<IContactSchema>;
 	let isSubmitting = false;
 	const success: ModalSettings = {
-		type: "alert",
-		title: "Sucess",
-		body: "We have received your message and will reach out shortly!",
-		buttonTextCancel: "OK"
+		type: 'alert',
+		title: 'Sucess',
+		body: 'We have received your message and will reach out shortly!',
+		buttonTextCancel: 'OK'
 	};
 
 	const error: ModalSettings = {
-		type: "alert",
-		title: "Error",
-		body: "Something went wrong on our end. We apologize for the inconvenience. Please try again at a later point or reach out via info@dle.dev",
-		buttonTextCancel: "OK"
+		type: 'alert',
+		title: 'Error',
+		body: 'Something went wrong on our end. We apologize for the inconvenience. Please try again at a later point or reach out via info@dle.dev',
+		buttonTextCancel: 'OK'
 	};
 
 	const { form, errors, enhance } = superForm<ZodValidation<IContactSchema>>(formData, {
-		validationMethod: "onblur",
-		defaultValidator: "keep",
+		validationMethod: 'onblur',
+		defaultValidator: 'keep',
 		validators: contactSchema,
 		taintedMessage: null,
-		multipleSubmits: "abort",
+		multipleSubmits: 'abort',
 		onSubmit: () => {
 			isSubmitting = true;
 		},
@@ -46,13 +46,13 @@
 			} else {
 				modalStore.trigger(error);
 			}
-			document?.body.classList.remove("overflow-hidden");
+			document?.body.classList.remove('overflow-hidden');
 		}
 	});
 
 	function closeModal() {
 		modalStore.clear();
-		document?.body.classList.remove("overflow-hidden");
+		document?.body.classList.remove('overflow-hidden');
 	}
 </script>
 
@@ -61,11 +61,11 @@
 	use:enhance
 	method="POST"
 	class={classNames(
-		"px-8",
-		"pt-6",
-		"pb-8",
-		"relative scroll-p-8 -m-4 rounded-none mt-16 w-modal",
-		"md:dark:bg-surface-800 md:rounded-lg md:pt-10 md:m-0 md:h-min md:bg-surface-300 md:mt-0"
+		'px-8',
+		'pt-6',
+		'pb-8',
+		'relative scroll-p-8 -m-4 rounded-none mt-16 w-modal',
+		'md:dark:bg-surface-800 md:rounded-lg md:pt-10 md:m-0 md:h-min md:bg-surface-300 md:mt-0'
 	)}
 >
 	<Text
@@ -82,11 +82,27 @@
 		bind:value={$form.lastName}
 		invalidData={$errors.lastName}
 	/>
-	<Text type="email" fieldName="email" labelText="Email" bind:value={$form.email} invalidData={$errors.email} />
+	<Text
+		type="email"
+		fieldName="email"
+		labelText="Email"
+		bind:value={$form.email}
+		invalidData={$errors.email}
+	/>
 
-	<TextArea fieldName="text" labelText="Message" bind:value={$form.text} invalidData={$errors.text} />
+	<TextArea
+		fieldName="text"
+		labelText="Message"
+		bind:value={$form.text}
+		invalidData={$errors.text}
+	/>
 	<div class="flex justify-around pt-5">
-		<SimpleButton type="reset" ariaLabel="Close Contact Modal" disabled={isSubmitting} onClick={closeModal}>
+		<SimpleButton
+			type="reset"
+			ariaLabel="Close Contact Modal"
+			disabled={isSubmitting}
+			onClick={closeModal}
+		>
 			Cancel
 		</SimpleButton>
 		<SimpleButton type="submit" disabled={isSubmitting} ariaLabel="Submit Contact Form">

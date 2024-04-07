@@ -1,11 +1,11 @@
 <script lang="ts">
-	import classNames from "classnames";
-	let clazz = "";
+	import classNames from 'classnames';
+	let clazz = '';
 	export { clazz as class };
 </script>
 
 <svg
-	class={classNames("w-6 h-6", clazz)}
+	class={classNames('w-6 h-6', clazz)}
 	fill="none"
 	stroke="currentColor"
 	viewBox="0 0 24 24"
