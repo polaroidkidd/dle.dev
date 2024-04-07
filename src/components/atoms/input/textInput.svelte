@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let content = "Quick Search";
+	export let content = 'Quick Search';
 </script>
 
 <input bind:value={content} />

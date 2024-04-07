@@ -1,13 +1,21 @@
 <script lang="ts">
-	import type { IAward, IBasics, ICertificate, IEducation, ILanguage, ISkill, IWorkContainer } from "@model/cv";
-	import AboutSectionContainer from "@components/orgamisms/aboutSectionContainer.svelte";
-	import Basics from "@components/orgamisms/cv/basics.svelte";
-	import WorkContainer from "@components/orgamisms/cv/work/workContainer.svelte";
-	import Award from "@components/orgamisms/cv/award.svelte";
-	import Education from "@components/orgamisms/cv/education/education.svelte";
-	import Language from "@components/orgamisms/cv/work/language.svelte";
-	import Certificate from "@components/orgamisms/cv/work/certificate.svelte";
-	import Skill from "@components/orgamisms/cv/work/skill.svelte";
+	import type {
+		IAward,
+		IBasics,
+		ICertificate,
+		IEducation,
+		ILanguage,
+		ISkill,
+		IWorkContainer
+	} from '@model/cv';
+	import AboutSectionContainer from '@components/orgamisms/aboutSectionContainer.svelte';
+	import Basics from '@components/orgamisms/cv/basics.svelte';
+	import WorkContainer from '@components/orgamisms/cv/work/workContainer.svelte';
+	import Award from '@components/orgamisms/cv/award.svelte';
+	import Education from '@components/orgamisms/cv/education/education.svelte';
+	import Language from '@components/orgamisms/cv/work/language.svelte';
+	import Certificate from '@components/orgamisms/cv/work/certificate.svelte';
+	import Skill from '@components/orgamisms/cv/work/skill.svelte';
 
 	export let basics: IBasics;
 	export let work: IWorkContainer[];

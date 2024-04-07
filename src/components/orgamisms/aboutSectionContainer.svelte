@@ -1,10 +1,10 @@
 <script lang="ts">
-	import classNames from "classnames";
-	import SectionTitle from "@components/molecules/sectionTitle.svelte";
-	import ExpandCollapseButton from "./expandCollapseButton.svelte";
-	import { slide } from "svelte/transition";
-	import { sineInOut } from "svelte/easing";
-	export let sectionTitle = "";
+	import classNames from 'classnames';
+	import SectionTitle from '@components/molecules/sectionTitle.svelte';
+	import ExpandCollapseButton from './expandCollapseButton.svelte';
+	import { slide } from 'svelte/transition';
+	import { sineInOut } from 'svelte/easing';
+	export let sectionTitle = '';
 	export let isCollapsable = true;
 	export let isInitiallyCollapsed = false;
 	$: isCollapsed = isInitiallyCollapsed;
@@ -14,19 +14,12 @@
 	}
 </script>
 
-<section class={classNames("border-b border-red-300")}>
+<section class={classNames('border-b border-red-300')}>
 	{#if isCollapsable}
 		<button
-			class={classNames(
-				"cursor-pointer",
-				"flex",
-				"justify-center",
-				"relative",
-				"w-full",
-				{
-					"border-b border-red-300": isCollapsable
-				}
-			)}
+			class={classNames('cursor-pointer', 'flex', 'justify-center', 'relative', 'w-full', {
+				'border-b border-red-300': isCollapsable
+			})}
 			on:click={toggleVisibility}
 		>
 			<SectionTitle title={sectionTitle} />

@@ -1,7 +1,7 @@
 <script lang="ts">
-	import CvContainer from "@components/orgamisms/cv/cvContainer.svelte";
-	import type { PageData } from "./$types";
-	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
+	import CvContainer from '@components/orgamisms/cv/cvContainer.svelte';
+	import type { PageData } from './$types';
+	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
 
 	export let data: PageData;
 </script>

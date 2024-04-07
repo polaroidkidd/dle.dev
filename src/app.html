@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width" />
 		<script is:inline>
 			const themeCookie = document.cookie
-				.split("; ")
-				.find((row) => row.startsWith("theme="))
-				?.split("=")[1];
+				.split('; ')
+				.find((row) => row.startsWith('theme='))
+				?.split('=')[1];
 
-			if (themeCookie && themeCookie === "dark") {
-				document.querySelector("html")?.classList.add("dark");
+			if (themeCookie && themeCookie === 'dark') {
+				document.querySelector('html')?.classList.add('dark');
 			}
 		</script>
 		%sveltekit.head%

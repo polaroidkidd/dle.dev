@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Typography from "@components/atoms/typography/typography.svelte";
-	import classNames from "classnames";
-	import StartEndDate from "./startEndDate.svelte";
+	import Typography from '@components/atoms/typography/typography.svelte';
+	import classNames from 'classnames';
+	import StartEndDate from './startEndDate.svelte';
 	export let company: string;
 	export let location: string;
 	export let position: string;
@@ -20,13 +20,13 @@
 						size="lg"
 						variant="h2"
 						class={classNames(
-							"transition-all",
-							"text-red-600",
-							"underline",
-							"hover:text-red-400",
-							"visited:text-red-600",
-							"dark:hover:text-red-300",
-							"dark:text-red-400"
+							'transition-all',
+							'text-red-600',
+							'underline',
+							'hover:text-red-400',
+							'visited:text-red-600',
+							'dark:hover:text-red-300',
+							'dark:text-red-400'
 						)}
 					>
 						{company}

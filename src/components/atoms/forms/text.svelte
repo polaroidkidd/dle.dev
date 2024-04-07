@@ -1,15 +1,15 @@
 <script lang="ts">
-	import type { HTMLInputTypeAttribute } from "@model/form";
-	import classNames from "classnames";
-	import Typography from "../typography/typography.svelte";
+	import type { HTMLInputTypeAttribute } from '@model/form';
+	import classNames from 'classnames';
+	import Typography from '../typography/typography.svelte';
 
 	export let labelText: string;
 	export let fieldName: string;
 	export let value: string;
-	export let type: HTMLInputTypeAttribute = "text";
+	export let type: HTMLInputTypeAttribute = 'text';
 	export let invalidData: string[] = [];
 
-	export let autocomplete = "off";
+	export let autocomplete = 'off';
 	function typeAction(node: HTMLInputElement) {
 		node.type = type;
 	}
@@ -22,7 +22,7 @@
 </label>
 <input
 	use:typeAction
-	class={classNames("input", "bg-primary-50", "py-2", "px-5", "mb-3")}
+	class={classNames('input', 'bg-primary-50', 'py-2', 'px-5', 'mb-3')}
 	name={fieldName}
 	bind:value
 	data-invalid={invalidData}

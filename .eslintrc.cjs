@@ -34,7 +34,7 @@ module.exports = {
 		}
 	],
 	rules: {
-		'no-console': ['error', { allow: ['warn', 'error'] }],
+		'no-console': ['error', { allow: ['warn', 'error', 'log', 'info'] }],
 		'unused-imports/no-unused-imports-ts': 2,
 		'simple-import-sort/imports': 'error',
 		'simple-import-sort/exports': 'error'

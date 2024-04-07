@@ -1,12 +1,12 @@
 <script lang="ts">
-	import IconDle from "@components/atoms/icons/IconDle.svelte";
-	import Typography from "@components/atoms/typography/typography.svelte";
-	import { onMount } from "svelte";
-	import { modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+	import IconDle from '@components/atoms/icons/IconDle.svelte';
+	import Typography from '@components/atoms/typography/typography.svelte';
+	import { onMount } from 'svelte';
+	import { modalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	const modal: ModalSettings = {
-		type: "component",
+		type: 'component',
 		// Pass the component registry key as a string:
-		component: "contact"
+		component: 'contact'
 	};
 	function openModal() {
 		modalStore.trigger(modal);
@@ -20,16 +20,13 @@
 
 <footer class="w-full pt-32 flex items-center justify-center mb-12">
 	<div class="md:w-2/3 w-full px-4 flex flex-col">
-		<Typography variant="h2" size="6xl" class="mb-5">
-			How can we help you. Get in touch!
-		</Typography>
+		<Typography variant="h2" size="6xl" class="mb-5">How can we help you. Get in touch!</Typography>
 		<Typography variant="h2" size="6xl" />
 
 		<div class="flex mt-8 flex-col md:flex-row md:justify-between">
 			<Typography class="md:w-2/3">
-				We can help you make the right decisions when it comes to building your
-				internet presence, evaluating agencies and their work or even just
-				provide feedback on your current site.
+				We can help you make the right decisions when it comes to building your internet presence,
+				evaluating agencies and their work or even just provide feedback on your current site.
 			</Typography>
 
 			<div class="w-44 pt-6 md:pt-0">

@@ -1,9 +1,10 @@
-import { fetchBlogTitlesAndLastEditDate } from "@lib/server/blog";
-import type { PageServerLoad } from "./$types";
+import { fetchBlogTitlesAndLastEditDate } from '@lib/server/blog';
+
+import type { PageServerLoad } from './$types';
 
 export const load = (({ setHeaders }) => {
 	setHeaders({
-		"cache-control": "max-age=31536000,immutable"
+		'cache-control': 'max-age=31536000,immutable'
 	});
 	return {
 		streamed: {

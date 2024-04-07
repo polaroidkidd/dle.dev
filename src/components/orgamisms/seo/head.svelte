@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Favicon from "./favicon.svelte";
+	import Favicon from './favicon.svelte';
 
-	export let title = "Daniel L. Einars | Web Dev";
-	export let description = "Bridging the gap between business and engineering.";
+	export let title = 'Daniel L. Einars | Web Dev';
+	export let description = 'Bridging the gap between business and engineering.';
 </script>
 
 <svelte:head>

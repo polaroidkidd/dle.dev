@@ -1,9 +1,11 @@
-import { superValidate } from "sveltekit-superforms/client";
-import { contactSchema } from "../../schemas/contact";
-import type { Actions } from "@sveltejs/kit";
-import { error, fail } from "@sveltejs/kit";
-import type { PageServerLoad } from "../$types";
-import { NEXTCLOUD_CONTACT_FORM_LOGIN, NEXTCLOUD_CONTACT_FORM_PSW } from "$env/static/private";
+import type { Actions } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms/client';
+
+import { NEXTCLOUD_CONTACT_FORM_LOGIN, NEXTCLOUD_CONTACT_FORM_PSW } from '$env/static/private';
+
+import { contactSchema } from '../../schemas/contact';
+import type { PageServerLoad } from '../$types';
 
 interface INextcloudCSRFToken {
 	token: string;
@@ -11,7 +13,7 @@ interface INextcloudCSRFToken {
 
 export const actions = {
 	message: async ({ request }) => {
-		const csrfTokenResponse = await fetch("https://cloud.dle.dev/csrftoken");
+		const csrfTokenResponse = await fetch('https://cloud.dle.dev/csrftoken');
 		const csrfToken = (await csrfTokenResponse.json()) as INextcloudCSRFToken;
 		try {
 			const form = await superValidate(request, contactSchema);
@@ -25,46 +27,49 @@ export const actions = {
 
 			const headers = new Headers();
 			headers.set(
-				"Authorization",
-				"Basic " +
+				'Authorization',
+				'Basic ' +
 					btoa(
 						// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 						`${NEXTCLOUD_CONTACT_FORM_LOGIN}:${NEXTCLOUD_CONTACT_FORM_PSW}`
 					)
 			);
-			headers.set("Content-Type", "application/json");
-			headers.set("OCS-APIRequest", "true");
-			headers.set("Accept", "application/json;charset=UTF-8");
-			headers.set("credentials", "include");
+			headers.set('Content-Type', 'application/json');
+			headers.set('OCS-APIRequest', 'true');
+			headers.set('Accept', 'application/json;charset=UTF-8');
+			headers.set('credentials', 'include');
 
-			const postRequest = new Request("https://cloud.dle.dev/ocs/v2.php/apps/forms/api/v2.1/submission/insert", {
-				headers: headers,
-				method: "POST",
-				body: JSON.stringify({
-					formId: 1,
-					userId: `anon-user-${csrfToken.token}`,
-					answers: {
-						"1": [form.data.firstName],
-						"2": [form.data.lastName],
-						"3": [form.data.email],
-						"4": [form.data.text]
-					},
-					shareHash: "g2Tr7W5JC9iqx59TZYiY675n"
-				}),
-				redirect: "follow"
-			});
+			const postRequest = new Request(
+				'https://cloud.dle.dev/ocs/v2.php/apps/forms/api/v2.1/submission/insert',
+				{
+					headers: headers,
+					method: 'POST',
+					body: JSON.stringify({
+						formId: 1,
+						userId: `anon-user-${csrfToken.token}`,
+						answers: {
+							'1': [form.data.firstName],
+							'2': [form.data.lastName],
+							'3': [form.data.email],
+							'4': [form.data.text]
+						},
+						shareHash: 'g2Tr7W5JC9iqx59TZYiY675n'
+					}),
+					redirect: 'follow'
+				}
+			);
 			const response = await fetch(postRequest);
-			console.log("response", response);
+			console.log('response', response);
 
 			if (response.status !== 200) {
-				throw error(404, "some other error");
+				throw error(404, 'some other error');
 			}
 
 			form.data = {
-				email: "",
-				firstName: "",
-				lastName: "",
-				text: ""
+				email: '',
+				firstName: '',
+				lastName: '',
+				text: ''
 			};
 
 			// Yep, return { form } here too
@@ -79,5 +84,5 @@ export const actions = {
 } satisfies Actions;
 
 export const load = (() => {
-	throw error(404, "Not Found");
+	throw error(404, 'Not Found');
 }) satisfies PageServerLoad;

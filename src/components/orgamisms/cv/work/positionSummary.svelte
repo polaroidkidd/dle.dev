@@ -6,9 +6,7 @@
 <div class="mb-4">
 	{#if summary}
 		<div>
-			<h2 class="block border-b border-b-red-100 mb-2 pb-0">
-				Responsibilities
-			</h2>
+			<h2 class="block border-b border-b-red-100 mb-2 pb-0">Responsibilities</h2>
 			<p>{summary}</p>
 		</div>
 	{/if}

@@ -1,17 +1,17 @@
 <script lang="ts">
-	import IconLoading from "@components/atoms/icons/IconLoading.svelte";
-	import SearchOrCloseIcon from "@components/molecules/searchOrCloseIcon.svelte";
-	import classNames from "classnames";
-	import SearchResults from "./searchResults.svelte";
-	import debounce from "just-debounce-it";
+	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
+	import SearchOrCloseIcon from '@components/molecules/searchOrCloseIcon.svelte';
+	import classNames from 'classnames';
+	import SearchResults from './searchResults.svelte';
+	import debounce from 'just-debounce-it';
 
-	import { navigating } from "$app/stores";
+	import { navigating } from '$app/stores';
 
 	let showMobileSearch = false;
 	let innerWidth = 0;
 	let isLoading = false;
 	let timer: ReturnType<typeof setTimeout>;
-	let query = "";
+	let query = '';
 
 	function mobileSearchVisibillity(width: number) {
 		return width <= 640;
@@ -20,7 +20,7 @@
 	function onClickSearch() {
 		if (results.length > 0) {
 			results = [];
-			query = "";
+			query = '';
 		}
 
 		if (mobileSearchVisibillity(innerWidth)) {
@@ -37,7 +37,7 @@
 	$: if ($navigating?.to !== $navigating?.from) {
 		showMobileSearch = false;
 		results = [];
-		query = "";
+		query = '';
 	}
 
 	const search = debounce(async (searchQuery: string) => {
@@ -58,40 +58,46 @@
 <svelte:window bind:innerWidth />
 
 <div
-	class={classNames("flex items-center my-auto sm:w-full", {
+	class={classNames('flex items-center my-auto sm:w-full', {
 		[`z-10 fixed top-0 left-0 right-0 bottom-0 mobileSearchContainer`]: showMobileSearch
 	})}
 	data-cy="searchOverlay"
 >
 	<div
-		class={classNames("flex items-center w-full", "sm:border rounded border-red-300 ", "bg-transparent", "ml-3", "h-9")}
+		class={classNames(
+			'flex items-center w-full',
+			'sm:border rounded border-red-300 ',
+			'bg-transparent',
+			'ml-3',
+			'h-9'
+		)}
 	>
 		<SearchOrCloseIcon {showMobileSearch} showClose={results.length > 0} {onClickSearch} />
 		<input
 			class={classNames(
-				"bg-transparent",
-				"outline-none",
-				"sm:h-full",
-				"sm:w-full",
-				"px-4",
-				"sm:visible",
-				"text-base",
-				"rounded-none",
+				'bg-transparent',
+				'outline-none',
+				'sm:h-full',
+				'sm:w-full',
+				'px-4',
+				'sm:visible',
+				'text-base',
+				'rounded-none',
 				{
 					hidden: !showMobileSearch && mobileSearchVisibillity(innerWidth)
 				},
 				{
-					"visible absolute top-0 left-0 right-0 w-full text-center h-10 bg-white": showMobileSearch
+					'visible absolute top-0 left-0 right-0 w-full text-center h-10 bg-white': showMobileSearch
 				}
 			)}
-			placeholder={"Quick Search"}
-			name={"search"}
+			placeholder={'Quick Search'}
+			name={'search'}
 			bind:value={query}
 			size={1}
 		/>
 		<IconLoading
 			ariaLabel="loading"
-			class={classNames("fill-red-600 p-2 absolute top-0 left-0 md:static  z-100 h-10 md:h-9 ", {
+			class={classNames('fill-red-600 p-2 absolute top-0 left-0 md:static  z-100 h-10 md:h-9 ', {
 				hidden: !isLoading
 			})}
 		/>
@@ -103,7 +109,7 @@
 		{isLoading}
 		closeSearchResults={() => {
 			results = [];
-			query = "";
+			query = '';
 		}}
 	/>
 </div>
@@ -117,7 +123,7 @@
 		width: 100vw;
 		z-index: 100;
 		&::before {
-			content: "";
+			content: '';
 			position: absolute;
 			height: 100%;
 			width: 100%;
@@ -134,13 +140,13 @@
 		width: 100%;
 	}
 	.mobileLoadingIcon {
-		fill: theme("colors.red.500");
+		fill: theme('colors.red.500');
 		width: 5rem;
 	}
 
 	.mobileSearchContainer {
 		&::before {
-			content: "";
+			content: '';
 			position: absolute;
 			height: 100%;
 			width: 100%;
@@ -149,8 +155,8 @@
 	}
 
 	.searchCloseIcon {
-		@media (min-width: "640px") {
-			cursor: theme("cursor.auto");
+		@media (min-width: '640px') {
+			cursor: theme('cursor.auto');
 			top: unset;
 			right: unset;
 			display: block;

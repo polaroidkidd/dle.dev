@@ -1,9 +1,9 @@
-import { get, readable } from "svelte/store";
-import { fetchCv } from "../cv";
-import type { IAbout } from "@model/cv";
+import type { IAbout } from '@model/cv';
+import dayjs from 'dayjs';
+import duration from 'dayjs/plugin/duration';
+import { get, readable } from 'svelte/store';
 
-import dayjs from "dayjs";
-import duration from "dayjs/plugin/duration";
+import { fetchCv } from '../cv';
 dayjs.extend(duration);
 
 let timeoutId: ReturnType<typeof setTimeout>;

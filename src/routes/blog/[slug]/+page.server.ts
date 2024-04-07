@@ -1,5 +1,6 @@
-import { getBlogEntryContent } from "@lib/server/blog";
-import type { PageServerLoad } from "./$types";
+import { getBlogEntryContent } from '@lib/server/blog';
+
+import type { PageServerLoad } from './$types';
 
 export const load = (({ params }) => {
 	const slug = params?.slug;

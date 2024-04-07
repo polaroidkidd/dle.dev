@@ -52,9 +52,9 @@ export type IProfile = HTMLAnchorElement & {
 };
 
 export enum PROFILE {
-	LinkedIn = "LinkedIn",
-	Github = "Github",
-	Unknown = "Unknown"
+	LinkedIn = 'LinkedIn',
+	Github = 'Github',
+	Unknown = 'Unknown'
 }
 
 export type IEducation = {

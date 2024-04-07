@@ -1,8 +1,8 @@
-import type { LayoutServerLoad } from "./$types";
+import type { SuperValidated } from 'sveltekit-superforms';
+import { superValidate } from 'sveltekit-superforms/server';
 
-import { superValidate } from "sveltekit-superforms/server";
-import { contactSchema, type IContactSchema } from "../schemas/contact";
-import type { SuperValidated } from "sveltekit-superforms";
+import { contactSchema, type IContactSchema } from '../schemas/contact';
+import type { LayoutServerLoad } from './$types';
 
 let form: SuperValidated<IContactSchema> | null = null;
 

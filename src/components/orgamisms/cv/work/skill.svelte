@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Technologies from "./technologies.svelte";
+	import Technologies from './technologies.svelte';
 	export let name: string;
 	export let keywords: string[];
 </script>
