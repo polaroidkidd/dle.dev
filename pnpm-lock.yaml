@@ -72,8 +72,8 @@ dependencies:
     specifier: ^11.1.0
     version: 11.1.0
   unified:
-    specifier: ^10.1.2
-    version: 10.1.2
+    specifier: ^11.0.4
+    version: 11.0.4
   wrangler:
     specifier: ^3.48.0
     version: 3.48.0
