@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^4.2.1
     version: 4.2.1(@sveltejs/kit@2.5.5)(wrangler@3.48.0)
   '@sveltejs/adapter-cloudflare-workers':
-    specifier: ^2.2.1
-    version: 2.2.1(@sveltejs/kit@2.5.5)(wrangler@3.48.0)
+    specifier: ^2.4.0
+    version: 2.4.0(@sveltejs/kit@2.5.5)(wrangler@3.48.0)
   '@sveltejs/adapter-node':
     specifier: ^5.0.1
     version: 5.0.1(@sveltejs/kit@2.5.5)
@@ -1529,8 +1529,8 @@ packages:
       import-meta-resolve: 4.0.0
     dev: true
 
-  /@sveltejs/adapter-cloudflare-workers@2.2.1(@sveltejs/kit@2.5.5)(wrangler@3.48.0):
-    resolution: {integrity: sha512-KmXeNsPTGBQnOP2DaJ2dgqHEWsN6wtV13/I7mkdGsMNfY1vsMnyLzBL8eTNuy1jHw5669OAjCtDj9D1tKuyDXQ==}
+  /@sveltejs/adapter-cloudflare-workers@2.4.0(@sveltejs/kit@2.5.5)(wrangler@3.48.0):
+    resolution: {integrity: sha512-nzt+poPEnGrWbUC2zlAM/YEj1ukHDNp5ZIe0JD/l9GmoQ93lUn7qD4j5QWkJx5nbMbJwNqRShPIhIiw4Fq6plw==}
     peerDependencies:
       '@sveltejs/kit': ^2.0.0
       wrangler: ^3.28.4
@@ -1538,7 +1538,7 @@ packages:
       '@cloudflare/workers-types': 4.20240405.0
       '@iarna/toml': 2.2.5
       '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
-      esbuild: 0.19.12
+      esbuild: 0.20.2
       wrangler: 3.48.0
     dev: true
 
