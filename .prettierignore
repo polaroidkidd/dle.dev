@@ -14,3 +14,4 @@ yarn.lock
 prisma/migrations
 db
 renovate.json
+*.yml
