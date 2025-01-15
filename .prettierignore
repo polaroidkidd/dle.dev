@@ -13,3 +13,4 @@ package-lock.json
 yarn.lock
 prisma/migrations
 db
+renovate.json
