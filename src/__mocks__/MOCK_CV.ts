@@ -1,166 +1,119 @@
-export const MOCK_CV = {
+import { type IAbout, PROFILE } from '@model/cv';
+
+export const MOCK_CV: IAbout = {
 	basics: {
 		name: 'Daniel L. Einars',
-		label: 'Senior Software Engineer',
-		location: { countryCode: 'Switzerland' },
+		label: 'Lead Software Engineer',
+		image: 'https://dle.dev/_app/immutable/assets/daniel_einars-400x500.3aa2364c.DziaXVAI.jpg',
+		email: 'contact@dle.dev',
+		phone: '+41 78 640 60 84',
+		location: {
+			address: 'Moosmattstr. 4',
+			countryCode: 'Switzerland',
+			region: '6045 Meggen,'
+		},
 		profiles: [
 			{
-				network: 'Github',
-				username: 'polaroidkidd',
+				network: PROFILE.Github,
+				username: 'Github Portfolio',
 				url: 'https://github.com/polaroidkidd'
 			},
 			{
-				network: 'LinkedIn',
-				username: 'daniel-einars',
-				url: 'https://www.linkedin.com/in/daniel-einars'
+				network: PROFILE.LinkedIn,
+				username: 'LinkedIn',
+				url: 'https://www.linkedin.com/in/daniel-einars/'
+			},
+			{
+				network: PROFILE.Website,
+				username: 'Personal Page',
+				url: 'https://dle.dev'
 			}
 		]
 	},
 	work: [
 		{
 			name: 'ti&m AG, Zürich, Switzerland',
+			position: 'Lead Software Engineer',
+			startDate: '2024-04-01',
+			summary: 'Frontend Lead developing a large B2B E-Banking Application',
+			highlights: [
+				'Lead a team of seven senior frontend engineers, ranging in experience from 3 - 20+ years',
+				'Define and contineously adapt technical direction and strategy',
+				'Ensure team is focused on developing features while maintaining code quality',
+				'Refine, plan, delegate, collaborate and develop epics in collaboration with BAs, Design-Department and the customers',
+				'Draw up developer guidelines in order to contineously improve quality of work and reduce time required for development',
+				'Run contineous experiments with new tools aimed at improving developer experience and reducing chore tasks'
+			]
+		},
+		{
+			name: 'ti&m AG, Zürich, Switzerland',
 			position: 'Senior Software Engineer',
-			url: 'https://ti8m.ch',
 			startDate: '2022-06-01',
-			summary: 'Develop software solutions for clients of ti&m AG & internal projects.',
-			notableProjects: [
-				{
-					project: 'Redacted (NDA)',
-					summary:
-						'Responsible for entire B2C frontend (ReactJS, NextJS and Magnolia), including epic planning, onboarding engineers and training mentees/junior engineers.',
-					highlights: [
-						'Manage client goals and expectations',
-						'Migration of applications created with create-react-app to nextjs resulting in large performance improvements',
-						'Integration of nextjs applications into the Magnolia cms',
-						'Draw up developer guidelines in order to contineously improve maintainabillity',
-						'Onboarding new frontend engineers',
-						'Training new junior engineers',
-						'Mentor engineers as part of the trainee programm'
-					],
-					technology: [
-						'Javascript',
-						'Typescript',
-						'React',
-						'NextJS',
-						'Python',
-						'Java',
-						'Node',
-						'Docker',
-						'Docker-Compose',
-						'nginx',
-						'Gitlab-CI',
-						'Jenkins'
-					]
-				}
+			endDate: '2024-03-31',
+			summary:
+				'Responsible for entire B2C frontend for a large credit institution (ReactJS, Next.js, Magnolia)',
+			highlights: [
+				'Migration of applications created with create-react-app to Next.js resulting in large performance improvements',
+				'Refine, plan, delegate, collaborate and develop epics in teams of two to six engineers',
+				'Manage client goals and expectations',
+				'Draw up developer guidelines in order to contineously improve maintainability',
+				'Onboarding new frontend engineers',
+				'Training junior frontend engineers'
 			]
 		},
 		{
 			name: 'ti&m AG, Zürich, Switzerland',
 			position: 'Professional Software Engineer',
-			url: 'https://ti8m.ch',
 			startDate: '2019-09-01',
 			endDate: '2022-06-01',
-			summary: 'Develop software solutions for clients of ti&m AG & internal projects',
-			notableProjects: [
-				{
-					project: 'Redacted (NDA)',
-					summary:
-						'Responsible for all B2C-facing react applications and support for the Magnolia CMS.',
-					highlights: [
-						'Improve code maintainability by introducing/upgrading linting tools such as eslint, lint-staged and prettier',
-						'Improve developer experience by introducing/upgrading developer tools such hot-module-reloader or upgrading various libraries',
-						'Implementation of site-wide design updates throughout the react applications and Magnolia'
-					],
-					technology: ['Javascript', 'Typescript', 'React', 'NextJS', 'Java', 'Node']
-				},
-				{
-					project: 'Redacted (NDA)',
-					summary: 'Develop browser-only based liveness verification tool',
-					technology: [
-						'Javascript',
-						'Typescript',
-						'React',
-						'FaceAPI',
-						'Web-Workers',
-						'Node',
-						'Python',
-						'TensorFlow'
-					]
-				}
+			summary: 'Responsible for all B2C facing react applications and support for the Magnolia CMS',
+			highlights: [
+				'Improve code maintainability by introducing/upgrading linting tools such as eslint, lint-staged and prettier',
+				'Improve developer experience by introducing/upgrading developer tools such hot-module-reloader or upgrading various libraries',
+				'Implementation of site-wide design updates throughout the react applications and Magnolia'
 			]
 		},
 		{
 			name: 'Noser Engineering AG, Winterthur, Switzerland',
 			position: 'Software Engineer (consultant)',
-			url: 'https://noser.ch',
 			startDate: '2018-08-15',
 			endDate: '2019-10-31',
-			summary: 'Develop software solutions for clients of Noser AG',
-			notableProjects: [
-				{
-					project: 'Redacted (NDA)',
-					summary:
-						'Develop a POC Remote-Support Android application using WEB-RTC, Dagger 2 (with Dagger Android support) V. 2.24, support for Scoping, SubModules,Activity, Fragment & ViewModel Injection on a single-activity MVVM architecture',
-					technology: ['Android', 'Java', 'WebRTC', 'Dagger 2', 'SQLite']
-				},
-				{
-					project: 'Redacted (NDA)',
-					summary:
-						'Migration of 148 Ant projects to Gradle, reducing the compile time from 10 to < 2 minutes for the entire development team',
-					technology: ['Java', 'Gradle', 'Python']
-				},
-				{
-					project: 'Noser Young AG',
-					summary:
-						'Teach the Noser Young AG Android course twice for 2nd year apprentices of the Application developer apprenticeship, update the course materials & conduct the end-of-course exams',
-					technology: ['Android', 'Java']
-				}
+			summary: 'Develop software solutions for clients of Noser Engineering AG',
+			highlights: [
+				'Develop a remote-support Android application using WEB-RTC, Dagger 2',
+				'Migration of 148 Ant projects to Gradle, reducing the compile time from 10 to < 2 minutes for the entire development team',
+				'Teach the Noser Young AG Android course twice for 2nd year apprentices of the Application developer apprenticeship, update the course materials and conduct the final exams'
 			]
 		},
 		{
 			name: 'BearingPoint AG, Zürich, Switzerland',
-			position: 'Part-Time Student Employee (Werkstudent)',
-			url: 'https://www.bearingpoint.com/de-ch/',
-			startDate: '2017-04-01',
-			endDate: '2016-02-01',
-			summary:
-				'Support the Solutions Financial Services EasyTax Team in their daily duties & build automation tools.',
+			position: 'Werkstudent',
+			startDate: '2016-02-01',
+			endDate: '2017-04-01',
+			summary: 'Part-time support for consultants',
 			highlights: [
-				'Development of web scrapers for automated querying of currency exchange rates with Python 3.6 using Selenium, PhantomJS & BeautifulSoup',
-				'Data transformation of currency exchange rates into BearingPoint’s EasyTax XML-Format with Python',
-				'Development of a tool for automated test case generation for the EasyTax software with VBA (Excel)'
-			],
-			technology: ['Javascript', 'Node', 'VBA']
+				'Development of web scrapers, data transformation tools and automated testcase generation for the EasyTax product'
+			]
 		},
 		{
 			name: 'Plus IT AG, Winterthur, Switzerland',
 			position: 'Business Intelligence Trainee',
-			url: 'https://www.plus-it.ch/',
 			startDate: '2017-07-01',
 			endDate: '2017-09-01',
-			summary: 'Support consultants in their daily duties.',
+			summary: 'Support consultants with daily tasks',
 			highlights: [
-				'Development of a prototype to load data from Google-Analytics into a MS-SQL Database using the ETL-Tool SAP DataService',
-				'Generating a universe and reports with BusinessObjects WebIntelligence',
-				'SEO and user-friendliness analysis of the PlusIT AG homepage',
-				'Creation of an evaluation catalogue to facilitate the homepage analysis at a later point in time'
-			],
-			technology: ['Javascript', 'Node', 'Google Analytics']
+				'Prototype development to load data from Google-Analytics into a MS-SQL Database using the ETL-Tool SAP DataService'
+			]
 		},
 		{
-			name: 'TravelBird B.V./GmbH, Zürich, Switzerland & Amsterdam, Netherlands',
+			name: 'TravelBird B.V. / GmbH, Zürich, Switzerland/Amsterdam, Netherlands',
 			position: 'Marketing Manager Germany and Head of Marketing',
 			startDate: '2013-04-01',
 			endDate: '2014-10-01',
-			summary:
-				'Initially responsibilities included building and managing affiliate, email & SEA marketing for the German market and expanding the marketing team for the German unit of the company. Responsibilities as Head of Marketing included (re)negotiating EU lead purchasing contracts, overseeing country-spanning marketing campaigns and advising individual country units on their general marketing strategy.',
 			highlights: [
-				'Campaign and product performance evaluation in EU Markets',
-				'Establish lead buying and management strategy for EU markets including ROAS optimization',
-				'Management of online marketing channels (SEA, affiliate, newsletter, facebook, twitter)',
-				'Establishment, training and management of the marketing team for Germany.'
-			],
-			technology: ['Google Analytics', 'HootSuite']
+				'Responsibilities as Head of Marketing: Campaign and product performance evaluation in EU Markets. Establish lead buying and management strategy for EU markets including ROAS optimization',
+				'Responsibilities as Marketing Manger Germany: Management of online marketing channels (SEA, affiliate, newsletter, facebook, X). Establishment, training and management of the marketing team for Germany'
+			]
 		},
 		{
 			name: 'NEODAU GmbH and Co.KG, Hamburg, Germany',
@@ -168,9 +121,7 @@ export const MOCK_CV = {
 			startDate: '2012-08-01',
 			endDate: '2013-03-01',
 			highlights: [
-				'Adnetwork-, affiliate-, publisher-management',
-				'Reporting, vetting & aquisition of new clients',
-				'Term negotiations & contractual follow-up'
+				'Adnetwork-, affiliate-, publisher-management, client acquisition, contract negotiation and follow-up'
 			]
 		}
 	],
@@ -203,7 +154,7 @@ export const MOCK_CV = {
 		{
 			title: 'Code-Night Hackathon',
 			date: '2021-02-25',
-			awarder: 'tiandm AG',
+			issuer: 'ti&m AG',
 			summary:
 				'Our three-member team won the hackathon with a forgery-detection service, which was able to detect images manipulated with photoshop. I contributed the frontend (react spa), network configuration via nginx and DevOps.'
 		}
@@ -212,38 +163,57 @@ export const MOCK_CV = {
 		{
 			name: 'Magnolia Magnolia Associate Developer',
 			date: '2020-12-01',
-			issuer: 'Magnolia International Ltd'
+			issuer: 'Magnolia'
 		},
 		{
 			name: 'Camunda Platform für Java Entwickler',
 			date: '2021-09-01',
-			issuer: 'Camunda Services GmbH'
+			issuer: 'Camunda services GmbH'
+		},
+		{
+			name: 'Certified Professional for Software Architecture - Foundation Level',
+			date: '2025-01-20',
+			issuer: 'iSAQB® '
 		}
 	],
 	skills: [
 		{
-			name: '',
+			name: 'Web Development',
 			keywords: [
 				'React',
-				'NextJS',
-				'Tailwind',
+				'NextJs',
+				'Sveltekit',
+				'Prisma',
+				'Cypress',
+				'Pupeteer',
+				'Javascript',
+				'TypeScript',
 				'Webpack',
-				'HTML',
-				'CSS',
-				'JavaScript',
-				'Typescript',
-				'Magnolia',
-				'Java',
-				'nginx',
+				'Vite',
+				'Storybook',
+				'Nginx',
+				'NodeJS'
+			]
+		},
+		{
+			name: 'DevOps',
+			keywords: [
 				'Docker',
 				'Docker-Compose',
 				'Jenkins',
-				'Gitlab'
+				'Gitlab CI',
+				'Github Actions',
+				'Ubuntu Server',
+				'fail2ban',
+				'Cloudflare'
 			]
 		}
 	],
 	languages: [
-		{ language: 'English', fluency: 'Native speaker' },
+		{
+			language: 'English',
+			fluency: 'Native speaker'
+		},
 		{
 			language: 'German',
 			fluency: 'Native speaker'
@@ -251,10 +221,49 @@ export const MOCK_CV = {
 	],
 	projects: [
 		{
+			name: 'WhatsIn',
+			position: 'Founder',
+			summary: 'A simple tool to help you quickly organize your belongings (work in progress)',
+			urls: ['https://whatsin.fyi'],
+			startDate: '2023-10-27',
+			keywords: [
+				'cloudflare workers',
+				'postgresql (neon.tech)',
+				'prisma',
+				'sveltekit',
+				'lucia-auth',
+				'storybook',
+				'OpenAPI',
+				'SwaggerUI',
+				'NodeJS'
+			]
+		},
+		{
+			name: 'CloudKit',
+			summary:
+				'A production ready sveltekit cloudflare template preconfigured for cloudflare pages and images, neon.tech postgresql, upstash redis, lucia-auth, prisma and pupeteer.',
+			position: 'Founder',
+			urls: ['https://github.com/polaroidkidd/cloudkit', 'https://cloudkit.dev'],
+			startDate: '2023-10-27',
+			keywords: [
+				'cloudflare workers',
+				'postgresql (neon.tech)',
+				'prisma',
+				'sveltekit',
+				'lucia-auth',
+				'storybook',
+				'OpenAPI',
+				'SwaggerUI',
+				'NodeJS'
+			]
+		},
+		{
 			name: 'Librephotos',
-			description: 'AI powered photo management service',
-			summary: 'Contributor to the librephotos/frontend repository',
+			summary: 'AI powered photo management service',
+			urls: ['https://docs.librephotos.com/', 'https://github.com/LibrePhotos'],
+			position: 'Contributor',
 			startDate: '2022-06-01',
+			endDate: '2023-01-31',
 			keywords: [
 				'react',
 				'typescript',
@@ -262,20 +271,7 @@ export const MOCK_CV = {
 				'redux-toolkit',
 				'mantine component library',
 				'nginx'
-			],
-			highlights: ['Major library upgrades', 'Migration from redux to RTK and RTK Query']
-		},
-		{
-			name: 'Selfhosted Services',
-			description: 'I selfhost public applications (nextcloud, bitwarden, paperless etc.)',
-			highlights: [
-				'Migration to the CloudFlare Argo Tunnel to mitigate DDOS attacks',
-				'conigured fail2ban, automated updates, upgrades and off-site backups'
-			],
-			keywords: ['Ubuntu Server', 'Cloudflare', 'fail2ban'],
-			startDate: '2018-06-01',
-			entity: 'Entity',
-			type: 'application'
+			]
 		}
 	]
 };
