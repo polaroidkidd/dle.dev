@@ -1,17 +1,10 @@
 import { type IAbout, PROFILE } from '@model/cv';
 
-export const MOCK_CV: IAbout = {
+export const cv: IAbout = {
 	basics: {
 		name: 'Daniel L. Einars',
 		label: 'Lead Software Engineer',
 		image: 'https://dle.dev/_app/immutable/assets/daniel_einars-400x500.3aa2364c.DziaXVAI.jpg',
-		email: 'contact@dle.dev',
-		phone: '+41 78 640 60 84',
-		location: {
-			address: 'Moosmattstr. 4',
-			countryCode: 'Switzerland',
-			region: '6045 Meggen,'
-		},
 		profiles: [
 			{
 				network: PROFILE.Github,
@@ -37,12 +30,12 @@ export const MOCK_CV: IAbout = {
 			startDate: '2024-04-01',
 			summary: 'Frontend Lead developing a large B2B E-Banking Application',
 			highlights: [
-				'Lead a team of seven senior frontend engineers, ranging in experience from 3 - 20+ years',
 				'Define and contineously adapt technical direction and strategy',
 				'Ensure team is focused on developing features while maintaining code quality',
 				'Refine, plan, delegate, collaborate and develop epics in collaboration with BAs, Design-Department and the customers',
 				'Draw up developer guidelines in order to contineously improve quality of work and reduce time required for development',
-				'Run contineous experiments with new tools aimed at improving developer experience and reducing chore tasks'
+				'Contineous technology evaluations aimed at delivering business value, improving performance, improving developer experience or reducing chore tasks',
+				'Colaborate on API specifications across multiple internal stakeholders'
 			]
 		},
 		{
@@ -50,8 +43,7 @@ export const MOCK_CV: IAbout = {
 			position: 'Senior Software Engineer',
 			startDate: '2022-06-01',
 			endDate: '2024-03-31',
-			summary:
-				'Responsible for entire B2C frontend for a large credit institution (ReactJS, Next.js, Magnolia)',
+			summary: 'Responsible for entire B2C frontend for a large credit institution',
 			highlights: [
 				'Migration of applications created with create-react-app to Next.js resulting in large performance improvements',
 				'Refine, plan, delegate, collaborate and develop epics in teams of two to six engineers',
@@ -161,9 +153,30 @@ export const MOCK_CV: IAbout = {
 	],
 	certificates: [
 		{
-			name: 'Magnolia Magnolia Associate Developer',
-			date: '2020-12-01',
-			issuer: 'Magnolia'
+			name: '(Upcoming) Two-Day Domain Driven Design Workshop',
+			date: '2025-11-18',
+			issuer: 'ti&m AG'
+		},
+		{
+			name: '(Upcoming) CPSA® Advanced Level Module WEBSEC',
+			date: '2025-08-25',
+			issuer: 'iSAQB®'
+		},
+		{
+			name: '(Upcoming) Two-Day Kubernetes Fundamentals Workshop',
+			date: '2025-08-18',
+			issuer: 'ti&m AG'
+		},
+		{
+			name: 'Security-Awareness Training for Backend Developers',
+			date: '2025-03-19',
+			issuer: 'ti&m AG'
+		},
+		{
+			name: 'Foundation Training in Software Architecture (CPSA-F)',
+			date: '2025-01-20',
+			issuer: 'iSAQB®',
+			url: 'https://www.certible.com/badge/54270dfd-9fca-41dd-90a1-312b112e5fac/'
 		},
 		{
 			name: 'Camunda Platform für Java Entwickler',
@@ -171,9 +184,9 @@ export const MOCK_CV: IAbout = {
 			issuer: 'Camunda services GmbH'
 		},
 		{
-			name: 'Certified Professional for Software Architecture - Foundation Level',
-			date: '2025-01-20',
-			issuer: 'iSAQB® '
+			name: 'Magnolia Magnolia Associate Developer',
+			date: '2020-12-01',
+			issuer: 'Magnolia'
 		}
 	],
 	skills: [
@@ -186,13 +199,20 @@ export const MOCK_CV: IAbout = {
 				'Prisma',
 				'Cypress',
 				'Pupeteer',
-				'Javascript',
+				'Playwright',
+				'JavaScript',
 				'TypeScript',
 				'Webpack',
 				'Vite',
 				'Storybook',
-				'Nginx',
-				'NodeJS'
+				'NodeJS',
+				'OpenAPI',
+				'i18n',
+				'Tailwind',
+				'Bootstrap',
+				'React Query',
+				'React Redux',
+				'React Saga'
 			]
 		},
 		{
@@ -217,61 +237,6 @@ export const MOCK_CV: IAbout = {
 		{
 			language: 'German',
 			fluency: 'Native speaker'
-		}
-	],
-	projects: [
-		{
-			name: 'WhatsIn',
-			position: 'Founder',
-			summary: 'A simple tool to help you quickly organize your belongings (work in progress)',
-			urls: ['https://whatsin.fyi'],
-			startDate: '2023-10-27',
-			keywords: [
-				'cloudflare workers',
-				'postgresql (neon.tech)',
-				'prisma',
-				'sveltekit',
-				'lucia-auth',
-				'storybook',
-				'OpenAPI',
-				'SwaggerUI',
-				'NodeJS'
-			]
-		},
-		{
-			name: 'CloudKit',
-			summary:
-				'A production ready sveltekit cloudflare template preconfigured for cloudflare pages and images, neon.tech postgresql, upstash redis, lucia-auth, prisma and pupeteer.',
-			position: 'Founder',
-			urls: ['https://github.com/polaroidkidd/cloudkit', 'https://cloudkit.dev'],
-			startDate: '2023-10-27',
-			keywords: [
-				'cloudflare workers',
-				'postgresql (neon.tech)',
-				'prisma',
-				'sveltekit',
-				'lucia-auth',
-				'storybook',
-				'OpenAPI',
-				'SwaggerUI',
-				'NodeJS'
-			]
-		},
-		{
-			name: 'Librephotos',
-			summary: 'AI powered photo management service',
-			urls: ['https://docs.librephotos.com/', 'https://github.com/LibrePhotos'],
-			position: 'Contributor',
-			startDate: '2022-06-01',
-			endDate: '2023-01-31',
-			keywords: [
-				'react',
-				'typescript',
-				'redux',
-				'redux-toolkit',
-				'mantine component library',
-				'nginx'
-			]
 		}
 	]
 };

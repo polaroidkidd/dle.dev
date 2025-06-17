@@ -33,6 +33,7 @@ export type ICertificate = {
 	name: string;
 	date: string;
 	issuer: string;
+	url?: string;
 };
 
 export type IProject = {
@@ -74,9 +75,9 @@ export type IBasics = {
 	name: string;
 	label: string;
 	image: string;
-	email: string;
-	phone: string;
-	location: ILocation;
+	email?: string;
+	phone?: string;
+	location?: ILocation;
 	profiles: IProfile[];
 };
 
@@ -100,5 +101,4 @@ export type IAbout = {
 	certificates: ICertificate[];
 	skills: ISkill[];
 	languages: ILanguage[];
-	projects: Partial<IProject>[];
 };

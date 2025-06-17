@@ -2,19 +2,18 @@
 	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
 	import SearchOrCloseIcon from '@components/molecules/searchOrCloseIcon.svelte';
 	import classNames from 'classnames';
-	import SearchResults from './searchResults.svelte';
 	import debounce from 'just-debounce-it';
+	import SearchResults from './searchResults.svelte';
 
 	import { navigating } from '$app/stores';
 
 	let showMobileSearch = false;
 	let innerWidth = 0;
 	let isLoading = false;
-	let timer: ReturnType<typeof setTimeout>;
 	let query = '';
 
 	function mobileSearchVisibillity(width: number) {
-		return width <= 640;
+		return width <= 1040;
 	}
 
 	function onClickSearch() {
@@ -41,14 +40,13 @@
 	}
 
 	const search = debounce(async (searchQuery: string) => {
-		clearTimeout(timer);
 		if (query !== null) {
 			isLoading = true;
 			const response = await fetch(`/blog?q=${searchQuery}`);
 			isLoading = false;
 			results = (await response.json()) as [];
 		}
-	}, 150);
+	}, 200);
 
 	$: if (query.length > 0) {
 		search(query);

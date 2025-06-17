@@ -26,21 +26,21 @@
 	export let languages: ILanguage[];
 </script>
 
-<AboutSectionContainer isInitiallyCollapsed={false} isCollapsable={true} sectionTitle="Skills">
+<AboutSectionContainer isCollapsable={false} class="pb-10">
+	<Basics name={basics.name} label={basics.label} profiles={basics.profiles} />
+</AboutSectionContainer>
+<AboutSectionContainer isInitiallyCollapsed={true} isCollapsable={true} sectionTitle="Skills">
 	{#each skills as { name, keywords }}
 		<Skill {name} {keywords} />
 	{/each}
 </AboutSectionContainer>
-<AboutSectionContainer isCollapsable={false} class="pb-10">
-	<Basics name={basics.name} label={basics.label} profiles={basics.profiles} />
-</AboutSectionContainer>
 
-<AboutSectionContainer isInitiallyCollapsed={false} sectionTitle="Certificates">
+<AboutSectionContainer isInitiallyCollapsed={true} sectionTitle="Certificates">
 	{#each certificates.sort( (a, b) => (Date.parse(a.date) > Date.parse(b.date) ? -1 : 1) ) as { name, issuer, date }}
 		<Certificate {name} {issuer} {date} />
 	{/each}
 </AboutSectionContainer>
-<AboutSectionContainer isInitiallyCollapsed={false} sectionTitle="Projects">
+<AboutSectionContainer isInitiallyCollapsed={false} sectionTitle="Work Experience">
 	{#each work as { startDate, endDate, url, name, summary, highlights, position, technology }}
 		<WorkContainer
 			{endDate}
