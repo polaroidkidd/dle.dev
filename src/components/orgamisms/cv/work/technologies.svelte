@@ -6,86 +6,119 @@
 </script>
 
 <script lang="ts">
-	import IconAndroid from '@components/atoms/icons/IconAndroid.svelte';
-	import IconDocker from '@components/atoms/icons/IconDocker.svelte';
-	import IconGithub from '@components/atoms/icons/IconGithub.svelte';
-	import IconGradle from '@components/atoms/icons/IconGradle.svelte';
-	import IconJava from '@components/atoms/icons/IconJava.svelte';
-	import IconJavaScript from '@components/atoms/icons/IconJavaScript.svelte';
-	import IconLinkedin from '@components/atoms/icons/IconLinkedin.svelte';
-	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
-	import IconMaven from '@components/atoms/icons/IconMaven.svelte';
-	import IconNextJS from '@components/atoms/icons/IconNextJS.svelte';
-	import IconNginx from '@components/atoms/icons/IconNginx.svelte';
-	import IconNode from '@components/atoms/icons/IconNode.svelte';
-	import IconPython from '@components/atoms/icons/IconPython.svelte';
-	import IconReact from '@components/atoms/icons/IconReact.svelte';
-	import IconSearch from '@components/atoms/icons/IconSearch.svelte';
-	import IconTypeScript from '@components/atoms/icons/IconTypeScript.svelte';
-	import IconTensorflow from '@components/atoms/icons/IconTensorflow.svelte';
-	import IconJenkins from '@components/atoms/icons/IconJenkins.svelte';
-	import IconSqlite from '@components/atoms/icons/IconSqlite.svelte';
-	import IconAngular from '@components/atoms/icons/IconAngular.svelte';
-	import IconHootSuite from '@components/atoms/icons/IconHootSuite.svelte';
-	import IconGoogleAnalytics from '@components/atoms/icons/IconGoogleAnalytics.svelte';
-	import IconGitlab from '@components/atoms/icons/IconGitlab.svelte';
-	import IconCss from '@components/atoms/icons/IconCss.svelte';
-	import IconHtml from '@components/atoms/icons/IconHtml.svelte';
-	import IconWebpack from '@components/atoms/icons/IconWebpack.svelte';
-	import IconTailwind from '@components/atoms/icons/IconTailwind.svelte';
+	import {
+		IconAndroid,
+		IconAngular,
+		IconBootstrap,
+		IconCloudflare,
+		IconCss,
+		IconCypress,
+		IconDocker,
+		IconFail2Ban,
+		IconGithub,
+		IconGithubActions,
+		IconGitlab,
+		IconGoogleAnalytics,
+		IconGradle,
+		IconHootSuite,
+		IconHtml,
+		IconI18n,
+		IconJava,
+		IconJavaScript,
+		IconJenkins,
+		IconLinkedin,
+		IconLoading,
+		IconMaven,
+		IconNextJS,
+		IconNginx,
+		IconNode,
+		IconOpenAPI,
+		IconPlaywright,
+		IconPrisma,
+		IconPupeteer,
+		IconPython,
+		IconQuestionCircle,
+		IconReact,
+		IconReactRedux,
+		IconReactSaga,
+		IconSearch,
+		IconSqlite,
+		IconStorybook,
+		IconSvelte,
+		IconTailwind,
+		IconTanstackQuery,
+		IconTensorflow,
+		IconTypeScript,
+		IconUbuntu,
+		IconVite,
+		IconWebpack,
+		IconWebRTC
+	} from '@components/atoms/icons';
 	import Typography from '@components/atoms/typography/typography.svelte';
-	import IconQuestionCircle from '@components/atoms/icons/IconQuestionCircle.svelte';
 	import type { SvelteComponent } from 'svelte';
 	export let technologies: string[] = [];
 	export let hideTitle = false;
 
-	const parsedTechnologies = technologies.map((tech) =>
-		tech.replaceAll(' ', '-').toLocaleLowerCase()
-	);
 	const TechLogos: Record<string, unknown> = {
+		playwright: IconPlaywright,
 		android: IconAndroid,
 		docker: IconDocker,
+		openapi: IconOpenAPI,
+		'docker-compose': IconDocker,
 		github: IconGithub,
 		gradle: IconGradle,
+		i18n: IconI18n,
+		bootstrap: IconBootstrap,
 		java: IconJava,
 		javascript: IconJavaScript,
 		linkedin: IconLinkedin,
+		'react query': IconTanstackQuery,
+		'react redux': IconReactRedux,
+		'react saga': IconReactSaga,
+		webrtc: IconWebRTC,
 		loading: IconLoading,
 		maven: IconMaven,
 		nextjs: IconNextJS,
 		nginx: IconNginx,
-		node: IconNode,
+		nodejs: IconNode,
 		python: IconPython,
+		'ubuntu server': IconUbuntu,
+		fail2ban: IconFail2Ban,
 		react: IconReact,
 		search: IconSearch,
 		typescript: IconTypeScript,
 		tensorflow: IconTensorflow,
 		jenkins: IconJenkins,
 		sqlite: IconSqlite,
+		'github actions': IconGithubActions,
+		cloudflare: IconCloudflare,
 		angular: IconAngular,
 		hootsuite: IconHootSuite,
 		'google-analytics': IconGoogleAnalytics,
 		gitlab: IconGitlab,
-		'gitlab-ci': IconGitlab,
+		'gitlab ci': IconGitlab,
 		html: IconCss,
 		css: IconHtml,
 		webpack: IconWebpack,
 		tailwind: IconTailwind,
-		unknown: IconQuestionCircle
+		unknown: IconQuestionCircle,
+		svelte: IconSvelte,
+		sveltekit: IconSvelte,
+		storybook: IconStorybook,
+		vite: IconVite,
+		prisma: IconPrisma,
+		cypress: IconCypress,
+		pupeteer: IconPupeteer
 	};
 
-	const logoKeys = Object.keys(TechLogos).filter((key) => {
-		return parsedTechnologies.includes(key);
-	});
-
 	const usedLogos: Record<string, { name: string; component: typeof SvelteComponent }> =
-		logoKeys.reduce((acc, curr) => {
+		technologies.reduce((acc, curr) => {
 			return {
 				...acc,
 				[curr]: {
 					name: curr,
 
-					component: TechLogos[curr]
+					component: TechLogos[`${curr.toLowerCase()}`] ?? TechLogos['unknown']
 				}
 			};
 		}, {});
@@ -95,10 +128,10 @@
 	<Typography variant="h3">Technologies:</Typography>
 {/if}
 
-<div class="flex flex-row py-2 w-1/2 flex-wrap mx-auto justify-center items-center">
+<div class="flex flex-row py-2 flex-wrap mx-auto justify-center items-center">
 	{#each Object.values(usedLogos) as { component, name }}
-		<div class="flex flex-col p-6">
-			<svelte:component this={component} class="fill-red-500 h-8 my-1" />
+		<div class="flex flex-col justify-center items-center p-6">
+			<svelte:component this={component} class="fill-red-500 h-8 my-1 mx-auto" />
 			<Typography align="center">{name}</Typography>
 		</div>
 	{/each}

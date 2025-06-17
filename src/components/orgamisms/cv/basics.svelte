@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Avatar from '@components/molecules/avatar.svelte';
 	import avatar from '@assets/images/daniel_einars-400x500.3aa2364c.jpg';
+	import Avatar from '@components/molecules/avatar.svelte';
 
-	import Profile from './profile.svelte';
 	import type { IProfile } from '@model/cv';
-	import { onMount, onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
+	import Profile from './profile.svelte';
 	export let name: string;
 	export let label: string;
 
@@ -12,14 +12,21 @@
 
 	const leftProfile: IProfile = profiles[0];
 	const rightProfile: IProfile = profiles[1];
-	let intervalId: ReturnType<typeof setInterval>;
+
+	let postfixTimeout: ReturnType<typeof setTimeout>;
+	let tagIntervalId: ReturnType<typeof setInterval>;
+	let leadIntervalId: ReturnType<typeof setTimeout>;
+
+	let lead = 'Lead';
 	const labels = ['Software', 'UX/UI', 'Web', 'Fullstack'];
+	let postfix = 'Engineer';
+
 	function updatedLabel() {
 		let currentIndex = 0;
 		let currentWordLength = 0;
 		let charIndex = 0;
 		let shouldCountUp = true;
-		intervalId = setInterval(() => {
+		tagIntervalId = setInterval(() => {
 			currentWordLength = labels[currentIndex].length;
 			label = labels[currentIndex].slice(0, charIndex);
 			if (charIndex < currentWordLength && shouldCountUp) {
@@ -33,20 +40,54 @@
 					charIndex = 0;
 					currentIndex = currentIndex === labels.length - 1 ? 0 : ++currentIndex;
 					shouldCountUp = true;
+					if (currentIndex === 0) {
+						clearInterval(tagIntervalId);
+						setTimeout(() => {
+							label = '';
+							animateLead();
+						}, 200);
+					}
 				}
 			}
 		}, 200);
 	}
+	function animateLead() {
+		let charIndex = lead.length;
+		leadIntervalId = setInterval(() => {
+			if (charIndex > 0) {
+				lead = lead.slice(0, charIndex - 1);
+				charIndex = lead.length;
+			} else {
+				clearInterval(leadIntervalId);
+				animatePostfix();
+			}
+		}, 200);
+	}
+	function animatePostfix() {
+		postfixTimeout = setTimeout(() => {
+			postfix += '.';
+			if (postfixTimeout) {
+				clearTimeout(postfixTimeout);
+			}
+		}, 500);
+	}
+
 	onMount(() => {
-		if (intervalId) {
-			clearInterval(intervalId);
+		if (tagIntervalId) {
+			clearInterval(tagIntervalId);
 		}
 		updatedLabel();
 	});
 
 	onDestroy(() => {
-		if (intervalId) {
-			clearInterval(intervalId);
+		if (tagIntervalId) {
+			clearInterval(tagIntervalId);
+		}
+		if (leadIntervalId) {
+			clearTimeout(leadIntervalId);
+		}
+		if (postfixTimeout) {
+			clearTimeout(postfixTimeout);
 		}
 	});
 </script>
@@ -65,6 +106,6 @@
 	</div>
 	<div class="flex flex-col justify-center items-center">
 		<div>{name}</div>
-		<div>Senior {label} Engineer</div>
+		<div>{lead} {label} {postfix}</div>
 	</div>
 </div>

@@ -7,6 +7,8 @@
 	export let sectionTitle = '';
 	export let isCollapsable = true;
 	export let isInitiallyCollapsed = false;
+	let clazz = '';
+	export { clazz as class };
 	$: isCollapsed = isInitiallyCollapsed;
 
 	function toggleVisibility() {
@@ -14,7 +16,7 @@
 	}
 </script>
 
-<section class={classNames('border-b border-red-300')}>
+<section class={classNames('border-b border-red-300', clazz)}>
 	{#if isCollapsable}
 		<button
 			class={classNames('cursor-pointer', 'flex', 'justify-center', 'relative', 'w-full', {

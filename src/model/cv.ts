@@ -12,9 +12,9 @@ export type INotableProject = {
 };
 
 export type IWorkContainer = {
-	notableProjects: INotableProject[];
-	primaryTools: string[];
-	technology: string[];
+	notableProjects?: INotableProject[];
+	primaryTools?: string[];
+	technology?: string[];
 	name: string;
 	position: string;
 	url?: string;
@@ -33,6 +33,7 @@ export type ICertificate = {
 	name: string;
 	date: string;
 	issuer: string;
+	url?: string;
 };
 
 export type IProject = {
@@ -40,12 +41,15 @@ export type IProject = {
 	description: string;
 	summary?: string;
 	startDate: string;
+	endDate: string;
 	keywords: string[];
 	highlights: string[];
 	entity?: string;
 	type?: string;
+	position?: string;
+	urls?: string[];
 };
-export type IProfile = HTMLAnchorElement & {
+export type IProfile = {
 	network: PROFILE;
 	username: string;
 	url: string;
@@ -54,6 +58,7 @@ export type IProfile = HTMLAnchorElement & {
 export enum PROFILE {
 	LinkedIn = 'LinkedIn',
 	Github = 'Github',
+	Website = 'Website',
 	Unknown = 'Unknown'
 }
 
@@ -70,9 +75,9 @@ export type IBasics = {
 	name: string;
 	label: string;
 	image: string;
-	email: string;
-	phone: string;
-	location: ILocation;
+	email?: string;
+	phone?: string;
+	location?: ILocation;
 	profiles: IProfile[];
 };
 
@@ -96,5 +101,4 @@ export type IAbout = {
 	certificates: ICertificate[];
 	skills: ISkill[];
 	languages: ILanguage[];
-	projects: IProject[];
 };
