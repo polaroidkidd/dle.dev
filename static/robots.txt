@@ -1,5 +1,0 @@
-User-agent: *
-Disallow: /cdn-cgi/
-Allow: /
-
-Sitemap: http://www.svelte.dle.dev/sitemap.xml
