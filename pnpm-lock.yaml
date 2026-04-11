@@ -86,8 +86,8 @@ devDependencies:
     specifier: ^1.43.0
     version: 1.43.0
   '@skeletonlabs/skeleton':
-    specifier: 1.8.0
-    version: 1.8.0
+    specifier: 4.15.1
+    version: 4.15.1(tailwindcss@3.4.3)
   '@sveltejs/adapter-auto':
     specifier: ^3.2.0
     version: 3.2.0(@sveltejs/kit@2.53.3)
@@ -1898,11 +1898,12 @@ packages:
     resolution: {integrity: sha512-MTBk/3jGLNB2tVxv6uLlFh1iu64iYOQ2PbdOSK3NW8JZsmlaOh2q6sdtKowBhfw8QFLmYNzTW4/oK4uATIi6ZA==}
     dev: true
 
-  /@skeletonlabs/skeleton@1.8.0:
-    resolution: {integrity: sha512-dO4ukU34MGUY1yA1Gln+YUFEEew25AHm6GMpbzCOX8p8b9NmVBWiSuF3me9jnbrV15TGJxmUGzdiRN/70b4KIg==}
+  /@skeletonlabs/skeleton@4.15.1(tailwindcss@3.4.3):
+    resolution: {integrity: sha512-uPfIdlgkylPfLf0ZTHuXsLajK/846/ASfMkUZ8/KT+iS1QOlm2kKsl1UAviC0kVoGXA/pQjqt7iOcpbG05lHug==}
+    peerDependencies:
+      tailwindcss: ^4.0.0
     dependencies:
-      esm-env: 1.0.0
-      svelte: 3.58.0
+      tailwindcss: 3.4.3
     dev: true
 
   /@standard-schema/spec@1.1.0:
@@ -3496,10 +3497,6 @@ packages:
       text-table: 0.2.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /esm-env@1.0.0:
-    resolution: {integrity: sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA==}
     dev: true
 
   /esm-env@1.2.2:
@@ -6730,11 +6727,6 @@ packages:
       strip-indent: 3.0.0
       svelte: 4.2.12
       typescript: 5.4.4
-    dev: true
-
-  /svelte@3.58.0:
-    resolution: {integrity: sha512-brIBNNB76mXFmU/Kerm4wFnkskBbluBDCjx/8TcpYRb298Yh2dztS2kQ6bhtjMcvUhd5ynClfwpz5h2gnzdQ1A==}
-    engines: {node: '>= 8'}
     dev: true
 
   /svelte@4.2.12:
