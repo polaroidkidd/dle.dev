@@ -16,6 +16,7 @@ permissions:
 
 jobs:
   deploy-staging:
+    environment: dle-dev (Preview)
     name: Deploy Staging
     runs-on: ubuntu-latest
     steps:
