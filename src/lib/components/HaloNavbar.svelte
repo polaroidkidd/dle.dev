@@ -1,7 +1,9 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
+  import gsap from 'gsap';
   import { Globe, Mail, Menu, X } from '@lucide/svelte';
+  import { onMount } from 'svelte';
 
   import githubIcon from '$lib/assets/icons/github.svg';
   import linkedinIcon from '$lib/assets/icons/linkedin.svg';
@@ -103,9 +105,70 @@
 
     return pathname === href || pathname.startsWith(`${href}/`);
   }
+
+  // Floating navbar scroll logic
+  let headerEl: HTMLElement | undefined;
+  let lastScrollY = 0;
+  let visible = true;
+
+  function setVisible(show: boolean) {
+    if (!headerEl) return;
+    if (show === visible) return;
+    visible = show;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      gsap.set(headerEl, { y: show ? 0 : -120, opacity: show ? 1 : 0 });
+      return;
+    }
+
+    if (show) {
+      gsap.to(headerEl, {
+        y: 0,
+        opacity: 1,
+        duration: 0.35,
+        ease: 'power3.out'
+      });
+    } else {
+      gsap.to(headerEl, {
+        y: -120,
+        opacity: 0,
+        duration: 0.22,
+        ease: 'power2.in'
+      });
+    }
+  }
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+
+    if (currentScrollY < 80) {
+      // Near the top — always show
+      setVisible(true);
+    } else if (scrollDelta < 0) {
+      // Scrolling up — reveal
+      setVisible(true);
+    } else if (scrollDelta > 4) {
+      // Scrolling down with intent — hide
+      setVisible(false);
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
+  onMount(() => {
+    // Start fully visible
+    gsap.set(headerEl!, { y: 0, opacity: 1 });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 </script>
 
-<header class={cn('fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-5')}>
+<header bind:this={headerEl} class={cn('fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-5')}>
   <div class={cn('mx-auto max-w-6xl')}>
     <div class={cn('relative')}>
       <div
