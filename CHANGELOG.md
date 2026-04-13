@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- b43e05a: Refresh the home hero portrait with an enhanced local avatar image for sharper rendering and a cleaner avatar presentation.
+- b43e05a: Add reusable commit and Changeset authoring skills so commit messages,
+  release notes, and version metadata follow consistent repo standards.
+- b43e05a: Add anchored section headings with smooth scrolling and a section table of contents in HaloNavbar for faster navigation across the home page.
+
+### Patch Changes
+
+- b43e05a: Replace HaloNavbar with floating-navbar pattern: hides on scroll down, reveals on scroll up, using GSAP for smooth asymmetric transitions.
+- b43e05a: Move GitHub/LinkedIn profile links from the navbar into the hero section right column as icon-only buttons; add icons to Home/Blog nav items.
+- b43e05a: Fix the OpenAI and Playwright skill icons so they load reliably in the skills section.
+
 ## 2.2.1
 
 ### Patch Changes
