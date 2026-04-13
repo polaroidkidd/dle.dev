@@ -69,14 +69,13 @@ jobs:
         run: |
           pnpm run build
       - name: Publish Web App
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          branch: ${{ github.head_ref }}
-          directory: ./.svelte-kit/cloudflare
+          command: pages deploy ./.svelte-kit/cloudflare --project-name=dle-dev-staging --branch=${{ github.head_ref }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: dle-dev
+          packageManager: pnpm
   verify:
     name: Verify
     runs-on: ubuntu-latest

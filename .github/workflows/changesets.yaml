@@ -37,14 +37,13 @@ jobs:
           pnpm run build
 
       - name: Publish Staging
-        uses: cloudflare/pages-action@v1
+        uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          branch: master
-          directory: ./.svelte-kit/cloudflare
+          command: pages deploy ./.svelte-kit/cloudflare --project-name=dle-dev-staging --branch=master
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: dle-dev-staging
+          packageManager: pnpm
 
   version:
     name: Create Release PR
