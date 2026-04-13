@@ -5,15 +5,15 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
-  import arch from '$lib/assets/certificates/arch.jpg?enhanced';
-  import cloud from '$lib/assets/certificates/cloud.jpg?enhanced';
-  import fundamentals from '$lib/assets/certificates/fundamentals.jpg?enhanced';
-  import kube from '$lib/assets/certificates/kube.jpg?enhanced';
-  import proces from '$lib/assets/certificates/proces.jpg?enhanced';
-  import quark from '$lib/assets/certificates/quark.jpg?enhanced';
-  import scrum from '$lib/assets/certificates/scrum.jpg?enhanced';
-  import security from '$lib/assets/certificates/security.jpg?enhanced';
-  import websec from '$lib/assets/certificates/websec.jpg?enhanced';
+  import arch from '$lib/assets/certificates/arch.jpg?enhanced&w=220;352;704';
+  import cloud from '$lib/assets/certificates/cloud.jpg?enhanced&w=220;352;704';
+  import fundamentals from '$lib/assets/certificates/fundamentals.jpg?enhanced&w=220;352;704';
+  import kube from '$lib/assets/certificates/kube.jpg?enhanced&w=220;352;704';
+  import proces from '$lib/assets/certificates/proces.jpg?enhanced&w=220;352;704';
+  import quark from '$lib/assets/certificates/quark.jpg?enhanced&w=220;352;704';
+  import scrum from '$lib/assets/certificates/scrum.jpg?enhanced&w=220;352;704';
+  import security from '$lib/assets/certificates/security.jpg?enhanced&w=220;352;704';
+  import websec from '$lib/assets/certificates/websec.jpg?enhanced&w=220;352;704';
 
   type ResumeCertificateEntry = (typeof resume.certificates)[number];
 
@@ -300,7 +300,10 @@
                         <enhanced:img
                           src={entry.image}
                           alt=""
+                          sizes="(min-width: 1024px) 352px, 0px"
                           class="absolute inset-0 h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
                         />
                       {:else}
                         <div
@@ -425,7 +428,10 @@
                                 <enhanced:img
                                   src={entry.image}
                                   alt=""
+                                  sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
                                   class="relative h-24 w-full rounded-[1rem] object-cover"
+                                  loading="lazy"
+                                  decoding="async"
                                 />
                               {:else}
                                 <div
