@@ -1,18 +1,13 @@
-import type { SuperValidated } from 'sveltekit-superforms';
-import { superValidate } from 'sveltekit-superforms/server';
-
-import { contactSchema, type IContactSchema } from '../schemas/contact';
 import type { LayoutServerLoad } from './$types';
 
-let form: SuperValidated<IContactSchema> | null = null;
+const THEME_COOKIE = 'dle-theme';
 
-export const load = (async ({ url }) => {
-	if (form === null) {
-		form = await superValidate(contactSchema);
-	}
-	const { pathname } = url;
-	return {
-		form,
-		pathname
-	};
-}) satisfies LayoutServerLoad;
+export const load: LayoutServerLoad = ({ cookies }) => {
+  const themeCookie = cookies.get(THEME_COOKIE);
+
+  return {
+    uiSettings: {
+      theme: themeCookie === 'dark' || themeCookie === 'light' ? themeCookie : ('system' as const)
+    }
+  };
+};

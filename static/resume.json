@@ -1,0 +1,274 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Daniel L. Einars",
+    "label": "Lead Software Engineer",
+    "image": "../avatar.jpeg",
+    "email": "contact@dle.dev",
+    "phone": "+41 78 640 60 84",
+    "location": {
+      "address": "Moosmattstr. 4",
+      "countryCode": "Switzerland",
+      "region": "6045 Meggen,"
+    },
+    "profiles": [
+      {
+        "network": "Github",
+        "username": "Github Portfolio",
+        "url": "https://github.com/polaroidkidd"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "LinkedIn",
+        "url": "https://www.linkedin.com/in/daniel-einars/"
+      },
+      {
+        "network": "Website",
+        "username": "Personal Page",
+        "url": "https://dle.dev"
+      }
+    ],
+    "summary": "Lead Software Engineer focused on React and SvelteKit platforms, combining hands-on delivery with architecture leadership in regulated environments. I drive migrations, engineering standards, and maintainable user-facing systems in close collaboration with product, design, backend, and business stakeholders."
+  },
+  "work": [
+    {
+      "name": "ti&m AG, Zurich, Switzerland",
+      "position": "Lead Software Engineer",
+      "startDate": "2025-10-01",
+      "summary": "Frontend Lead for a digital onboarding web application",
+      "highlights": [
+        "Modernized a dormant React 15 onboarding platform to support identity verification, liveness checks, and KYC workflows under current security standards.",
+        "Integrated a onboarding product with existing custom implementations while resolving inconsistent APIs and undocumented third party dependencies.",
+        "Delivered alternative solutions and clear recommendations when customer requirements conflicted with platform constraints or compliance standards.",
+        "Upgraded the back office administration interface in parallel and documented near term technical debt to ensure stability before feature expansion.",
+        "Restored full platform functionality to meet compliance requirements while maintaining transparent expectations around post launch optimization."
+      ]
+    },
+    {
+      "name": "ti&m AG, Zurich, Switzerland",
+      "position": "Lead Software Engineer",
+      "startDate": "2024-04-01",
+      "summary": "Frontend Lead for a large B2B e-banking application, combining hands-on delivery with technical leadership across architecture, standards, and cross-functional execution.",
+      "highlights": [
+        "Set frontend technical direction aligned with business goals, platform constraints, and long-term maintainability for a regulated banking product.",
+        "Led delivery of complex user-facing features while improving code quality practices and team velocity.",
+        "Translated epics into implementable frontend solutions through close collaboration with product, design, and backend teams.",
+        "Put Renovate in place to keep dependencies current with less manual maintenance and lower upgrade risk.",
+        "Established type generation from external service contracts to cut integration errors and speed up frontend delivery.",
+        "Drove adoption of AI coding tools by aligning the team on guidelines, usage patterns, and supporting tooling to improve delivery without sacrificing consistency."
+      ]
+    },
+    {
+      "name": "ti&m AG, Zürich, Switzerland",
+      "position": "Senior Software Engineer",
+      "startDate": "2022-06-01",
+      "endDate": "2024-03-31",
+      "summary": "Owned the B2C frontend for a large credit institution, leading platform modernization, delivery, and team enablement across a high-visibility user-facing product.",
+      "highlights": [
+        "Migrated B2C frontend applications from create-react-app to Next.js, implementing incremental static regeneration to improve load times and reduce build durations.",
+        "Delivered frontend epics in teams of two to six engineers while balancing hands-on implementation with planning and technical guidance.",
+        "Aligned delivery decisions with business goals and user expectations through direct collaboration with client stakeholders.",
+        "Introduced automated linting rules that identified accessibility issues before code review, improving maintainability and reducing QA feedback loops.",
+        "Enabled junior engineers to independently own feature development through structured pair programming."
+      ]
+    },
+    {
+      "name": "ti&m AG, Zurich, Switzerland",
+      "position": "Professional Software Engineer",
+      "startDate": "2019-09-01",
+      "endDate": "2022-06-01",
+      "summary": "Responsible for customer-facing React applications and Magnolia CMS support, with a focus on maintainability, tooling, and design-system-aligned frontend delivery.",
+      "highlights": [
+        "Introduced ESLint, lint-staged, and Prettier across frontend repositories to standardize code quality and reduce manual review overhead.",
+        "Modernized local tooling and frontend dependencies to reduce environment inconsistencies and streamline developer onboarding.",
+        "Implemented site-wide design updates across React applications and Magnolia CMS in collaboration with design teams to ensure cross-channel consistency."
+      ]
+    },
+    {
+      "name": "Noser Engineering AG, Winterthur, Switzerland",
+      "position": "Software Engineer",
+      "startDate": "2018-08-15",
+      "endDate": "2019-10-31",
+      "summary": "Develop software solutions for clients of Noser Engineering AG",
+      "highlights": [
+        "Built an Android remote-support application using WebRTC and Dagger 2, balancing real-time performance requirements with device resource constraints.",
+        "Led migration of 148 Ant projects to Gradle, reducing compile time from approximately 10 minutes to under 2 minutes."
+      ]
+    },
+    {
+      "name": "BearingPoint AG, Zurich, Switzerland",
+      "position": "Werkstudent",
+      "startDate": "2016-02-01",
+      "endDate": "2017-04-01",
+      "summary": "Part-time support for consultants",
+      "highlights": [
+        "Built web scrapers, data transformation tools, and automated test-case generation utilities for the EasyTax product."
+      ]
+    },
+    {
+      "name": "TravelBird B.V. / GmbH, Zurich, Switzerland/Amsterdam, Netherlands",
+      "position": "Marketing Manager Germany and Head of Marketing",
+      "startDate": "2013-04-01",
+      "endDate": "2014-10-01",
+      "highlights": [
+        "Led performance-focused digital marketing initiatives across EU markets, including channel strategy, team leadership and ROAS optimization."
+      ]
+    },
+    {
+      "name": "NEODAU GmbH and Co.KG, Hamburg, Germany",
+      "position": "Online Marketing Manager",
+      "startDate": "2012-08-01",
+      "endDate": "2013-03-01",
+      "highlights": [
+        "Managed partner channels, publisher relationships, client acquisition, and contract negotiation for online marketing programs."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Zurich University of Applied Sciences",
+      "url": "https://zhaw.ch",
+      "area": "Bachelor of Science in Computer Science ZHAW Zurich (BSc)",
+      "startDate": "2015-09-01",
+      "endDate": "2016-06-01",
+      "thesis": "Training Image Classifiers with Smartphones"
+    },
+    {
+      "institution": "University Hamburg (Hamburg Media School)",
+      "url": "https://www.hamburgmediaschool.com/",
+      "area": "Master of Business Administration (MBA)",
+      "startDate": "2009-09-01",
+      "endDate": "2011-06-01",
+      "thesis": "Analysing critical success factors of browser games"
+    },
+    {
+      "institution": "Middlesex University London",
+      "url": "https://www.mdx.ac.uk/",
+      "area": "Bachelor of Arts in Economics (BA)",
+      "startDate": "2006-09-01",
+      "endDate": "2009-06-01"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Code-Night Hackathon",
+      "date": "2021-02-25",
+      "awarder": "ti&m AG",
+      "summary": "Contributed to a winning hackathon project developing a forgery-detection service capable of identifying Photoshop-manipulated images. Responsibilities included building the React SPA frontend, configuring nginx for network routing, and managing DevOps setup."
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Fire Department Meggen",
+      "position": "Firefighter using SCBA",
+      "startDate": "2024-01-01",
+      "summary": "Active member of the volunteer fire brigade of Meggen, serving as a firefighter trained to operate self-contained breathing apparatus. This role reinforces disciplined execution under pressure and structured teamwork."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "CPSA® Advanced Level Module WEBSEC",
+      "date": "2026-09-28",
+      "issuer": "iSAQB®"
+    },
+    {
+      "name": "CPSA® Advanced Level CLOUDINFRA",
+      "date": "2026-09-15",
+      "issuer": "iSAQB®"
+    },
+    {
+      "name": "Introduction to Quarkus",
+      "date": "2026-06-15",
+      "issuer": "ti&m AG"
+    },
+    {
+      "name": "Kubernetes CKAD Certification",
+      "date": "2026-05-15",
+      "issuer": "The Linux Foundation"
+    },
+    {
+      "name": "Professional Scrum Master™ I Certification",
+      "date": "2026-04-20",
+      "issuer": "SCRUM"
+    },
+    {
+      "name": "Two-Day Kubernetes Fundamentals Workshop",
+      "date": "2025-08-18",
+      "issuer": "ti&m AG"
+    },
+    {
+      "name": "Security-Awareness Training for Backend Developers",
+      "date": "2025-03-19",
+      "issuer": "ti&m AG"
+    },
+    {
+      "name": "Foundation Training in Software Architecture (CPSA-F)",
+      "date": "2025-01-20",
+      "issuer": "iSAQB®",
+      "url": "https://www.certible.com/badge/54270dfd-9fca-41dd-90a1-312b112e5fac/"
+    },
+    {
+      "name": "Camunda Platform for Java Developers",
+      "date": "2021-09-01",
+      "issuer": "Camunda services GmbH"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frontend Engineering",
+      "keywords": [
+        "React",
+        "SvelteKit",
+        "Prisma",
+        "TypeScript/JavaScript",
+        "Responsive Design",
+        "Web Performance",
+        "Internationalization (i18n)",
+        "API Integration"
+      ]
+    },
+    {
+      "name": "Architecture and Quality",
+      "keywords": [
+        "ViTest",
+        "testing-library (react/svelte)",
+        "Cypress",
+        "Playwright",
+        "Storybook",
+        "Webpack",
+        "Vite",
+        "ESLint/Oxlint",
+        "Prettier",
+        "Accessibility (WCAG)"
+      ]
+    },
+    {
+      "name": "Platform and Delivery",
+      "keywords": [
+        "Node.js",
+        "Docker (Compose)",
+        "Kubernetes",
+        "GitLab CI",
+        "GitHub Actions",
+        "Cloudflare Workers/Pages/Tunnel",
+        "Traefik",
+        "CrowdSec",
+        "Netbird"
+      ]
+    },
+    {
+      "name": "AI Tooling",
+      "keywords": ["OpenCode (GPT, Z.AI)", "Claude Code"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "German",
+      "fluency": "Native speaker"
+    }
+  ]
+}

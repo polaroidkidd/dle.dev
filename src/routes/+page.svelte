@@ -1,25 +1,26 @@
 <script lang="ts">
-	import Hero from '@components/orgamisms/hero.svelte';
-	import type { PageData } from './$types';
-	import Typography from '@components/atoms/typography/typography.svelte';
-	import IconLoading from '@components/atoms/icons/IconLoading.svelte';
-	import ArticleCards from '@components/molecules/articleCards.svelte';
-
-	export let data: PageData;
+  import CertificatesSection from '$lib/components/CertificatesSection.svelte';
+  import EducationSection from '$lib/components/EducationSection.svelte';
+  import SkillsSection from '$lib/components/SkillsSection.svelte';
+  import WorkExperienceSection from '$lib/components/WorkExperienceSection.svelte';
+  import HomeAboutSection from '$lib/components/home/HomeAboutSection.svelte';
+  import HomeHeroSection from '$lib/components/home/HomeHeroSection.svelte';
 </script>
 
-<Hero />
-<div class=" w-full flex flex-col items-center">
-	<Typography variant="h2" size="2xl" align="center">Latest articles</Typography>
-	<div class="container max-w-screen-sm pb-10 flex flex-col justify-center items-stretch pt-10">
-		{#if data.blogsMetaData !== undefined}
-			<ArticleCards blogsMetaData={data.blogsMetaData} />
-		{:else if data.streamed !== undefined}
-			{#await data.streamed.blogsMetaData}
-				<IconLoading class="h-12 fill-red-600" />
-			{:then blogsMetaData}
-				<ArticleCards {blogsMetaData} />
-			{/await}
-		{/if}
-	</div>
-</div>
+<svelte:head>
+  <title>Daniel L. Einars — Designer-engineer</title>
+  <meta
+    name="description"
+    content="Designer-engineer building premium frontend systems, brand-led interfaces, and deliberate motion for the web."
+  />
+</svelte:head>
+
+<main class="relative isolate min-h-svh px-4 pt-32 pb-10 sm:px-6 sm:pt-36 lg:px-8">
+  <HomeHeroSection />
+
+  <SkillsSection />
+  <WorkExperienceSection />
+  <EducationSection />
+  <CertificatesSection />
+  <HomeAboutSection />
+</main>

@@ -1,23 +1,27 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<script is:inline>
-			const themeCookie = document.cookie
-				.split('; ')
-				.find((row) => row.startsWith('theme='))
-				?.split('=')[1];
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="text-scale" content="scale" />
+    <script>
+      const themeMatch = document.cookie.match(/(?:^|; )dle-theme=([^;]+)/);
+      const storedTheme = themeMatch ? decodeURIComponent(themeMatch[1]) : null;
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = storedTheme ? storedTheme === 'dark' : prefersDark;
+      const resolvedTheme =
+        storedTheme === 'light' || storedTheme === 'dark'
+          ? storedTheme
+          : prefersDark
+            ? 'dark'
+            : 'light';
 
-			if (themeCookie && themeCookie === 'dark') {
-				document.querySelector('html')?.classList.add('dark');
-			}
-		</script>
-		%sveltekit.head%
-	</head>
-
-	<body data-sveltekit-preload-data="hover" class="transition-colors">
-		<div style="display: contents" class="h-full overflow-hidden">%sveltekit.body%</div>
-		<script defer data-domain="dle.dev" src="https://brain.dle.dev/js/script.js"></script>
-	</body>
+      document.documentElement.classList.toggle('dark', isDark);
+      document.documentElement.style.colorScheme = resolvedTheme;
+    </script>
+    %sveltekit.head%
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>

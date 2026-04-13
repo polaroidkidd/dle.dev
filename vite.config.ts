@@ -1,23 +1,16 @@
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import { defineConfig } from 'vitest/config';
+import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from 'vite';
+
 export default defineConfig({
-	plugins: [tsconfigPaths(), sveltekit()],
-	server: {
-		port: 4000
-	},
-	preview: {
-		port: 4000
-	},
-	optimizeDeps: {
-		esbuildOptions: {
-			target: 'esnext'
-		}
-	},
-	build: {
-		target: 'es2020'
-	},
-	test: {
-		include: ['tests/unit/**/*.{test,spec}.{js,ts}']
-	}
+  server: {
+    port: 4000,
+    strictPort: false,
+    allowedHosts: ['mkc-dev.intra.dle.dev']
+  },
+  preview: {
+    port: 4000
+  },
+  plugins: [enhancedImages(), tailwindcss(), sveltekit()]
 });

@@ -1,0 +1,60 @@
+# This is a basic workflow to automatically build a Svelte app and deploy it to GitHub Pages
+
+jobs:
+  install-dependencies:
+    name: Install Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+  publish-web-app:
+    environment: dle-dev (Production)
+    name: Deploy Webapp
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+      - name: Build
+        run: |
+          pnpm run build
+      - name: Publish Web App
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          branch: ${{ github.head_ref }}
+          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: dle-dev
+
+name: Publish to Production
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 4 * * SUN'
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        default: false
+        description: Force deploy all applications
+        required: false
+        type: boolean
