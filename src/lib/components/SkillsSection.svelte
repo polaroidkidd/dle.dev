@@ -1,6 +1,7 @@
 <script lang="ts">
   import openai from '$lib/assets/icons/openai.svg';
   import playwrightIcon from '$lib/assets/icons/playwright.svg';
+  import SectionIntro from '$lib/components/SectionIntro.svelte';
   import IconCloud from '$lib/components/magic/icon-cloud/icon-cloud.svelte';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import resume from '../assets/resume/resume.json';
@@ -65,24 +66,13 @@
       class="pointer-events-none absolute top-8 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
     ></div>
 
-    <div class="max-w-3xl" data-skills-copy>
-      <p class="text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase">
-        Capability map
-      </p>
-      <h2
+    <div data-skills-copy>
+      <SectionIntro
         id="skills"
-        class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
-      >
-        <a href="#skills" class="underline-offset-4 hover:underline focus-visible:underline">
-          Skills
-        </a>
-      </h2>
-      <p
-        class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-      >
-        A working stack shaped by frontend systems, platform delivery, architecture discipline, and
-        the tools that keep execution sharp.
-      </p>
+        eyebrow="Capability map"
+        title="Skills"
+        description="A working stack shaped by frontend systems, platform delivery, architecture discipline, and the tools that keep execution sharp."
+      />
     </div>
 
     <div
