@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import { Window } from '$lib/components/ui/window';
   import { cn } from '$lib/utils.js';
 
@@ -29,7 +30,7 @@
     )}
   >
     {#if title}
-      <p class="text-[11px] font-medium tracking-[0.2em] text-zinc-400 uppercase">{title}</p>
+      <Typography as="p" variant="terminal-label">{title}</Typography>
     {/if}
 
     <div

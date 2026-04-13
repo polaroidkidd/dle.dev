@@ -1,6 +1,8 @@
 <script lang="ts">
   import openai from '$lib/assets/icons/openai.svg';
   import playwrightIcon from '$lib/assets/icons/playwright.svg';
+  import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
   import IconCloud from '$lib/components/magic/icon-cloud/icon-cloud.svelte';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import resume from '../assets/resume/resume.json';
@@ -65,24 +67,13 @@
       class="pointer-events-none absolute top-8 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
     ></div>
 
-    <div class="max-w-3xl" data-skills-copy>
-      <p class="text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase">
-        Capability map
-      </p>
-      <h2
+    <div data-skills-copy>
+      <SectionIntro
         id="skills"
-        class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
-      >
-        <a href="#skills" class="underline-offset-4 hover:underline focus-visible:underline">
-          Skills
-        </a>
-      </h2>
-      <p
-        class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-      >
-        A working stack shaped by frontend systems, platform delivery, architecture discipline, and
-        the tools that keep execution sharp.
-      </p>
+        eyebrow="Capability map"
+        title="Skills"
+        description="A working stack shaped by frontend systems, platform delivery, architecture discipline, and the tools that keep execution sharp."
+      />
     </div>
 
     <div
@@ -120,9 +111,11 @@
               data-skills-group
               style:--skills-group-order={skillGroups.indexOf(group)}
             >
-              <h3
+              <Typography
+                as="h3"
+                variant="card-title-sm"
                 id={getSkillGroupId(group.name)}
-                class="font-heading text-[1.08rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1.2rem]"
+                class="text-[1.08rem] tracking-[-0.02em] sm:text-[1.2rem]"
               >
                 <a
                   href={`#${getSkillGroupId(group.name)}`}
@@ -130,15 +123,17 @@
                 >
                   {group.name}
                 </a>
-              </h3>
+              </Typography>
 
               <div class="mt-4 flex flex-wrap gap-2.5">
                 {#each group.keywords as keyword (keyword)}
-                  <span
+                  <Typography
+                    as="span"
+                    variant="chip"
                     class="inline-flex items-center rounded-full border border-black/8 bg-black/[0.025] px-3 py-1.5 text-sm leading-5 text-foreground/84 transition-colors duration-200 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/86"
                   >
                     {keyword}
-                  </span>
+                  </Typography>
                 {/each}
               </div>
             </section>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import AuroraText from '$lib/components/AuroraText.svelte';
+  import Typography from '$lib/components/Typography.svelte';
   import type { HomeOutcome, HomeSynthesis } from '$lib/content/home';
 
   type Props = {
@@ -19,36 +20,28 @@
       style:--step-index={index}
     >
       <div>
-        <h1
-          class="mt-4 max-w-3xl font-heading text-[clamp(1.75rem,3.15vw,2.95rem)] font-semibold tracking-[-0.035em] text-balance text-foreground"
-        >
+        <Typography as="h1" variant="hero-title" class="mt-4 max-w-3xl">
           {entry.headlinePrefix}<AuroraText>{entry.headlineHighlight}</AuroraText
           >{entry.headlineSuffix}
-        </h1>
+        </Typography>
 
-        <p
-          class="mt-4 max-w-xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] sm:leading-7 lg:text-[1.08rem] lg:leading-8"
-        >
+        <Typography as="p" variant="body" class="mt-4 max-w-xl sm:leading-7">
           {entry.body}
-        </p>
+        </Typography>
       </div>
     </article>
   {/each}
 
   <article class="settled-card h-full">
     <div>
-      <h1
-        class="max-w-3xl font-heading text-[clamp(1.75rem,3.15vw,2.95rem)] font-semibold tracking-[-0.035em] text-balance text-foreground"
-      >
+      <Typography as="h1" variant="hero-title" class="max-w-3xl">
         {synthesis.headlinePrefix}<AuroraText>{synthesis.headlineHighlight}</AuroraText
         >{synthesis.headlineSuffix}
-      </h1>
+      </Typography>
 
-      <p
-        class="mt-4 max-w-xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] sm:leading-7 lg:text-[1.08rem] lg:leading-8"
-      >
+      <Typography as="p" variant="body" class="mt-4 max-w-xl sm:leading-7">
         {synthesis.body}
-      </p>
+      </Typography>
     </div>
   </article>
 </div>

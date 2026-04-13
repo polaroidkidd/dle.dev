@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import { Window } from '$lib/components/ui/window';
   import { cn } from '$lib/utils.js';
 
@@ -23,7 +24,7 @@
     contentClass={cn('space-y-4', contentClass)}
   >
     {#if title}
-      <p class="text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase">{title}</p>
+      <Typography as="p" variant="eyebrow-tight">{title}</Typography>
     {/if}
 
     {@render children?.()}

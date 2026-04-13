@@ -1,3 +1,7 @@
+<script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
+</script>
+
 <section aria-labelledby="about-me" class="mx-auto max-w-6xl px-4 py-20 sm:mt-8 sm:px-6 lg:px-8">
   <div class="relative">
     <div
@@ -24,39 +28,30 @@
         </div>
 
         <div class="max-w-3xl">
-          <h2
-            id="about-me"
-            class="font-heading text-[clamp(1.9rem,3.3vw,3rem)] font-semibold tracking-[-0.04em] text-foreground"
-          >
+          <Typography as="h2" variant="section-title-compact" id="about-me">
             <a href="#about-me" class="underline-offset-4 hover:underline focus-visible:underline">
               Life outside the editor.
             </a>
-          </h2>
-          <p
-            class="mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-          >
+          </Typography>
+          <Typography as="p" variant="body" class="mt-4">
             I live in Switzerland with my family, and I tend to divide my time between the outdoors
             and building things that make life a bit simpler. I’m drawn to work that’s hands-on and
             incremental—whether that’s volunteering as a firefighter, hiking through the mountains
             with my dog, or slowly shaping a side project into something useful.
-          </p>
+          </Typography>
 
-          <p
-            class="mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-          >
+          <Typography as="p" variant="body" class="mt-4">
             A lot of what I build starts small: a script to remove a bit of friction, a service I
             want to run myself, a new stack I’m curious about. Underneath all of it is the same
             motivation—time is always scarce, and there’s never a shortage of things competing for
             attention. If I can build something that reduces that load, cuts out repetition, or just
             makes a task easier, that’s a win.
-          </p>
+          </Typography>
 
-          <p
-            class="mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-          >
+          <Typography as="p" variant="body" class="mt-4">
             And every now and then, I step away from all of it and head to a motorcycle track for
             the opposite experience: speed, focus, and no room for overthinking.
-          </p>
+          </Typography>
         </div>
       </div>
     </div>

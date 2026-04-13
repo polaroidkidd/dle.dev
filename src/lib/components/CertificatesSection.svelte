@@ -1,9 +1,6 @@
 <script lang="ts">
   import { Award } from '@lucide/svelte';
 
-  import { cn } from '$lib/utils';
-  import resume from '../assets/resume/resume.json';
-
   import arch from '$lib/assets/certificates/arch.jpg?enhanced&w=220;352;704';
   import cloud from '$lib/assets/certificates/cloud.jpg?enhanced&w=220;352;704';
   import fundamentals from '$lib/assets/certificates/fundamentals.jpg?enhanced&w=220;352;704';
@@ -13,6 +10,12 @@
   import scrum from '$lib/assets/certificates/scrum.jpg?enhanced&w=220;352;704';
   import security from '$lib/assets/certificates/security.jpg?enhanced&w=220;352;704';
   import websec from '$lib/assets/certificates/websec.jpg?enhanced&w=220;352;704';
+  import resume from '$lib/assets/resume/resume.json';
+  import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
+  import ResumeTimelineBulletList from '$lib/components/resume/ResumeTimelineBulletList.svelte';
+  import ResumeTimelineEntry from '$lib/components/resume/ResumeTimelineEntry.svelte';
+  import ResumeTimelineMedia from '$lib/components/resume/ResumeTimelineMedia.svelte';
 
   type ResumeCertificateEntry = (typeof resume.certificates)[number];
 
@@ -93,7 +96,6 @@
     },
     'Security-Awareness Training for Backend Developers|2025-03-19': {
       image: security,
-
       summary:
         'Security training aimed at backend implementation risks, secure development habits, and common attack vectors.',
       details: [
@@ -216,199 +218,99 @@
       class="pointer-events-none absolute top-12 right-0 -z-10 h-60 w-60 rounded-full bg-primary/8 blur-3xl"
     ></div>
 
-    <div class="max-w-3xl">
-      <p class="text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase">
-        Ongoing formation
-      </p>
-      <h2
-        id="certificates"
-        class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
-      >
-        <a href="#certificates" class="underline-offset-4 hover:underline focus-visible:underline">
-          Certificates
-        </a>
-      </h2>
-      <p
-        class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-      >
-        Credentials and focused training that sharpen the architecture, platform, security, and
-        delivery side of the work.
-      </p>
-    </div>
+    <SectionIntro
+      id="certificates"
+      eyebrow="Ongoing formation"
+      title="Certificates"
+      description="Credentials and focused training that sharpen the architecture, platform, security, and delivery side of the work."
+    />
 
     <div class="mt-12 space-y-14 lg:mt-16 lg:space-y-18">
       {#each certificateGroups as group (group.id)}
         <section aria-labelledby={group.id} class="relative">
-          <div class="max-w-2xl">
-            <p class="text-xs font-medium tracking-[0.24em] text-muted-foreground uppercase">
-              {group.eyebrow}
-            </p>
-            <h3
-              id={group.id}
-              class="mt-3 font-heading text-[1.45rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.7rem]"
-            >
-              <a
-                href={`#${group.id}`}
-                class="underline-offset-4 hover:underline focus-visible:underline"
-              >
-                {group.title}
-              </a>
-            </h3>
-            <p
-              class="mt-3 text-[0.96rem] leading-7 text-muted-foreground sm:text-[1rem] lg:text-[1.05rem] lg:leading-8"
-            >
-              {group.description}
-            </p>
-          </div>
+          <SectionIntro
+            id={group.id}
+            eyebrow={group.eyebrow}
+            title={group.title}
+            description={group.description}
+            headingTag="h3"
+            class="max-w-2xl"
+            eyebrowClass="tracking-[0.24em]"
+            titleClass="mt-3 text-[1.45rem] tracking-[-0.03em] sm:text-[1.7rem]"
+            descriptionClass="mt-3 text-[0.96rem] sm:text-[1rem] lg:text-[1.05rem] lg:leading-8"
+          />
 
           <div class="relative mt-8 lg:mt-10">
             <div class="resume-timeline">
               {#each group.entries as entry (entry.id)}
-                <article
-                  class={cn(
-                    'resume-timeline-item',
-                    entry.isReversed ? 'resume-timeline-item--right' : 'resume-timeline-item--left'
-                  )}
-                >
-                  <div aria-hidden="true" class="resume-timeline-marker text-primary">
-                    <Award class="size-4" />
-                  </div>
+                <ResumeTimelineEntry reversed={entry.isReversed} icon={Award}>
+                  {#snippet media()}
+                    <ResumeTimelineMedia
+                      src={entry.image}
+                      sizes="(min-width: 1024px) 352px, 0px"
+                      placeholderClass={entry.placeholderClass}
+                      class="aspect-[4/3] w-full max-w-[22rem] rounded-[2rem] shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)]"
+                      imageClass="absolute inset-0 h-full w-full"
+                      fallbackVariant="certificate"
+                    />
+                  {/snippet}
 
-                  <div
-                    class={cn(
-                      'hidden lg:row-start-1 lg:flex lg:items-center',
-                      entry.isReversed
-                        ? 'lg:col-start-1 lg:justify-end'
-                        : 'lg:col-start-2 lg:justify-start'
-                    )}
-                  >
+                  <div class="min-w-0 space-y-4">
                     <div
-                      class={cn(
-                        'relative aspect-[4/3] w-full max-w-[22rem] overflow-hidden rounded-[2rem] border border-black/8 bg-gradient-to-br to-transparent shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)] dark:border-white/10',
-                        entry.placeholderClass
-                      )}
+                      class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
                     >
-                      {#if entry.image}
-                        <enhanced:img
-                          src={entry.image}
-                          alt=""
-                          sizes="(min-width: 1024px) 352px, 0px"
-                          class="absolute inset-0 h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      {:else}
-                        <div
-                          class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.7)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.44),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                        ></div>
-                        <div
-                          class="absolute top-[20%] left-[18%] h-14 w-14 rounded-full border border-black/6 bg-white/28 blur-[1px] dark:border-white/10 dark:bg-white/[0.04]"
-                        ></div>
-                        <div
-                          class="absolute right-[18%] bottom-[18%] h-20 w-20 rounded-full bg-white/28 blur-2xl dark:bg-white/[0.05]"
-                        ></div>
-                        <div
-                          class="absolute inset-x-[18%] top-[26%] h-px bg-black/8 dark:bg-white/10"
-                        ></div>
-                        <div
-                          class="absolute inset-x-[24%] top-[48%] h-px bg-black/6 dark:bg-white/8"
-                        ></div>
-                        <div
-                          class="absolute inset-x-[20%] bottom-[24%] h-px bg-black/6 dark:bg-white/8"
-                        ></div>
+                      <Typography
+                        as="span"
+                        variant="eyebrow-tight"
+                        class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
+                      >
+                        {entry.dateLabel}
+                      </Typography>
+
+                      {#if entry.isUpcoming}
+                        <Typography
+                          as="span"
+                          variant="eyebrow-tight"
+                          class="inline-flex items-center rounded-full border border-primary/18 bg-primary/8 px-3 py-1 text-primary/90 dark:border-primary/40 dark:bg-primary/20 dark:text-primary-foreground"
+                        >
+                          Upcoming
+                        </Typography>
                       {/if}
+
+                      <span class="h-1 w-1 rounded-full bg-primary/35"></span>
+                      <Typography as="span" variant="caption" class="max-w-[24rem]">
+                        {entry.issuer}
+                      </Typography>
                     </div>
+
+                    <Typography as="h4" variant="card-title-sm" id={entry.id} class="min-w-0">
+                      <a
+                        href={`#${entry.id}`}
+                        class="underline-offset-4 hover:underline focus-visible:underline"
+                      >
+                        {entry.name}
+                      </a>
+                    </Typography>
                   </div>
 
-                  <div class="resume-timeline-card lg:row-start-1">
-                    <div class="p-6 sm:p-7">
-                      <div class="min-w-0 space-y-4">
-                        <div
-                          class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
-                        >
-                          <span
-                            class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
-                          >
-                            {entry.dateLabel}
-                          </span>
+                  <div class="mt-6">
+                    <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
+                      <Typography as="p" variant="body">
+                        {entry.summary}
+                      </Typography>
 
-                          {#if entry.isUpcoming}
-                            <span
-                              class="inline-flex items-center rounded-full border border-primary/18 bg-primary/8 px-3 py-1 text-primary/90 dark:border-primary/40 dark:bg-primary/20 dark:text-primary-foreground"
-                            >
-                              Upcoming
-                            </span>
-                          {/if}
+                      <ResumeTimelineBulletList items={entry.details} />
 
-                          <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                          <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
-                            {entry.issuer}
-                          </span>
-                        </div>
-
-                        <h4
-                          id={entry.id}
-                          class="min-w-0 font-heading text-[1.15rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.3rem]"
-                        >
-                          <a
-                            href={`#${entry.id}`}
-                            class="underline-offset-4 hover:underline focus-visible:underline"
-                          >
-                            {entry.name}
-                          </a>
-                        </h4>
-                      </div>
-
-                      <div class="mt-6">
-                        <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
-                          <p
-                            class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                          >
-                            {entry.summary}
-                          </p>
-
-                          <ul class="space-y-3">
-                            {#each entry.details as detail (detail)}
-                              <li
-                                class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
-                              >
-                                <span
-                                  class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
-                                ></span>
-                                <span>{detail}</span>
-                              </li>
-                            {/each}
-                          </ul>
-
-                          <div
-                            class={cn(
-                              'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
-                              entry.placeholderClass
-                            )}
-                          >
-                            {#if entry.image}
-                              <enhanced:img
-                                src={entry.image}
-                                alt=""
-                                sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
-                                class="relative h-24 w-full rounded-[1rem] object-cover"
-                                loading="lazy"
-                                decoding="async"
-                              />
-                            {:else}
-                              <div
-                                class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                              ></div>
-                              <div
-                                class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
-                              ></div>
-                            {/if}
-                          </div>
-                        </div>
-                      </div>
+                      <ResumeTimelineMedia
+                        src={entry.image}
+                        sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
+                        placeholderClass={entry.placeholderClass}
+                        class="p-4 lg:hidden"
+                        imageClass="relative h-24 w-full rounded-[1rem]"
+                      />
                     </div>
                   </div>
-                </article>
+                </ResumeTimelineEntry>
               {/each}
             </div>
           </div>

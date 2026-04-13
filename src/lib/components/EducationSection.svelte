@@ -1,12 +1,15 @@
 <script lang="ts">
   import { GraduationCap } from '@lucide/svelte';
 
-  import { cn } from '$lib/utils';
-  import resume from '../assets/resume/resume.json';
-
   import hamburg from '$lib/assets/education/hamburg.jpg?enhanced&w=240;384;768';
   import london from '$lib/assets/education/london.jpg?enhanced&w=240;384;768';
   import zurich from '$lib/assets/education/zurich.jpg?enhanced&w=240;384;768';
+  import resume from '$lib/assets/resume/resume.json';
+  import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
+  import ResumeTimelineBulletList from '$lib/components/resume/ResumeTimelineBulletList.svelte';
+  import ResumeTimelineEntry from '$lib/components/resume/ResumeTimelineEntry.svelte';
+  import ResumeTimelineMedia from '$lib/components/resume/ResumeTimelineMedia.svelte';
 
   type ResumeEducationEntry = (typeof resume.education)[number];
 
@@ -107,143 +110,72 @@
       class="pointer-events-none absolute top-10 left-0 -z-10 h-64 w-64 rounded-full bg-primary/8 blur-3xl"
     ></div>
 
-    <div class="max-w-3xl">
-      <p class="text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase">
-        Academic path
-      </p>
-      <h2
-        id="education"
-        class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
-      >
-        <a href="#education" class="underline-offset-4 hover:underline focus-visible:underline">
-          Education
-        </a>
-      </h2>
-      <p
-        class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-      >
-        The academic track behind the way I work today, spanning economics, business, and software
-        engineering.
-      </p>
-    </div>
+    <SectionIntro
+      id="education"
+      eyebrow="Academic path"
+      title="Education"
+      description="The academic track behind the way I work today, spanning economics, business, and software engineering."
+    />
 
     <div class="relative mt-12 lg:mt-16">
       <div class="resume-timeline">
         {#each educationEntries as entry (entry.id)}
-          <article
-            class={cn(
-              'resume-timeline-item',
-              entry.isReversed ? 'resume-timeline-item--right' : 'resume-timeline-item--left'
-            )}
-          >
-            <div aria-hidden="true" class="resume-timeline-marker text-primary">
-              <GraduationCap class="size-4" />
+          <ResumeTimelineEntry reversed={entry.isReversed} icon={GraduationCap}>
+            {#snippet media()}
+              <ResumeTimelineMedia
+                src={entry.image}
+                sizes="(min-width: 1024px) 384px, 0px"
+                placeholderClass={entry.placeholderClass}
+                class="aspect-[4/3] w-full max-w-[24rem] rounded-[2rem] shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)]"
+                imageClass="absolute inset-0 h-full w-full"
+              />
+            {/snippet}
+
+            <div class="min-w-0 space-y-4">
+              <div
+                class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+              >
+                <Typography
+                  as="span"
+                  variant="eyebrow-tight"
+                  class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
+                >
+                  {entry.dateRange}
+                </Typography>
+                <span class="h-1 w-1 rounded-full bg-primary/35"></span>
+                <Typography as="span" variant="caption" class="max-w-[24rem]">
+                  {entry.institution}
+                </Typography>
+              </div>
+
+              <Typography as="h3" variant="card-title" id={entry.id} class="min-w-0">
+                <a
+                  href={`#${entry.id}`}
+                  class="underline-offset-4 hover:underline focus-visible:underline"
+                >
+                  {entry.degree}
+                </a>
+              </Typography>
             </div>
 
-            <div
-              class={cn(
-                'hidden lg:row-start-1 lg:flex lg:items-center',
-                entry.isReversed
-                  ? 'lg:col-start-1 lg:justify-end'
-                  : 'lg:col-start-2 lg:justify-start'
-              )}
-            >
-              <div
-                class={cn(
-                  'relative aspect-[4/3] w-full max-w-[24rem] overflow-hidden rounded-[2rem] border border-black/8 bg-gradient-to-br to-transparent shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)] dark:border-white/10',
-                  entry.placeholderClass
-                )}
-              >
-                <enhanced:img
+            <div class="mt-6">
+              <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
+                <Typography as="p" variant="body">
+                  {entry.summary}
+                </Typography>
+
+                <ResumeTimelineBulletList items={entry.details} />
+
+                <ResumeTimelineMedia
                   src={entry.image}
-                  alt=""
-                  sizes="(min-width: 1024px) 384px, 0px"
-                  class="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
+                  placeholderClass={entry.placeholderClass}
+                  class="p-4 lg:hidden"
+                  imageClass="relative h-24 w-full rounded-[1rem]"
                 />
               </div>
             </div>
-
-            <div class="resume-timeline-card lg:row-start-1">
-              <div class="p-6 sm:p-7">
-                <div class="min-w-0 space-y-4">
-                  <div
-                    class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
-                  >
-                    <span
-                      class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
-                    >
-                      {entry.dateRange}
-                    </span>
-                    <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                    <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
-                      {entry.institution}
-                    </span>
-                  </div>
-
-                  <h3
-                    id={entry.id}
-                    class="min-w-0 font-heading text-[1.2rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.35rem]"
-                  >
-                    <a
-                      href={`#${entry.id}`}
-                      class="underline-offset-4 hover:underline focus-visible:underline"
-                    >
-                      {entry.degree}
-                    </a>
-                  </h3>
-                </div>
-
-                <div class="mt-6">
-                  <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
-                    <p
-                      class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                    >
-                      {entry.summary}
-                    </p>
-
-                    <ul class="space-y-3">
-                      {#each entry.details as detail (detail)}
-                        <li
-                          class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
-                        >
-                          <span class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
-                          ></span>
-                          <span>{detail}</span>
-                        </li>
-                      {/each}
-                    </ul>
-
-                    <div
-                      class={cn(
-                        'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
-                        entry.placeholderClass
-                      )}
-                    >
-                      {#if entry.image}
-                        <enhanced:img
-                          src={entry.image}
-                          alt=""
-                          sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
-                          class="relative h-24 w-full rounded-[1rem] object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      {:else}
-                        <div
-                          class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                        ></div>
-                        <div
-                          class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
-                        ></div>
-                      {/if}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+          </ResumeTimelineEntry>
         {/each}
       </div>
     </div>

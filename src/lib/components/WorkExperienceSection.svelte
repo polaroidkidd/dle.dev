@@ -1,17 +1,20 @@
 <script lang="ts">
   import { BriefcaseBusiness } from '@lucide/svelte';
 
-  import { cn } from '$lib/utils';
-  import resume from '../assets/resume/resume.json';
-
+  import mechnic from '$lib/assets/work/mechnic.jpg?enhanced&w=256;416;832';
   import design from '$lib/assets/work/design.jpg?enhanced&w=256;416;832';
   import lead from '$lib/assets/work/lead.jpg?enhanced&w=256;416;832';
   import library from '$lib/assets/work/library.jpg?enhanced&w=256;416;832';
   import marketing from '$lib/assets/work/marketing.jpg?enhanced&w=256;416;832';
-  import mechnic from '$lib/assets/work/mechnic.jpg?enhanced&w=256;416;832';
   import migration from '$lib/assets/work/migration.jpg?enhanced&w=256;416;832';
   import seo from '$lib/assets/work/seo.jpg?enhanced&w=256;416;832';
   import time from '$lib/assets/work/time.jpg?enhanced&w=256;416;832';
+  import resume from '$lib/assets/resume/resume.json';
+  import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
+  import ResumeTimelineBulletList from '$lib/components/resume/ResumeTimelineBulletList.svelte';
+  import ResumeTimelineEntry from '$lib/components/resume/ResumeTimelineEntry.svelte';
+  import ResumeTimelineMedia from '$lib/components/resume/ResumeTimelineMedia.svelte';
 
   type ResumeWorkEntry = (typeof resume.work)[number];
 
@@ -56,7 +59,6 @@
     },
     'Senior Software Engineer|2022-06-01': {
       imageSrc: migration,
-
       summary:
         'Owned the B2C frontend experience for a major credit institution, combining modernization work with feature delivery and day-to-day engineering leadership.',
       highlights: [
@@ -77,7 +79,6 @@
     },
     'Software Engineer|2018-08-15': {
       imageSrc: time,
-
       summary:
         'Delivered client software projects spanning Android and build engineering, with a focus on performance, maintainability, and practical modernization.',
       highlights: [
@@ -87,7 +88,6 @@
     },
     'Werkstudent|2016-02-01': {
       imageSrc: library,
-
       summary:
         'Supported consulting work through automation tooling that reduced manual effort in data preparation and testing workflows.',
       highlights: [
@@ -96,7 +96,6 @@
     },
     'Marketing Manager Germany and Head of Marketing|2013-04-01': {
       imageSrc: marketing,
-
       summary:
         'Led performance marketing across EU markets, combining channel strategy, team leadership, and commercial optimization.',
       highlights: [
@@ -105,7 +104,6 @@
     },
     'Online Marketing Manager|2012-08-01': {
       imageSrc: seo,
-
       summary:
         'Managed channel relationships, acquisition activity, and commercial negotiations for online marketing programs.',
       highlights: [
@@ -175,146 +173,72 @@
       class="pointer-events-none absolute top-10 right-0 -z-10 h-64 w-64 rounded-full bg-primary/10 blur-3xl"
     ></div>
 
-    <div class="max-w-3xl">
-      <p class="text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase">
-        Career timeline
-      </p>
-      <h2
-        id="work-experience"
-        class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
-      >
-        <a
-          href="#work-experience"
-          class="underline-offset-4 hover:underline focus-visible:underline"
-        >
-          Work Experience
-        </a>
-      </h2>
-      <p
-        class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-      >
-        A role-by-role view of the systems, products, and teams I have shaped, ordered from the
-        current frontier back through the work that built it.
-      </p>
-    </div>
+    <SectionIntro
+      id="work-experience"
+      eyebrow="Career timeline"
+      title="Work Experience"
+      description="A role-by-role view of the systems, products, and teams I have shaped, ordered from the current frontier back through the work that built it."
+    />
 
     <div class="relative mt-12 lg:mt-16">
       <div class="resume-timeline">
         {#each workEntries as entry (entry.id)}
-          <article
-            class={cn(
-              'resume-timeline-item',
-              entry.isReversed ? 'resume-timeline-item--right' : 'resume-timeline-item--left'
-            )}
-          >
-            <div aria-hidden="true" class="resume-timeline-marker text-primary">
-              <BriefcaseBusiness class="size-4" />
+          <ResumeTimelineEntry reversed={entry.isReversed} icon={BriefcaseBusiness}>
+            {#snippet media()}
+              <ResumeTimelineMedia
+                src={entry.imageSrc}
+                sizes="(min-width: 1024px) 416px, 0px"
+                placeholderClass={entry.placeholderClass}
+                class="aspect-[4/3] w-full max-w-[26rem] rounded-[2rem] shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)]"
+                imageClass="absolute inset-0 h-full w-full"
+              />
+            {/snippet}
+
+            <div class="min-w-0 space-y-4">
+              <div
+                class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+              >
+                <Typography
+                  as="span"
+                  variant="eyebrow-tight"
+                  class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
+                >
+                  {entry.dateRange}
+                </Typography>
+                <span class="h-1 w-1 rounded-full bg-primary/35"></span>
+                <Typography as="span" variant="caption" class="max-w-[24rem]">
+                  {entry.company}
+                </Typography>
+              </div>
+
+              <Typography as="h3" variant="card-title" id={entry.id} class="min-w-0">
+                <a
+                  href={`#${entry.id}`}
+                  class="underline-offset-4 hover:underline focus-visible:underline"
+                >
+                  {entry.position}
+                </a>
+              </Typography>
             </div>
 
-            <div
-              class={cn(
-                'hidden lg:row-start-1 lg:flex lg:items-center',
-                entry.isReversed
-                  ? 'lg:col-start-1 lg:justify-end'
-                  : 'lg:col-start-2 lg:justify-start'
-              )}
-            >
-              <div
-                class={cn(
-                  'relative aspect-[4/3] w-full max-w-[26rem] overflow-hidden rounded-[2rem] border border-black/8 bg-gradient-to-br to-transparent shadow-[0_22px_60px_-40px_rgba(15,23,42,0.48)] dark:border-white/10',
-                  entry.placeholderClass
-                )}
-              >
-                <enhanced:img
+            <div class="mt-6">
+              <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
+                <Typography as="p" variant="body">
+                  {entry.summary}
+                </Typography>
+
+                <ResumeTimelineBulletList items={entry.highlights} />
+
+                <ResumeTimelineMedia
                   src={entry.imageSrc}
-                  alt=""
-                  sizes="(min-width: 1024px) 416px, 0px"
-                  class="absolute inset-0 h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
+                  sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
+                  placeholderClass={entry.placeholderClass}
+                  class="p-4 lg:hidden"
+                  imageClass="relative h-24 w-full rounded-[1rem]"
                 />
               </div>
             </div>
-
-            <div class="resume-timeline-card lg:row-start-1">
-              <div class="p-6 sm:p-7">
-                <div class="min-w-0 space-y-4">
-                  <div
-                    class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
-                  >
-                    <span
-                      class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
-                    >
-                      {entry.dateRange}
-                    </span>
-                    <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                    <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
-                      {entry.company}
-                    </span>
-                  </div>
-
-                  <h3
-                    id={entry.id}
-                    class="min-w-0 font-heading text-[1.2rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.35rem]"
-                  >
-                    <a
-                      href={`#${entry.id}`}
-                      class="underline-offset-4 hover:underline focus-visible:underline"
-                    >
-                      {entry.position}
-                    </a>
-                  </h3>
-                </div>
-
-                <div class="mt-6">
-                  <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
-                    <p
-                      class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                    >
-                      {entry.summary}
-                    </p>
-
-                    <ul class="space-y-3">
-                      {#each entry.highlights as highlight (highlight)}
-                        <li
-                          class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
-                        >
-                          <span class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
-                          ></span>
-                          <span>{highlight}</span>
-                        </li>
-                      {/each}
-                    </ul>
-
-                    <div
-                      class={cn(
-                        'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
-                        entry.placeholderClass
-                      )}
-                    >
-                      {#if entry.imageSrc}
-                        <enhanced:img
-                          src={entry.imageSrc}
-                          alt=""
-                          sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
-                          class="relative h-24 w-full rounded-[1rem] object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      {:else}
-                        <div
-                          class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                        ></div>
-                        <div
-                          class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
-                        ></div>
-                      {/if}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+          </ResumeTimelineEntry>
         {/each}
       </div>
     </div>

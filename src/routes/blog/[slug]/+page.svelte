@@ -2,6 +2,9 @@
   import { resolve } from '$app/paths';
   import type { PageProps } from './$types';
 
+  import Typography from '$lib/components/Typography.svelte';
+  import { proseClass } from '$lib/components/typography';
+
   let { data }: PageProps = $props();
 
   const panelClass =
@@ -48,28 +51,26 @@
       </div>
 
       <div class="relative z-10 max-w-3xl">
-        <p class="text-xs font-medium tracking-[0.32em] text-muted-foreground uppercase">Blog</p>
-        <h1
-          class="mt-4 font-heading text-[clamp(2.1rem,4vw,4.25rem)] font-semibold tracking-[-0.05em] text-balance text-foreground"
-        >
+        <Typography as="p" variant="eyebrow-wide">Blog</Typography>
+        <Typography as="h1" variant="page-title" class="mt-4">
           {data.entry.title}
-        </h1>
+        </Typography>
 
-        <div
-          class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.72rem] font-medium tracking-[0.2em] text-muted-foreground uppercase"
-        >
-          <span>{data.entry.author}</span>
+        <div class="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+          <Typography as="span" variant="meta">{data.entry.author}</Typography>
           {#if formatDate(data.entry.publishedAt)}
-            <span>{formatDate(data.entry.publishedAt)}</span>
+            <Typography as="span" variant="meta">{formatDate(data.entry.publishedAt)}</Typography>
           {/if}
           {#if formatDate(data.entry.updatedAt)}
-            <span>Updated {formatDate(data.entry.updatedAt)}</span>
+            <Typography as="span" variant="meta"
+              >Updated {formatDate(data.entry.updatedAt)}</Typography
+            >
           {/if}
         </div>
 
-        <p class="mt-5 max-w-2xl text-[1rem] leading-7 text-muted-foreground sm:text-[1.05rem]">
+        <Typography as="p" variant="body-lead" class="mt-5 max-w-2xl">
           {data.entry.summary}
-        </p>
+        </Typography>
       </div>
     </div>
   </section>
@@ -78,18 +79,14 @@
     class="mx-auto mt-8 grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start"
   >
     <article class="min-w-0 px-1 sm:px-2 lg:px-0">
-      <div
-        class="prose max-w-none text-foreground prose-neutral dark:prose-invert prose-headings:font-heading prose-headings:tracking-[-0.04em] prose-headings:text-foreground prose-p:text-foreground/88 prose-a:text-primary prose-blockquote:border-l-primary/40 prose-blockquote:text-foreground/72 prose-strong:text-foreground prose-code:text-foreground prose-pre:border prose-pre:border-black/8 prose-pre:bg-black/[0.035] dark:prose-pre:border-white/10 dark:prose-pre:bg-white/[0.045]"
-      >
+      <div class={proseClass}>
         <data.entry.Content />
       </div>
     </article>
 
     {#if relatedEntries.length > 0}
       <aside class={`px-6 py-7 sm:px-8 sm:py-8 lg:sticky lg:top-28 ${panelClass}`}>
-        <p class="text-xs font-medium tracking-[0.26em] text-muted-foreground uppercase">
-          More posts
-        </p>
+        <Typography as="p" variant="eyebrow" class="tracking-[0.26em]">More posts</Typography>
 
         <div class="mt-5 space-y-4">
           {#each relatedEntries as entry (entry.slug)}
@@ -97,10 +94,8 @@
               class="block rounded-[1.25rem] border border-black/8 px-4 py-4 transition-colors hover:bg-black/[0.025] dark:border-white/10 dark:hover:bg-white/[0.03]"
               href={resolve('/blog/[slug]', { slug: entry.slug })}
             >
-              <p class="font-heading text-lg font-semibold tracking-[-0.03em] text-foreground">
-                {entry.title}
-              </p>
-              <p class="mt-2 text-sm leading-6 text-muted-foreground">{entry.summary}</p>
+              <Typography as="p" variant="card-title-lg">{entry.title}</Typography>
+              <Typography as="p" variant="body-sm" class="mt-2">{entry.summary}</Typography>
             </a>
           {/each}
         </div>

@@ -1,5 +1,7 @@
 <script lang="ts">
   import { Moon, Sun } from '@lucide/svelte';
+
+  import Typography from '$lib/components/Typography.svelte';
   import type { HTMLButtonAttributes } from 'svelte/elements';
 
   import { getUiSettings } from '$lib/state/ui-settings.svelte';
@@ -75,7 +77,7 @@
   class={cn(className)}
   {...props}
 >
-  <span class="sr-only">Toggle theme</span>
+  <Typography as="span" variant="sr-only">Toggle theme</Typography>
 
   {#if isDark}
     <Sun class="size-4.5" />

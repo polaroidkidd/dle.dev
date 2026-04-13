@@ -2,6 +2,7 @@
   import AvatarImg from '$lib/assets/avatar/avatar.jpg?enhanced&w=220;352;704';
   import githubIcon from '$lib/assets/icons/github.svg';
   import linkedinIcon from '$lib/assets/icons/linkedin.svg';
+  import Typography from '$lib/components/Typography.svelte';
   import { Avatar } from '$lib/components/ui/avatar';
   import { homeOutcomes, homeSynthesis } from '$lib/content/home';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
@@ -63,15 +64,11 @@
             </div>
 
             <div class="min-w-0 text-center lg:text-center">
-              <p class="text-xs font-medium tracking-[0.32em] text-muted-foreground uppercase">
-                Daniel L. Einars
-              </p>
-              <p
-                class="mt-2 max-w-sm text-[0.98rem] leading-7 text-foreground/86 sm:text-[0.95rem]"
-              >
+              <Typography as="p" variant="eyebrow-wide">Daniel L. Einars</Typography>
+              <Typography as="p" variant="body-strong" class="mt-2 max-w-sm">
                 Engineering quality, design, architecture, and implementation moving in the same
                 direction.
-              </p>
+              </Typography>
             </div>
           </div>
         </div>
@@ -98,9 +95,7 @@
               {/each}
             </div>
 
-            <p class="text-lg font-medium tracking-[-0.02em] text-foreground/88 sm:text-[1.35rem]">
-              I help companies
-            </p>
+            <Typography as="p" variant="intro-lead">I help companies</Typography>
 
             <HeroOutcomeStack outcomes={homeOutcomes} synthesis={homeSynthesis} {modeClass} />
           </div>
