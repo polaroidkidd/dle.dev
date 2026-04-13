@@ -7,7 +7,6 @@
     "changeset": "changeset",
     "dev": "vite dev --host --force",
     "build": "vite build",
-    "dle-dev (Preview)": "vite dle-dev (Preview)",
     "prepare": "husky",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
