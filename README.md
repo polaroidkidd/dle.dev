@@ -80,6 +80,7 @@ scripts/
 
 The app uses `@sveltejs/adapter-cloudflare` in `svelte.config.js`.
 After the adapter runs, `scripts/patch-cloudflare-worker.mjs` is executed to patch the generated worker output before deployment.
+GitHub Actions deploy Pages builds through Wrangler via `cloudflare/wrangler-action`.
 
 ## Notes
 
