@@ -1,5 +1,25 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- 99214f9: Optimize responsive image delivery across the resume sections by serving narrower variants and adding explicit loading hints for non-critical media.
+- 99214f9: Add resume profile links to the halo navbar with local GitHub and LinkedIn icons, larger in-button sizing, dark-mode-aware rendering, proper external link handling, and a slimmer resume data payload focused on the surfaced profile links.
+
+### Patch Changes
+
+- 99214f9: Replace the starter README with project-specific documentation covering the site structure, local development workflow, blog content setup, and Cloudflare deployment notes.
+- 15ea40f: Bind the release-prep staging deploy job to the preview GitHub environment so the Cloudflare Pages action can read its account and API token secrets.
+- 99214f9: Refine the skills section layout by removing forced mobile and desktop reordering so the cloud visual and content follow the natural document flow.
+- c0be3c0: Add the Cloudflare MCP server configuration so the project can use the remote Cloudflare API integration during local agent sessions.
+- 99214f9: Reduce GSAP plugin overhead by registering only the animation APIs the site currently uses.
+- 99214f9: Automate the release flow with a GitHub Actions managed staging deploy on `master`, Changesets release PRs, tag and GitHub Release creation on merge, and tag-driven production deploys.
+- 99214f9: Refine the home hero copy to emphasize engineering quality, architecture, and leadership, and slow the rotating headline so the messaging is easier to read.
+- c0be3c0: Grant GitHub deployment write permission to the Pages workflows so Cloudflare's Pages action can create deployment records without failing with `Resource not accessible by integration`.
+- c0be3c0: Update the agent instructions to load skills dynamically, keeping Svelte guidance as the default baseline and loading design or GSAP-related skills only when the task requires them.
+- 99214f9: Fix Cloudflare caching so worker cache reads and writes stay limited to static and prerendered responses instead of dynamic HTML.
+
 All notable changes to this project will be documented in this file.
 
 ## [2.0.0](https://github.com/polaroidkidd/dle.dev/compare/v1.25.0...v2.0.0) (2026-04-13)
