@@ -5,11 +5,8 @@
   import { BookOpen, Globe, Home, Mail, Menu, X } from '@lucide/svelte';
   import { onMount } from 'svelte';
 
-  import githubIcon from '$lib/assets/icons/github.svg';
-  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
   import { Button } from '$lib/components/ui/button';
   import { cn } from '$lib/utils';
-  import resume from '../../../static/resume.json';
   import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
 
   type NavItem = {
@@ -18,28 +15,10 @@
     icon: typeof Globe;
   };
 
-  type ResumeProfile = (typeof resume.basics.profiles)[number];
-
-  type ProfileItem = ResumeProfile & {
-    iconUrl?: string;
-    icon?: typeof Globe;
-  };
-
   const navItems: NavItem[] = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/blog', label: 'Blog', icon: BookOpen }
   ];
-
-  const profileItems: ProfileItem[] = resume.basics.profiles.map((profile) => ({
-    ...profile,
-    iconUrl:
-      profile.network === 'Github'
-        ? githubIcon
-        : profile.network === 'LinkedIn'
-          ? linkedinIcon
-          : undefined,
-    icon: profile.network === 'Website' ? Globe : undefined
-  }));
 
   const pathname = $derived(page.url.pathname);
 
@@ -65,8 +44,6 @@
   );
 
   const navbarIconClass = cn('size-5');
-
-  const navbarImageIconClass = cn(navbarIconClass, 'object-contain dark:invert');
 
   const navItemBaseClass = cn(
     'h-auto rounded-full px-4 py-2 text-sm font-medium',
@@ -253,24 +230,6 @@
         </div>
 
         <div data-navbar-content class={cn('relative z-10 flex items-center gap-2 sm:justify-end')}>
-          {#each profileItems as profile (profile.url)}
-            <a
-              href={profile.url}
-              target="_blank"
-              rel="external noreferrer"
-              class={cn(iconButtonClass, 'hidden min-[930px]:inline-flex')}
-              aria-label={profile.username}
-              title={profile.network}
-            >
-              {#if profile.iconUrl}
-                <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
-              {:else if profile.icon}
-                <profile.icon class={navbarIconClass} />
-              {/if}
-              <span class={cn('sr-only')}>{profile.network}</span>
-            </a>
-          {/each}
-
           <AnimatedThemeToggler class={iconButtonClass} />
 
           <button
@@ -334,32 +293,6 @@
 
               <div
                 style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
-                class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
-              >
-                <div class={cn('flex items-center justify-center gap-2 py-1')}>
-                  {#each profileItems as profile (profile.url)}
-                    <a
-                      href={profile.url}
-                      target="_blank"
-                      rel="external noreferrer"
-                      class={cn(iconButtonClass, 'w-1/2 gap-2 rounded-2xl')}
-                      aria-label={profile.username}
-                      title={profile.network}
-                      onclick={closeMenu}
-                    >
-                      {#if profile.iconUrl}
-                        <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
-                      {:else if profile.icon}
-                        <profile.icon class={navbarIconClass} />
-                      {/if}
-                      <span class="text-sm font-medium">{profile.network}</span>
-                    </a>
-                  {/each}
-                </div>
-              </div>
-
-              <div
-                style={`--mobile-nav-delay:${isMenuOpen ? (navItems.length + 1) * 40 : 0}ms`}
                 class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
               >
                 <a

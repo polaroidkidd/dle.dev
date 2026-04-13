@@ -2,8 +2,20 @@
   import { Avatar, AvatarFallback, AvatarImage } from '$lib/components/ui/avatar';
   import { homeOutcomes, homeSynthesis } from '$lib/content/home';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
+  import { cn } from '$lib/utils';
+  import resume from '../../../../static/resume.json';
+
+  import githubIcon from '$lib/assets/icons/github.svg';
+  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
 
   import HeroOutcomeStack from './HeroOutcomeStack.svelte';
+
+  const profileLinks = resume.basics.profiles
+    .filter((p) => p.network === 'Github' || p.network === 'LinkedIn')
+    .map((p) => ({
+      ...p,
+      iconUrl: p.network === 'Github' ? githubIcon : linkedinIcon
+    }));
 
   const intro = getHomeIntro();
 
@@ -58,7 +70,27 @@
         </div>
 
         <div class="min-w-0">
-          <div class="max-w-4xl">
+          <div class="relative max-w-4xl">
+            <div class="absolute top-0 right-0 flex items-center gap-2">
+              {#each profileLinks as profile (profile.url)}
+                <a
+                  href={profile.url}
+                  target="_blank"
+                  rel="external noreferrer"
+                  aria-label={profile.network}
+                  title={profile.network}
+                  class={cn(
+                    'inline-flex size-9 items-center justify-center rounded-full',
+                    'border border-black/8 bg-black/[0.03] text-foreground',
+                    'transition-colors duration-200 hover:bg-black/[0.06]',
+                    'dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.08]'
+                  )}
+                >
+                  <img src={profile.iconUrl} alt="" class="size-4 object-contain dark:invert" />
+                </a>
+              {/each}
+            </div>
+
             <p class="text-lg font-medium tracking-[-0.02em] text-foreground/88 sm:text-[1.35rem]">
               I help companies
             </p>
