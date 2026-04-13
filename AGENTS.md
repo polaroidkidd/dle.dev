@@ -15,6 +15,8 @@
 
 - Load skills dynamically based on the task instead of loading every available skill at the start of each session
 - Treat `svelte-code-writer` and `svelte-core-bestpractices` as the default baseline for work in this repository because Svelte is part of the core stack
+- Load `commit` when the user asks to create a commit, draft a commit message, review a staged commit, or summarize changes into a commit message that follows the repo's commit-writing standards
+- Load `changeset` when the user asks to add or review a Changeset, prepare release notes, decide whether a release-visible change needs version metadata, or create a `.changeset/*.md` entry for package `dle.dev`
 - Load `frontend-design` for design-heavy work such as UI design, layout polish, visual refinement, landing pages, dashboards, or other requests where the main goal is the look and feel
 - Load `ui-animation` for animation-related work such as transitions, motion polish, interaction feel, choreography, or animation review/debugging
 - Load the GSAP skills only when the task involves animation or motion implementation
