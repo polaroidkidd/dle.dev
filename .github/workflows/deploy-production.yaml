@@ -17,7 +17,9 @@ permissions:
 
 jobs:
   publish-web-app:
-    environment: dle-dev (Production)
+    environment:
+      name: Production
+      url: ${{ steps.deploy.outputs.deployment-url }}
     name: Deploy Webapp
     runs-on: ubuntu-latest
     steps:
@@ -38,10 +40,10 @@ jobs:
           pnpm run build
 
       - name: Publish Web App
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy ./.svelte-kit/cloudflare --project-name=dle-dev --branch=master
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           packageManager: pnpm

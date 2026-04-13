@@ -17,7 +17,9 @@ permissions:
 
 jobs:
   deploy-staging:
-    environment: dle-dev (Preview)
+    environment:
+      name: Staging
+      url: ${{ steps.deploy.outputs.deployment-url }}
     name: Deploy Staging
     runs-on: ubuntu-latest
     steps:
@@ -37,12 +39,12 @@ jobs:
           pnpm run build
 
       - name: Publish Staging
+        id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           command: pages deploy ./.svelte-kit/cloudflare --project-name=dle-dev-staging --branch=master
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           packageManager: pnpm
 
   version:
