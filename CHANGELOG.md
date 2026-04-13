@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.1.1
+
+### Patch Changes
+
+- c0b5b2f: Remove the invalid `dle-dev (Preview)` package script from `package.json`.
+- c0b5b2f: Fix production releases by explicitly dispatching the production deploy workflow after the release tag is created in GitHub Actions.
+
 ## 2.1.0
 
 ### Minor Changes
