@@ -11,6 +11,10 @@
 
       "command": ["pnpx", "@jsrepo/mcp"]
     },
+    "cloudflare-api": {
+      "type": "remote",
+      "url": "https://mcp.cloudflare.com/mcp"
+    },
     "chrome-devtools": {
       "type": "local",
       "command": [
