@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { Avatar, AvatarFallback, AvatarImage } from '$lib/components/ui/avatar';
+  import AvatarImg from '$lib/assets/avatar/avatar.jpg?enhanced&w=220;352;704';
+  import githubIcon from '$lib/assets/icons/github.svg';
+  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
+  import { Avatar } from '$lib/components/ui/avatar';
   import { homeOutcomes, homeSynthesis } from '$lib/content/home';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import { cn } from '$lib/utils';
   import resume from '../../../../static/resume.json';
-
-  import githubIcon from '$lib/assets/icons/github.svg';
-  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
 
   import HeroOutcomeStack from './HeroOutcomeStack.svelte';
 
@@ -50,8 +50,15 @@
               <Avatar
                 class="relative size-24 border border-white/75 bg-white shadow-[0_22px_55px_-22px_rgba(15,23,42,0.48)] sm:size-32 dark:border-white/18 dark:bg-black/25"
               >
-                <AvatarImage src="/avatar.jpg" alt="Portrait of Daniel L. Einars" />
-                <AvatarFallback>DLE</AvatarFallback>
+                <enhanced:img
+                  src={AvatarImg}
+                  alt="Portrait of Daniel L. Einars"
+                  loading="lazy"
+                  decoding="async"
+                  data-slot="avatar-image"
+                  class={cn('aspect-square size-full rounded-full object-cover')}
+                >
+                </enhanced:img>
               </Avatar>
             </div>
 
