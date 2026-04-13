@@ -1,9 +1,21 @@
 <script lang="ts">
-  import { Avatar, AvatarFallback, AvatarImage } from '$lib/components/ui/avatar';
+  import AvatarImg from '$lib/assets/avatar/avatar.jpg?enhanced&w=220;352;704';
+  import githubIcon from '$lib/assets/icons/github.svg';
+  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
+  import { Avatar } from '$lib/components/ui/avatar';
   import { homeOutcomes, homeSynthesis } from '$lib/content/home';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
+  import { cn } from '$lib/utils';
+  import resume from '../../assets/resume/resume.json';
 
   import HeroOutcomeStack from './HeroOutcomeStack.svelte';
+
+  const profileLinks = resume.basics.profiles
+    .filter((p) => p.network === 'Github' || p.network === 'LinkedIn')
+    .map((p) => ({
+      ...p,
+      iconUrl: p.network === 'Github' ? githubIcon : linkedinIcon
+    }));
 
   const intro = getHomeIntro();
 
@@ -38,8 +50,15 @@
               <Avatar
                 class="relative size-24 border border-white/75 bg-white shadow-[0_22px_55px_-22px_rgba(15,23,42,0.48)] sm:size-32 dark:border-white/18 dark:bg-black/25"
               >
-                <AvatarImage src="/avatar.jpg" alt="Portrait of Daniel L. Einars" />
-                <AvatarFallback>DLE</AvatarFallback>
+                <enhanced:img
+                  src={AvatarImg}
+                  alt="Portrait of Daniel L. Einars"
+                  loading="lazy"
+                  decoding="async"
+                  data-slot="avatar-image"
+                  class={cn('aspect-square size-full rounded-full object-cover')}
+                >
+                </enhanced:img>
               </Avatar>
             </div>
 
@@ -58,7 +77,27 @@
         </div>
 
         <div class="min-w-0">
-          <div class="max-w-4xl">
+          <div class="relative max-w-4xl">
+            <div class="absolute top-0 right-0 flex items-center gap-2">
+              {#each profileLinks as profile (profile.url)}
+                <a
+                  href={profile.url}
+                  target="_blank"
+                  rel="external noreferrer"
+                  aria-label={profile.network}
+                  title={profile.network}
+                  class={cn(
+                    'inline-flex size-9 items-center justify-center rounded-full',
+                    'border border-black/8 bg-black/[0.03] text-foreground',
+                    'transition-colors duration-200 hover:bg-black/[0.06]',
+                    'dark:border-white/10 dark:bg-white/[0.04] dark:hover:bg-white/[0.08]'
+                  )}
+                >
+                  <img src={profile.iconUrl} alt="" class="size-4 object-contain dark:invert" />
+                </a>
+              {/each}
+            </div>
+
             <p class="text-lg font-medium tracking-[-0.02em] text-foreground/88 sm:text-[1.35rem]">
               I help companies
             </p>

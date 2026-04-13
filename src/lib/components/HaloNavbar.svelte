@@ -1,44 +1,50 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { Globe, Mail, Menu, X } from '@lucide/svelte';
+  import {
+    Award,
+    BookOpen,
+    BriefcaseBusiness,
+    ChevronDown,
+    GraduationCap,
+    Home,
+    List,
+    Mail,
+    Menu,
+    Sparkles,
+    UserRound,
+    X
+  } from '@lucide/svelte';
+  import gsap from 'gsap';
+  import { onMount } from 'svelte';
 
-  import githubIcon from '$lib/assets/icons/github.svg';
-  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
   import { Button } from '$lib/components/ui/button';
   import { cn } from '$lib/utils';
-  import resume from '../../../static/resume.json';
   import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
 
   type NavItem = {
     href: string;
     label: string;
+    icon: typeof Home;
   };
 
-  type ResumeProfile = (typeof resume.basics.profiles)[number];
-
-  type ProfileItem = ResumeProfile & {
-    iconUrl?: string;
-    icon?: typeof Globe;
-  };
+  type SectionItem = NavItem;
 
   const navItems: NavItem[] = [
-    { href: '/', label: 'Home' },
-    { href: '/blog', label: 'Blog' }
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/blog', label: 'Blog', icon: BookOpen }
   ];
 
-  const profileItems: ProfileItem[] = resume.basics.profiles.map((profile) => ({
-    ...profile,
-    iconUrl:
-      profile.network === 'Github'
-        ? githubIcon
-        : profile.network === 'LinkedIn'
-          ? linkedinIcon
-          : undefined,
-    icon: profile.network === 'Website' ? Globe : undefined
-  }));
+  const sectionItems: SectionItem[] = [
+    { href: '/#skills', label: 'Skills', icon: Sparkles },
+    { href: '/#work-experience', label: 'Work Experience', icon: BriefcaseBusiness },
+    { href: '/#education', label: 'Education', icon: GraduationCap },
+    { href: '/#certificates', label: 'Certificates', icon: Award },
+    { href: '/#about-me', label: 'About', icon: UserRound }
+  ];
 
   const pathname = $derived(page.url.pathname);
+  const isHomePage = $derived(pathname === '/');
 
   const navShellClass = cn(
     'relative mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3',
@@ -63,8 +69,6 @@
 
   const navbarIconClass = cn('size-5');
 
-  const navbarImageIconClass = cn(navbarIconClass, 'object-contain dark:invert');
-
   const navItemBaseClass = cn(
     'h-auto rounded-full px-4 py-2 text-sm font-medium',
     'transition-colors duration-200'
@@ -86,14 +90,52 @@
     'transition-all duration-300 hover:opacity-92 dark:border-white/10'
   );
 
+  const tocButtonClass = cn(
+    'cursor-pointer inline-flex h-11 items-center gap-2 rounded-full border border-black/8 bg-white/70 px-3.5',
+    'text-sm font-medium text-foreground transition-all duration-300 hover:bg-white',
+    'dark:border-white/10 dark:bg-white/[0.05] dark:text-white dark:hover:bg-white/[0.08]'
+  );
+
   let isMenuOpen = $state(false);
+  let isTocOpen = $state(false);
+  let tocMenuEl = $state<HTMLDivElement | undefined>(undefined);
 
   function toggleMenu() {
+    isTocOpen = false;
     isMenuOpen = !isMenuOpen;
   }
 
   function closeMenu() {
     isMenuOpen = false;
+  }
+
+  function toggleToc() {
+    closeMenu();
+    isTocOpen = !isTocOpen;
+  }
+
+  function closeToc() {
+    isTocOpen = false;
+  }
+
+  function handleSectionNavigation() {
+    closeToc();
+    closeMenu();
+  }
+
+  function handleDocumentClick(event: MouseEvent) {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!tocMenuEl?.contains(target)) {
+      closeToc();
+    }
+  }
+
+  function handleWindowKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      closeToc();
+      closeMenu();
+    }
   }
 
   function isActive(href: string) {
@@ -103,9 +145,73 @@
 
     return pathname === href || pathname.startsWith(`${href}/`);
   }
+
+  // Floating navbar scroll logic
+  let headerEl: HTMLElement | undefined;
+  let lastScrollY = 0;
+  let visible = true;
+
+  function setVisible(show: boolean) {
+    if (!headerEl) return;
+    if (show === visible) return;
+    visible = show;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      gsap.set(headerEl, { y: show ? 0 : -120, opacity: show ? 1 : 0 });
+      return;
+    }
+
+    if (show) {
+      gsap.to(headerEl, {
+        y: 0,
+        opacity: 1,
+        duration: 0.35,
+        ease: 'power3.out'
+      });
+    } else {
+      gsap.to(headerEl, {
+        y: -120,
+        opacity: 0,
+        duration: 0.22,
+        ease: 'power2.in'
+      });
+    }
+  }
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollDelta = currentScrollY - lastScrollY;
+
+    if (currentScrollY < 80) {
+      // Near the top — always show
+      setVisible(true);
+    } else if (scrollDelta < 0) {
+      // Scrolling up — reveal
+      setVisible(true);
+    } else if (scrollDelta > 4) {
+      // Scrolling down with intent — hide
+      setVisible(false);
+    }
+
+    lastScrollY = currentScrollY;
+  }
+
+  onMount(() => {
+    // Start fully visible
+    gsap.set(headerEl!, { y: 0, opacity: 1 });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  });
 </script>
 
-<header class={cn('fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-5')}>
+<svelte:document onclick={handleDocumentClick} />
+<svelte:window onkeydown={handleWindowKeydown} />
+
+<header bind:this={headerEl} class={cn('fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-5')}>
   <div class={cn('mx-auto max-w-6xl')}>
     <div class={cn('relative')}>
       <div
@@ -176,31 +282,72 @@
             <Button
               href={resolve(item.href, {})}
               aria-current={active ? 'page' : undefined}
-              class={cn(navItemBaseClass, active ? activeNavItemClass : inactiveNavItemClass)}
+              class={cn(
+                navItemBaseClass,
+                'flex items-center gap-1.5',
+                active ? activeNavItemClass : inactiveNavItemClass
+              )}
             >
+              <item.icon class="size-4" />
               {item.label}
             </Button>
           {/each}
         </div>
 
         <div data-navbar-content class={cn('relative z-10 flex items-center gap-2 sm:justify-end')}>
-          {#each profileItems as profile (profile.url)}
-            <a
-              href={profile.url}
-              target="_blank"
-              rel="external noreferrer"
-              class={cn(iconButtonClass, 'hidden min-[930px]:inline-flex')}
-              aria-label={profile.username}
-              title={profile.network}
-            >
-              {#if profile.iconUrl}
-                <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
-              {:else if profile.icon}
-                <profile.icon class={navbarIconClass} />
-              {/if}
-              <span class={cn('sr-only')}>{profile.network}</span>
-            </a>
-          {/each}
+          {#if isHomePage}
+            <div bind:this={tocMenuEl} class="relative hidden min-[930px]:block">
+              <button
+                type="button"
+                class={tocButtonClass}
+                aria-expanded={isTocOpen}
+                aria-controls="home-sections-panel"
+                aria-haspopup="menu"
+                aria-label="Toggle section table of contents"
+                onclick={toggleToc}
+              >
+                <List class="size-4" />
+                <span class="hidden sm:inline">Sections</span>
+                <ChevronDown
+                  class={cn(
+                    'size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+                    isTocOpen && 'rotate-180'
+                  )}
+                />
+              </button>
+
+              <div
+                id="home-sections-panel"
+                aria-hidden={!isTocOpen}
+                class={cn(
+                  'absolute top-[calc(100%+0.75rem)] right-0 z-20 w-72  overflow-hidden rounded-[1.5rem] border border-black/8 bg-white/96 p-2 shadow-[0_28px_90px_-42px_rgba(15,23,42,0.52)] backdrop-blur-2xl transition-all duration-200 dark:border-white/10 dark:bg-zinc-950/92',
+                  isTocOpen
+                    ? 'translate-y-0 opacity-100'
+                    : 'pointer-events-none -translate-y-2 opacity-0'
+                )}
+              >
+                <div class="space-y-1">
+                  {#each sectionItems as item (item.href)}
+                    <Button
+                      href={resolve(item.href, {})}
+                      class={cn(
+                        'h-auto w-full justify-start gap-3 rounded-[1rem] px-3 py-2.5 text-sm font-medium',
+                        'bg-transparent text-foreground hover:bg-black/[0.04] dark:bg-transparent dark:text-white dark:hover:bg-white/[0.06]'
+                      )}
+                      onclick={handleSectionNavigation}
+                    >
+                      <span
+                        class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/16 bg-primary/7 text-primary dark:border-primary/30 dark:bg-primary/16"
+                      >
+                        <item.icon class="size-4" />
+                      </span>
+                      <span>{item.label}</span>
+                    </Button>
+                  {/each}
+                </div>
+              </div>
+            </div>
+          {/if}
 
           <AnimatedThemeToggler class={iconButtonClass} />
 
@@ -252,44 +399,58 @@
                     aria-current={active ? 'page' : undefined}
                     class={cn(
                       navItemBaseClass,
-                      'w-full justify-center py-2.5',
+                      'flex w-full items-center justify-center gap-1.5 py-2.5',
                       active ? activeNavItemClass : inactiveNavItemClass
                     )}
                     onclick={closeMenu}
                   >
+                    <item.icon class="size-4" />
                     {item.label}
                   </Button>
                 </div>
               {/each}
 
-              <div
-                style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
-                class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
-              >
-                <div class={cn('flex items-center justify-center gap-2 py-1')}>
-                  {#each profileItems as profile (profile.url)}
-                    <a
-                      href={profile.url}
-                      target="_blank"
-                      rel="external noreferrer"
-                      class={iconButtonClass}
-                      aria-label={profile.username}
-                      title={profile.network}
-                      onclick={closeMenu}
+              {#if isHomePage}
+                <div
+                  style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
+                  class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
+                >
+                  <div
+                    class={cn(
+                      'rounded-[1.4rem] border border-black/6 bg-black/[0.025] p-2 dark:border-white/8 dark:bg-white/[0.03]'
+                    )}
+                  >
+                    <p
+                      class="px-2 pb-2 text-[0.72rem] font-medium tracking-[0.18em] text-muted-foreground uppercase"
                     >
-                      {#if profile.iconUrl}
-                        <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
-                      {:else if profile.icon}
-                        <profile.icon class={navbarIconClass} />
-                      {/if}
-                      <span class={cn('sr-only')}>{profile.network}</span>
-                    </a>
-                  {/each}
+                      Sections
+                    </p>
+
+                    <div class="flex flex-col gap-1">
+                      {#each sectionItems as item (item.href)}
+                        <Button
+                          href={resolve(item.href, {})}
+                          class={cn(
+                            'h-auto w-full justify-start gap-3 rounded-[1rem] px-3 py-2.5 text-sm font-medium',
+                            'bg-transparent text-foreground hover:bg-black/[0.04] dark:bg-transparent dark:text-white dark:hover:bg-white/[0.06]'
+                          )}
+                          onclick={handleSectionNavigation}
+                        >
+                          <span
+                            class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/16 bg-primary/7 text-primary dark:border-primary/30 dark:bg-primary/16"
+                          >
+                            <item.icon class="size-4" />
+                          </span>
+                          <span>{item.label}</span>
+                        </Button>
+                      {/each}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              {/if}
 
               <div
-                style={`--mobile-nav-delay:${isMenuOpen ? (navItems.length + 1) * 40 : 0}ms`}
+                style={`--mobile-nav-delay:${isMenuOpen ? (navItems.length + (isHomePage ? 1 : 0)) * 40 : 0}ms`}
                 class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
               >
                 <a

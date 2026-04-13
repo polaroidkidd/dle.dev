@@ -1,7 +1,4 @@
-<section
-  aria-labelledby="about-me-title"
-  class="mx-auto max-w-6xl px-4 py-20 sm:mt-8 sm:px-6 lg:px-8"
->
+<section aria-labelledby="about-me" class="mx-auto max-w-6xl px-4 py-20 sm:mt-8 sm:px-6 lg:px-8">
   <div class="relative">
     <div
       class="section-glow pointer-events-none absolute -inset-x-4 -inset-y-3 rounded-[2.5rem] sm:-inset-x-6 sm:-inset-y-4 lg:-inset-x-8 lg:-inset-y-5"
@@ -28,10 +25,12 @@
 
         <div class="max-w-3xl">
           <h2
-            id="about-me-title"
+            id="about-me"
             class="font-heading text-[clamp(1.9rem,3.3vw,3rem)] font-semibold tracking-[-0.04em] text-foreground"
           >
-            Life outside the editor.
+            <a href="#about-me" class="underline-offset-4 hover:underline focus-visible:underline">
+              Life outside the editor.
+            </a>
           </h2>
           <p
             class="mt-4 text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
