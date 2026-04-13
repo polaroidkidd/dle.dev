@@ -1,8 +1,9 @@
 <script lang="ts">
+  import openai from '$lib/assets/icons/openai.svg';
+  import playwrightIcon from '$lib/assets/icons/playwright.svg';
   import IconCloud from '$lib/components/magic/icon-cloud/icon-cloud.svelte';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import resume from '../../../static/resume.json';
-
   type SkillGroup = {
     name: string;
     keywords: string[];
@@ -20,8 +21,8 @@
     'https://cdn.simpleicons.org/typescript/3178C6',
     'https://cdn.simpleicons.org/javascript/F7DF1E',
     'https://cdn.simpleicons.org/vitest/6E9F18',
-    'https://cdn.simpleicons.org/playwright/2EAD33',
-    'https://cdn.simpleicons.org/cypress/69D3A7',
+    playwrightIcon,
+    'https://cdn.simpleicons.org/cypress',
     'https://cdn.simpleicons.org/storybook/FF4785',
     'https://cdn.simpleicons.org/vite/646CFF',
     'https://cdn.simpleicons.org/webpack/8DD6F9',
@@ -33,7 +34,7 @@
     'https://cdn.simpleicons.org/cloudflare/F38020',
     'https://cdn.simpleicons.org/eslint/4B32C3',
     'https://cdn.simpleicons.org/prettier/F7B93E',
-    'https://cdn.simpleicons.org/openai/412991',
+    openai,
     'https://cdn.simpleicons.org/anthropic/191919'
   ];
 
