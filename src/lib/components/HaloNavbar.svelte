@@ -1,7 +1,6 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import gsap from 'gsap';
   import {
     Award,
     BookOpen,
@@ -16,6 +15,7 @@
     UserRound,
     X
   } from '@lucide/svelte';
+  import gsap from 'gsap';
   import { onMount } from 'svelte';
 
   import { Button } from '$lib/components/ui/button';
@@ -91,7 +91,7 @@
   );
 
   const tocButtonClass = cn(
-    'inline-flex h-11 items-center gap-2 rounded-full border border-black/8 bg-white/70 px-3.5',
+    'cursor-pointer inline-flex h-11 items-center gap-2 rounded-full border border-black/8 bg-white/70 px-3.5',
     'text-sm font-medium text-foreground transition-all duration-300 hover:bg-white',
     'dark:border-white/10 dark:bg-white/[0.05] dark:text-white dark:hover:bg-white/[0.08]'
   );
@@ -320,7 +320,7 @@
                 id="home-sections-panel"
                 aria-hidden={!isTocOpen}
                 class={cn(
-                  'absolute top-[calc(100%+0.75rem)] right-0 z-20 w-72 overflow-hidden rounded-[1.5rem] border border-black/8 bg-white/96 p-2 shadow-[0_28px_90px_-42px_rgba(15,23,42,0.52)] backdrop-blur-2xl transition-all duration-200 dark:border-white/10 dark:bg-zinc-950/92',
+                  'absolute top-[calc(100%+0.75rem)] right-0 z-20 w-72  overflow-hidden rounded-[1.5rem] border border-black/8 bg-white/96 p-2 shadow-[0_28px_90px_-42px_rgba(15,23,42,0.52)] backdrop-blur-2xl transition-all duration-200 dark:border-white/10 dark:bg-zinc-950/92',
                   isTocOpen
                     ? 'translate-y-0 opacity-100'
                     : 'pointer-events-none -translate-y-2 opacity-0'
