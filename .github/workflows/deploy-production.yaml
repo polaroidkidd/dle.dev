@@ -1,0 +1,38 @@
+name: Deploy Production
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+jobs:
+  publish-web-app:
+    environment: dle-dev (Production)
+    name: Deploy Webapp
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+          ref: ${{ github.ref }}
+
+      - env:
+          IS_CI: false
+        name: Build
+        run: |
+          pnpm run build
+
+      - name: Publish Web App
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          branch: master
+          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: dle-dev

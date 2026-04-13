@@ -1,45 +1,4 @@
-# This is a basic workflow to automatically build a Svelte app and deploy it to GitHub Pages
-
-jobs:
-  install-dependencies:
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.title == 'Version packages' }}
-    name: Install Dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup environment
-        uses: ./.github/actions/env-setup
-        with:
-          node-version: 24.14.1
-          pnpm-version: 10.33.0
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
-
-  publish-web-app:
-    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.title == 'Version packages' }}
-    environment: dle-dev (Production)
-    name: Deploy Webapp
-    needs: [install-dependencies]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Setup environment
-        uses: ./.github/actions/env-setup
-        with:
-          node-version: 24.14.1
-          pnpm-version: 10.33.0
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
-      - name: Build
-        run: |
-          pnpm run build
-      - name: Publish Web App
-        uses: cloudflare/pages-action@v1
-        with:
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          branch: master
-          directory: ./.svelte-kit/cloudflare
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          projectName: dle-dev
-
-name: Publish to Production
+name: Create Release
 
 on:
   pull_request:
@@ -47,3 +6,53 @@ on:
       - closed
     branches:
       - master
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.title == 'Version packages' }}
+    name: Create Tag and Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          fetch-depth: 0
+          install-deps: 'false'
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
+
+      - id: version
+        name: Resolve version and tag
+        run: |
+          VERSION=$(node -p "JSON.parse(require('node:fs').readFileSync('package.json', 'utf8')).version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - env:
+          TAG: ${{ steps.version.outputs.tag }}
+        name: Create git tag
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          git tag "$TAG" "${GITHUB_SHA}"
+          git push origin "$TAG"
+
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.version.outputs.tag }}
+        name: Create GitHub release
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          gh release create "$TAG" \
+            --target "${GITHUB_SHA}" \
+            --title "$TAG" \
+            --generate-notes
