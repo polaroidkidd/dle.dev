@@ -23,10 +23,10 @@ export const homeOutcomes = [
   {
     id: 'signal',
     kicker: 'Outcome 01',
-    headlinePrefix: 'give launches a ',
+    headlinePrefix: 'give products a ',
     headlineHighlight: 'point of view',
-    headlineSuffix: ' before the product says a word.',
-    body: 'I sharpen the story, hierarchy, and motion so launches land with conviction.',
+    headlineSuffix: ' before the interface says a word.',
+    body: 'I sharpen structure, hierarchy, and motion so the work reads clearly from first glance to shipped detail.',
     proof: 'Stronger first impression.',
     railLabel: 'Launch signal'
   },
@@ -34,10 +34,10 @@ export const homeOutcomes = [
     id: 'system',
     kicker: 'Outcome 02',
     headlinePrefix: 'turn design systems into ',
-    headlineHighlight: 'brand-bearing infrastructure',
+    headlineHighlight: 'engineering infrastructure',
     headlineSuffix: '.',
-    body: 'The system stays practical, but the product stops feeling anonymous.',
-    proof: 'Identity-aware components.',
+    body: 'The system stays practical, opinionated, and maintainable while architecture and quality scales across the team.',
+    proof: 'System quality at scale.',
     railLabel: 'System clarity'
   },
   {
@@ -56,7 +56,7 @@ export const homeOutcomes = [
     headlinePrefix: 'leave teams with a sharper',
     headlineHighlight: 'handoff',
     headlineSuffix: ', not a prettier mess.',
-    body: 'Concept, interface, and implementation move together so the work holds up after launch.',
+    body: 'Concept, interface, and implementation move together so teams can ship, extend, mentor, and lead through the work after launch.',
     proof: 'Cleaner team handoff.',
     railLabel: 'Team handoff'
   }
@@ -64,10 +64,10 @@ export const homeOutcomes = [
 
 export const homeSynthesis = {
   id: 'synthesis',
-  headlinePrefix: 'build product moments that ',
+  headlinePrefix: 'build product systems that ',
   headlineHighlight: 'land with authority',
   headlineSuffix: '.',
-  body: 'Brand, interface, and implementation reinforce each other instead of arriving as separate layers.',
-  proof: 'From first impression to shipped system.',
+  body: 'Engineering quality, design, architecture, and leadership reinforce each other instead of arriving as separate layers.',
+  proof: 'From first impression to durable system.',
   railLabel: 'Ledger complete'
 } satisfies HomeSynthesis;

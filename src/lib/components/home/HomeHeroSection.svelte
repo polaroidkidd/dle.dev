@@ -50,7 +50,8 @@
               <p
                 class="mt-2 max-w-sm text-[0.98rem] leading-7 text-foreground/86 sm:text-[0.95rem]"
               >
-                Brand, interface, motion, and implementation brought into the same sentence.
+                Engineering quality, design, architecture, and implementation moving in the same
+                direction.
               </p>
             </div>
           </div>
@@ -72,8 +73,8 @@
 
 <style>
   .hero-ledger {
-    --step-duration: 2.7s;
-    --active-duration: 3.15s;
+    --step-duration: 5.4s;
+    --active-duration: 6.3s;
     --settle-delay: calc(var(--step-duration) * 4);
   }
 
