@@ -142,6 +142,16 @@
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  [id] {
+    scroll-margin-top: 7.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 

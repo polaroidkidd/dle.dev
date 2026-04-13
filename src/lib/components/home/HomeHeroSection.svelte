@@ -6,7 +6,7 @@
   import { homeOutcomes, homeSynthesis } from '$lib/content/home';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import { cn } from '$lib/utils';
-  import resume from '../../../../static/resume.json';
+  import resume from '../../assets/resume/resume.json';
 
   import HeroOutcomeStack from './HeroOutcomeStack.svelte';
 

@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { Award, ChevronDown } from '@lucide/svelte';
-  import { SvelteSet } from 'svelte/reactivity';
+  import { Award } from '@lucide/svelte';
 
   import { cn } from '$lib/utils';
-  import resume from '../../../static/resume.json';
+  import resume from '../assets/resume/resume.json';
 
   import arch from '$lib/assets/certificates/arch.jpg?enhanced&w=220;352;704';
   import cloud from '$lib/assets/certificates/cloud.jpg?enhanced&w=220;352;704';
@@ -192,8 +191,6 @@
     }
   ].filter((group) => group.entries.length > 0);
 
-  let expandedIds = new SvelteSet(certificateEntries.map((entry) => entry.id));
-
   function getCertificateId(entry: ResumeCertificateEntry) {
     return `${entry.name}-${entry.issuer}-${entry.date}`
       .toLowerCase()
@@ -208,22 +205,10 @@
       timeZone: 'UTC'
     }).format(new Date(`${dateString}T00:00:00Z`));
   }
-
-  function toggleEntry(id: string) {
-    if (expandedIds.has(id)) {
-      expandedIds.delete(id);
-    } else {
-      expandedIds.add(id);
-    }
-  }
-
-  function isExpanded(id: string) {
-    return expandedIds.has(id);
-  }
 </script>
 
 <section
-  aria-labelledby="certificates-title"
+  aria-labelledby="certificates"
   class="mx-auto mt-24 max-w-6xl px-4 sm:mt-28 sm:px-6 lg:px-8"
 >
   <div class="relative">
@@ -236,10 +221,12 @@
         Ongoing formation
       </p>
       <h2
-        id="certificates-title"
+        id="certificates"
         class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
       >
-        Certificates
+        <a href="#certificates" class="underline-offset-4 hover:underline focus-visible:underline">
+          Certificates
+        </a>
       </h2>
       <p
         class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
@@ -260,7 +247,12 @@
               id={group.id}
               class="mt-3 font-heading text-[1.45rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.7rem]"
             >
-              {group.title}
+              <a
+                href={`#${group.id}`}
+                class="underline-offset-4 hover:underline focus-visible:underline"
+              >
+                {group.title}
+              </a>
             </h3>
             <p
               class="mt-3 text-[0.96rem] leading-7 text-muted-foreground sm:text-[1rem] lg:text-[1.05rem] lg:leading-8"
@@ -330,118 +322,87 @@
 
                   <div class="resume-timeline-card lg:row-start-1">
                     <div class="p-6 sm:p-7">
-                      <div class="flex items-start justify-between gap-4">
-                        <div class="min-w-0 space-y-4">
-                          <div
-                            class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+                      <div class="min-w-0 space-y-4">
+                        <div
+                          class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+                        >
+                          <span
+                            class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
                           >
+                            {entry.dateLabel}
+                          </span>
+
+                          {#if entry.isUpcoming}
                             <span
-                              class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
+                              class="inline-flex items-center rounded-full border border-primary/18 bg-primary/8 px-3 py-1 text-primary/90 dark:border-primary/40 dark:bg-primary/20 dark:text-primary-foreground"
                             >
-                              {entry.dateLabel}
+                              Upcoming
                             </span>
+                          {/if}
 
-                            {#if entry.isUpcoming}
-                              <span
-                                class="inline-flex items-center rounded-full border border-primary/18 bg-primary/8 px-3 py-1 text-primary/90 dark:border-primary/40 dark:bg-primary/20 dark:text-primary-foreground"
-                              >
-                                Upcoming
-                              </span>
-                            {/if}
-
-                            <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                            <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
-                              {entry.issuer}
-                            </span>
-                          </div>
-
-                          <h4
-                            class="min-w-0 font-heading text-[1.15rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.3rem]"
-                          >
-                            {entry.name}
-                          </h4>
+                          <span class="h-1 w-1 rounded-full bg-primary/35"></span>
+                          <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
+                            {entry.issuer}
+                          </span>
                         </div>
 
-                        <button
-                          type="button"
-                          class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-black/8 bg-black/[0.025] text-muted-foreground transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-foreground dark:border-white/10 dark:bg-white/[0.03] dark:hover:text-white"
-                          aria-expanded={isExpanded(entry.id)}
-                          aria-controls={`${entry.id}-details`}
-                          aria-label={isExpanded(entry.id)
-                            ? `Collapse ${entry.name}`
-                            : `Expand ${entry.name}`}
-                          onclick={() => toggleEntry(entry.id)}
+                        <h4
+                          id={entry.id}
+                          class="min-w-0 font-heading text-[1.15rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.3rem]"
                         >
-                          <ChevronDown
-                            class={cn(
-                              'size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
-                              isExpanded(entry.id) && 'rotate-180'
-                            )}
-                          />
-                        </button>
+                          <a
+                            href={`#${entry.id}`}
+                            class="underline-offset-4 hover:underline focus-visible:underline"
+                          >
+                            {entry.name}
+                          </a>
+                        </h4>
                       </div>
 
-                      <div
-                        id={`${entry.id}-details`}
-                        class={cn(
-                          'grid overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
-                          isExpanded(entry.id)
-                            ? 'mt-6 grid-rows-[1fr] opacity-100'
-                            : 'mt-0 grid-rows-[0fr] opacity-0'
-                        )}
-                      >
-                        <div class="overflow-hidden">
+                      <div class="mt-6">
+                        <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
+                          <p
+                            class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
+                          >
+                            {entry.summary}
+                          </p>
+
+                          <ul class="space-y-3">
+                            {#each entry.details as detail (detail)}
+                              <li
+                                class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
+                              >
+                                <span
+                                  class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
+                                ></span>
+                                <span>{detail}</span>
+                              </li>
+                            {/each}
+                          </ul>
+
                           <div
                             class={cn(
-                              'space-y-5 border-t border-black/8 pt-6 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-white/10',
-                              isExpanded(entry.id)
-                                ? 'translate-y-0 opacity-100'
-                                : '-translate-y-2 opacity-0'
+                              'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
+                              entry.placeholderClass
                             )}
                           >
-                            <p
-                              class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                            >
-                              {entry.summary}
-                            </p>
-
-                            <ul class="space-y-3">
-                              {#each entry.details as detail (detail)}
-                                <li
-                                  class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
-                                >
-                                  <span
-                                    class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
-                                  ></span>
-                                  <span>{detail}</span>
-                                </li>
-                              {/each}
-                            </ul>
-
-                            <div
-                              class={cn(
-                                'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
-                                entry.placeholderClass
-                              )}
-                            >
-                              {#if entry.image}
-                                <enhanced:img
-                                  src={entry.image}
-                                  alt=""
-                                  sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
-                                  class="relative h-24 w-full rounded-[1rem] object-cover"
-                                  loading="lazy"
-                                  decoding="async"
-                                />
-                              {:else}
-                                <div
-                                  class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                                ></div>
-                                <div
-                                  class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
-                                ></div>
-                              {/if}
-                            </div>
+                            {#if entry.image}
+                              <enhanced:img
+                                src={entry.image}
+                                alt=""
+                                sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
+                                class="relative h-24 w-full rounded-[1rem] object-cover"
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            {:else}
+                              <div
+                                class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
+                              ></div>
+                              <div
+                                class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
+                              ></div>
+                            {/if}
                           </div>
                         </div>
                       </div>

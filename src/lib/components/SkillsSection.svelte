@@ -3,11 +3,18 @@
   import playwrightIcon from '$lib/assets/icons/playwright.svg';
   import IconCloud from '$lib/components/magic/icon-cloud/icon-cloud.svelte';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
-  import resume from '../../../static/resume.json';
+  import resume from '../assets/resume/resume.json';
   type SkillGroup = {
     name: string;
     keywords: string[];
   };
+
+  function getSkillGroupId(name: string) {
+    return `skills-${name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '')}`;
+  }
 
   const skillGroups: SkillGroup[] = resume.skills.map((entry) => ({
     name: entry.name,
@@ -50,7 +57,7 @@
 </script>
 
 <section
-  aria-labelledby="skills-title"
+  aria-labelledby="skills"
   class={`${modeClass} skills-intro mx-auto mt-24 max-w-6xl px-4 sm:mt-28 sm:px-6 lg:px-8`}
 >
   <div class="relative">
@@ -63,10 +70,12 @@
         Capability map
       </p>
       <h2
-        id="skills-title"
+        id="skills"
         class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
       >
-        Skills
+        <a href="#skills" class="underline-offset-4 hover:underline focus-visible:underline">
+          Skills
+        </a>
       </h2>
       <p
         class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
@@ -112,9 +121,15 @@
               style:--skills-group-order={skillGroups.indexOf(group)}
             >
               <h3
+                id={getSkillGroupId(group.name)}
                 class="font-heading text-[1.08rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1.2rem]"
               >
-                {group.name}
+                <a
+                  href={`#${getSkillGroupId(group.name)}`}
+                  class="underline-offset-4 hover:underline focus-visible:underline"
+                >
+                  {group.name}
+                </a>
               </h3>
 
               <div class="mt-4 flex flex-wrap gap-2.5">

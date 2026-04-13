@@ -1,9 +1,8 @@
 <script lang="ts">
-  import { BriefcaseBusiness, ChevronDown } from '@lucide/svelte';
-  import { SvelteSet } from 'svelte/reactivity';
+  import { BriefcaseBusiness } from '@lucide/svelte';
 
   import { cn } from '$lib/utils';
-  import resume from '../../../static/resume.json';
+  import resume from '../assets/resume/resume.json';
 
   import design from '$lib/assets/work/design.jpg?enhanced&w=256;416;832';
   import lead from '$lib/assets/work/lead.jpg?enhanced&w=256;416;832';
@@ -143,8 +142,6 @@
     };
   });
 
-  let expandedIds = new SvelteSet(workEntries.map((entry) => entry.id));
-
   function getWorkId(entry: ResumeWorkEntry) {
     return `${entry.position}-${entry.name}-${entry.startDate}`
       .toLowerCase()
@@ -167,22 +164,10 @@
 
     return `${formatMonthYear(entry.startDate)} - PRESENT`;
   }
-
-  function toggleEntry(id: string) {
-    if (expandedIds.has(id)) {
-      expandedIds.delete(id);
-    } else {
-      expandedIds.add(id);
-    }
-  }
-
-  function isExpanded(id: string) {
-    return expandedIds.has(id);
-  }
 </script>
 
 <section
-  aria-labelledby="work-experience-title"
+  aria-labelledby="work-experience"
   class="mx-auto mt-24 max-w-6xl px-4 sm:mt-28 sm:px-6 lg:px-8"
 >
   <div class="relative">
@@ -195,10 +180,15 @@
         Career timeline
       </p>
       <h2
-        id="work-experience-title"
+        id="work-experience"
         class="mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground"
       >
-        Work Experience
+        <a
+          href="#work-experience"
+          class="underline-offset-4 hover:underline focus-visible:underline"
+        >
+          Work Experience
+        </a>
       </h2>
       <p
         class="mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
@@ -248,108 +238,77 @@
 
             <div class="resume-timeline-card lg:row-start-1">
               <div class="p-6 sm:p-7">
-                <div class="flex items-start justify-between gap-4">
-                  <div class="min-w-0 space-y-4">
-                    <div
-                      class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+                <div class="min-w-0 space-y-4">
+                  <div
+                    class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
+                  >
+                    <span
+                      class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
                     >
-                      <span
-                        class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
-                      >
-                        {entry.dateRange}
-                      </span>
-                      <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                      <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
-                        {entry.company}
-                      </span>
-                    </div>
-
-                    <h3
-                      class="min-w-0 font-heading text-[1.2rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.35rem]"
-                    >
-                      {entry.position}
-                    </h3>
+                      {entry.dateRange}
+                    </span>
+                    <span class="h-1 w-1 rounded-full bg-primary/35"></span>
+                    <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
+                      {entry.company}
+                    </span>
                   </div>
 
-                  <button
-                    type="button"
-                    class="inline-flex size-10 shrink-0 items-center justify-center rounded-full border border-black/8 bg-black/[0.025] text-muted-foreground transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:text-foreground dark:border-white/10 dark:bg-white/[0.03] dark:hover:text-white"
-                    aria-expanded={isExpanded(entry.id)}
-                    aria-controls={`${entry.id}-details`}
-                    aria-label={isExpanded(entry.id)
-                      ? `Collapse ${entry.position}`
-                      : `Expand ${entry.position}`}
-                    onclick={() => toggleEntry(entry.id)}
+                  <h3
+                    id={entry.id}
+                    class="min-w-0 font-heading text-[1.2rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.35rem]"
                   >
-                    <ChevronDown
-                      class={cn(
-                        'size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
-                        isExpanded(entry.id) && 'rotate-180'
-                      )}
-                    />
-                  </button>
+                    <a
+                      href={`#${entry.id}`}
+                      class="underline-offset-4 hover:underline focus-visible:underline"
+                    >
+                      {entry.position}
+                    </a>
+                  </h3>
                 </div>
 
-                <div
-                  id={`${entry.id}-details`}
-                  class={cn(
-                    'grid overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
-                    isExpanded(entry.id)
-                      ? 'mt-6 grid-rows-[1fr] opacity-100'
-                      : 'mt-0 grid-rows-[0fr] opacity-0'
-                  )}
-                >
-                  <div class="overflow-hidden">
+                <div class="mt-6">
+                  <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
+                    <p
+                      class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
+                    >
+                      {entry.summary}
+                    </p>
+
+                    <ul class="space-y-3">
+                      {#each entry.highlights as highlight (highlight)}
+                        <li
+                          class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
+                        >
+                          <span class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
+                          ></span>
+                          <span>{highlight}</span>
+                        </li>
+                      {/each}
+                    </ul>
+
                     <div
                       class={cn(
-                        'space-y-5 border-t border-black/8 pt-6 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-white/10',
-                        isExpanded(entry.id)
-                          ? 'translate-y-0 opacity-100'
-                          : '-translate-y-2 opacity-0'
+                        'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
+                        entry.placeholderClass
                       )}
                     >
-                      <p
-                        class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                      >
-                        {entry.summary}
-                      </p>
-
-                      <ul class="space-y-3">
-                        {#each entry.highlights as highlight (highlight)}
-                          <li
-                            class="flex gap-3 text-sm leading-6 text-foreground/84 sm:text-[0.97rem]"
-                          >
-                            <span class="mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70"
-                            ></span>
-                            <span>{highlight}</span>
-                          </li>
-                        {/each}
-                      </ul>
-
-                      <div
-                        class={cn(
-                          'relative overflow-hidden rounded-[1.35rem] border border-black/8 bg-gradient-to-br to-transparent p-4 lg:hidden dark:border-white/10',
-                          entry.placeholderClass
-                        )}
-                      >
-                        {#if entry.imageSrc}
-                          <enhanced:img
-                            src={entry.imageSrc}
-                            alt=""
-                            sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
-                            class="relative h-24 w-full rounded-[1rem] object-cover"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                        {:else}
-                          <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
-                          ></div>
-                          <div
-                            class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
-                          ></div>
-                        {/if}
-                      </div>
+                      {#if entry.imageSrc}
+                        <enhanced:img
+                          src={entry.imageSrc}
+                          alt=""
+                          sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
+                          class="relative h-24 w-full rounded-[1rem] object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      {:else}
+                        <div
+                          class="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.66)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.4),transparent_60%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.08)_0%,transparent_34%),linear-gradient(145deg,rgba(255,255,255,0.08),transparent_60%)]"
+                        ></div>
+                        <div
+                          class="relative h-24 rounded-[1rem] border border-black/6 bg-white/20 dark:border-white/8 dark:bg-white/[0.03]"
+                        ></div>
+                      {/if}
                     </div>
                   </div>
                 </div>

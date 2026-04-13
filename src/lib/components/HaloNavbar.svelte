@@ -2,7 +2,20 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import gsap from 'gsap';
-  import { BookOpen, Globe, Home, Mail, Menu, X } from '@lucide/svelte';
+  import {
+    Award,
+    BookOpen,
+    BriefcaseBusiness,
+    ChevronDown,
+    GraduationCap,
+    Home,
+    List,
+    Mail,
+    Menu,
+    Sparkles,
+    UserRound,
+    X
+  } from '@lucide/svelte';
   import { onMount } from 'svelte';
 
   import { Button } from '$lib/components/ui/button';
@@ -12,15 +25,26 @@
   type NavItem = {
     href: string;
     label: string;
-    icon: typeof Globe;
+    icon: typeof Home;
   };
+
+  type SectionItem = NavItem;
 
   const navItems: NavItem[] = [
     { href: '/', label: 'Home', icon: Home },
     { href: '/blog', label: 'Blog', icon: BookOpen }
   ];
 
+  const sectionItems: SectionItem[] = [
+    { href: '/#skills', label: 'Skills', icon: Sparkles },
+    { href: '/#work-experience', label: 'Work Experience', icon: BriefcaseBusiness },
+    { href: '/#education', label: 'Education', icon: GraduationCap },
+    { href: '/#certificates', label: 'Certificates', icon: Award },
+    { href: '/#about-me', label: 'About', icon: UserRound }
+  ];
+
   const pathname = $derived(page.url.pathname);
+  const isHomePage = $derived(pathname === '/');
 
   const navShellClass = cn(
     'relative mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3',
@@ -66,14 +90,52 @@
     'transition-all duration-300 hover:opacity-92 dark:border-white/10'
   );
 
+  const tocButtonClass = cn(
+    'inline-flex h-11 items-center gap-2 rounded-full border border-black/8 bg-white/70 px-3.5',
+    'text-sm font-medium text-foreground transition-all duration-300 hover:bg-white',
+    'dark:border-white/10 dark:bg-white/[0.05] dark:text-white dark:hover:bg-white/[0.08]'
+  );
+
   let isMenuOpen = $state(false);
+  let isTocOpen = $state(false);
+  let tocMenuEl = $state<HTMLDivElement | undefined>(undefined);
 
   function toggleMenu() {
+    isTocOpen = false;
     isMenuOpen = !isMenuOpen;
   }
 
   function closeMenu() {
     isMenuOpen = false;
+  }
+
+  function toggleToc() {
+    closeMenu();
+    isTocOpen = !isTocOpen;
+  }
+
+  function closeToc() {
+    isTocOpen = false;
+  }
+
+  function handleSectionNavigation() {
+    closeToc();
+    closeMenu();
+  }
+
+  function handleDocumentClick(event: MouseEvent) {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+    if (!tocMenuEl?.contains(target)) {
+      closeToc();
+    }
+  }
+
+  function handleWindowKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      closeToc();
+      closeMenu();
+    }
   }
 
   function isActive(href: string) {
@@ -145,6 +207,9 @@
     };
   });
 </script>
+
+<svelte:document onclick={handleDocumentClick} />
+<svelte:window onkeydown={handleWindowKeydown} />
 
 <header bind:this={headerEl} class={cn('fixed inset-x-0 top-3 z-50 px-3 sm:top-5 sm:px-5')}>
   <div class={cn('mx-auto max-w-6xl')}>
@@ -230,6 +295,60 @@
         </div>
 
         <div data-navbar-content class={cn('relative z-10 flex items-center gap-2 sm:justify-end')}>
+          {#if isHomePage}
+            <div bind:this={tocMenuEl} class="relative hidden min-[930px]:block">
+              <button
+                type="button"
+                class={tocButtonClass}
+                aria-expanded={isTocOpen}
+                aria-controls="home-sections-panel"
+                aria-haspopup="menu"
+                aria-label="Toggle section table of contents"
+                onclick={toggleToc}
+              >
+                <List class="size-4" />
+                <span class="hidden sm:inline">Sections</span>
+                <ChevronDown
+                  class={cn(
+                    'size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+                    isTocOpen && 'rotate-180'
+                  )}
+                />
+              </button>
+
+              <div
+                id="home-sections-panel"
+                aria-hidden={!isTocOpen}
+                class={cn(
+                  'absolute top-[calc(100%+0.75rem)] right-0 z-20 w-72 overflow-hidden rounded-[1.5rem] border border-black/8 bg-white/96 p-2 shadow-[0_28px_90px_-42px_rgba(15,23,42,0.52)] backdrop-blur-2xl transition-all duration-200 dark:border-white/10 dark:bg-zinc-950/92',
+                  isTocOpen
+                    ? 'translate-y-0 opacity-100'
+                    : 'pointer-events-none -translate-y-2 opacity-0'
+                )}
+              >
+                <div class="space-y-1">
+                  {#each sectionItems as item (item.href)}
+                    <Button
+                      href={resolve(item.href, {})}
+                      class={cn(
+                        'h-auto w-full justify-start gap-3 rounded-[1rem] px-3 py-2.5 text-sm font-medium',
+                        'bg-transparent text-foreground hover:bg-black/[0.04] dark:bg-transparent dark:text-white dark:hover:bg-white/[0.06]'
+                      )}
+                      onclick={handleSectionNavigation}
+                    >
+                      <span
+                        class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/16 bg-primary/7 text-primary dark:border-primary/30 dark:bg-primary/16"
+                      >
+                        <item.icon class="size-4" />
+                      </span>
+                      <span>{item.label}</span>
+                    </Button>
+                  {/each}
+                </div>
+              </div>
+            </div>
+          {/if}
+
           <AnimatedThemeToggler class={iconButtonClass} />
 
           <button
@@ -291,8 +410,47 @@
                 </div>
               {/each}
 
+              {#if isHomePage}
+                <div
+                  style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
+                  class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
+                >
+                  <div
+                    class={cn(
+                      'rounded-[1.4rem] border border-black/6 bg-black/[0.025] p-2 dark:border-white/8 dark:bg-white/[0.03]'
+                    )}
+                  >
+                    <p
+                      class="px-2 pb-2 text-[0.72rem] font-medium tracking-[0.18em] text-muted-foreground uppercase"
+                    >
+                      Sections
+                    </p>
+
+                    <div class="flex flex-col gap-1">
+                      {#each sectionItems as item (item.href)}
+                        <Button
+                          href={resolve(item.href, {})}
+                          class={cn(
+                            'h-auto w-full justify-start gap-3 rounded-[1rem] px-3 py-2.5 text-sm font-medium',
+                            'bg-transparent text-foreground hover:bg-black/[0.04] dark:bg-transparent dark:text-white dark:hover:bg-white/[0.06]'
+                          )}
+                          onclick={handleSectionNavigation}
+                        >
+                          <span
+                            class="inline-flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/16 bg-primary/7 text-primary dark:border-primary/30 dark:bg-primary/16"
+                          >
+                            <item.icon class="size-4" />
+                          </span>
+                          <span>{item.label}</span>
+                        </Button>
+                      {/each}
+                    </div>
+                  </div>
+                </div>
+              {/if}
+
               <div
-                style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
+                style={`--mobile-nav-delay:${isMenuOpen ? (navItems.length + (isHomePage ? 1 : 0)) * 40 : 0}ms`}
                 class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
               >
                 <a
