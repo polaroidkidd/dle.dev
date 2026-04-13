@@ -1,0 +1,52 @@
+description: 'Sets up Node.js, PNPM, and caches dependencies'
+
+inputs:
+  install-deps:
+    default: 'true'
+
+    description: Whether to install dependencies
+    required: false
+  node-version:
+    default: 24.14.1
+    description: Node.js version
+    required: false
+  pnpm-version:
+    default: 10.33.0
+    description: PNPM version
+    required: false
+name: Setup Environment
+runs:
+  steps:
+    - name: Git Composite Checkout
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+    - name: Setup PNPM
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - id: pnpm-cache
+      name: Setup PNPM cache
+      uses: actions/cache@v4
+      with:
+        # include node version + lockfile hash so caches are stable across node changes
+        key: ${{ runner.os }}-pnpm-v${{ inputs.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        path: |
+          ~/.pnpm-store
+          ./node_modules
+
+        restore-keys: |
+          ${{ runner.os }}-pnpm-v${{ inputs.node-version }}-
+          ${{ runner.os }}-pnpm-
+    - if: ${{ steps.pnpm-cache.outputs.cache-hit != 'true' && inputs.install-deps == 'true' }}
+      name: Install Dependencies
+      run: pnpm i --frozen-lockfile
+      shell: sh
+    - name: PNPM Config
+      run: |
+        pnpm config list --json
+      shell: sh
+  using: composite

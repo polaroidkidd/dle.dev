@@ -1,43 +1,51 @@
+import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-cloudflare';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import preprocess from 'svelte-preprocess';
+
+/** @type {import('mdsvex').MdsvexOptions} */
+const mdsvexOptions = {
+  extensions: ['.svx'],
+  highlight: {
+    alias: {
+      js: 'javascript',
+      sh: 'bash',
+      shell: 'bash',
+      ts: 'typescript',
+      yml: 'yaml'
+    }
+  }
+};
+
+const mdsvexPreprocess = mdsvex(mdsvexOptions);
+
+const normalizeMdsvexModuleScript = {
+  markup: async (options) => {
+    const result = await mdsvexPreprocess.markup?.(options);
+
+    if (!result?.code) {
+      return result;
+    }
+
+    return {
+      ...result,
+      code: result.code.replace(/<script\s+context=(['"])module\1>/g, '<script module>')
+    };
+  }
+};
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
-	// for more information about preprocessors
-	preprocess: [
-		vitePreprocess(),
-		preprocess({
-			postcss: true
-		})
-	],
-
-	kit: {
-		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
-		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
-		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
-		adapter: adapter({
-			// See below for an explanation of these options
-			routes: {
-				include: ['/*'],
-				exclude: ['<all>']
-			}
-		}),
-		alias: {
-			'@mocks/*': './src/__mocks__/*',
-			'@hooks/*': './src/hooks/*',
-			'@model/*': './src/model/*',
-			'@components/*': './src/components/*',
-			'@icons/*': './src/components/icons/*',
-			'@lib/*': './src/lib/*',
-			'@pages/*': './src/pages/*',
-			'@services/*': './src/services/*',
-			'@styles/*': './src/styles/*',
-			'@utils/*': './src/utils/*',
-			'@assets/*': './src/assets/*'
-		}
-	}
+  compilerOptions: {
+    // Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+    runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
+  },
+  kit: {
+    // adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+    // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+    // See https://svelte.dev/docs/kit/adapters for more information about adapters.
+    adapter: adapter()
+  },
+  preprocess: [normalizeMdsvexModuleScript],
+  extensions: ['.svelte', '.svx']
 };
 
 export default config;

@@ -1,0 +1,135 @@
+# This is a basic workflow to automatically build a Svelte app and deploy it to GitHub Pages
+
+concurrency:
+  cancel-in-progress: true
+
+  group: ${{ github.head_ref }}
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        # with:
+        #   fetch-depth: 1
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - name: Lint
+        run: |
+          pnpm  lint
+      - if: always()
+        name: Update ESLint cache
+        run: |
+          find . -name ".eslintcache" -type f -exec touch {} +
+
+  publish-web-app:
+    environment: dle-dev (Preview)
+    name: Deploy Webapp
+    needs: [lint, verify]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        # with:
+        #   fetch-depth: 1
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - env:
+          IS_CI: false
+        name: Build
+        run: |
+          pnpm run build
+      - name: Publish Web App
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          branch: ${{ github.head_ref }}
+          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: dle-dev
+  verify:
+    name: Verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+        # with:
+        #   fetch-depth: 1
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - name: Verify
+        run: |
+          pnpm run check
+
+name: Pull Request
+
+on:
+  pull_request: null
+  workflow_dispatch:
+    inputs:
+      force_deploy:
+        default: false
+        description: Force deploy all applications
+        required: false
+        type: boolean
+
+        # Optional: Change the working directory
+        # workingDirectory: my-site
+        # Optional: Change the Wrangler version, allows you to point to a specific version or a tag such as `beta`
+        # Disable until I can figure out a way to deal with the flaky tests
+        # E2E_TEST:
+        #   name: Run E2E Tests
+        #   needs: [Install-Dependencies]
+        #   runs-on: ubuntu-latest
+        #   steps:
+        #     - name: Setup FFmpeg
+        #       uses: AnimMouse/setup-ffmpeg@v1
+        #     - uses: actions/checkout@v4
+        #     - name: Set up Services
+        #       run: |
+        #         sudo docker-compose up -d
+        #     - uses: pnpm/action-setup@v4
+        #       with:
+        #         version: 10.33.0
+        #     - uses: actions/setup-node@v4
+        #       with:
+        #         node-version: '24.14.1'
+        #         cache: 'pnpm'
+        #     - uses: actions/cache@v4
+        #       with:
+        #         path: ./node_modules
+        #         key: ${{ runner.os }}-${{ hashFiles('./pnpm-lock.yaml') }}
+        #     - name: Prisma Generate
+        #       run: |
+        #         pnpm prisma:gen:dev
+        #     - name: Prisma Push
+        #       run: |
+        #         pnpm prisma:push:dev
+        #     - name: Install Playwright Browsers
+        #       run: |
+        #         pnpm exec playwright install
+        #         pnpm playwright install-deps chromium
+        #     - name: e2e Test
+        #       run: |
+        #         pnpm run test:e2e:ci
+        #     - uses: actions/upload-artifact@v4
+        #       if: ${{ !cancelled() }}
+        #       with:
+        #         name: playwright-report
+        #         path: test-results/
+        #         retention-days: 5
