@@ -1,6 +1,12 @@
 # Changelog
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+All notable changes to this project will be documented in this file.
+
+## [2.0.0](https://github.com/polaroidkidd/dle.dev/compare/v1.25.0...v2.0.0) (2026-04-13)
+
+### Major Changes
+
+- release V2 of `dle.dev` with the rebuilt SvelteKit site, updated design system, refreshed content structure, and the current Cloudflare Pages deployment model
 
 ## [1.25.0](https://github.com/polaroidkidd/dle.dev/compare/v1.24.1...v1.25.0) (2023-07-18)
 
