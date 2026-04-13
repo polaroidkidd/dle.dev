@@ -1,21 +1,42 @@
 <script lang="ts">
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
-  import { Mail, Menu, X } from '@lucide/svelte';
+  import { Globe, Mail, Menu, X } from '@lucide/svelte';
 
   import { Button } from '$lib/components/ui/button';
+  import githubIcon from '$lib/assets/icons/github.svg';
+  import linkedinIcon from '$lib/assets/icons/linkedin.svg';
   import { cn } from '$lib/utils';
   import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
+  import resume from '../../../static/resume.json';
 
   type NavItem = {
     href: string;
     label: string;
   };
 
+  type ResumeProfile = (typeof resume.basics.profiles)[number];
+
+  type ProfileItem = ResumeProfile & {
+    iconUrl?: string;
+    icon?: typeof Globe;
+  };
+
   const navItems: NavItem[] = [
     { href: '/', label: 'Home' },
     { href: '/blog', label: 'Blog' }
   ];
+
+  const profileItems: ProfileItem[] = resume.basics.profiles.map((profile) => ({
+    ...profile,
+    iconUrl:
+      profile.network === 'Github'
+        ? githubIcon
+        : profile.network === 'LinkedIn'
+          ? linkedinIcon
+          : undefined,
+    icon: profile.network === 'Website' ? Globe : undefined
+  }));
 
   const pathname = $derived(page.url.pathname);
 
@@ -39,6 +60,10 @@
     'dark:border-white/10 dark:bg-white/[0.05]',
     'dark:text-white dark:hover:bg-white/[0.08]'
   );
+
+  const navbarIconClass = cn('size-5');
+
+  const navbarImageIconClass = cn(navbarIconClass, 'object-contain dark:invert');
 
   const navItemBaseClass = cn(
     'h-auto rounded-full px-4 py-2 text-sm font-medium',
@@ -159,6 +184,24 @@
         </div>
 
         <div data-navbar-content class={cn('relative z-10 flex items-center gap-2 sm:justify-end')}>
+          {#each profileItems as profile (profile.url)}
+            <a
+              href={profile.url}
+              target="_blank"
+              rel="external noreferrer"
+              class={cn(iconButtonClass, 'hidden min-[930px]:inline-flex')}
+              aria-label={profile.username}
+              title={profile.network}
+            >
+              {#if profile.iconUrl}
+                <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
+              {:else if profile.icon}
+                <profile.icon class={navbarIconClass} />
+              {/if}
+              <span class={cn('sr-only')}>{profile.network}</span>
+            </a>
+          {/each}
+
           <AnimatedThemeToggler class={iconButtonClass} />
 
           <button
@@ -170,9 +213,9 @@
             onclick={toggleMenu}
           >
             {#if isMenuOpen}
-              <X class={cn('size-4')} />
+              <X class={navbarIconClass} />
             {:else}
-              <Menu class={cn('size-4')} />
+              <Menu class={navbarIconClass} />
             {/if}
           </button>
 
@@ -180,7 +223,7 @@
             href="mailto:hi@dle.dev"
             class={cn(contactLinkClass, 'hidden min-[930px]:inline-flex')}
           >
-            <Mail class={cn('size-4')} />
+            <Mail class={navbarIconClass} />
             <span>Contact</span>
           </a>
         </div>
@@ -223,12 +266,38 @@
                 style={`--mobile-nav-delay:${isMenuOpen ? navItems.length * 40 : 0}ms`}
                 class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
               >
+                <div class={cn('flex items-center justify-center gap-2 py-1')}>
+                  {#each profileItems as profile (profile.url)}
+                    <a
+                      href={profile.url}
+                      target="_blank"
+                      rel="external noreferrer"
+                      class={iconButtonClass}
+                      aria-label={profile.username}
+                      title={profile.network}
+                      onclick={closeMenu}
+                    >
+                      {#if profile.iconUrl}
+                        <img src={profile.iconUrl} alt="" class={navbarImageIconClass} />
+                      {:else if profile.icon}
+                        <profile.icon class={navbarIconClass} />
+                      {/if}
+                      <span class={cn('sr-only')}>{profile.network}</span>
+                    </a>
+                  {/each}
+                </div>
+              </div>
+
+              <div
+                style={`--mobile-nav-delay:${isMenuOpen ? (navItems.length + 1) * 40 : 0}ms`}
+                class={cn('mobile-nav-item', isMenuOpen && 'mobile-nav-item-open')}
+              >
                 <a
                   href="mailto:hi@dle.dev"
                   class={cn(contactLinkClass, 'w-full justify-center')}
                   onclick={closeMenu}
                 >
-                  <Mail class={cn('size-4')} />
+                  <Mail class={navbarIconClass} />
                   <span>Contact</span>
                 </a>
               </div>
