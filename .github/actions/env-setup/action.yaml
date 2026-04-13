@@ -10,6 +10,13 @@ inputs:
     default: 24.14.1
     description: Node.js version
     required: false
+  ref:
+    description: Git ref to checkout
+    required: false
+  fetch-depth:
+    default: '1'
+    description: Git checkout fetch depth
+    required: false
   pnpm-version:
     default: 10.33.0
     description: PNPM version
@@ -19,6 +26,9 @@ runs:
   steps:
     - name: Git Composite Checkout
       uses: actions/checkout@v4
+      with:
+        fetch-depth: ${{ inputs.fetch-depth }}
+        ref: ${{ inputs.ref }}
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:

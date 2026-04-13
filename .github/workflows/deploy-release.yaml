@@ -2,34 +2,30 @@
 
 jobs:
   install-dependencies:
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.title == 'Version packages' }}
     name: Install Dependencies
     runs-on: ubuntu-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
       - name: Setup environment
         uses: ./.github/actions/env-setup
         with:
           node-version: 24.14.1
           pnpm-version: 10.33.0
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
 
   publish-web-app:
+    if: ${{ github.event.pull_request.merged == true && github.event.pull_request.title == 'Version packages' }}
     environment: dle-dev (Production)
     name: Deploy Webapp
     needs: [install-dependencies]
     runs-on: ubuntu-latest
     steps:
-      - name: Git Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
       - name: Setup environment
         uses: ./.github/actions/env-setup
         with:
           node-version: 24.14.1
           pnpm-version: 10.33.0
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
       - name: Build
         run: |
           pnpm run build
@@ -38,7 +34,7 @@ jobs:
         with:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          branch: ${{ github.head_ref }}
+          branch: master
           directory: ./.svelte-kit/cloudflare
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: dle-dev
@@ -46,15 +42,8 @@ jobs:
 name: Publish to Production
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - master
-  schedule:
-    - cron: '0 4 * * SUN'
-  workflow_dispatch:
-    inputs:
-      force_deploy:
-        default: false
-        description: Force deploy all applications
-        required: false
-        type: boolean

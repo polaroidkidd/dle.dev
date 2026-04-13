@@ -1,0 +1,31 @@
+name: Changesets
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  version:
+    name: Create Release PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - name: Create release pull request
+        uses: changesets/action@v1
+        with:
+          version: pnpm release
+          commit: Version packages
+          title: Version packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
