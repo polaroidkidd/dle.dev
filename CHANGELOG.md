@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- 3ce8b5c: Replace deprecated Cloudflare Pages GitHub actions with Wrangler-based deploys so production and staging deployments stay explicit and aligned with the current Cloudflare setup.
+
 ## 2.1.1
 
 ### Patch Changes
