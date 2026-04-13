@@ -335,7 +335,7 @@
                       href={profile.url}
                       target="_blank"
                       rel="external noreferrer"
-                      class={iconButtonClass}
+                      class={cn(iconButtonClass, 'w-1/2 rounded-2xl')}
                       aria-label={profile.username}
                       title={profile.network}
                       onclick={closeMenu}
