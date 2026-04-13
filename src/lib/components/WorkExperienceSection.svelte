@@ -5,6 +5,15 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
+  import design from '$lib/assets/work/design.jpg?enhanced';
+  import lead from '$lib/assets/work/lead.jpg?enhanced';
+  import library from '$lib/assets/work/library.jpg?enhanced';
+  import marketing from '$lib/assets/work/marketing.jpg?enhanced';
+  import mechnic from '$lib/assets/work/mechnic.jpg?enhanced';
+  import migration from '$lib/assets/work/migration.jpg?enhanced';
+  import seo from '$lib/assets/work/seo.jpg?enhanced';
+  import time from '$lib/assets/work/time.jpg?enhanced';
+
   type ResumeWorkEntry = (typeof resume.work)[number];
 
   type WorkDisplayEntry = {
@@ -29,7 +38,7 @@
     'Lead Software Engineer|2025-10-01': {
       summary:
         'Leading the frontend recovery of a digital onboarding platform, bringing dormant flows back to production readiness under current compliance and security expectations.',
-      imageSrc: 'assets/work/mechnic.jpg',
+      imageSrc: mechnic,
       highlights: [
         'Revived a legacy React onboarding stack to support identity verification, liveness checks, and KYC-critical user journeys.',
         'Connected a productized onboarding layer to inconsistent in-house APIs and undocumented third-party dependencies without losing delivery momentum.',
@@ -37,7 +46,7 @@
       ]
     },
     'Lead Software Engineer|2024-04-01': {
-      imageSrc: 'assets/work/lead.jpg',
+      imageSrc: lead,
       summary:
         'Drove frontend direction for a large B2B e-banking platform, balancing hands-on delivery with architecture, standards, and team-wide execution in a regulated domain.',
       highlights: [
@@ -47,7 +56,7 @@
       ]
     },
     'Senior Software Engineer|2022-06-01': {
-      imageSrc: 'assets/work/migration.jpg',
+      imageSrc: migration,
 
       summary:
         'Owned the B2C frontend experience for a major credit institution, combining modernization work with feature delivery and day-to-day engineering leadership.',
@@ -58,7 +67,7 @@
       ]
     },
     'Professional Software Engineer|2019-09-01': {
-      imageSrc: 'assets/work/design.jpg',
+      imageSrc: design,
       summary:
         'Built and maintained customer-facing React applications while improving tooling, consistency, and design-system execution across multiple frontend surfaces.',
       highlights: [
@@ -68,7 +77,7 @@
       ]
     },
     'Software Engineer|2018-08-15': {
-      imageSrc: 'assets/work/time.jpg',
+      imageSrc: time,
 
       summary:
         'Delivered client software projects spanning Android and build engineering, with a focus on performance, maintainability, and practical modernization.',
@@ -78,7 +87,7 @@
       ]
     },
     'Werkstudent|2016-02-01': {
-      imageSrc: 'assets/work/library.jpg',
+      imageSrc: library,
 
       summary:
         'Supported consulting work through automation tooling that reduced manual effort in data preparation and testing workflows.',
@@ -87,7 +96,7 @@
       ]
     },
     'Marketing Manager Germany and Head of Marketing|2013-04-01': {
-      imageSrc: 'assets/work/marketing.jpg',
+      imageSrc: marketing,
 
       summary:
         'Led performance marketing across EU markets, combining channel strategy, team leadership, and commercial optimization.',
@@ -96,7 +105,7 @@
       ]
     },
     'Online Marketing Manager|2012-08-01': {
-      imageSrc: 'assets/work/seo.jpg',
+      imageSrc: seo,
 
       summary:
         'Managed channel relationships, acquisition activity, and commercial negotiations for online marketing programs.',

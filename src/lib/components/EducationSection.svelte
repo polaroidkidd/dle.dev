@@ -5,6 +5,10 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
+  import hamburg from '$lib/assets/education/hamburg.jpg?enhanced';
+  import london from '$lib/assets/education/london.jpg?enhanced';
+  import zurich from '$lib/assets/education/zurich.jpg?enhanced';
+
   type ResumeEducationEntry = (typeof resume.education)[number];
 
   type EducationDisplayEntry = {
@@ -27,7 +31,7 @@
 
   const editorialCopy: Record<string, EditorialEducationEntry> = {
     'Bachelor of Science in Computer Science ZHAW Zurich (BSc)|2015-09-01': {
-      image: 'assets/education/zurich.jpg',
+      image: zurich,
       summary:
         'A focused computer science track centered on software systems, implementation, and applied machine learning work.',
       details: [
@@ -36,7 +40,7 @@
       ]
     },
     'Master of Business Administration (MBA)|2009-09-01': {
-      image: 'assets/education/hamburg.jpg',
+      image: hamburg,
       summary:
         'An MBA grounding in business strategy, media, and digital product thinking that still informs how I connect execution with commercial outcomes.',
       details: [
@@ -45,7 +49,7 @@
       ]
     },
     'Bachelor of Arts in Economics (BA)|2006-09-01': {
-      image: 'assets/education/london.jpg',
+      image: london,
       summary:
         'An economics degree that established the analytical and structural thinking behind later product, marketing, and engineering work.',
       details: [

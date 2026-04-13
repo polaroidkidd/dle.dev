@@ -5,6 +5,16 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
+  import arch from '$lib/assets/certificates/arch.jpg?enhanced';
+  import cloud from '$lib/assets/certificates/cloud.jpg?enhanced';
+  import fundamentals from '$lib/assets/certificates/fundamentals.jpg?enhanced';
+  import kube from '$lib/assets/certificates/kube.jpg?enhanced';
+  import proces from '$lib/assets/certificates/proces.jpg?enhanced';
+  import quark from '$lib/assets/certificates/quark.jpg?enhanced';
+  import scrum from '$lib/assets/certificates/scrum.jpg?enhanced';
+  import security from '$lib/assets/certificates/security.jpg?enhanced';
+  import websec from '$lib/assets/certificates/websec.jpg?enhanced';
+
   type ResumeCertificateEntry = (typeof resume.certificates)[number];
 
   type CertificateDisplayEntry = {
@@ -36,7 +46,7 @@
 
   const editorialCopy: Record<string, EditorialCertificateEntry> = {
     'CPSA® Advanced Level Module WEBSEC|2026-09-28': {
-      image: 'assets/certificates/websec.jpg',
+      image: websec,
       summary:
         'Advanced architecture training focused on secure software design and web security concerns.',
       details: [
@@ -44,7 +54,7 @@
       ]
     },
     'CPSA® Advanced Level CLOUDINFRA|2026-09-15': {
-      image: 'assets/certificates/cloud.jpg',
+      image: cloud,
       summary:
         'Advanced architecture coursework focused on cloud infrastructure and modern platform concerns.',
       details: [
@@ -52,14 +62,14 @@
       ]
     },
     'Introduction to Quarkus|2026-06-15': {
-      image: 'assets/certificates/quark.jpg',
+      image: quark,
       summary: 'Technical training in the Quarkus ecosystem for modern Java backend development.',
       details: [
         'Expanded backend platform familiarity beyond the frontend-heavy delivery work shown elsewhere in the portfolio.'
       ]
     },
     'Kubernetes CKAD Certification|2026-05-15': {
-      image: 'assets/certificates/kube.jpg',
+      image: kube,
       summary:
         'Hands-on certification validating day-to-day Kubernetes application design and deployment skills.',
       details: [
@@ -67,7 +77,7 @@
       ]
     },
     'Professional Scrum Master™ I Certification|2026-04-20': {
-      image: 'assets/certificates/scrum.jpg',
+      image: scrum,
       summary:
         'Scrum certification covering facilitation, delivery rhythms, and the operating model behind effective team execution.',
       details: [
@@ -75,7 +85,7 @@
       ]
     },
     'Two-Day Kubernetes Fundamentals Workshop|2025-08-18': {
-      image: 'assets/certificates/fundamentals.jpg',
+      image: fundamentals,
       summary:
         'Focused Kubernetes training on the fundamentals behind cluster-based application delivery.',
       details: [
@@ -83,7 +93,7 @@
       ]
     },
     'Security-Awareness Training for Backend Developers|2025-03-19': {
-      image: 'assets/certificates/security.jpg',
+      image: security,
 
       summary:
         'Security training aimed at backend implementation risks, secure development habits, and common attack vectors.',
@@ -92,7 +102,7 @@
       ]
     },
     'Foundation Training in Software Architecture (CPSA-F)|2025-01-20': {
-      image: 'assets/certificates/arch.jpg',
+      image: arch,
       summary:
         'Foundation architecture training covering core principles for structuring maintainable software systems.',
       details: [
@@ -100,7 +110,7 @@
       ]
     },
     'Camunda Platform for Java Developers|2021-09-01': {
-      image: 'assets/certificates/proces.jpg',
+      image: proces,
       summary:
         'Technical training in Camunda-based workflow orchestration for Java-centric systems.',
       details: [
