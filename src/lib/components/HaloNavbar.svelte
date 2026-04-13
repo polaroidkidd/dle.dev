@@ -2,7 +2,7 @@
   import { resolve } from '$app/paths';
   import { page } from '$app/state';
   import gsap from 'gsap';
-  import { Globe, Mail, Menu, X } from '@lucide/svelte';
+  import { BookOpen, Globe, Home, Mail, Menu, X } from '@lucide/svelte';
   import { onMount } from 'svelte';
 
   import githubIcon from '$lib/assets/icons/github.svg';
@@ -15,6 +15,7 @@
   type NavItem = {
     href: string;
     label: string;
+    icon: typeof Globe;
   };
 
   type ResumeProfile = (typeof resume.basics.profiles)[number];
@@ -25,8 +26,8 @@
   };
 
   const navItems: NavItem[] = [
-    { href: '/', label: 'Home' },
-    { href: '/blog', label: 'Blog' }
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/blog', label: 'Blog', icon: BookOpen }
   ];
 
   const profileItems: ProfileItem[] = resume.basics.profiles.map((profile) => ({
@@ -239,8 +240,13 @@
             <Button
               href={resolve(item.href, {})}
               aria-current={active ? 'page' : undefined}
-              class={cn(navItemBaseClass, active ? activeNavItemClass : inactiveNavItemClass)}
+              class={cn(
+                navItemBaseClass,
+                'flex items-center gap-1.5',
+                active ? activeNavItemClass : inactiveNavItemClass
+              )}
             >
+              <item.icon class="size-4" />
               {item.label}
             </Button>
           {/each}
@@ -315,11 +321,12 @@
                     aria-current={active ? 'page' : undefined}
                     class={cn(
                       navItemBaseClass,
-                      'w-full justify-center py-2.5',
+                      'flex w-full items-center justify-center gap-1.5 py-2.5',
                       active ? activeNavItemClass : inactiveNavItemClass
                     )}
                     onclick={closeMenu}
                   >
+                    <item.icon class="size-4" />
                     {item.label}
                   </Button>
                 </div>
@@ -335,7 +342,7 @@
                       href={profile.url}
                       target="_blank"
                       rel="external noreferrer"
-                      class={cn(iconButtonClass, 'w-1/2 rounded-2xl')}
+                      class={cn(iconButtonClass, 'w-1/2 gap-2 rounded-2xl')}
                       aria-label={profile.username}
                       title={profile.network}
                       onclick={closeMenu}
@@ -345,7 +352,7 @@
                       {:else if profile.icon}
                         <profile.icon class={navbarIconClass} />
                       {/if}
-                      <span class={cn('sr-only')}>{profile.network}</span>
+                      <span class="text-sm font-medium">{profile.network}</span>
                     </a>
                   {/each}
                 </div>
