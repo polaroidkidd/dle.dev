@@ -27,7 +27,7 @@
 
   const editorialCopy: Record<string, EditorialEducationEntry> = {
     'Bachelor of Science in Computer Science ZHAW Zurich (BSc)|2015-09-01': {
-      image: 'assets/education/zurich.jpg',
+      image: 'assets/education/zurich.jpg?enhanced',
       summary:
         'A focused computer science track centered on software systems, implementation, and applied machine learning work.',
       details: [
@@ -36,7 +36,7 @@
       ]
     },
     'Master of Business Administration (MBA)|2009-09-01': {
-      image: 'assets/education/hamburg.jpg',
+      image: 'assets/education/hamburg.jpg?enhanced',
       summary:
         'An MBA grounding in business strategy, media, and digital product thinking that still informs how I connect execution with commercial outcomes.',
       details: [
@@ -45,7 +45,7 @@
       ]
     },
     'Bachelor of Arts in Economics (BA)|2006-09-01': {
-      image: 'assets/education/london.jpg',
+      image: 'assets/education/london.jpg?enhanced',
       summary:
         'An economics degree that established the analytical and structural thinking behind later product, marketing, and engineering work.',
       details: [

@@ -16,7 +16,7 @@
             class="overflow-hidden rounded-[1.8rem] border border-black/8 shadow-[0_28px_70px_-42px_rgba(15,23,42,0.45)] lg:h-full dark:border-white/10"
           >
             <enhanced:img
-              src="/static/forrest.webp"
+              src="/static/forrest.webp?enhanced"
               alt="Sunlight streaming through a forest"
               class="h-full w-full object-cover"
               loading="lazy"
