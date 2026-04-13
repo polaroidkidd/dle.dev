@@ -32,6 +32,8 @@
 </script>
 
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
+  import { proseClass } from '$lib/components/typography';
   import { cn } from '$lib/utils.js';
 
   let { variant = 'note', title, class: className, children }: ArticleCalloutProps = $props();
@@ -43,16 +45,19 @@
     class={cn('rounded-2xl border px-4 py-4 sm:px-5', variantClasses[variant], className)}
   >
     {#if title}
-      <p
-        class={cn('mb-3 text-xs font-semibold tracking-[0.22em] uppercase', titleClasses[variant])}
+      <Typography
+        as="p"
+        variant="eyebrow-tight"
+        class={cn('mb-3 font-semibold tracking-[0.22em]', titleClasses[variant])}
       >
         {title}
-      </p>
+      </Typography>
     {/if}
 
     <div
       class={cn(
-        'prose max-w-none prose-neutral dark:prose-invert [&>*:first-child]:mt-0 [&>*:last-child]:mb-0',
+        proseClass,
+        '[&>*:first-child]:mt-0 [&>*:last-child]:mb-0',
         contentClasses[variant]
       )}
     >

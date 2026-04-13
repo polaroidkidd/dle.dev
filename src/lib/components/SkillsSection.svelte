@@ -2,6 +2,7 @@
   import openai from '$lib/assets/icons/openai.svg';
   import playwrightIcon from '$lib/assets/icons/playwright.svg';
   import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
   import IconCloud from '$lib/components/magic/icon-cloud/icon-cloud.svelte';
   import { getHomeIntro } from '$lib/state/home-intro.svelte';
   import resume from '../assets/resume/resume.json';
@@ -110,9 +111,11 @@
               data-skills-group
               style:--skills-group-order={skillGroups.indexOf(group)}
             >
-              <h3
+              <Typography
+                as="h3"
+                variant="card-title-sm"
                 id={getSkillGroupId(group.name)}
-                class="font-heading text-[1.08rem] font-semibold tracking-[-0.02em] text-foreground sm:text-[1.2rem]"
+                class="text-[1.08rem] tracking-[-0.02em] sm:text-[1.2rem]"
               >
                 <a
                   href={`#${getSkillGroupId(group.name)}`}
@@ -120,15 +123,17 @@
                 >
                   {group.name}
                 </a>
-              </h3>
+              </Typography>
 
               <div class="mt-4 flex flex-wrap gap-2.5">
                 {#each group.keywords as keyword (keyword)}
-                  <span
+                  <Typography
+                    as="span"
+                    variant="chip"
                     class="inline-flex items-center rounded-full border border-black/8 bg-black/[0.025] px-3 py-1.5 text-sm leading-5 text-foreground/84 transition-colors duration-200 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/86"
                   >
                     {keyword}
-                  </span>
+                  </Typography>
                 {/each}
               </div>
             </section>

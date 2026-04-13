@@ -10,6 +10,7 @@
 </script>
 
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import { cn } from '$lib/utils.js';
 
   let { items, class: className, itemClass, bulletClass }: ResumeTimelineBulletListProps = $props();
@@ -23,7 +24,7 @@
       >
         <span class={cn('mt-2.5 block size-1.5 shrink-0 rounded-full bg-primary/70', bulletClass)}
         ></span>
-        <span>{item}</span>
+        <Typography as="span" variant="inline">{item}</Typography>
       </li>
     {/each}
   </ul>

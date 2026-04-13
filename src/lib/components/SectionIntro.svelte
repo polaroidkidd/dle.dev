@@ -15,6 +15,7 @@
 </script>
 
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import { cn } from '$lib/utils.js';
 
   let {
@@ -32,37 +33,20 @@
 
 <div class={cn('max-w-3xl', className)}>
   {#if eyebrow}
-    <p
-      class={cn(
-        'text-xs font-medium tracking-[0.28em] text-muted-foreground uppercase',
-        eyebrowClass
-      )}
-    >
+    <Typography as="p" variant="eyebrow" class={eyebrowClass}>
       {eyebrow}
-    </p>
+    </Typography>
   {/if}
 
-  <svelte:element
-    this={headingTag}
-    {id}
-    class={cn(
-      'mt-4 font-heading text-[clamp(2rem,4vw,3.6rem)] font-semibold tracking-[-0.04em] text-foreground',
-      titleClass
-    )}
-  >
+  <Typography as={headingTag} variant="section-title" {id} class={cn('mt-4', titleClass)}>
     <a href={`#${id}`} class="underline-offset-4 hover:underline focus-visible:underline">
       {title}
     </a>
-  </svelte:element>
+  </Typography>
 
   {#if description}
-    <p
-      class={cn(
-        'mt-4 max-w-2xl text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8',
-        descriptionClass
-      )}
-    >
+    <Typography as="p" variant="body" class={cn('mt-4 max-w-2xl', descriptionClass)}>
       {description}
-    </p>
+    </Typography>
   {/if}
 </div>

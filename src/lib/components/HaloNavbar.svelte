@@ -18,6 +18,7 @@
   import gsap from 'gsap';
   import { onMount } from 'svelte';
 
+  import Typography from '$lib/components/Typography.svelte';
   import { Button } from '$lib/components/ui/button';
   import { cn } from '$lib/utils';
   import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
@@ -261,12 +262,12 @@
           </span>
 
           <span data-navbar-content class={cn('min-w-0')}>
-            <span class={cn('block truncate font-heading text-sm font-semibold sm:text-base')}>
+            <Typography as="span" variant="brand-title" class={cn('block')} truncate>
               Daniel L. Einars
-            </span>
-            <span class={cn('block truncate text-xs text-muted-foreground')}>
+            </Typography>
+            <Typography as="span" variant="brand-subtitle" class={cn('block')} truncate>
               Designer-engineer • premium frontend systems
-            </span>
+            </Typography>
           </span>
         </a>
 
@@ -307,7 +308,8 @@
                 onclick={toggleToc}
               >
                 <List class="size-4" />
-                <span class="hidden sm:inline">Sections</span>
+                <Typography as="span" variant="inline" class="hidden sm:inline">Sections</Typography
+                >
                 <ChevronDown
                   class={cn(
                     'size-4 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
@@ -341,7 +343,7 @@
                       >
                         <item.icon class="size-4" />
                       </span>
-                      <span>{item.label}</span>
+                      <Typography as="span" variant="inline">{item.label}</Typography>
                     </Button>
                   {/each}
                 </div>
@@ -371,7 +373,7 @@
             class={cn(contactLinkClass, 'hidden min-[930px]:inline-flex')}
           >
             <Mail class={navbarIconClass} />
-            <span>Contact</span>
+            <Typography as="span" variant="inline">Contact</Typography>
           </a>
         </div>
 
@@ -420,11 +422,9 @@
                       'rounded-[1.4rem] border border-black/6 bg-black/[0.025] p-2 dark:border-white/8 dark:bg-white/[0.03]'
                     )}
                   >
-                    <p
-                      class="px-2 pb-2 text-[0.72rem] font-medium tracking-[0.18em] text-muted-foreground uppercase"
-                    >
+                    <Typography as="p" variant="eyebrow-compact" class="px-2 pb-2">
                       Sections
-                    </p>
+                    </Typography>
 
                     <div class="flex flex-col gap-1">
                       {#each sectionItems as item (item.href)}
@@ -441,7 +441,7 @@
                           >
                             <item.icon class="size-4" />
                           </span>
-                          <span>{item.label}</span>
+                          <Typography as="span" variant="inline">{item.label}</Typography>
                         </Button>
                       {/each}
                     </div>
@@ -459,7 +459,7 @@
                   onclick={closeMenu}
                 >
                   <Mail class={navbarIconClass} />
-                  <span>Contact</span>
+                  <Typography as="span" variant="inline">Contact</Typography>
                 </a>
               </div>
             </div>

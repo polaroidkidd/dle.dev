@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import type { ClassValue } from 'svelte/elements';
 
   type Props = {
@@ -9,12 +10,12 @@
   let { children, class: className }: Props = $props();
 </script>
 
-<span class={['aurora-text inline-block', className]}>
+<Typography as="span" variant="inline" class={['aurora-text inline-block', className]}>
   {@render children?.()}
-</span>
+</Typography>
 
 <style>
-  .aurora-text {
+  :global(.aurora-text) {
     background-image: linear-gradient(
       112deg,
       #cc0f7a 0%,
@@ -34,7 +35,7 @@
     animation: aurora-shift 6.4s ease-in-out infinite alternate;
   }
 
-  :global(.dark) .aurora-text {
+  :global(.dark .aurora-text) {
     background-image: linear-gradient(
       112deg,
       #ff7af6 0%,
@@ -60,7 +61,7 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora-text {
+    :global(.aurora-text) {
       animation: none;
       background-position: 40% 50%;
     }

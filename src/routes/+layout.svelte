@@ -19,6 +19,7 @@
     UiSettings,
     setUiSettings
   } from '$lib/state/ui-settings.svelte';
+  import Typography from '$lib/components/Typography.svelte';
   import './layout.css';
 
   let { data, children }: LayoutProps = $props();
@@ -27,9 +28,9 @@
   let introCover: HTMLDivElement | undefined;
   let seal: HTMLDivElement | undefined;
   let axis: HTMLDivElement | undefined;
-  let markD: HTMLSpanElement | undefined;
-  let markL: HTMLSpanElement | undefined;
-  let markE: HTMLSpanElement | undefined;
+  let markD = $state<HTMLSpanElement | undefined>(undefined);
+  let markL = $state<HTMLSpanElement | undefined>(undefined);
+  let markE = $state<HTMLSpanElement | undefined>(undefined);
   let ring: SVGCircleElement | undefined;
   let pulse: HTMLDivElement | undefined;
   let appShell: HTMLDivElement | undefined;
@@ -223,13 +224,11 @@
           class="absolute inset-0 m-auto h-26 w-px bg-gradient-to-b from-transparent via-current to-transparent"
         ></div>
 
-        <div
-          class="relative z-10 flex items-end gap-1.5 font-heading text-[4.8rem] leading-none font-semibold tracking-[-0.16em] sm:text-[5.25rem]"
-        >
-          <span data-mark="d" bind:this={markD}>d</span>
-          <span data-mark="l" bind:this={markL}>l</span>
-          <span data-mark="e" bind:this={markE}>e</span>
-        </div>
+        <Typography as="div" variant="seal" class="relative z-10 flex items-end gap-1.5">
+          <Typography as="span" variant="inline" data-mark="d" bind:ref={markD}>d</Typography>
+          <Typography as="span" variant="inline" data-mark="l" bind:ref={markL}>l</Typography>
+          <Typography as="span" variant="inline" data-mark="e" bind:ref={markE}>e</Typography>
+        </Typography>
 
         <div
           class="absolute bottom-9 left-1/2 h-px w-14 -translate-x-1/2 bg-gradient-to-r from-transparent via-current to-transparent opacity-30"

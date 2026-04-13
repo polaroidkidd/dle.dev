@@ -6,6 +6,7 @@
   import zurich from '$lib/assets/education/zurich.jpg?enhanced&w=240;384;768';
   import resume from '$lib/assets/resume/resume.json';
   import SectionIntro from '$lib/components/SectionIntro.svelte';
+  import Typography from '$lib/components/Typography.svelte';
   import ResumeTimelineBulletList from '$lib/components/resume/ResumeTimelineBulletList.svelte';
   import ResumeTimelineEntry from '$lib/components/resume/ResumeTimelineEntry.svelte';
   import ResumeTimelineMedia from '$lib/components/resume/ResumeTimelineMedia.svelte';
@@ -134,37 +135,34 @@
               <div
                 class="flex flex-wrap items-center gap-2.5 text-xs font-medium tracking-[0.22em] text-muted-foreground uppercase"
               >
-                <span
+                <Typography
+                  as="span"
+                  variant="eyebrow-tight"
                   class="inline-flex items-center rounded-full border border-primary/16 bg-primary/7 px-3 py-1 text-primary/90 dark:border-primary/35 dark:bg-primary/18 dark:text-primary-foreground"
                 >
                   {entry.dateRange}
-                </span>
+                </Typography>
                 <span class="h-1 w-1 rounded-full bg-primary/35"></span>
-                <span class="max-w-[24rem] text-[0.72rem] text-foreground/76">
+                <Typography as="span" variant="caption" class="max-w-[24rem]">
                   {entry.institution}
-                </span>
+                </Typography>
               </div>
 
-              <h3
-                id={entry.id}
-                class="min-w-0 font-heading text-[1.2rem] font-semibold tracking-[-0.03em] text-foreground sm:text-[1.35rem]"
-              >
+              <Typography as="h3" variant="card-title" id={entry.id} class="min-w-0">
                 <a
                   href={`#${entry.id}`}
                   class="underline-offset-4 hover:underline focus-visible:underline"
                 >
                   {entry.degree}
                 </a>
-              </h3>
+              </Typography>
             </div>
 
             <div class="mt-6">
               <div class="space-y-5 border-t border-black/8 pt-6 dark:border-white/10">
-                <p
-                  class="text-[0.98rem] leading-7 text-muted-foreground sm:text-[1.02rem] lg:text-[1.08rem] lg:leading-8"
-                >
+                <Typography as="p" variant="body">
                   {entry.summary}
-                </p>
+                </Typography>
 
                 <ResumeTimelineBulletList items={entry.details} />
 

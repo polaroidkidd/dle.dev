@@ -2,6 +2,7 @@
   import { resolve } from '$app/paths';
   import type { PageProps } from './$types';
 
+  import Typography from '$lib/components/Typography.svelte';
   import { Button } from '$lib/components/ui/button';
 
   let { data }: PageProps = $props();
@@ -57,16 +58,14 @@
       </div>
 
       <div class="relative z-10 max-w-3xl">
-        <p class="text-xs font-medium tracking-[0.32em] text-muted-foreground uppercase">Blog</p>
-        <h1
-          class="mt-4 font-heading text-[clamp(2.1rem,4vw,4.25rem)] font-semibold tracking-[-0.05em] text-balance text-foreground"
-        >
+        <Typography as="p" variant="eyebrow-wide">Blog</Typography>
+        <Typography as="h1" variant="page-title" class="mt-4">
           Notes on frontend systems, architecture, and the edge cases worth remembering.
-        </h1>
-        <p class="mt-5 max-w-2xl text-[1rem] leading-7 text-muted-foreground sm:text-[1.05rem]">
+        </Typography>
+        <Typography as="p" variant="body-lead" class="mt-5 max-w-2xl">
           A running archive of implementation notes, framework comparisons, and small technical
           write-ups.
-        </p>
+        </Typography>
       </div>
     </div>
   </section>
@@ -81,31 +80,27 @@
             class="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent dark:via-white/12"
           ></div>
 
-          <div
-            class="flex items-center justify-between gap-3 text-[0.72rem] font-medium tracking-[0.2em] text-muted-foreground uppercase"
-          >
-            <span>{formatPublishedAt(entry.publishedAt)}</span>
+          <div class="flex items-center justify-between gap-3">
+            <Typography as="span" variant="meta">{formatPublishedAt(entry.publishedAt)}</Typography>
             {#if formatUpdatedAt(entry.updatedAt)}
-              <span>Updated {formatUpdatedAt(entry.updatedAt)}</span>
+              <Typography as="span" variant="meta">
+                Updated {formatUpdatedAt(entry.updatedAt)}
+              </Typography>
             {/if}
           </div>
 
           <div class="mt-5">
-            <h2 class="font-heading text-2xl font-semibold tracking-[-0.04em] text-foreground">
-              {entry.title}
-            </h2>
-            <p class="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.95rem]">
+            <Typography as="h2" variant="article-card-title">{entry.title}</Typography>
+            <Typography as="p" variant="body-sm" class="mt-4 sm:text-[0.95rem] sm:leading-7">
               {entry.summary}
-            </p>
+            </Typography>
           </div>
 
           <div class="mt-6 border-t border-black/8 pt-4 dark:border-white/10">
             <div class="flex items-center justify-between gap-4">
-              <p
-                class="text-[0.72rem] font-medium tracking-[0.22em] text-muted-foreground uppercase"
-              >
+              <Typography as="p" variant="meta" class="tracking-[0.22em]">
                 {entry.slug}
-              </p>
+              </Typography>
 
               <Button
                 href={resolve('/blog/[slug]', { slug: entry.slug })}

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Typography from '$lib/components/Typography.svelte';
   import type { HomeOutcome } from '$lib/content/home';
 
   type Props = {
@@ -14,12 +15,14 @@
   class={`${modeClass} relative hidden border-t border-black/8 pt-6 xl:block xl:border-t-0 xl:border-l xl:pt-3 xl:pl-8 dark:border-white/10`}
 >
   <div class="flex items-center justify-between gap-3">
-    <p class="text-sm font-semibold text-foreground">Proof ledger</p>
-    <div
-      class="rounded-full border border-black/8 px-2.5 py-1 text-[0.65rem] font-medium tracking-[0.24em] text-muted-foreground uppercase dark:border-white/10"
+    <Typography as="p" variant="ui-title">Proof ledger</Typography>
+    <Typography
+      as="span"
+      variant="counter"
+      class="rounded-full border border-black/8 px-2.5 py-1 dark:border-white/10"
     >
       {ledgerCount}/{entries.length}
-    </div>
+    </Typography>
   </div>
 
   <div class="relative mt-6 space-y-3 xl:mt-7">
@@ -35,12 +38,12 @@
           class="pointer-events-none absolute inset-y-4 left-0 w-[3px] rounded-full bg-primary/55"
         ></div>
 
-        <p class="mt-2 text-sm leading-6 text-foreground/88">
+        <Typography as="p" variant="body-sm-strong" class="mt-2">
           {entry.railLabel}
-        </p>
-        <p class="mt-3 text-sm leading-6 text-muted-foreground">
+        </Typography>
+        <Typography as="p" variant="body-sm" class="mt-3">
           {entry.proof}
-        </p>
+        </Typography>
       </article>
     {/each}
   </div>
