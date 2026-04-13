@@ -16,6 +16,9 @@ jobs:
     name: Create Tag and Release
     runs-on: ubuntu-latest
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
       - name: Setup environment
         uses: ./.github/actions/env-setup
         with:

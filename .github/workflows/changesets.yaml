@@ -19,6 +19,9 @@ jobs:
     name: Deploy Staging
     runs-on: ubuntu-latest
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
       - name: Setup environment
         uses: ./.github/actions/env-setup
         with:
@@ -46,6 +49,9 @@ jobs:
     needs: [deploy-staging]
     runs-on: ubuntu-latest
     steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
       - name: Setup environment
         uses: ./.github/actions/env-setup
         with:
