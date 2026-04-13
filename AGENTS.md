@@ -13,9 +13,20 @@
 
 ## Skill Loading
 
-- Always load every available skill at the start of each task/session
-- Do not wait for a skill-specific trigger; treat all listed skills as required baseline context for all work in this repository
-- If skill loading requires explicit tool calls, invoke the `skill` tool for every available skill before doing substantive work
+- Load skills dynamically based on the task instead of loading every available skill at the start of each session
+- Treat `svelte-code-writer` and `svelte-core-bestpractices` as the default baseline for work in this repository because Svelte is part of the core stack
+- Load `frontend-design` for design-heavy work such as UI design, layout polish, visual refinement, landing pages, dashboards, or other requests where the main goal is the look and feel
+- Load `ui-animation` for animation-related work such as transitions, motion polish, interaction feel, choreography, or animation review/debugging
+- Load the GSAP skills only when the task involves animation or motion implementation
+- When loading GSAP skills, load the smallest relevant set for the task:
+  - `gsap-core` for general GSAP animation work
+  - `gsap-frameworks` when implementing GSAP in Svelte or other framework components
+  - `gsap-scrolltrigger` for scroll-based animation
+  - `gsap-timeline` for sequenced or choreographed animations
+  - `gsap-plugins` when a GSAP plugin is needed
+  - `gsap-performance` when optimizing animation performance
+  - `gsap-utils` when GSAP utility helpers are directly relevant
+- Load other skills only when their domain clearly matches the request instead of treating them as universal baseline context
 
 ## UI Component Priorities
 
