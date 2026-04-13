@@ -6,6 +6,25 @@ concurrency:
   group: ${{ github.head_ref }}
 
 jobs:
+  changesets:
+    if: ${{ github.event.pull_request.title != 'Version packages' }}
+    name: Changesets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          fetch-depth: 0
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - name: Verify changeset
+        run: |
+          pnpm exec changeset status --since=origin/master
+
   lint:
     name: Lint
     runs-on: ubuntu-latest
@@ -31,7 +50,7 @@ jobs:
   publish-web-app:
     environment: dle-dev (Preview)
     name: Deploy Webapp
-    needs: [lint, verify]
+    needs: [changesets, lint, verify]
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout

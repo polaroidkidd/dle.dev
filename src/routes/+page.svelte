@@ -11,7 +11,7 @@
   <title>Daniel L. Einars — Designer-engineer</title>
   <meta
     name="description"
-    content="Designer-engineer building premium frontend systems, brand-led interfaces, and deliberate motion for the web."
+    content="Designer-engineer building high-quality frontend systems, architecture, and deliberate product design for the web."
   />
 </svelte:head>
 

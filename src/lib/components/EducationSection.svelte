@@ -5,9 +5,9 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
-  import hamburg from '$lib/assets/education/hamburg.jpg?enhanced';
-  import london from '$lib/assets/education/london.jpg?enhanced';
-  import zurich from '$lib/assets/education/zurich.jpg?enhanced';
+  import hamburg from '$lib/assets/education/hamburg.jpg?enhanced&w=240;384;768';
+  import london from '$lib/assets/education/london.jpg?enhanced&w=240;384;768';
+  import zurich from '$lib/assets/education/zurich.jpg?enhanced&w=240;384;768';
 
   type ResumeEducationEntry = (typeof resume.education)[number];
 
@@ -173,7 +173,10 @@
                 <enhanced:img
                   src={entry.image}
                   alt=""
+                  sizes="(min-width: 1024px) 384px, 0px"
                   class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -268,7 +271,10 @@
                           <enhanced:img
                             src={entry.image}
                             alt=""
+                            sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
                             class="relative h-24 w-full rounded-[1rem] object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                         {:else}
                           <div

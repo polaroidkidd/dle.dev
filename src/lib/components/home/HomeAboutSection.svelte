@@ -20,6 +20,8 @@
               alt="Sunlight streaming through a forest"
               class="h-full w-full object-cover"
               loading="lazy"
+              decoding="async"
+              sizes="(min-width: 1024px) 352px, calc(100vw - 2rem)"
             />
           </div>
         </div>

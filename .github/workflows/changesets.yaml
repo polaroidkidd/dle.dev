@@ -1,0 +1,68 @@
+name: Release Prep
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  cancel-in-progress: true
+  group: release-prep-master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  deploy-staging:
+    name: Deploy Staging
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - env:
+          IS_CI: false
+        name: Build
+        run: |
+          pnpm run build
+
+      - name: Publish Staging
+        uses: cloudflare/pages-action@v1
+        with:
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          branch: master
+          directory: ./.svelte-kit/cloudflare
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          projectName: dle-dev-staging
+
+  version:
+    name: Create Release PR
+    needs: [deploy-staging]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup environment
+        uses: ./.github/actions/env-setup
+        with:
+          node-version: 24.14.1
+          pnpm-version: 10.33.0
+
+      - name: Create release pull request
+        uses: changesets/action@v1
+        with:
+          version: pnpm release
+          commit: Version packages
+          title: Version packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -5,14 +5,14 @@
   import { cn } from '$lib/utils';
   import resume from '../../../static/resume.json';
 
-  import design from '$lib/assets/work/design.jpg?enhanced';
-  import lead from '$lib/assets/work/lead.jpg?enhanced';
-  import library from '$lib/assets/work/library.jpg?enhanced';
-  import marketing from '$lib/assets/work/marketing.jpg?enhanced';
-  import mechnic from '$lib/assets/work/mechnic.jpg?enhanced';
-  import migration from '$lib/assets/work/migration.jpg?enhanced';
-  import seo from '$lib/assets/work/seo.jpg?enhanced';
-  import time from '$lib/assets/work/time.jpg?enhanced';
+  import design from '$lib/assets/work/design.jpg?enhanced&w=256;416;832';
+  import lead from '$lib/assets/work/lead.jpg?enhanced&w=256;416;832';
+  import library from '$lib/assets/work/library.jpg?enhanced&w=256;416;832';
+  import marketing from '$lib/assets/work/marketing.jpg?enhanced&w=256;416;832';
+  import mechnic from '$lib/assets/work/mechnic.jpg?enhanced&w=256;416;832';
+  import migration from '$lib/assets/work/migration.jpg?enhanced&w=256;416;832';
+  import seo from '$lib/assets/work/seo.jpg?enhanced&w=256;416;832';
+  import time from '$lib/assets/work/time.jpg?enhanced&w=256;416;832';
 
   type ResumeWorkEntry = (typeof resume.work)[number];
 
@@ -238,7 +238,10 @@
                 <enhanced:img
                   src={entry.imageSrc}
                   alt=""
+                  sizes="(min-width: 1024px) 416px, 0px"
                   class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -333,7 +336,10 @@
                           <enhanced:img
                             src={entry.imageSrc}
                             alt=""
+                            sizes="(min-width: 1024px) 0px, calc(100vw - 5rem)"
                             class="relative h-24 w-full rounded-[1rem] object-cover"
+                            loading="lazy"
+                            decoding="async"
                           />
                         {:else}
                           <div

@@ -78,7 +78,7 @@
     <div
       class="mt-12 grid gap-12 lg:mt-16 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:items-start lg:gap-20"
     >
-      <div class="relative order-2 lg:order-1" data-skills-cloud>
+      <div class="relative" data-skills-cloud>
         <div
           class="relative mx-auto aspect-square w-full max-w-[26rem] overflow-hidden rounded-[2rem] border border-black/8 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.88)_0%,rgba(255,255,255,0.42)_42%,transparent_72%)] shadow-[0_30px_90px_-48px_rgba(15,23,42,0.42)] dark:border-white/10 dark:bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.03)_42%,transparent_72%)]"
         >
@@ -102,7 +102,7 @@
         </div>
       </div>
 
-      <div class="order-1 lg:order-2">
+      <div>
         <div class="space-y-8">
           {#each skillGroups as group (group.name)}
             <section
