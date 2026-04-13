@@ -25,22 +25,22 @@ name: Setup Environment
 runs:
   steps:
     - name: Git Composite Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         fetch-depth: ${{ inputs.fetch-depth }}
         ref: ${{ inputs.ref }}
     - name: Setup Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
     - name: Setup PNPM
-      uses: pnpm/action-setup@v4
+      uses: pnpm/action-setup@v5
       with:
         version: ${{ inputs.pnpm-version }}
 
     - id: pnpm-cache
       name: Setup PNPM cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         # include node version + lockfile hash so caches are stable across node changes
         key: ${{ runner.os }}-pnpm-v${{ inputs.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
