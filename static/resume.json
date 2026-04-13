@@ -3,14 +3,6 @@
   "basics": {
     "name": "Daniel L. Einars",
     "label": "Lead Software Engineer",
-    "image": "../avatar.jpeg",
-    "email": "contact@dle.dev",
-    "phone": "+41 78 640 60 84",
-    "location": {
-      "address": "Moosmattstr. 4",
-      "countryCode": "Switzerland",
-      "region": "6045 Meggen,"
-    },
     "profiles": [
       {
         "network": "Github",
@@ -21,11 +13,6 @@
         "network": "LinkedIn",
         "username": "LinkedIn",
         "url": "https://www.linkedin.com/in/daniel-einars/"
-      },
-      {
-        "network": "Website",
-        "username": "Personal Page",
-        "url": "https://dle.dev"
       }
     ],
     "summary": "Lead Software Engineer focused on React and SvelteKit platforms, combining hands-on delivery with architecture leadership in regulated environments. I drive migrations, engineering standards, and maintainable user-facing systems in close collaboration with product, design, backend, and business stakeholders."
