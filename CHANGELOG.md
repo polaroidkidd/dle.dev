@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.1
+
+### Patch Changes
+
+- db2cbe5: Add a dynamic `sitemap.xml` endpoint for the site and blog archive, and advertise it in `robots.txt` for crawler discovery.
+- db2cbe5: Add a dedicated inactive navbar color token so non-current navigation buttons can be styled separately from the primary action state.
+
 ## 2.2.0
 
 ### Minor Changes
