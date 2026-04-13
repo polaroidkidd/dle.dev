@@ -3,12 +3,12 @@
   import { page } from '$app/state';
   import { Globe, Mail, Menu, X } from '@lucide/svelte';
 
-  import { Button } from '$lib/components/ui/button';
   import githubIcon from '$lib/assets/icons/github.svg';
   import linkedinIcon from '$lib/assets/icons/linkedin.svg';
+  import { Button } from '$lib/components/ui/button';
   import { cn } from '$lib/utils';
-  import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
   import resume from '../../../static/resume.json';
+  import { AnimatedThemeToggler } from './magic/animated-theme-toggler';
 
   type NavItem = {
     href: string;
@@ -76,8 +76,8 @@
   );
 
   const inactiveNavItemClass = cn(
-    'text-muted-foreground hover:bg-transparent hover:text-foreground',
-    'dark:hover:bg-transparent dark:hover:text-white'
+    'bg-nav-inactive text-nav-inactive-foreground',
+    'hover:bg-nav-inactive/85 dark:hover:bg-nav-inactive/85'
   );
 
   const contactLinkClass = cn(
