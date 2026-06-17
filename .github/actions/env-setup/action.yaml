@@ -40,7 +40,7 @@ runs:
 
     - id: pnpm-cache
       name: Setup PNPM cache
-      uses: actions/cache@v4
+      uses: actions/cache@v5
       with:
         # include node version + lockfile hash so caches are stable across node changes
         key: ${{ runner.os }}-pnpm-v${{ inputs.node-version }}-${{ hashFiles('**/pnpm-lock.yaml') }}
