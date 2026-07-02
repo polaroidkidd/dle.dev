@@ -28,8 +28,8 @@ importers:
         specifier: ^5.2.7
         version: 5.2.7
       '@lucide/svelte':
-        specifier: ^1.21.0
-        version: 1.21.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))
+        specifier: ^1.22.0
+        version: 1.22.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))
       '@sveltejs/adapter-auto':
         specifier: latest
         version: 7.0.1(@sveltejs/kit@2.68.0(@sveltejs/vite-plugin-svelte@7.1.2(svelte@5.56.4(@typescript-eslint/types@8.62.1))(vite@8.1.0(@types/node@25.9.4)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))(svelte@5.56.4(@typescript-eslint/types@8.62.1))(typescript@6.0.3)(vite@8.1.0(@types/node@25.9.4)(esbuild@0.28.1)(jiti@2.7.0)(yaml@2.8.3)))
@@ -687,8 +687,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@lucide/svelte@1.21.0':
-    resolution: {integrity: sha512-MEv//A7Jv3kHukZowv/DWp1MAtUzJKYwtJsmnQ7X98lCgtac3z3NbaToDl3Q6jO3gS9sougFpcD+t+YuxOkRMw==}
+  '@lucide/svelte@1.22.0':
+    resolution: {integrity: sha512-eaNC3GGu9ma7mviB9vPL6OnawXqxdvRnoAQSq5l15mBlsuwD7kozZ7pzPXSlT6OwSl7hz4qTk+ZU3OEewwi5gQ==}
     peerDependencies:
       svelte: ^5
 
@@ -3033,7 +3033,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lucide/svelte@1.21.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))':
+  '@lucide/svelte@1.22.0(svelte@5.56.4(@typescript-eslint/types@8.62.1))':
     dependencies:
       svelte: 5.56.4(@typescript-eslint/types@8.62.1)
 
